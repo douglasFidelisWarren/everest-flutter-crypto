@@ -1,7 +1,27 @@
+import 'package:decimal/decimal.dart';
+
 import '../models/coin.dart';
 
 class CoinRepository {
-  List<Coin> getCoins() {
+  double getWallet() {
+    Decimal wallet = Decimal.parse("0");
+    List<Coin> coinList = getAllCoins();
+
+    for (var coin in coinList) {
+      wallet =
+          wallet + (Decimal.parse(coin.amount) * Decimal.parse(coin.latest));
+    }
+
+    return wallet.toDouble();
+  }
+
+  Coin getCoinById(int id) {
+    List<Coin> coinList = getAllCoins();
+    Coin coin = coinList[id];
+    return coin;
+  }
+
+  List<Coin> getAllCoins() {
     List<Coin> coins = [
       Coin(
         image: "assets/images/btc.png",

@@ -1,8 +1,9 @@
 import 'package:everest_crypto/shared/styles.dart';
 import 'package:flutter/material.dart';
 
-import 'views/movements_page.dart';
-import 'views/portfolio_page.dart';
+import 'movements/movements_page.dart';
+import 'portfolio/portfolio_page.dart';
+import 'shared/assets.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -56,21 +57,13 @@ class _HomeState extends State<Home> {
           items: const [
             BottomNavigationBarItem(
               label: "Potifólio",
-              icon: Image(
-                image: AssetImage("assets/images/warrenOff.png"),
-              ),
-              activeIcon: Image(
-                image: AssetImage("assets/images/warren.png"),
-              ),
+              icon: portfolioIcon,
+              activeIcon: portfolioActiveIcon,
             ),
             BottomNavigationBarItem(
               label: "Movimentações",
-              icon: Image(
-                image: AssetImage("assets/images/cryptoOff.png"),
-              ),
-              activeIcon: Image(
-                image: AssetImage("assets/images/crypto.png"),
-              ),
+              icon: movementsIcon,
+              activeIcon: movementsActiveIcon,
             ),
           ]),
     );
