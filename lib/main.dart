@@ -1,7 +1,8 @@
+import 'package:everest_crypto/shared/styles.dart';
 import 'package:flutter/material.dart';
 
-import 'movements_page.dart';
-import 'portfolio_page.dart';
+import 'views/movements_page.dart';
+import 'views/portfolio_page.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -43,6 +44,7 @@ class _HomeState extends State<Home> {
             Movements(),
           ]),
       bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: colorBlackText,
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w400),
           backgroundColor: Colors.white,
           onTap: (page) {

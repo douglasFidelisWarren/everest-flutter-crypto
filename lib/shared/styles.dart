@@ -4,11 +4,8 @@ const Color colorBlackText = Color.fromRGBO(47, 47, 51, 1);
 const Color colorGrayDivider = Color.fromRGBO(227, 228, 235, 1);
 const Color colorGraySubtitle = Color.fromRGBO(117, 118, 128, 1);
 const Color colorBrandWarren = Color.fromRGBO(224, 43, 87, 1);
-const Color colorPositiveText = Color.fromRGBO(0, 76, 58, 1);
-const Color colorNegativeBackgroud = Color.fromRGBO(247, 161, 161, 1);
-const Color colorNegativeText = Color.fromRGBO(128, 13, 13, 1);
 const Color colorHideOff = Color.fromARGB(0, 255, 255, 255);
-const Color colorHideOn = Color.fromARGB(255, 192, 192, 192);
+const Color colorHideOn = colorGrayDivider;
 
 const TextStyle titleStyle = TextStyle(
   fontFamily: "Montserrat",

@@ -1,9 +1,9 @@
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 
-import 'coin.dart';
-import 'coin_repository.dart';
-import 'styles.dart';
+import '../models/coin.dart';
+import '../repositories/coin_repository.dart';
+import '../shared/styles.dart';
 
 class PortfolioPage extends StatefulWidget {
   const PortfolioPage({Key? key}) : super(key: key);

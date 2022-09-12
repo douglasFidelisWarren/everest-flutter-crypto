@@ -1,4 +1,4 @@
-import 'coin.dart';
+import '../models/coin.dart';
 
 class CoinRepository {
   List<Coin> getCoins() {
