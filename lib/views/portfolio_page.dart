@@ -1,5 +1,6 @@
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../models/coin.dart';
 import '../repositories/coin_repository.dart';
@@ -14,6 +15,7 @@ class PortfolioPage extends StatefulWidget {
 
 class _PortfolioPageState extends State<PortfolioPage> {
   bool visible = true;
+  NumberFormat number = NumberFormat("#,###.00", "pt_BR");
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +130,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                                 Container(
                                   decoration: hideText,
                                   child: Text(
-                                    "R\$ ${value.toStringAsFixed(2)}",
+                                    "R\$ ${number.format(value)}",
                                     style:
                                         visible ? valueStyle : valueStyleHide,
                                   ),
