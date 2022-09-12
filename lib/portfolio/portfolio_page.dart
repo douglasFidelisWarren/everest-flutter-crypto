@@ -1,10 +1,13 @@
+import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/portfolio/widgets/walletDetails.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../models/coin.dart';
 import '../repositories/coin_repository.dart';
 import '../shared/styles.dart';
+import 'widgets/coin_datails.dart';
 import 'widgets/coin_list.dart';
-import 'widgets/walletDetails.dart';
 
 class PortfolioPage extends StatefulWidget {
   const PortfolioPage({Key? key}) : super(key: key);
@@ -14,17 +17,12 @@ class PortfolioPage extends StatefulWidget {
 }
 
 class _PortfolioPageState extends State<PortfolioPage> {
-  CoinRepository repository = CoinRepository();
   bool visible = true;
-
-  void changeVisibility() {
-    setState(() {
-      visible = !visible;
-    });
-  }
+  NumberFormat number = NumberFormat("#,###.00", "pt_BR");
 
   @override
   Widget build(BuildContext context) {
+    CoinRepository repository = CoinRepository();
     List<Coin> coinList = repository.getAllCoins();
 
     return Scaffold(
@@ -32,20 +30,24 @@ class _PortfolioPageState extends State<PortfolioPage> {
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 8),
+            const SizedBox(
+              height: 8,
+            ),
             Padding(
               padding: const EdgeInsets.all(
                 18.0,
               ),
               child: WalletDetails(
-                changeVisibility: changeVisibility,
-                visible: visible,
-                repository: repository,
-              ),
+                  visible: visible,
+                  repository: repository,
+                  changeVisibility: () {
+                    setState(() {
+                      visible = !visible;
+                    });
+                  }),
             ),
             CoinList(
               coinList: coinList,
-              repository: repository,
               visible: visible,
             ),
             const SizedBox(
