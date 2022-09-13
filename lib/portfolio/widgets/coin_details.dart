@@ -1,3 +1,4 @@
+import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/coin.dart';
@@ -8,19 +9,22 @@ class CoinDetails extends StatelessWidget {
   const CoinDetails({
     Key? key,
     required this.coin,
-    required this.hideText,
-    required this.value,
     required this.visible,
   }) : super(key: key);
 
   final Coin coin;
-  final Decoration hideText;
-
-  final double value;
   final bool visible;
 
   @override
   Widget build(BuildContext context) {
+    Decoration hideText = BoxDecoration(
+        color: visible ? colorHideOff : colorHideOn,
+        borderRadius: BorderRadius.circular(5));
+    var amount = Decimal.parse(coin.amount);
+    var latest = Decimal.parse(coin.latest);
+    double value = (amount * latest).toDouble();
+    double amountCoin = amount.toDouble();
+
     return Column(
       children: [
         const Divider(
@@ -63,7 +67,7 @@ class CoinDetails extends StatelessWidget {
                       Container(
                         decoration: hideText,
                         child: Text(
-                          coin.amount,
+                          number.format(amountCoin),
                           style: visible
                               ? subTitleStyleCoin
                               : subTitleStyleCoinHide,

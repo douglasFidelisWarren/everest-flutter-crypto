@@ -1,13 +1,10 @@
-import 'package:decimal/decimal.dart';
-import 'package:everest_crypto/portfolio/widgets/walletDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../models/coin.dart';
 import '../repositories/coin_repository.dart';
-import '../shared/styles.dart';
-import 'widgets/coin_datails.dart';
 import 'widgets/coin_list.dart';
+import 'widgets/wallet_details.dart';
 
 class PortfolioPage extends StatefulWidget {
   const PortfolioPage({Key? key}) : super(key: key);

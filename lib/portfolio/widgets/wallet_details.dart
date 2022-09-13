@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../repositories/coin_repository.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
@@ -42,11 +41,15 @@ class WalletDetails extends StatelessWidget {
             ),
           ],
         ),
-        Container(
-          decoration: hideText,
-          child: Text(
-            "R\$ ${number.format(repository.getWallet())}",
-            style: visible ? totalStyle : totalStyleHide,
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Container(
+            decoration: hideText,
+            child: Text(
+              "R\$ ${number.format(repository.getWallet())}",
+              style: visible ? totalStyle : totalStyleHide,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ),
         const Text(
