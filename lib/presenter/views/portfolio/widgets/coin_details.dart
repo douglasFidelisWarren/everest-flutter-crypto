@@ -56,7 +56,8 @@ class CoinDetails extends StatelessWidget {
                 children: [
                   Container(
                     decoration: hideText,
-                    child: SizedBox(
+                    child: Container(
+                      alignment: Alignment.bottomRight,
                       width: 150,
                       child: Text(
                         "R\$ ${number.format(value)}",
@@ -69,11 +70,15 @@ class CoinDetails extends StatelessWidget {
                     children: [
                       Container(
                         decoration: hideText,
-                        child: Text(
-                          number.format(amountCoin),
-                          style: visible
-                              ? subTitleStyleCoin
-                              : subTitleStyleCoinHide,
+                        child: Container(
+                          alignment: Alignment.bottomRight,
+                          width: 150,
+                          child: Text(
+                            number.format(amountCoin),
+                            style: visible
+                                ? subTitleStyleCoin
+                                : subTitleStyleCoinHide,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 4),
