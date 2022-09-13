@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/coin.dart';
+import '../../../../domain/entities/coin.dart';
 import 'coin_details.dart';
 
 class CoinList extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../movements/movements_page.dart';
-import '../portfolio/portfolio_page.dart';
+import '../views/movements/movements_page.dart';
+import '../views/portfolio/portfolio_page.dart';
 import '../shared/assets.dart';
 import '../shared/styles.dart';
 
