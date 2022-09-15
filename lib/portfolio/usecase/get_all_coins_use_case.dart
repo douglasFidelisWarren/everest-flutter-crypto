@@ -1,5 +1,5 @@
-import '../../../../domain/entities/coin.dart';
-import '../../../../domain/repositories/coin_repository.dart';
+import '../model/coin.dart';
+import '../repositories/coin_repository.dart';
 
 class GetAllCoinsUseCase {
   final CoinRepository repository = CoinRepository();

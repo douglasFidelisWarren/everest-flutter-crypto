@@ -1,6 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../domain/entities/coin.dart';
+import '../model/coin.dart';
 import '../usecase/get_all_coins_use_case.dart';
 
 class CoinController extends StateNotifier<List<Coin>> {

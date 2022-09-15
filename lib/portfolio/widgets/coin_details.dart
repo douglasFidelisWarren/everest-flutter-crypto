@@ -1,10 +1,10 @@
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../domain/entities/coin.dart';
-import '../../../shared/formater.dart';
-import '../../../shared/styles.dart';
-import '../../details/details_page.dart';
+import '../model/coin.dart';
+import '../../shared/formater.dart';
+import '../../shared/styles.dart';
+import '../../details/view/details_page.dart';
 
 class CoinDetails extends StatelessWidget {
   const CoinDetails({

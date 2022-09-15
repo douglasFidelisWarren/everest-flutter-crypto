@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../../domain/repositories/coin_repository.dart';
+import '../../portfolio/repositories/coin_repository.dart';
 import '../../shared/styles.dart';
 
 class LineChartCoin extends StatefulWidget {

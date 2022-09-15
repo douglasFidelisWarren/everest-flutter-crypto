@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'core/app_routes.dart';
-import 'presenter/home/home.dart';
+import 'core/home.dart';
 
 void main() {
   runApp(

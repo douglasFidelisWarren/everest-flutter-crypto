@@ -2,7 +2,7 @@ import 'package:decimal/decimal.dart';
 import 'package:dio/dio.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-import '../entities/coin.dart';
+import '../model/coin.dart';
 
 class CoinRepository {
   double getWallet() {

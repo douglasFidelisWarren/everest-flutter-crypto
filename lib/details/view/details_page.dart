@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/coin.dart';
+import '../../portfolio/model/coin.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
-import 'line_chart_coin.dart';
+import '../widgets/line_chart_coin.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({Key? key}) : super(key: key);

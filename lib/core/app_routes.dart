@@ -1,7 +1,7 @@
-import '../presenter/home/home.dart';
-import '../presenter/views/details/details_page.dart';
-import '../presenter/views/movements/movements_page.dart';
-import '../presenter/views/portfolio/portfolio_page.dart';
+import 'home.dart';
+import '../details/view/details_page.dart';
+import '../movements/view/movements_page.dart';
+import '../portfolio/view/portfolio_page.dart';
 
 var appRoutes = {
   Home.route: (context) => const Home(),

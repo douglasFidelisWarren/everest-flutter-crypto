@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../../../domain/entities/coin.dart';
-import '../../../domain/repositories/coin_repository.dart';
-import 'controllers/visible_controller.dart';
-import 'widgets/coin_list.dart';
-import 'widgets/wallet_details.dart';
+import '../model/coin.dart';
+import '../repositories/coin_repository.dart';
+import '../controllers/visible_controller.dart';
+import '../widgets/coin_list.dart';
+import '../widgets/wallet_details.dart';
 
 class PortfolioPage extends HookConsumerWidget {
   const PortfolioPage({Key? key}) : super(key: key);
