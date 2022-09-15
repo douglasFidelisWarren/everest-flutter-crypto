@@ -5,32 +5,18 @@ import 'package:flutter/material.dart';
 import '../../portfolio/repositories/coin_repository.dart';
 import '../../shared/styles.dart';
 
-class LineChartCoin extends StatefulWidget {
+class LineChartCoin extends StatelessWidget {
   const LineChartCoin({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => LineChartCoinState();
-}
-
-class LineChartCoinState extends State<LineChartCoin> {
-  late bool isShowingMainData;
-  CoinRepository repo = CoinRepository(Dio());
-  int dias = 5;
-
-  @override
-  void initState() {
-    super.initState();
-    isShowingMainData = false;
-    //getSpots(1);
-  }
-
-  Future<List<FlSpot>> getSpots(int range) async {
-    List<FlSpot> spots = await repo.getSpots(dias);
-    return spots;
-  }
-
-  @override
   Widget build(BuildContext context) {
+    CoinRepository repo = CoinRepository(Dio());
+    int dias = 5;
+    Future<List<FlSpot>> getSpots(int range) async {
+      List<FlSpot> spots = await repo.getSpots(dias);
+      return spots;
+    }
+
     Future<List<FlSpot>> spots = getSpots(dias);
     return AspectRatio(
       aspectRatio: 1.4,
@@ -114,7 +100,7 @@ class LineChartCoinState extends State<LineChartCoin> {
                   ),
                 ),
               ),
-              Divider(
+              const Divider(
                 thickness: 1,
               )
             ],
@@ -148,7 +134,7 @@ class Botao extends StatelessWidget {
             color: colorHideOn, borderRadius: BorderRadius.circular(5)),
         child: Text(
           dias,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -156,21 +142,17 @@ class Botao extends StatelessWidget {
 }
 
 class BotaoFiltro extends StatelessWidget {
-  BotaoFiltro({
+  const BotaoFiltro({
     Key? key,
     required this.filter,
   }) : super(key: key);
 
   final String filter;
 
-  CoinRepository repo = CoinRepository(Dio());
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        ;
-      },
+      onTap: () {},
       child: Container(
         padding: const EdgeInsets.all(6),
         margin: const EdgeInsets.all(10),
@@ -178,7 +160,7 @@ class BotaoFiltro extends StatelessWidget {
             color: colorHideOn, borderRadius: BorderRadius.circular(5)),
         child: Text(
           filter,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
     );

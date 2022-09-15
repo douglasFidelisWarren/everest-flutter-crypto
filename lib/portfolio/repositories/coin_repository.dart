@@ -118,7 +118,7 @@ class CoinRepository {
     List<dynamic> data = await getPrices();
     List<dynamic> prices = [];
     List<FlSpot> spots = [];
-    print("primeiro ${data.first[0]}");
+    debugPrint("primeiro ${data.first[0]}");
 
     int index = 0;
     for (var i = 0; i < 30; i++) {
@@ -129,8 +129,8 @@ class CoinRepository {
       spots.add(
         FlSpot(i.toDouble(), (double.parse(valor))),
       );
-      print("${i.toString()}, ${double.parse(valor)}");
-      print("index $index");
+      debugPrint("${i.toString()}, ${double.parse(valor)}");
+      debugPrint("index $index");
     }
     //precos.add(moeda['hour']);
     // precos.add(moeda['day']);
@@ -162,8 +162,8 @@ class CoinRepository {
       spots.add(
         FlSpot(i.toDouble(), (double.parse(valor))),
       );
-      print("${i.toString()}, ${double.parse(valor)}");
-      print("index $index");
+      debugPrint("${i.toString()}, ${double.parse(valor)}");
+      debugPrint("index $index");
     }
     //precos.add(moeda['hour']);
     // precos.add(moeda['day']);

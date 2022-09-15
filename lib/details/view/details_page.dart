@@ -5,21 +5,14 @@ import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 import '../widgets/line_chart_coin.dart';
 
-class DetailsPage extends StatefulWidget {
+class DetailsPage extends StatelessWidget {
   const DetailsPage({Key? key}) : super(key: key);
 
   static const route = '/details';
 
   @override
-  State<DetailsPage> createState() => _DetailsPageState();
-}
-
-class _DetailsPageState extends State<DetailsPage> {
-  bool selected = false;
-
-  @override
   Widget build(BuildContext context) {
-    String filter = "5d";
+    //String filter = "5d";
     final coin = ModalRoute.of(context)!.settings.arguments as Coin;
     double latest = double.parse(coin.latest);
     return Scaffold(

@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 
 import '../model/coin.dart';
 import '../repositories/coin_repository.dart';
@@ -17,7 +16,6 @@ class PortfolioPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final visible = ref.watch(visibleNotifierProvider);
-    NumberFormat number = NumberFormat("#,###.00", "pt_BR");
     CoinRepository repository = CoinRepository(Dio());
     List<Coin> coinList = repository.getAllCoins();
 
