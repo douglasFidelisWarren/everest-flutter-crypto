@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +14,8 @@ class LineChartCoin extends StatefulWidget {
 
 class LineChartCoinState extends State<LineChartCoin> {
   late bool isShowingMainData;
-  CoinRepository repo = CoinRepository();
-  String dias = "1";
+  CoinRepository repo = CoinRepository(Dio());
+  int dias = 5;
 
   @override
   void initState() {
@@ -24,15 +25,15 @@ class LineChartCoinState extends State<LineChartCoin> {
   }
 
   Future<List<FlSpot>> getSpots(int range) async {
-    List<FlSpot> spots = await repo.getHistoricoMoeda(range);
+    List<FlSpot> spots = await repo.getHistoricoMoeda(dias);
     return spots;
   }
 
   @override
   Widget build(BuildContext context) {
-    Future<List<FlSpot>> spots = getSpots(1);
+    Future<List<FlSpot>> spots = getSpots(dias);
     return AspectRatio(
-      aspectRatio: 1,
+      aspectRatio: 1.4,
       child: Stack(
         children: <Widget>[
           Column(
@@ -42,22 +43,22 @@ class LineChartCoinState extends State<LineChartCoin> {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 16.0, left: 6.0),
                   child: FutureBuilder(
-                    initialData: const [
-                      FlSpot(0, 100000),
-                    ],
+                    // initialData: const [
+                    //   FlSpot(0, 100000),
+                    // ],
                     future: spots,
                     builder: (context, AsyncSnapshot snapshot) {
                       return Visibility(
                         visible: snapshot.hasData,
-                        replacement: CircularProgressIndicator(),
+                        replacement:
+                            const Center(child: CircularProgressIndicator()),
                         child: LineChart(
                           LineChartData(
                             lineTouchData: LineTouchData(
                               handleBuiltInTouches: true,
                               touchTooltipData: LineTouchTooltipData(
                                 tooltipBgColor:
-                                    Color.fromARGB(255, 228, 220, 219)
-                                        .withOpacity(0.8),
+                                    colorGrayDivider.withOpacity(0.8),
                               ),
                             ),
                             gridData: FlGridData(show: false),
@@ -71,7 +72,7 @@ class LineChartCoinState extends State<LineChartCoin> {
                                   return SideTitleWidget(
                                       axisSide: meta.axisSide,
                                       space: 10,
-                                      child: Text("5D"));
+                                      child: Text("$dias"));
                                 },
                               )),
                               rightTitles: AxisTitles(
@@ -82,7 +83,11 @@ class LineChartCoinState extends State<LineChartCoin> {
                               ),
                               leftTitles: AxisTitles(),
                             ),
-                            borderData: FlBorderData(show: false),
+                            borderData: FlBorderData(
+                                show: false,
+                                border: const Border(
+                                    bottom: BorderSide(
+                                        color: colorGrayDivider, width: 4))),
                             lineBarsData: [
                               LineChartBarData(
                                   isCurved: false,
@@ -91,7 +96,7 @@ class LineChartCoinState extends State<LineChartCoin> {
                                   barWidth: 4,
                                   isStrokeCapRound: true,
                                   dotData: FlDotData(show: false),
-                                  belowBarData: BarAreaData(show: false),
+                                  belowBarData: BarAreaData(show: true),
                                   spots: snapshot.data)
                             ],
                             minX: 0,
@@ -158,7 +163,7 @@ class BotaoFiltro extends StatelessWidget {
 
   final String filter;
 
-  CoinRepository repo = CoinRepository();
+  CoinRepository repo = CoinRepository(Dio());
 
   @override
   Widget build(BuildContext context) {

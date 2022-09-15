@@ -5,6 +5,8 @@ import 'package:fl_chart/fl_chart.dart';
 import '../model/coin.dart';
 
 class CoinRepository {
+  Dio dio;
+  CoinRepository(this.dio);
   double getWallet() {
     Decimal wallet = Decimal.parse("0");
     List<Coin> coinList = getAllCoins();
@@ -70,6 +72,14 @@ class CoinRepository {
     ];
 
     return coins;
+  }
+
+  Future<List<dynamic>> getPrices() async {
+    final response = await dio.get(
+      'https://api.coinbase.com/v2/assets/prices/5b71fc48-3dd3-540c-809b-f8c94d0e68b5?base=BRL',
+    );
+    final precos = response.data;
+    return precos;
   }
 
   Future<List<FlSpot>> getHistoricoMoeda(int range) async {
