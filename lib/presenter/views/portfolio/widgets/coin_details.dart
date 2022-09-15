@@ -1,9 +1,9 @@
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/coin.dart';
-import '../../shared/formater.dart';
-import '../../shared/styles.dart';
+import '../../../../domain/entities/coin.dart';
+import '../../../shared/formater.dart';
+import '../../../shared/styles.dart';
 
 class CoinDetails extends StatelessWidget {
   const CoinDetails({
@@ -56,9 +56,13 @@ class CoinDetails extends StatelessWidget {
                 children: [
                   Container(
                     decoration: hideText,
-                    child: Text(
-                      "R\$ ${number.format(value)}",
-                      style: visible ? valueStyle : valueStyleHide,
+                    child: Container(
+                      alignment: Alignment.bottomRight,
+                      width: 150,
+                      child: Text(
+                        "R\$ ${number.format(value)}",
+                        style: visible ? valueStyle : valueStyleHide,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -66,11 +70,15 @@ class CoinDetails extends StatelessWidget {
                     children: [
                       Container(
                         decoration: hideText,
-                        child: Text(
-                          number.format(amountCoin),
-                          style: visible
-                              ? subTitleStyleCoin
-                              : subTitleStyleCoinHide,
+                        child: Container(
+                          alignment: Alignment.bottomRight,
+                          width: 150,
+                          child: Text(
+                            number.format(amountCoin),
+                            style: visible
+                                ? subTitleStyleCoin
+                                : subTitleStyleCoinHide,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 4),

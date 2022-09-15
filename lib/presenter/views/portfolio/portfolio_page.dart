@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../models/coin.dart';
-import '../repositories/coin_repository.dart';
+import '../../../domain/repositories/coin_repository.dart';
+import '../../../domain/entities/coin.dart';
 import 'widgets/coin_list.dart';
 import 'widgets/wallet_details.dart';
 

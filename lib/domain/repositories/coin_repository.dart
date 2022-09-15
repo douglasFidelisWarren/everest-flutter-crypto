@@ -1,6 +1,6 @@
 import 'package:decimal/decimal.dart';
 
-import '../models/coin.dart';
+import '../entities/coin.dart';
 
 class CoinRepository {
   double getWallet() {
@@ -28,7 +28,7 @@ class CoinRepository {
         name: "Biticoin",
         symbol: "BTC",
         latest: "10087.6923",
-        amount: "0.65",
+        amount: ".65",
       ),
       Coin(
         image: "assets/images/eth.png",
