@@ -25,7 +25,7 @@ class LineChartCoinState extends State<LineChartCoin> {
   }
 
   Future<List<FlSpot>> getSpots(int range) async {
-    List<FlSpot> spots = await repo.getHistoricoMoeda(dias);
+    List<FlSpot> spots = await repo.getSpots(dias);
     return spots;
   }
 
