@@ -132,6 +132,36 @@ class CoinRepository {
       debugPrint("${i.toString()}, ${double.parse(valor)}");
       debugPrint("index $index");
     }
+
+    //precos.add(moeda['hour']);
+    // precos.add(moeda['day']);
+    // precos.add(moeda['week']);
+    // precos.add(moeda['month']);
+    // precos.add(moeda['year']);
+    // precos.add(moeda['all']);
+
+    return spots;
+  }
+
+  Future<List<FlSpot>> getSpots1(int range) async {
+    List<dynamic> data = await getPrices();
+    List<dynamic> prices = [];
+    List<FlSpot> spots = [];
+    debugPrint("primeiro ${data.first[0]}");
+
+    int index = 0;
+    for (var i = 0; i < 30; i++) {
+      index += range;
+      prices.add(data[index]);
+      String valor = Decimal.parse(prices[i][0]).toStringAsFixed(2);
+
+      spots.add(
+        FlSpot(i.toDouble(), (double.parse(valor))),
+      );
+      debugPrint("${i.toString()}, ${double.parse(valor)}");
+      debugPrint("index $index");
+    }
+
     //precos.add(moeda['hour']);
     // precos.add(moeda['day']);
     // precos.add(moeda['week']);

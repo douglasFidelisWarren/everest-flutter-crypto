@@ -1,25 +1,32 @@
 import 'package:dio/dio.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../portfolio/repositories/coin_repository.dart';
 import '../../shared/styles.dart';
 
-class LineChartCoin extends StatelessWidget {
+final diaProvider = StateProvider<int>(
+  (ref) => 1,
+);
+
+class LineChartCoin extends ConsumerWidget {
   const LineChartCoin({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     CoinRepository repo = CoinRepository(Dio());
-    int dias = 5;
+    int dias = ref.watch(diaProvider);
     Future<List<FlSpot>> getSpots(int range) async {
       List<FlSpot> spots = await repo.getSpots(dias);
       return spots;
     }
 
+    int dia = 1;
+
     Future<List<FlSpot>> spots = getSpots(dias);
     return AspectRatio(
-      aspectRatio: 1.4,
+      aspectRatio: 2,
       child: Stack(
         children: <Widget>[
           Column(
@@ -82,15 +89,15 @@ class LineChartCoin extends StatelessWidget {
                                   barWidth: 4,
                                   isStrokeCapRound: true,
                                   dotData: FlDotData(show: false),
-                                  belowBarData: BarAreaData(show: true),
+                                  belowBarData: BarAreaData(show: false),
                                   spots: snapshot.data)
                             ],
                             minX: 0,
                             maxX: 30,
                             // maxY: 107081,
                             // minY: 100900,
-                            maxY: 104861,
-                            minY: 103442,
+                            maxY: 114861,
+                            minY: 100442,
                           ),
                           swapAnimationDuration:
                               const Duration(milliseconds: 250),
@@ -102,6 +109,14 @@ class LineChartCoin extends StatelessWidget {
               ),
               const Divider(
                 thickness: 1,
+              ),
+              Row(
+                children: [
+                  TextBtn(dia: 5),
+                  TextBtn(dia: 6),
+                  TextBtn(dia: 7),
+                  TextBtn(dia: 8)
+                ],
               )
             ],
           ),
@@ -111,21 +126,19 @@ class LineChartCoin extends StatelessWidget {
   }
 }
 
-class Botao extends StatelessWidget {
-  const Botao({
+class RangeButton extends ConsumerWidget {
+  const RangeButton({
     Key? key,
-    required this.dias,
+    required this.dia,
   }) : super(key: key);
 
-  final String dias;
+  final int dia;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       onTap: () {
-        // setState(() async {
-        //   await getSpots(30);
-        // });
+        ref.read(diaProvider.state).state = dia;
       },
       child: Container(
         padding: const EdgeInsets.all(6),
@@ -133,7 +146,7 @@ class Botao extends StatelessWidget {
         decoration: BoxDecoration(
             color: colorHideOn, borderRadius: BorderRadius.circular(5)),
         child: Text(
-          dias,
+          "${dia}D",
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
@@ -141,28 +154,58 @@ class Botao extends StatelessWidget {
   }
 }
 
-class BotaoFiltro extends StatelessWidget {
-  const BotaoFiltro({
+class TextBtn extends ConsumerWidget {
+  const TextBtn({
     Key? key,
-    required this.filter,
+    required this.dia,
   }) : super(key: key);
 
-  final String filter;
+  final int dia;
 
   @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        padding: const EdgeInsets.all(6),
-        margin: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: colorHideOn, borderRadius: BorderRadius.circular(5)),
-        child: Text(
-          filter,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+  Widget build(BuildContext context, WidgetRef ref) {
+    return TextButton(
+      style: ElevatedButton.styleFrom(
+          padding: EdgeInsets.all(2),
+          alignment: Alignment.center,
+          minimumSize: Size(30, 25),
+          backgroundColor: colorHideOn
+          //fixedSize: Size(5, 5)
+          ),
+      child: Text(
+        "${dia}D",
+        style: TextStyle(
+          fontWeight: FontWeight.w900,
+          //color: seleciona ? colorBlackText : colorBrandWarren
         ),
       ),
+      onPressed: () {
+        //ref.read(indexProvider.state).state = dia;
+        ref.read(diaProvider.state).state = dia;
+        //ref.read(selecionaProvider.state).state = !seleciona;
+      },
     );
   }
 }
+
+
+// TextButton(
+//       style: ElevatedButton.styleFrom(
+//           padding: EdgeInsets.all(2),
+//           alignment: Alignment.center,
+//           minimumSize: Size(30, 25),
+//           backgroundColor: colorHideOn
+//           //fixedSize: Size(5, 5)
+//           ),
+//       child: Text(
+//         "${dia}D",
+//         style: TextStyle(
+//             fontWeight: FontWeight.w900,
+//             color: seleciona ? colorBlackText : colorBrandWarren),
+//       ),
+//       onPressed: () {
+//         //ref.read(indexProvider.state).state = dia;
+//         ref.read(diaProvider.state).state = dia;
+//         ref.read(selecionaProvider.state).state = !seleciona;
+//       },
+//     );
