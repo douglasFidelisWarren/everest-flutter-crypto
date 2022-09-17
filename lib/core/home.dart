@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../features/movements/view/movements_page.dart';
-import '../features/portfolio/view/portfolio_page.dart';
-import '../shared/assets.dart';
-import '../shared/styles.dart';
+import '../app/presenter/ui/movements/movements_page.dart';
+import '../app/presenter/ui/portfolio/view/portfolio_page.dart';
+import 'shared/assets.dart';
+import 'shared/styles.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
