@@ -1,8 +1,6 @@
 import 'package:decimal/decimal.dart';
 import 'package:dio/dio.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SpotsDatasource {
   Dio dio = Dio();
@@ -37,7 +35,6 @@ class SpotsDatasource {
     final response = await dio.get(
       'https://api.coinbase.com/v2/assets/prices/5b71fc48-3dd3-540c-809b-f8c94d0e68b5?base=BRL',
     );
-    print("getspots");
 
     list = response.data['data']['prices']['week']['prices'];
     for (var list in list) {

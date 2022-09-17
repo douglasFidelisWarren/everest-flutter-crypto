@@ -1,9 +1,8 @@
-import 'package:everest_crypto/app/domain/entities/coin_entity.dart';
 import 'package:flutter/material.dart';
 
-import '../portfolio/model/coin.dart';
 import '../../../../core/shared/formater.dart';
 import '../../../../core/shared/styles.dart';
+import '../../../domain/entities/coin_entity.dart';
 import 'widgets/line_chart_coin.dart';
 
 class DetailsPage extends StatelessWidget {

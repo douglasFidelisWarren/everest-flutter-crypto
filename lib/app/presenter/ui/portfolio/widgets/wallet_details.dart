@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../data/datasources/wallet_datasource.dart';
-import '../repositories/coin_repository.dart';
+
 import '../../../../../core/shared/formater.dart';
 import '../../../../../core/shared/styles.dart';
+import '../../../../data/datasources/wallet_datasource.dart';
 
 class WalletDetails extends StatelessWidget {
   const WalletDetails({

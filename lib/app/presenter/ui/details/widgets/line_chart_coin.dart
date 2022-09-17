@@ -1,24 +1,13 @@
-import 'package:dio/dio.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../data/datasources/spots_datasource.dart';
-import '../../portfolio/repositories/coin_repository.dart';
 import '../../../../../core/shared/styles.dart';
+import '../../../../data/datasources/spots_datasource.dart';
 
-// maxY: 105461,
-// minY: 102042,
-
-final diaProvider = StateProvider<int>(
-  (ref) => 1,
-);
-final maxProvider = StateProvider<double>(
-  (ref) => 105461,
-);
-final minProvider = StateProvider<double>(
-  (ref) => 102042,
-);
+final diaProvider = StateProvider<int>((ref) => 1);
+final maxProvider = StateProvider<double>((ref) => 105461);
+final minProvider = StateProvider<double>((ref) => 102042);
 
 class LineChartCoin extends ConsumerWidget {
   const LineChartCoin({Key? key}) : super(key: key);
@@ -33,8 +22,6 @@ class LineChartCoin extends ConsumerWidget {
       rangeY = double.parse((spots.length).toString());
       return spots;
     }
-
-    int dia = 1;
 
     Future<List<FlSpot>> spots = getSpots(dias);
     return AspectRatio(
@@ -108,10 +95,6 @@ class LineChartCoin extends ConsumerWidget {
                             ],
                             minX: 0,
                             maxX: rangeY,
-                            // maxY: 107081,
-                            // minY: 100900,
-                            // maxY: 105461,
-                            // minY: 102042,
                             maxY: ref.read(maxProvider),
                             minY: ref.read(minProvider),
                           ),
@@ -127,7 +110,7 @@ class LineChartCoin extends ConsumerWidget {
                 thickness: 1,
               ),
               Row(
-                children: [
+                children: const [
                   TextBtn(dia: 5),
                   TextBtn(dia: 15),
                   TextBtn(dia: 30),
@@ -138,34 +121,6 @@ class LineChartCoin extends ConsumerWidget {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class RangeButton extends ConsumerWidget {
-  const RangeButton({
-    Key? key,
-    required this.dia,
-  }) : super(key: key);
-
-  final int dia;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return InkWell(
-      onTap: () {
-        ref.read(diaProvider.state).state = dia;
-      },
-      child: Container(
-        padding: const EdgeInsets.all(6),
-        margin: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: colorHideOn, borderRadius: BorderRadius.circular(5)),
-        child: Text(
-          "${dia}D",
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
       ),
     );
   }
@@ -189,49 +144,24 @@ class TextBtn extends ConsumerWidget {
 
     return TextButton(
       style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(2),
+          padding: const EdgeInsets.all(2),
           alignment: Alignment.center,
-          minimumSize: Size(30, 25),
+          minimumSize: const Size(30, 25),
           backgroundColor: colorHideOn
           //fixedSize: Size(5, 5)
           ),
       child: Text(
         "${dia}D",
-        style: TextStyle(
+        style: const TextStyle(
           fontWeight: FontWeight.w900,
           //color: seleciona ? colorBlackText : colorBrandWarren
         ),
       ),
       onPressed: () {
         getX();
-        print(ref.read(maxProvider));
-        print(ref.read(minProvider));
-        //ref.read(indexProvider.state).state = dia;
+
         ref.read(diaProvider.notifier).state = dia;
-        //ref.read(selecionaProvider.state).state = !seleciona;
       },
     );
   }
 }
-
-
-// TextButton(
-//       style: ElevatedButton.styleFrom(
-//           padding: EdgeInsets.all(2),
-//           alignment: Alignment.center,
-//           minimumSize: Size(30, 25),
-//           backgroundColor: colorHideOn
-//           //fixedSize: Size(5, 5)
-//           ),
-//       child: Text(
-//         "${dia}D",
-//         style: TextStyle(
-//             fontWeight: FontWeight.w900,
-//             color: seleciona ? colorBlackText : colorBrandWarren),
-//       ),
-//       onPressed: () {
-//         //ref.read(indexProvider.state).state = dia;
-//         ref.read(diaProvider.state).state = dia;
-//         ref.read(selecionaProvider.state).state = !seleciona;
-//       },
-//     );

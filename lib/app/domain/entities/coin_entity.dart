@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class CoinEntity {
   final String id;
   final String name;

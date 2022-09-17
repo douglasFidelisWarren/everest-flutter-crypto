@@ -1,13 +1,8 @@
-import 'package:dio/dio.dart';
-import 'package:everest_crypto/app/data/datasources/wallet_datasource.dart';
-import 'package:everest_crypto/app/data/dtos/coin_dto.dart';
-import 'package:everest_crypto/app/domain/entities/coin_entity.dart';
-import 'package:everest_crypto/app/presenter/controllers/coin_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../model/coin.dart';
-import '../repositories/coin_repository.dart';
+import '../../../../data/datasources/wallet_datasource.dart';
+import '../../../../domain/entities/coin_entity.dart';
 import '../../../controllers/visible_controller.dart';
 import '../widgets/coin_list.dart';
 import '../widgets/wallet_details.dart';

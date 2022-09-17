@@ -1,10 +1,9 @@
 import 'package:decimal/decimal.dart';
-import 'package:everest_crypto/app/domain/entities/coin_entity.dart';
 import 'package:flutter/material.dart';
 
-import '../model/coin.dart';
 import '../../../../../core/shared/formater.dart';
 import '../../../../../core/shared/styles.dart';
+import '../../../../domain/entities/coin_entity.dart';
 import '../../details/details_page.dart';
 
 class CoinDetails extends StatelessWidget {
