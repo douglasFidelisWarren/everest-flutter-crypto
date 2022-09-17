@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../portfolio/model/coin.dart';
-import '../../shared/formater.dart';
-import '../../shared/styles.dart';
+import '../../../portfolio/model/coin.dart';
+import '../../../../shared/formater.dart';
+import '../../../../shared/styles.dart';
 import '../widgets/line_chart_coin.dart';
 
 class DetailsPage extends StatelessWidget {
