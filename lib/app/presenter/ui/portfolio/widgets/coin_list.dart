@@ -1,3 +1,4 @@
+import 'package:everest_crypto/app/domain/entities/coin_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../model/coin.dart';
@@ -10,7 +11,7 @@ class CoinList extends StatelessWidget {
     required this.visible,
   }) : super(key: key);
 
-  final List<Coin> coinList;
+  final List<CoinEntity> coinList;
   final bool visible;
 
   @override
@@ -19,7 +20,7 @@ class CoinList extends StatelessWidget {
       child: ListView.builder(
         itemCount: coinList.length,
         itemBuilder: (context, index) {
-          Coin coin = coinList[index];
+          CoinEntity coin = coinList[index];
 
           return CoinDetails(
             coin: coin,

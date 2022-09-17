@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
+import '../../../../data/datasources/wallet_datasource.dart';
 import '../repositories/coin_repository.dart';
-import '../../shared/formater.dart';
-import '../../shared/styles.dart';
+import '../../../../../core/shared/formater.dart';
+import '../../../../../core/shared/styles.dart';
 
 class WalletDetails extends StatelessWidget {
   const WalletDetails({
     Key? key,
     required this.visible,
-    required this.repository,
     required this.changeVisibility,
   }) : super(key: key);
 
   final bool visible;
-  final CoinRepository repository;
   final Function changeVisibility;
 
   @override
   Widget build(BuildContext context) {
+    WalletDatasource teste = WalletDatasource();
     Decoration hideText = BoxDecoration(
       color: visible ? colorHideOff : colorHideOn,
       borderRadius: BorderRadius.circular(5),
@@ -46,7 +46,7 @@ class WalletDetails extends StatelessWidget {
           child: Container(
             decoration: hideText,
             child: Text(
-              "R\$ ${number.format(repository.getWallet())}",
+              "R\$ ${number.format(teste.getWallet())}",
               style: visible ? totalStyle : totalStyleHide,
               overflow: TextOverflow.ellipsis,
             ),

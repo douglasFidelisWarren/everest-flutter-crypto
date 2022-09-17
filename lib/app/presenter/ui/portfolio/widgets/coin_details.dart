@@ -1,10 +1,11 @@
 import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/app/domain/entities/coin_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../model/coin.dart';
-import '../../shared/formater.dart';
-import '../../shared/styles.dart';
-import '../../details/view/details_page.dart';
+import '../../../../../core/shared/formater.dart';
+import '../../../../../core/shared/styles.dart';
+import '../../details/details_page.dart';
 
 class CoinDetails extends StatelessWidget {
   const CoinDetails({
@@ -13,7 +14,7 @@ class CoinDetails extends StatelessWidget {
     required this.visible,
   }) : super(key: key);
 
-  final Coin coin;
+  final CoinEntity coin;
   final bool visible;
 
   @override

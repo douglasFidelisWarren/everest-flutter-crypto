@@ -3,11 +3,21 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../data/datasources/spots_datasource.dart';
 import '../../portfolio/repositories/coin_repository.dart';
-import '../../shared/styles.dart';
+import '../../../../../core/shared/styles.dart';
+
+// maxY: 105461,
+// minY: 102042,
 
 final diaProvider = StateProvider<int>(
   (ref) => 1,
+);
+final maxProvider = StateProvider<double>(
+  (ref) => 105461,
+);
+final minProvider = StateProvider<double>(
+  (ref) => 102042,
 );
 
 class LineChartCoin extends ConsumerWidget {
@@ -15,10 +25,12 @@ class LineChartCoin extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    CoinRepository repo = CoinRepository(Dio());
+    SpotsDatasource teste = SpotsDatasource();
     int dias = ref.watch(diaProvider);
+    double? rangeY;
     Future<List<FlSpot>> getSpots(int range) async {
-      List<FlSpot> spots = await repo.getSpots(dias);
+      List<FlSpot> spots = await teste.getSpots(dias);
+      rangeY = double.parse((spots.length).toString());
       return spots;
     }
 
@@ -26,7 +38,7 @@ class LineChartCoin extends ConsumerWidget {
 
     Future<List<FlSpot>> spots = getSpots(dias);
     return AspectRatio(
-      aspectRatio: 2,
+      aspectRatio: 1.4,
       child: Stack(
         children: <Widget>[
           Column(
@@ -50,6 +62,7 @@ class LineChartCoin extends ConsumerWidget {
                             lineTouchData: LineTouchData(
                               handleBuiltInTouches: true,
                               touchTooltipData: LineTouchTooltipData(
+                                tooltipRoundedRadius: 5,
                                 tooltipBgColor:
                                     colorGrayDivider.withOpacity(0.8),
                               ),
@@ -83,21 +96,24 @@ class LineChartCoin extends ConsumerWidget {
                                         color: colorGrayDivider, width: 4))),
                             lineBarsData: [
                               LineChartBarData(
+                                  isStrokeJoinRound: true,
                                   isCurved: false,
                                   curveSmoothness: 0,
                                   color: colorBrandWarren,
-                                  barWidth: 4,
+                                  barWidth: 2.5,
                                   isStrokeCapRound: true,
                                   dotData: FlDotData(show: false),
                                   belowBarData: BarAreaData(show: false),
                                   spots: snapshot.data)
                             ],
                             minX: 0,
-                            maxX: 30,
+                            maxX: rangeY,
                             // maxY: 107081,
                             // minY: 100900,
-                            maxY: 114861,
-                            minY: 100442,
+                            // maxY: 105461,
+                            // minY: 102042,
+                            maxY: ref.read(maxProvider),
+                            minY: ref.read(minProvider),
                           ),
                           swapAnimationDuration:
                               const Duration(milliseconds: 250),
@@ -113,9 +129,10 @@ class LineChartCoin extends ConsumerWidget {
               Row(
                 children: [
                   TextBtn(dia: 5),
-                  TextBtn(dia: 6),
-                  TextBtn(dia: 7),
-                  TextBtn(dia: 8)
+                  TextBtn(dia: 15),
+                  TextBtn(dia: 30),
+                  TextBtn(dia: 45),
+                  TextBtn(dia: 90)
                 ],
               )
             ],
@@ -164,6 +181,12 @@ class TextBtn extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    SpotsDatasource teste = SpotsDatasource();
+    getX() async {
+      ref.read(maxProvider.notifier).state = await teste.getMaxX();
+      ref.read(minProvider.notifier).state = await teste.getMinX();
+    }
+
     return TextButton(
       style: ElevatedButton.styleFrom(
           padding: EdgeInsets.all(2),
@@ -180,8 +203,11 @@ class TextBtn extends ConsumerWidget {
         ),
       ),
       onPressed: () {
+        getX();
+        print(ref.read(maxProvider));
+        print(ref.read(minProvider));
         //ref.read(indexProvider.state).state = dia;
-        ref.read(diaProvider.state).state = dia;
+        ref.read(diaProvider.notifier).state = dia;
         //ref.read(selecionaProvider.state).state = !seleciona;
       },
     );

@@ -1,9 +1,10 @@
+import 'package:everest_crypto/app/domain/entities/coin_entity.dart';
 import 'package:flutter/material.dart';
 
-import '../../portfolio/model/coin.dart';
-import '../../shared/formater.dart';
-import '../../shared/styles.dart';
-import '../widgets/line_chart_coin.dart';
+import '../portfolio/model/coin.dart';
+import '../../../../core/shared/formater.dart';
+import '../../../../core/shared/styles.dart';
+import 'widgets/line_chart_coin.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //String filter = "5d";
-    final coin = ModalRoute.of(context)!.settings.arguments as Coin;
+    final coin = ModalRoute.of(context)!.settings.arguments as CoinEntity;
     double latest = double.parse(coin.latest);
     return Scaffold(
       appBar: AppBar(
