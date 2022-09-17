@@ -21,8 +21,8 @@ class CoinDetails extends StatelessWidget {
     Decoration hideText = BoxDecoration(
         color: visible ? colorHideOff : colorHideOn,
         borderRadius: BorderRadius.circular(5));
-    Decimal amount = Decimal.parse(coin.amount);
-    Decimal latest = Decimal.parse(coin.latest);
+    Decimal amount = coin.amount;
+    Decimal latest = coin.latest;
     double value = (amount * latest).toDouble();
     double amountCoin = amount.toDouble();
 

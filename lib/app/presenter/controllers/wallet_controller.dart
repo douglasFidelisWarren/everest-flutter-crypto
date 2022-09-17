@@ -10,8 +10,7 @@ class WalletController {
     List<CoinEntity> coinList = teste.getCoinsWallet();
 
     for (var coin in coinList) {
-      wallet =
-          wallet + (Decimal.parse(coin.amount) * Decimal.parse(coin.latest));
+      wallet = wallet + (coin.amount) * (coin.latest);
     }
 
     return wallet.toDouble();

@@ -1,13 +1,14 @@
+import 'package:decimal/decimal.dart';
 import 'package:everest_crypto/app/domain/entities/coin_entity.dart';
 
 class CoinDto extends CoinEntity {
   CoinDto(
-      {required String id,
+      {required int id,
       required String name,
       required String image,
       required String symbol,
-      required String latest,
-      required String amount})
+      required Decimal latest,
+      required Decimal amount})
       : super(
           id: id,
           image: image,

@@ -1,5 +1,6 @@
 import 'package:decimal/decimal.dart';
 import 'package:dio/dio.dart';
+import 'package:everest_crypto/app/data/datasources/remote_datasource/endpoints/coinbase.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class SpotsDatasource {
@@ -33,7 +34,7 @@ class SpotsDatasource {
     List<Decimal> prices = [];
 
     final response = await dio.get(
-      'https://api.coinbase.com/v2/assets/prices/5b71fc48-3dd3-540c-809b-f8c94d0e68b5?base=BRL',
+      Coinbase.getCoinPrices("5b71fc48-3dd3-540c-809b-f8c94d0e68b5"),
     );
 
     list = response.data['data']['prices']['week']['prices'];

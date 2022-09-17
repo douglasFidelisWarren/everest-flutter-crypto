@@ -1,10 +1,12 @@
+import 'package:decimal/decimal.dart';
+
 class CoinEntity {
-  final String id;
+  final int id;
   final String name;
   final String image;
   final String symbol;
-  final String latest;
-  final String amount;
+  final Decimal latest;
+  final Decimal amount;
   CoinEntity({
     required this.id,
     required this.name,

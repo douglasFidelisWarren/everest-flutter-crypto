@@ -14,7 +14,7 @@ class DetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     //String filter = "5d";
     final coin = ModalRoute.of(context)!.settings.arguments as CoinEntity;
-    double latest = double.parse(coin.latest);
+    double latest = double.parse((coin.latest).toStringAsFixed(2));
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: colorBlackText),
