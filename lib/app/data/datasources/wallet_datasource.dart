@@ -6,7 +6,7 @@ class WalletDatasource {
   List<CoinDto> getCoinsWallet() {
     List<CoinDto> coins = [
       CoinDto(
-        id: 1,
+        id: "1",
         image: "assets/images/btc.png",
         name: "Biticoin",
         symbol: "BTC",
@@ -14,7 +14,7 @@ class WalletDatasource {
         amount: Decimal.parse(".65"),
       ),
       CoinDto(
-        id: 2,
+        id: "2",
         image: "assets/images/eth.png",
         name: "Ethereum",
         symbol: "ETH",
@@ -22,7 +22,7 @@ class WalletDatasource {
         amount: Decimal.parse("0.94"),
       ),
       CoinDto(
-        id: 3,
+        id: "3",
         image: "assets/images/ltc.png",
         name: "Litecoin",
         symbol: "LTC",
@@ -30,7 +30,7 @@ class WalletDatasource {
         amount: Decimal.parse("0.82"),
       ),
       CoinDto(
-        id: 4,
+        id: "4",
         image: "assets/images/usdc.png",
         name: "USD Coin",
         symbol: "USDC",
@@ -38,7 +38,7 @@ class WalletDatasource {
         amount: Decimal.parse("350.0"),
       ),
       CoinDto(
-        id: 5,
+        id: "5",
         image: "assets/images/avax.png",
         name: "Avalanche",
         symbol: "AVAX",
@@ -46,7 +46,7 @@ class WalletDatasource {
         amount: Decimal.parse("3.5"),
       ),
       CoinDto(
-        id: 6,
+        id: "6",
         image: "assets/images/atom.png",
         name: "Cosmos",
         symbol: "ATOM",

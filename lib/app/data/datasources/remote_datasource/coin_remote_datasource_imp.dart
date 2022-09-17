@@ -4,9 +4,9 @@ import '../../dtos/coin_dto.dart';
 import '../coin_datasource.dart';
 import 'endpoints/coinbase.dart';
 
-class CoinRemoteDatasourceImplementation implements CoinDatasource {
+class CoinRemoteDatasourceImp implements CoinDatasource {
   final Dio _dio;
-  CoinRemoteDatasourceImplementation(this._dio);
+  CoinRemoteDatasourceImp(this._dio);
 
   @override
   Future<List<CoinDto>> getAllCoins() async {

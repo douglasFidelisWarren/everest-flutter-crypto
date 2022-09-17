@@ -1,13 +1,13 @@
 import 'package:everest_crypto/app/domain/entities/coin_entity.dart';
 
-import '../repositories/coin_repository.dart';
+import '../repositories/get_all_coins_repository.dart';
 
 abstract class GetAllCoinsUsecase {
   Future<List<CoinEntity>> getAllCoins();
 }
 
 class GetAllCoinsUsecaseImp implements GetAllCoinsUsecase {
-  final CoinRepository _repository;
+  final GetAllCoinsRepository _repository;
 
   GetAllCoinsUsecaseImp(this._repository);
   @override

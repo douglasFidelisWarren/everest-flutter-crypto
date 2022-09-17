@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:everest_crypto/app/data/datasources/remote_datasource/endpoints/coinbase.dart';
 import 'package:fl_chart/fl_chart.dart';
 
+import 'remote_datasource/get_coin_prices_remote_datasource.dart';
+
 class SpotsDatasource {
   Dio dio = Dio();
 
@@ -30,18 +32,21 @@ class SpotsDatasource {
   }
 
   Future<List<Decimal>> getPrices() async {
-    List<dynamic> list = [];
+    //List<dynamic> list = [];
+    GetCoinPricesRemoteDatasourceImp teste =
+        GetCoinPricesRemoteDatasourceImp(dio);
     List<Decimal> prices = [];
+    prices = await teste.getCoinPrices("5b71fc48-3dd3-540c-809b-f8c94d0e68b5");
 
-    final response = await dio.get(
-      Coinbase.getCoinPrices("5b71fc48-3dd3-540c-809b-f8c94d0e68b5"),
-    );
+    // final response = await dio.get(
+    //   Coinbase.getCoinPrices("5b71fc48-3dd3-540c-809b-f8c94d0e68b5"),
+    // );
 
-    list = response.data['data']['prices']['week']['prices'];
-    for (var list in list) {
-      prices.add(Decimal.parse(list[0].toString()));
-    }
-    prices = prices.reversed.toList();
+    // list = response.data['data']['prices']['week']['prices'];
+    // for (var list in list) {
+    //   prices.add(Decimal.parse(list[0].toString()));
+    // }
+    // prices = prices.reversed.toList();
     return prices;
   }
 

@@ -3,7 +3,7 @@ import 'package:everest_crypto/app/domain/entities/coin_entity.dart';
 
 class CoinDto extends CoinEntity {
   CoinDto(
-      {required int id,
+      {required String id,
       required String name,
       required String image,
       required String symbol,
