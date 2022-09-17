@@ -18,8 +18,10 @@ class LineChartCoin extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     SpotsDatasource teste = SpotsDatasource();
     int dias = ref.watch(diaProvider);
+    double? rangeY;
     Future<List<FlSpot>> getSpots(int range) async {
       List<FlSpot> spots = await teste.getSpots(dias);
+      rangeY = double.parse((spots.length).toString());
       return spots;
     }
 
@@ -27,7 +29,7 @@ class LineChartCoin extends ConsumerWidget {
 
     Future<List<FlSpot>> spots = getSpots(dias);
     return AspectRatio(
-      aspectRatio: 2,
+      aspectRatio: 1,
       child: Stack(
         children: <Widget>[
           Column(
@@ -84,21 +86,22 @@ class LineChartCoin extends ConsumerWidget {
                                         color: colorGrayDivider, width: 4))),
                             lineBarsData: [
                               LineChartBarData(
+                                  isStrokeJoinRound: true,
                                   isCurved: false,
                                   curveSmoothness: 0,
                                   color: colorBrandWarren,
-                                  barWidth: 4,
+                                  barWidth: 2.5,
                                   isStrokeCapRound: true,
                                   dotData: FlDotData(show: false),
                                   belowBarData: BarAreaData(show: false),
                                   spots: snapshot.data)
                             ],
                             minX: 0,
-                            maxX: 30,
+                            maxX: rangeY,
                             // maxY: 107081,
                             // minY: 100900,
-                            maxY: 114861,
-                            minY: 100442,
+                            maxY: 105461,
+                            minY: 102042,
                           ),
                           swapAnimationDuration:
                               const Duration(milliseconds: 250),
@@ -114,9 +117,10 @@ class LineChartCoin extends ConsumerWidget {
               Row(
                 children: [
                   TextBtn(dia: 5),
-                  TextBtn(dia: 6),
-                  TextBtn(dia: 7),
-                  TextBtn(dia: 8)
+                  TextBtn(dia: 15),
+                  TextBtn(dia: 30),
+                  TextBtn(dia: 45),
+                  TextBtn(dia: 90)
                 ],
               )
             ],
@@ -182,8 +186,9 @@ class TextBtn extends ConsumerWidget {
       ),
       onPressed: () {
         //ref.read(indexProvider.state).state = dia;
-        ref.read(diaProvider.state).state = dia;
+        ref.read(diaProvider.notifier).state = dia;
         //ref.read(selecionaProvider.state).state = !seleciona;
+        print(ref.read(diaProvider));
       },
     );
   }
