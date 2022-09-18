@@ -12,7 +12,7 @@ class WalletDatasource {
         symbol: "BTC",
         latest: "100870.6923",
         amount: ".65",
-        percentChange: [],
+        percentChange: 0.19,
       ),
       CoinDto(
         id: "2",
@@ -21,7 +21,7 @@ class WalletDatasource {
         symbol: "ETH",
         latest: "8506.38298",
         amount: "0.94",
-        percentChange: [],
+        percentChange: -2.01,
       ),
       CoinDto(
         id: "3",
@@ -30,7 +30,7 @@ class WalletDatasource {
         symbol: "LTC",
         latest: "298.780488",
         amount: "0.82",
-        percentChange: [],
+        percentChange: -0.12,
       ),
       CoinDto(
         id: "4",
@@ -39,7 +39,7 @@ class WalletDatasource {
         symbol: "USDC",
         latest: "5.094000000000001",
         amount: "350.0",
-        percentChange: [],
+        percentChange: 0.00,
       ),
       CoinDto(
         id: "5",
@@ -48,7 +48,7 @@ class WalletDatasource {
         symbol: "AVAX",
         latest: "108.40032000000002128",
         amount: "3.5",
-        percentChange: [],
+        percentChange: -0.01,
       ),
       CoinDto(
         id: "6",
@@ -57,7 +57,7 @@ class WalletDatasource {
         symbol: "ATOM",
         latest: "78.697206000000015449",
         amount: "1320.0",
-        percentChange: [],
+        percentChange: 0.05,
       ),
     ];
     return coins;

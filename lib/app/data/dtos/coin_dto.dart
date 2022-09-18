@@ -9,7 +9,7 @@ class CoinDto extends CoinEntity {
     required String symbol,
     required String latest,
     required String amount,
-    required dynamic percentChange,
+    required double percentChange,
   }) : super(
           id: id,
           image: image,

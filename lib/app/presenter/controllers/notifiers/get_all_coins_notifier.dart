@@ -4,12 +4,12 @@ import 'package:everest_crypto/app/domain/usecases/get_all_coins_usecase.dart';
 
 import '../../../domain/entities/coin_entity.dart';
 
-class GetAllCoinsNotifier extends StateNotifier<List<CoinEntity>> {
+class GetAllCoinsNotifier extends StateNotifier<AsyncValue<List<CoinEntity>>> {
   final GetAllCoinsUsecase _usecase;
-  GetAllCoinsNotifier(this._usecase) : super([]);
+  GetAllCoinsNotifier(this._usecase) : super(const AsyncData([]));
 
   Future<void> getAllCoins() async {
-    //state = [];
-    state = await _usecase.getAllCoins();
+    state = const AsyncLoading();
+    state = AsyncData(await _usecase.getAllCoins());
   }
 }

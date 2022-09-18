@@ -21,6 +21,7 @@ final coinUsecaseProvider = Provider((ref) {
 });
 
 final coinsNotifierProvider =
-    StateNotifierProvider<GetAllCoinsNotifier, List<CoinEntity>>((ref) {
+    StateNotifierProvider<GetAllCoinsNotifier, AsyncValue<List<CoinEntity>>>(
+        (ref) {
   return GetAllCoinsNotifier(ref.watch(coinUsecaseProvider));
 });

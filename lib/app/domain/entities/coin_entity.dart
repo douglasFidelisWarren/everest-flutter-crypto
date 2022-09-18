@@ -7,7 +7,7 @@ class CoinEntity {
   final String symbol;
   final String latest;
   final String amount;
-  final dynamic percentChange;
+  final double percentChange;
   CoinEntity({
     required this.id,
     required this.name,

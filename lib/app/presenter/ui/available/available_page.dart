@@ -10,26 +10,16 @@ import '../../controllers/providers/get_all_coins_provider.dart';
 import '../../controllers/providers/visible_provider.dart';
 import '../details/details_page.dart';
 
-class AvailablePage extends StatefulHookConsumerWidget {
+class AvailablePage extends ConsumerWidget {
   const AvailablePage({Key? key}) : super(key: key);
 
   static const route = '/available';
 
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AvailablePageState();
-}
-
-class _AvailablePageState extends ConsumerState<AvailablePage> {
-  late List<CoinEntity> coins;
+  // late AsyncValue<List<CoinEntity>> coins;
 
   @override
-  void initState() {
-    super.initState();
-    coins = ref.read(coinsNotifierProvider);
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final coins = ref.watch(coinsNotifierProvider);
     //ref.read(coinsNotifierProvider.notifier).getAllCoins();
     final visible = ref.watch(visibleProvider);
 
@@ -39,14 +29,12 @@ class _AvailablePageState extends ConsumerState<AvailablePage> {
         child: Column(
           children: [
             Expanded(
-              child: Visibility(
-                visible: coins.isNotEmpty,
-                replacement: const Center(child: CircularProgressIndicator()),
-                child: ListView.builder(
+              child: coins.when(
+                data: (data) => ListView.builder(
                   shrinkWrap: true,
-                  itemCount: coins.length,
+                  itemCount: coins.value!.length,
                   itemBuilder: (context, index) {
-                    CoinEntity coin = coins[index];
+                    CoinEntity coin = coins.value![index];
                     double percentChange =
                         double.parse((coin.percentChange).toStringAsFixed(4));
 
@@ -128,6 +116,8 @@ class _AvailablePageState extends ConsumerState<AvailablePage> {
                     );
                   },
                 ),
+                error: (error, stackTrace) => Text("Erro: ${error.toString()}"),
+                loading: () => const Center(child: CircularProgressIndicator()),
               ),
             ),
             const SizedBox(
