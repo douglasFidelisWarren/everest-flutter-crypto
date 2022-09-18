@@ -21,8 +21,8 @@ class CoinDetails extends StatelessWidget {
     Decoration hideText = BoxDecoration(
         color: visible ? colorHideOff : colorHideOn,
         borderRadius: BorderRadius.circular(5));
-    Decimal amount = coin.amount;
-    Decimal latest = coin.latest;
+    Decimal amount = Decimal.parse(coin.amount);
+    Decimal latest = Decimal.parse(coin.latest);
     double value = (amount * latest).toDouble();
     double amountCoin = amount.toDouble();
 
@@ -62,7 +62,7 @@ class CoinDetails extends StatelessWidget {
                     Container(
                       decoration: hideText,
                       child: Text(
-                        "R\$ ${number.format(value)}",
+                        "${number.format(value)}",
                         style: visible ? valueStyle : valueStyleHide,
                       ),
                     ),

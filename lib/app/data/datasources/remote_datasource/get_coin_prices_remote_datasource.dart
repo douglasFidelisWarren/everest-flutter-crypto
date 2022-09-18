@@ -8,12 +8,12 @@ class GetCoinPricesRemoteDatasourceImp implements GetCoinPricesDatasource {
 
   GetCoinPricesRemoteDatasourceImp(this._dio);
   @override
-  Future<List<Decimal>> getCoinPrices(String coinId) async {
+  Future<List<Decimal>> getCoinPrices(String coinId, String period) async {
     List<dynamic> list = [];
     List<Decimal> prices = [];
 
     final response = await _dio.get(Coinbase.getCoinPrices(coinId.toString()));
-    list = response.data['data']['prices']['week']['prices'];
+    list = response.data['data']['prices'][period]['prices'];
     for (var list in list) {
       prices.add(Decimal.parse(list[0].toString()));
     }

@@ -8,6 +8,14 @@ const Image portfolioActiveIcon = Image(
   image: AssetImage("assets/images/warren.png"),
 );
 
+const Image accountActiveIcon = Image(
+  image: AssetImage("assets/images/accountOn.png"),
+);
+
+const Image accountIcon = Image(
+  image: AssetImage("assets/images/accountOff.png"),
+);
+
 const Image movementsIcon = Image(
   image: AssetImage("assets/images/cryptoOff.png"),
 );

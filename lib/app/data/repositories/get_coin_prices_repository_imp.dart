@@ -9,7 +9,7 @@ class GetCoinPricesRepositoryImp implements GetCoinPricesRepository {
   GetCoinPricesRepositoryImp(this._datasource);
 
   @override
-  Future<List<Decimal>> getCoinPrices(String coinId) async {
-    return await _datasource.getCoinPrices(coinId);
+  Future<List<Decimal>> getCoinPrices(String coinId, String period) async {
+    return await _datasource.getCoinPrices(coinId, period);
   }
 }

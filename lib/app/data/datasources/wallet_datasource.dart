@@ -10,48 +10,54 @@ class WalletDatasource {
         image: "assets/images/btc.png",
         name: "Biticoin",
         symbol: "BTC",
-        latest: Decimal.parse("100870.6923"),
-        amount: Decimal.parse(".65"),
+        latest: "100870.6923",
+        amount: ".65",
+        percentChange: [],
       ),
       CoinDto(
         id: "2",
         image: "assets/images/eth.png",
         name: "Ethereum",
         symbol: "ETH",
-        latest: Decimal.parse("8506.38298"),
-        amount: Decimal.parse("0.94"),
+        latest: "8506.38298",
+        amount: "0.94",
+        percentChange: [],
       ),
       CoinDto(
         id: "3",
         image: "assets/images/ltc.png",
         name: "Litecoin",
         symbol: "LTC",
-        latest: Decimal.parse("298.780488"),
-        amount: Decimal.parse("0.82"),
+        latest: "298.780488",
+        amount: "0.82",
+        percentChange: [],
       ),
       CoinDto(
         id: "4",
         image: "assets/images/usdc.png",
         name: "USD Coin",
         symbol: "USDC",
-        latest: Decimal.parse("5.094000000000001"),
-        amount: Decimal.parse("350.0"),
+        latest: "5.094000000000001",
+        amount: "350.0",
+        percentChange: [],
       ),
       CoinDto(
         id: "5",
         image: "assets/images/avax.png",
         name: "Avalanche",
         symbol: "AVAX",
-        latest: Decimal.parse("108.40032000000002128"),
-        amount: Decimal.parse("3.5"),
+        latest: "108.40032000000002128",
+        amount: "3.5",
+        percentChange: [],
       ),
       CoinDto(
         id: "6",
         image: "assets/images/atom.png",
         name: "Cosmos",
         symbol: "ATOM",
-        latest: Decimal.parse("78.697206000000015449"),
-        amount: Decimal.parse("1320.0"),
+        latest: "78.697206000000015449",
+        amount: "1320.0",
+        percentChange: [],
       ),
     ];
     return coins;
@@ -62,7 +68,8 @@ class WalletDatasource {
     List<CoinEntity> coinList = getCoinsWallet();
 
     for (var coin in coinList) {
-      wallet = wallet + (coin.amount) * (coin.latest);
+      wallet =
+          wallet + (Decimal.parse(coin.amount)) * (Decimal.parse(coin.latest));
     }
 
     return wallet.toDouble();

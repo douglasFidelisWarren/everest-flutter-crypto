@@ -14,7 +14,7 @@ class DetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     //String filter = "5d";
     final coin = ModalRoute.of(context)!.settings.arguments as CoinEntity;
-    double latest = double.parse((coin.latest).toStringAsFixed(2));
+    double latest = double.parse((coin.latest));
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: colorBlackText),
@@ -45,20 +45,14 @@ class DetailsPage extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           alignment: Alignment.centerLeft,
           child: Text(
-            "R\$ ${number.format(latest)}",
+            "${number.format(latest)}",
             style: totalStyle,
           ),
         ),
         const SizedBox(
           height: 35,
         ),
-        const Padding(
-          padding: EdgeInsets.only(
-            left: 28,
-            right: 28,
-          ),
-          child: LineChartCoin(),
-        ),
+        LineChartCoin(),
       ]),
     );
   }

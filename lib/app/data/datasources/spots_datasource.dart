@@ -1,6 +1,5 @@
 import 'package:decimal/decimal.dart';
 import 'package:dio/dio.dart';
-import 'package:everest_crypto/app/data/datasources/remote_datasource/endpoints/coinbase.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 import 'remote_datasource/get_coin_prices_remote_datasource.dart';
@@ -8,8 +7,8 @@ import 'remote_datasource/get_coin_prices_remote_datasource.dart';
 class SpotsDatasource {
   Dio dio = Dio();
 
-  Future<double> getMaxX() async {
-    List<Decimal> data = await getPrices();
+  Future<double> getMaxX(String period) async {
+    List<Decimal> data = await getPrices(period);
     double max = 0;
     for (var price in data) {
       if (double.parse(price.toString()) > max) {
@@ -19,9 +18,9 @@ class SpotsDatasource {
     return max;
   }
 
-  Future<double> getMinX() async {
-    List<dynamic> data = await getPrices();
-    double min = await getMaxX();
+  Future<double> getMinX(String period) async {
+    List<dynamic> data = await getPrices(period);
+    double min = await getMaxX(period);
 
     for (var price in data) {
       if (double.parse(price.toString()) < min) {
@@ -31,12 +30,13 @@ class SpotsDatasource {
     return min;
   }
 
-  Future<List<Decimal>> getPrices() async {
+  Future<List<Decimal>> getPrices(String period) async {
     //List<dynamic> list = [];
     GetCoinPricesRemoteDatasourceImp teste =
         GetCoinPricesRemoteDatasourceImp(dio);
     List<Decimal> prices = [];
-    prices = await teste.getCoinPrices("5b71fc48-3dd3-540c-809b-f8c94d0e68b5");
+    prices = await teste.getCoinPrices(
+        "5b71fc48-3dd3-540c-809b-f8c94d0e68b5", period);
 
     // final response = await dio.get(
     //   Coinbase.getCoinPrices("5b71fc48-3dd3-540c-809b-f8c94d0e68b5"),
@@ -50,8 +50,8 @@ class SpotsDatasource {
     return prices;
   }
 
-  Future<List<FlSpot>> getSpots(int range) async {
-    List<Decimal> data = await getPrices();
+  Future<List<FlSpot>> getSpots(String period) async {
+    List<Decimal> data = await getPrices(period);
     List<dynamic> prices = [];
     List<FlSpot> spots = [];
 

@@ -1,9 +1,11 @@
+import 'package:everest_crypto/app/presenter/controllers/notifiers/get_all_coins_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../data/datasources/wallet_datasource.dart';
 import '../../../../domain/entities/coin_entity.dart';
-import '../../../controllers/visible_controller.dart';
+import '../../../controllers/providers/get_all_coins_provider.dart';
+import '../../../controllers/providers/visible_provider.dart';
 import '../widgets/coin_list.dart';
 import '../widgets/wallet_details.dart';
 

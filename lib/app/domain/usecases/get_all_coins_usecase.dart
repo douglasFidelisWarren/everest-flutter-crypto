@@ -8,8 +8,8 @@ abstract class GetAllCoinsUsecase {
 
 class GetAllCoinsUsecaseImp implements GetAllCoinsUsecase {
   final GetAllCoinsRepository _repository;
-
   GetAllCoinsUsecaseImp(this._repository);
+
   @override
   Future<List<CoinEntity>> getAllCoins() async {
     return await _repository.getAllCoins();

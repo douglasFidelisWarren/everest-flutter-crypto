@@ -5,8 +5,9 @@ class CoinEntity {
   final String name;
   final String image;
   final String symbol;
-  final Decimal latest;
-  final Decimal amount;
+  final String latest;
+  final String amount;
+  final dynamic percentChange;
   CoinEntity({
     required this.id,
     required this.name,
@@ -14,5 +15,6 @@ class CoinEntity {
     required this.symbol,
     required this.latest,
     required this.amount,
+    required this.percentChange,
   });
 }
