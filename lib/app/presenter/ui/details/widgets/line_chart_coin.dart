@@ -1,10 +1,10 @@
 import 'package:everest_crypto/app/presenter/controllers/providers/get_all_coins_provider.dart';
-import 'package:everest_crypto/core/shared/formater.dart';
+import 'package:everest_crypto/app/presenter/ui/shared/formater.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../core/shared/styles.dart';
+import '../../shared/styles.dart';
 import '../../../../data/datasources/spots_datasource.dart';
 
 final diaProvider = StateProvider<String>((ref) => 'day');
@@ -97,7 +97,7 @@ class LineChartCoin extends ConsumerWidget {
                               getTooltipItems: (touchedSpots) {
                                 return touchedSpots.map((touchedSpot) {
                                   return LineTooltipItem(
-                                    "${number.format(touchedSpot.y)}",
+                                    number.format(touchedSpot.y),
                                     const TextStyle(
                                       color: colorBlackText,
                                       fontSize: 15,
@@ -125,10 +125,12 @@ class LineChartCoin extends ConsumerWidget {
                             leftTitles: AxisTitles(),
                           ),
                           borderData: FlBorderData(
-                              show: true,
-                              border: const Border(
-                                  bottom: BorderSide(
-                                      color: colorGrayDivider, width: 2))),
+                            show: true,
+                            border: const Border(
+                              bottom:
+                                  BorderSide(color: colorGrayDivider, width: 2),
+                            ),
+                          ),
                           lineBarsData: [
                             LineChartBarData(
                                 isStrokeJoinRound: true,

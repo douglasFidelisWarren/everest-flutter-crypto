@@ -5,8 +5,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../app/presenter/controllers/providers/get_all_coins_provider.dart';
 import '../app/presenter/ui/movements/movements_page.dart';
 import '../app/presenter/ui/portfolio/view/portfolio_page.dart';
-import 'shared/assets.dart';
-import 'shared/styles.dart';
+import '../app/presenter/ui/shared/assets.dart';
+import '../app/presenter/ui/shared/styles.dart';
 
 class Home extends StatefulHookConsumerWidget {
   const Home({Key? key}) : super(key: key);

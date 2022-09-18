@@ -1,8 +1,9 @@
+import 'package:everest_crypto/app/presenter/ui/shared/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../core/shared/formater.dart';
-import '../../../../core/shared/styles.dart';
+import '../shared/formater.dart';
+import '../shared/styles.dart';
 import '../../../data/datasources/wallet_datasource.dart';
 import '../../../domain/entities/coin_entity.dart';
 import '../../controllers/providers/get_all_coins_provider.dart';
@@ -23,39 +24,24 @@ class _AvailablePageState extends ConsumerState<AvailablePage> {
 
   @override
   void initState() {
+    super.initState();
     coins = ref.read(coinsNotifierProvider);
   }
 
   @override
-  void setState(VoidCallback fn) {}
-
-  @override
   Widget build(BuildContext context) {
     //ref.read(coinsNotifierProvider.notifier).getAllCoins();
-    final visible = ref.watch(visibleNotifierProvider);
-
-    Decoration hideText = BoxDecoration(
-        color: visible ? colorHideOff : colorHideOn,
-        borderRadius: BorderRadius.circular(5));
-    WalletDatasource teste = WalletDatasource();
+    final visible = ref.watch(visibleProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: const IconThemeData(color: colorBlackText),
-        elevation: .7,
-        backgroundColor: Colors.white,
-        title: const Text(
-          'Criptos Disponíveis',
-          style: appBarTextStyle,
-        ),
-      ),
-      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+      appBar: const CustomAppBar('Criptos Disponíveis'),
       body: SafeArea(
         child: Column(
           children: [
             Expanded(
               child: Visibility(
                 visible: coins.isNotEmpty,
+                replacement: const Center(child: CircularProgressIndicator()),
                 child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: coins.length,
@@ -104,34 +90,30 @@ class _AvailablePageState extends ConsumerState<AvailablePage> {
                                           CrossAxisAlignment.end,
                                       children: [
                                         Container(
-                                          decoration: hideText,
+                                          decoration:
+                                              visibleDecoration(visible),
                                           child: Text(
-                                            "${number.format(double.parse(coin.latest))}",
+                                            number.format(
+                                                double.parse(coin.latest)),
                                             style: valueStyle,
                                           ),
                                         ),
                                         const SizedBox(height: 5),
                                         Container(
                                           alignment: Alignment.center,
-                                          width: 70,
+                                          width: 80,
+                                          height: 20,
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                               color: percentChange < 0
                                                   ? Colors.red.shade200
                                                   : Colors.green.shade200),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                "${double.parse((percentChange).toStringAsFixed(2))}",
-                                                style: TextStyle(
-                                                    color: colorBlackText),
-                                              ),
-                                              Text("%",
-                                                  style: subTitleStyleCoin),
-                                            ],
+                                          child: Text(
+                                            "${double.parse((percentChange).toStringAsFixed(4))}%",
+                                            style: const TextStyle(
+                                              color: colorBlackText,
+                                            ),
                                           ),
                                         ),
                                       ],

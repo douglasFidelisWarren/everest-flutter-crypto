@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+BoxDecoration visibleDecoration(bool visible) {
+  return BoxDecoration(
+      color: visible ? colorHideOff : colorHideOn,
+      borderRadius: BorderRadius.circular(5));
+}
+
 const Color colorBlackText = Color.fromRGBO(47, 47, 51, 1);
 const Color colorGrayDivider = Color.fromRGBO(227, 228, 235, 1);
 const Color colorGraySubtitle = Color.fromRGBO(117, 118, 128, 1);

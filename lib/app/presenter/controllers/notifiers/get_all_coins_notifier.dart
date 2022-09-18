@@ -9,7 +9,7 @@ class GetAllCoinsNotifier extends StateNotifier<List<CoinEntity>> {
   GetAllCoinsNotifier(this._usecase) : super([]);
 
   Future<void> getAllCoins() async {
-    state = [];
+    //state = [];
     state = await _usecase.getAllCoins();
   }
 }

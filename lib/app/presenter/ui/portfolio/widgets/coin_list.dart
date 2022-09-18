@@ -20,7 +20,6 @@ class CoinList extends StatelessWidget {
         itemCount: coinList.length,
         itemBuilder: (context, index) {
           CoinEntity coin = coinList[index];
-
           return CoinDetails(
             coin: coin,
             visible: visible,
