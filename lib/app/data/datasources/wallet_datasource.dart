@@ -6,7 +6,7 @@ class WalletDatasource {
   List<CoinDto> getCoinsWallet() {
     List<CoinDto> coins = [
       CoinDto(
-        id: "1",
+        id: "5b71fc48-3dd3-540c-809b-f8c94d0e68b5",
         image: "assets/images/btc.png",
         name: "Biticoin",
         symbol: "BTC",

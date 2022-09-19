@@ -21,12 +21,6 @@ class GetAllCoinsRemoteDatasourceImp implements GetAllCoinsDatasource {
     } catch (error) {
       print(error.toString());
     }
-    // print(coins[0].name);
-    // print(coins[0].id);
-    // print(coins[0].image);
-    // print(coins[0].latest);
-    // print(coins[0].amount);
-    // print(coins[0].symbol);
 
     return coins;
   }

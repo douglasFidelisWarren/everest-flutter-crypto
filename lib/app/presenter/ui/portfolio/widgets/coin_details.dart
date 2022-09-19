@@ -1,12 +1,16 @@
 import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/app/domain/entities/chart_config_entity.dart';
+import 'package:everest_crypto/app/presenter/controllers/providers/get_chart_config_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../controllers/providers/get_coin_prices_provider.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 import '../../../../domain/entities/coin_entity.dart';
 import '../../details/details_page.dart';
 
-class CoinDetails extends StatelessWidget {
+class CoinDetails extends HookConsumerWidget {
   const CoinDetails({
     Key? key,
     required this.coin,
@@ -17,7 +21,7 @@ class CoinDetails extends StatelessWidget {
   final bool visible;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     Decimal amount = Decimal.parse(coin.amount);
     Decimal latest = Decimal.parse(coin.latest);
     double value = (amount * latest).toDouble();
@@ -25,6 +29,11 @@ class CoinDetails extends StatelessWidget {
 
     return MaterialButton(
       onPressed: () {
+        ref
+            .read(coinPricesNotifierProvider.notifier)
+            .getCoinPrices(coin.id, "hour");
+        print(coin.id);
+        print(coin.name);
         Navigator.of(context).pushNamed(DetailsPage.route, arguments: coin);
       },
       child: Column(

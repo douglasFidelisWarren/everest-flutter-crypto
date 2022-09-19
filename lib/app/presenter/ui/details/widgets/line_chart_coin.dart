@@ -1,28 +1,31 @@
+import 'package:everest_crypto/app/domain/entities/chart_config_entity.dart';
 import 'package:everest_crypto/app/presenter/controllers/providers/get_all_coins_provider.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/formater.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../controllers/providers/get_coin_prices_provider.dart';
 import '../../shared/styles.dart';
 import '../../../../data/datasources/spots_datasource.dart';
 
-final diaProvider = StateProvider<String>((ref) => 'day');
+final diaProvider = StateProvider<String>((ref) => 'year');
 final maxProvider = StateProvider<double>((ref) => 105461);
 final minProvider = StateProvider<double>((ref) => 102042);
 final selected = StateProvider<int>((ref) {
   return 0;
 });
 
-class LineChartCoin extends ConsumerWidget {
-  const LineChartCoin({Key? key}) : super(key: key);
-
+class LineChartCoin extends HookConsumerWidget {
+  const LineChartCoin(this.config, {Key? key}) : super(key: key);
+  final ChartConfigEntity config;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     SpotsDatasource datasource = SpotsDatasource();
+    print(config.max);
     //ref.watch(selected) == index ? Colors.red : Colors.green),
 
-    Widget custom(String text, int index) {
+    Widget custom(String text, int index, String period) {
       return TextButton(
         style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.all(2),
@@ -41,11 +44,10 @@ class LineChartCoin extends ConsumerWidget {
                   : colorGraySubtitle),
         ),
         onPressed: () async {
+          ref
+              .read(coinPricesNotifierProvider.notifier)
+              .getCoinPrices("5b71fc48-3dd3-540c-809b-f8c94d0e68b5", period);
           ref.watch(selected.state).state = index;
-          ref.read(maxProvider.notifier).state =
-              await datasource.getMaxX(ref.watch(diaProvider));
-          ref.read(minProvider.notifier).state =
-              await datasource.getMinX(ref.watch(diaProvider));
         },
       );
     }
@@ -141,12 +143,12 @@ class LineChartCoin extends ConsumerWidget {
                                 isStrokeCapRound: true,
                                 dotData: FlDotData(show: false),
                                 belowBarData: BarAreaData(show: false),
-                                spots: snapshot.data)
+                                spots: config.spots)
                           ],
                           minX: 0,
-                          maxX: rangeY,
-                          maxY: ref.read(maxProvider),
-                          minY: ref.read(minProvider),
+                          maxX: config.period,
+                          maxY: config.max,
+                          minY: config.min,
                         ),
                         swapAnimationDuration:
                             const Duration(milliseconds: 250),
@@ -161,12 +163,11 @@ class LineChartCoin extends ConsumerWidget {
             // ),
             Row(
               children: [
-                custom("24h", 0),
-                custom("5D", 1),
-                custom("15D", 2),
-                custom("30D", 3),
-                custom("45D", 4),
-                custom("90D", 5),
+                custom("5D", 1, "hour"),
+                custom("15D", 2, "day"),
+                custom("30D", 3, "week"),
+                custom("45D", 4, "month"),
+                custom("90D", 5, "year"),
               ],
             )
           ],
