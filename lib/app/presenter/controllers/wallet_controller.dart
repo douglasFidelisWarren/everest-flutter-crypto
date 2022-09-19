@@ -4,11 +4,10 @@ import 'package:everest_crypto/app/domain/entities/coin_entity.dart';
 import '../../data/datasources/wallet_datasource.dart';
 
 class WalletController {
-  //TODO CONTROLLER PROVISÓRIO!
-  WalletDatasource teste = WalletDatasource();
+  WalletDatasource walletDataSource = WalletDatasource();
   double getWallet() {
     Decimal wallet = Decimal.parse("0");
-    List<CoinEntity> coinList = teste.getCoinsWallet();
+    List<CoinEntity> coinList = walletDataSource.getCoinsWallet();
 
     for (var coin in coinList) {
       wallet =

@@ -1,7 +1,8 @@
 import 'package:decimal/decimal.dart';
 import 'package:dio/dio.dart';
-import 'package:everest_crypto/app/data/datasources/get_coin_prices_datasource.dart';
-import 'package:everest_crypto/app/data/datasources/remote_datasource/endpoints/coinbase.dart';
+
+import '../get_coin_prices_datasource.dart';
+import 'endpoints/coinbase.dart';
 
 class GetCoinPricesRemoteDatasourceImp implements GetCoinPricesDatasource {
   final Dio _dio;

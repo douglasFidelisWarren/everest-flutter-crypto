@@ -1,6 +1,7 @@
 import 'package:decimal/decimal.dart';
-import 'package:everest_crypto/app/domain/entities/chart_config_entity.dart';
 import 'package:fl_chart/fl_chart.dart';
+
+import '../../domain/entities/chart_config_entity.dart';
 
 class GetChartConfigDatasource {
   ChartConfigEntity getChartConfig(List<Decimal> prices) {

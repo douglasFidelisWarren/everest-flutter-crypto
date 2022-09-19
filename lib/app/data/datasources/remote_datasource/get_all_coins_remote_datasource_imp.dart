@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:everest_crypto/app/domain/entities/coin_entity.dart';
 
+import '../../../domain/entities/coin_entity.dart';
 import '../../dtos/coin_dto.dart';
 import '../get_all_coins_datasource.dart';
 import 'endpoints/coinbase.dart';
@@ -13,14 +13,11 @@ class GetAllCoinsRemoteDatasourceImp implements GetAllCoinsDatasource {
   Future<List<CoinEntity>> getAllCoins() async {
     List<CoinEntity> coins = [];
 
-    try {
-      final response = await _dio.get(Coinbase.getAllCoins());
+    final response = await _dio.get(Coinbase.getAllCoins());
 
-      coins = List.from(
-          response.data['data'].map((coin) => CoinDto.fromJson(coin)));
-    } catch (error) {
-      print(error.toString());
-    }
+    coins = List.from(response.data['data'].map(
+      (coin) => CoinDto.fromJson(coin),
+    ));
 
     return coins;
   }

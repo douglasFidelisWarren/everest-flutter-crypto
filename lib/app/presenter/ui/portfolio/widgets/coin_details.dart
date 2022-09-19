@@ -1,14 +1,12 @@
 import 'package:decimal/decimal.dart';
-import 'package:everest_crypto/app/domain/entities/chart_config_entity.dart';
-import 'package:everest_crypto/app/presenter/controllers/providers/get_chart_config_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../domain/entities/coin_entity.dart';
 import '../../../controllers/providers/get_coin_prices_provider.dart';
+import '../../details/view/details_page.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
-import '../../../../domain/entities/coin_entity.dart';
-import '../../details/details_page.dart';
 
 class CoinDetails extends HookConsumerWidget {
   const CoinDetails({
@@ -32,8 +30,6 @@ class CoinDetails extends HookConsumerWidget {
         ref
             .read(coinPricesNotifierProvider.notifier)
             .getCoinPrices(coin.id, "hour");
-        print(coin.id);
-        print(coin.name);
         Navigator.of(context).pushNamed(DetailsPage.route, arguments: coin);
       },
       child: Column(
@@ -78,7 +74,7 @@ class CoinDetails extends HookConsumerWidget {
                         Container(
                           decoration: visibleDecoration(visible),
                           child: Text(
-                            number.format(amountCoin),
+                            "$amountCoin",
                             style: visible
                                 ? subTitleStyleCoin
                                 : subTitleStyleCoinHide,

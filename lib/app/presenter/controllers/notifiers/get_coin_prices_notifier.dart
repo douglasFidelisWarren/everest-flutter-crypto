@@ -8,7 +8,6 @@ class GetCoinPricesNotifier extends StateNotifier<AsyncValue<List<Decimal>>> {
   GetCoinPricesNotifier(this._usecase) : super(const AsyncData([]));
 
   Future<void> getCoinPrices(String coinId, String period) async {
-    //state = const AsyncLoading();
     state = AsyncData(await _usecase.getCoinPrices(coinId, period));
   }
 }

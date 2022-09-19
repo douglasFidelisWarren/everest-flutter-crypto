@@ -1,30 +1,26 @@
-import 'package:everest_crypto/app/domain/entities/chart_config_entity.dart';
-import 'package:everest_crypto/app/presenter/controllers/providers/get_all_coins_provider.dart';
-import 'package:everest_crypto/app/presenter/ui/shared/formater.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../controllers/providers/get_coin_prices_provider.dart';
-import '../../shared/styles.dart';
 import '../../../../data/datasources/spots_datasource.dart';
+import '../../../../domain/entities/chart_config_entity.dart';
+import '../../../../domain/entities/coin_entity.dart';
+import '../../../controllers/providers/get_coin_prices_provider.dart';
+import '../../shared/formater.dart';
+import '../../shared/styles.dart';
 
 final diaProvider = StateProvider<String>((ref) => 'year');
-final maxProvider = StateProvider<double>((ref) => 105461);
+final change = StateProvider<double>((ref) => 0);
 final minProvider = StateProvider<double>((ref) => 102042);
-final selected = StateProvider<int>((ref) {
-  return 0;
-});
+final selected = StateProvider<int>((ref) => 0);
 
 class LineChartCoin extends HookConsumerWidget {
-  const LineChartCoin(this.config, {Key? key}) : super(key: key);
+  const LineChartCoin(this.config, this.coin, {Key? key}) : super(key: key);
   final ChartConfigEntity config;
+  final CoinEntity coin;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     SpotsDatasource datasource = SpotsDatasource();
-    print(config.max);
-    //ref.watch(selected) == index ? Colors.red : Colors.green),
-
     Widget custom(String text, int index, String period) {
       return TextButton(
         style: ElevatedButton.styleFrom(
@@ -32,9 +28,7 @@ class LineChartCoin extends HookConsumerWidget {
             alignment: Alignment.center,
             minimumSize: const Size(30, 25),
             backgroundColor:
-                ref.watch(selected) == index ? colorHideOn : colorHideOff
-            //fixedSize: Size(5, 5)
-            ),
+                ref.watch(selected) == index ? colorHideOn : colorHideOff),
         child: Text(
           text,
           style: TextStyle(
@@ -46,23 +40,21 @@ class LineChartCoin extends HookConsumerWidget {
         onPressed: () async {
           ref
               .read(coinPricesNotifierProvider.notifier)
-              .getCoinPrices("5b71fc48-3dd3-540c-809b-f8c94d0e68b5", period);
+              .getCoinPrices(coin.id, period);
           ref.watch(selected.state).state = index;
         },
       );
     }
 
     String dia = ref.watch(diaProvider);
-    double? rangeY;
     Future<List<FlSpot>> getSpots(String period) async {
       List<FlSpot> spots = await datasource.getSpots(dia);
-      rangeY = double.parse((spots.length).toString());
       return spots;
     }
 
     Future<List<FlSpot>> spots = getSpots(dia);
     return AspectRatio(
-      aspectRatio: 1.5,
+      aspectRatio: 2,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -81,51 +73,46 @@ class LineChartCoin extends HookConsumerWidget {
                       child: LineChart(
                         LineChartData(
                           lineTouchData: LineTouchData(
-                            getTouchedSpotIndicator: (barData, spotIndexes) {
-                              return spotIndexes.map((index) {
-                                return TouchedSpotIndicatorData(
-                                  FlLine(
-                                    color: colorBrandWarren,
-                                    strokeWidth: 2,
-                                  ),
-                                  FlDotData(
-                                    show: true,
-                                  ),
-                                );
-                              }).toList();
-                            },
-                            handleBuiltInTouches: true,
-                            touchTooltipData: LineTouchTooltipData(
-                              getTooltipItems: (touchedSpots) {
-                                return touchedSpots.map((touchedSpot) {
-                                  return LineTooltipItem(
-                                    number.format(touchedSpot.y),
-                                    const TextStyle(
-                                      color: colorBlackText,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
+                              getTouchedSpotIndicator: (barData, spotIndexes) {
+                                return spotIndexes.map((index) {
+                                  return TouchedSpotIndicatorData(
+                                    FlLine(
+                                      color: colorBrandWarren,
+                                      strokeWidth: 2,
+                                    ),
+                                    FlDotData(
+                                      show: true,
                                     ),
                                   );
                                 }).toList();
                               },
-                              tooltipRoundedRadius: 5,
-                              tooltipBgColor: colorGrayDivider.withOpacity(.8),
-                            ),
-                          ),
+                              handleBuiltInTouches: true,
+                              touchTooltipData: LineTouchTooltipData(
+                                getTooltipItems: (touchedSpots) {
+                                  return touchedSpots.map((touchedSpot) {
+                                    return LineTooltipItem(
+                                      number.format(touchedSpot.y),
+                                      const TextStyle(
+                                        color: colorBlackText,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    );
+                                  }).toList();
+                                },
+                                tooltipRoundedRadius: 5,
+                                tooltipBgColor:
+                                    colorGrayDivider.withOpacity(.8),
+                              )),
                           gridData: FlGridData(show: false),
                           titlesData: FlTitlesData(
-                            bottomTitles: AxisTitles(
-                                sideTitles: SideTitles(
-                              showTitles: false,
-                            )),
-                            rightTitles: AxisTitles(
-                              sideTitles: SideTitles(showTitles: false),
-                            ),
-                            topTitles: AxisTitles(
-                              sideTitles: SideTitles(showTitles: false),
-                            ),
-                            leftTitles: AxisTitles(),
-                          ),
+                              bottomTitles: AxisTitles(
+                                  sideTitles: SideTitles(showTitles: false)),
+                              rightTitles: AxisTitles(
+                                  sideTitles: SideTitles(showTitles: false)),
+                              topTitles: AxisTitles(
+                                  sideTitles: SideTitles(showTitles: false)),
+                              leftTitles: AxisTitles()),
                           borderData: FlBorderData(
                             show: true,
                             border: const Border(
@@ -139,7 +126,7 @@ class LineChartCoin extends HookConsumerWidget {
                                 isCurved: false,
                                 curveSmoothness: 0,
                                 color: colorBrandWarren,
-                                barWidth: 2.5,
+                                barWidth: 3,
                                 isStrokeCapRound: true,
                                 dotData: FlDotData(show: false),
                                 belowBarData: BarAreaData(show: false),
@@ -158,9 +145,6 @@ class LineChartCoin extends HookConsumerWidget {
                 },
               ),
             ),
-            // const Divider(
-            //   thickness: 1,
-            // ),
             Row(
               children: [
                 custom("5D", 1, "hour"),
@@ -173,48 +157,6 @@ class LineChartCoin extends HookConsumerWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class TextBtn extends ConsumerWidget {
-  const TextBtn({
-    Key? key,
-    required this.dia,
-  }) : super(key: key);
-
-  final String dia;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    SpotsDatasource teste = SpotsDatasource();
-    getX() async {
-      ref.read(maxProvider.notifier).state =
-          await teste.getMaxX(ref.watch(diaProvider));
-      ref.read(minProvider.notifier).state =
-          await teste.getMinX(ref.watch(diaProvider));
-    }
-
-    return TextButton(
-      style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.all(2),
-          alignment: Alignment.center,
-          minimumSize: const Size(30, 25),
-          backgroundColor: colorHideOn
-          //fixedSize: Size(5, 5)
-          ),
-      child: Text(
-        "${dia}D",
-        style: const TextStyle(
-          fontWeight: FontWeight.w900,
-          //color: seleciona ? colorBlackText : colorBrandWarren
-        ),
-      ),
-      onPressed: () {
-        getX();
-
-        ref.read(diaProvider.notifier).state = dia;
-      },
     );
   }
 }

@@ -18,7 +18,7 @@ class WalletDetails extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    WalletDatasource teste = WalletDatasource();
+    WalletDatasource walletDataSource = WalletDatasource();
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: Column(
@@ -36,7 +36,7 @@ class WalletDetails extends ConsumerWidget {
             child: Container(
               decoration: visibleDecoration(visible),
               child: Text(
-                number.format(teste.getWallet()),
+                number.format(walletDataSource.getWallet()),
                 style: visible ? totalStyle : totalStyleHide,
                 overflow: TextOverflow.ellipsis,
               ),

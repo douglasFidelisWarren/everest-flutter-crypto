@@ -1,7 +1,7 @@
 import 'package:decimal/decimal.dart';
 
-import 'package:everest_crypto/app/domain/entities/chart_config_entity.dart';
-import 'package:everest_crypto/app/domain/repositories/get_chart_config_repository.dart';
+import '../entities/chart_config_entity.dart';
+import '../repositories/get_chart_config_repository.dart';
 
 abstract class GetChartConfigUsecase {
   ChartConfigEntity getChartConfig(List<Decimal> prices);

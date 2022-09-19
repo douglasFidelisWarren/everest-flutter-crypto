@@ -1,6 +1,7 @@
 import 'package:decimal/decimal.dart';
-import 'package:everest_crypto/app/data/dtos/coin_dto.dart';
-import 'package:everest_crypto/app/domain/entities/coin_entity.dart';
+
+import '../../domain/entities/coin_entity.dart';
+import '../dtos/coin_dto.dart';
 
 class WalletDatasource {
   List<CoinDto> getCoinsWallet() {
@@ -15,7 +16,7 @@ class WalletDatasource {
         percentChange: 0.19,
       ),
       CoinDto(
-        id: "2",
+        id: "d85dce9b-5b73-5c3c-8978-522ce1d1c1b4",
         image: "assets/images/eth.png",
         name: "Ethereum",
         symbol: "ETH",
@@ -24,7 +25,7 @@ class WalletDatasource {
         percentChange: -2.01,
       ),
       CoinDto(
-        id: "3",
+        id: "c9c24c6e-c045-5fde-98a2-00ea7f520437",
         image: "assets/images/ltc.png",
         name: "Litecoin",
         symbol: "LTC",
@@ -33,7 +34,7 @@ class WalletDatasource {
         percentChange: -0.12,
       ),
       CoinDto(
-        id: "4",
+        id: "2b92315d-eab7-5bef-84fa-089a131333f5",
         image: "assets/images/usdc.png",
         name: "USD Coin",
         symbol: "USDC",
@@ -42,7 +43,7 @@ class WalletDatasource {
         percentChange: 0.00,
       ),
       CoinDto(
-        id: "5",
+        id: "9d06e463-b3ba-5abf-9082-8761846b28ab",
         image: "assets/images/avax.png",
         name: "Avalanche",
         symbol: "AVAX",
@@ -51,7 +52,7 @@ class WalletDatasource {
         percentChange: -0.01,
       ),
       CoinDto(
-        id: "6",
+        id: "64c607d2-4663-5649-86e0-3ab06bba0202",
         image: "assets/images/atom.png",
         name: "Cosmos",
         symbol: "ATOM",
@@ -71,7 +72,6 @@ class WalletDatasource {
       wallet =
           wallet + (Decimal.parse(coin.amount)) * (Decimal.parse(coin.latest));
     }
-
     return wallet.toDouble();
   }
 }
