@@ -2,21 +2,17 @@ import 'package:decimal/decimal.dart';
 import 'package:dio/dio.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-import 'remote_datasource/get_coin_prices_remote_datasource.dart';
-
 class SpotsDatasource {
   Dio dio = Dio();
 
   Future<List<Decimal>> getPrices(String period) async {
-    GetCoinPricesRemoteDatasourceImp teste =
-        GetCoinPricesRemoteDatasourceImp(dio);
     List<Decimal> prices = [];
     return prices;
   }
 
   Future<List<FlSpot>> getSpots(String period) async {
     List<Decimal> data = await getPrices(period);
-    List<dynamic> prices = [];
+    List<Decimal> prices = [];
     List<FlSpot> spots = [];
 
     for (var i = 0; i < data.length; i++) {

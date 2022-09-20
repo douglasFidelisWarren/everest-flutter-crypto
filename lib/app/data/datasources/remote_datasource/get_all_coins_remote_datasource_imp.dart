@@ -13,7 +13,7 @@ class GetAllCoinsRemoteDatasourceImp implements GetAllCoinsDatasource {
   Future<List<CoinEntity>> getAllCoins() async {
     List<CoinEntity> coins = [];
 
-    final response = await _dio.get(Coinbase.getAllCoins());
+    final response = await _dio.get(Coinbase.getAllCoins);
 
     coins = List.from(response.data['data'].map(
       (coin) => CoinDto.fromJson(coin),
