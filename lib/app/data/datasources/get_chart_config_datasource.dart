@@ -8,9 +8,11 @@ class GetChartConfigDatasource {
     double period = prices.length.toDouble();
     double max = 0;
     double min = 0;
+    List<FlSpot> spots = [];
 
-    for (var price in prices) {
-      double priceD = price.toDouble();
+    for (var i = 0; i < prices.length; i++) {
+      double priceD = prices[i].toDouble();
+      spots.add(FlSpot(i.toDouble(), priceD));
 
       if (priceD > max) {
         max = priceD;
@@ -20,15 +22,6 @@ class GetChartConfigDatasource {
           if (priceD < min) min = priceD;
         }
       }
-    }
-
-    List<FlSpot> spots = [];
-
-    for (var i = 0; i < prices.length; i++) {
-      double valor = prices[i].toDouble();
-      spots.add(
-        FlSpot(i.toDouble(), valor),
-      );
     }
 
     ChartConfigEntity chartConfigEntity = ChartConfigEntity(
