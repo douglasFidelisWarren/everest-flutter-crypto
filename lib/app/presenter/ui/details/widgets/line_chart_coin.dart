@@ -54,7 +54,7 @@ class LineChartCoin extends HookConsumerWidget {
 
     Future<List<FlSpot>> spots = getSpots(dia);
     return AspectRatio(
-      aspectRatio: 2,
+      aspectRatio: 2.5,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

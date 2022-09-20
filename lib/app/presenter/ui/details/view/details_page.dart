@@ -23,7 +23,7 @@ class DetailsPage extends HookConsumerWidget {
     ChartConfigEntity max = ref.watch(chartConfigProvider.notifier).state;
 
     final coin = ModalRoute.of(context)!.settings.arguments as CoinEntity;
-    double latest = double.parse((prices.last.toString()));
+    double latest = double.parse((coin.latest));
     return Scaffold(
       appBar: const CustomAppBar("Detalhes"),
       body: SingleChildScrollView(
