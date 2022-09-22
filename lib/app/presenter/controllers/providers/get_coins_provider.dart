@@ -64,10 +64,3 @@ final coinsNotifierProviderTesteTTTTTT = FutureProvider<List<CoinViewData>>(
         .getAllCoins(ref.read(vsCurrencyProvider));
   },
 );
-
-
-// final coinsNotifierProviderTeste =
-//     StateNotifierProvider<GetCoinsNotifier, AsyncValue<List<CoinViewData>>>(
-//         (ref) {
-//   return GetCoinsNotifier(ref.watch(coinUsecaseProvider));
-// });

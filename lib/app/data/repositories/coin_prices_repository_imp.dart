@@ -14,7 +14,10 @@ class CoinPricesRepositoryImp implements ICoinPricesRepository {
     List<Decimal> prices = [];
     final response =
         await genkcoEndpoint.getprices(coinId, vScurrency, fromTime, toTime);
-    prices = response.data['prices'];
+    List<dynamic> list = response.data['prices'];
+    for (var p in list) {
+      prices.add(Decimal.fromJson("${p[1]}"));
+    }
 
     return prices;
   }

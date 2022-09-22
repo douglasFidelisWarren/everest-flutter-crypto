@@ -1,8 +1,9 @@
+import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/entities/chart_config_entity.dart';
-import '../../../../domain/entities/coin_entity.dart';
 import '../../../controllers/providers/get_chart_config_provider.dart';
 import '../../../controllers/providers/get_coin_prices_provider.dart';
 import '../../shared/custom_app_bar.dart';
@@ -15,15 +16,14 @@ class DetailsPage extends HookConsumerWidget {
   const DetailsPage({Key? key}) : super(key: key);
 
   static const route = '/details';
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final prices = ref.watch(coinPricesNotifierProvider).value;
-    ref.read(chartConfigProvider.notifier).getChartConfig(prices!);
-    ChartConfigEntity max = ref.watch(chartConfigProvider.notifier).state;
+    final chartConfig = ref.watch(chartConfigProvider);
 
-    final coin = ModalRoute.of(context)!.settings.arguments as CoinEntity;
-    double latest = double.parse((coin.latest));
+    //ChartConfigEntity max = ref.watch(chartConfigProvider.notifier);
+
+    final coin = ModalRoute.of(context)!.settings.arguments as CoinViewData;
+    double latest = double.parse(coin.currentPrice.toString());
     return Scaffold(
       appBar: const CustomAppBar("Detalhes"),
       body: SingleChildScrollView(
@@ -43,7 +43,7 @@ class DetailsPage extends HookConsumerWidget {
             child: Text(number.format(latest), style: totalStyle),
           ),
           const SizedBox(height: 35),
-          LineChartCoin(max, coin),
+          LineChartCoin(chartConfig, coin),
           BottonChartDetails(coin: coin),
         ]),
       ),

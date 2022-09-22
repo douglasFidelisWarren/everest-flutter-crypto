@@ -1,43 +1,52 @@
+import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/entities/chart_config_entity.dart';
-import '../../../../domain/entities/coin_entity.dart';
 import '../../../controllers/providers/get_coin_prices_provider.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 
-final diaProvider = StateProvider<String>((ref) => 'year');
-final change = StateProvider<double>((ref) => 0);
-final minProvider = StateProvider<double>((ref) => 102042);
+// final diaProvider = StateProvider<String>((ref) => 'year');
+// final change = StateProvider<double>((ref) => 0);
+// final minProvider = StateProvider<double>((ref) => 102042);
 final selected = StateProvider<int>((ref) => 0);
 
 class LineChartCoin extends HookConsumerWidget {
   const LineChartCoin(this.config, this.coin, {Key? key}) : super(key: key);
   final ChartConfigEntity config;
-  final CoinEntity coin;
+  final CoinViewData coin;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Widget custom(String text, int index, String period) {
+    Widget custom(
+      int period,
+    ) {
       return TextButton(
         style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.all(2),
             alignment: Alignment.center,
             minimumSize: const Size(30, 25),
             backgroundColor:
-                ref.watch(selected) == index ? colorHideOn : colorHideOff),
+                ref.watch(selected) == period ? colorHideOn : colorHideOff),
         child: Text(
-          text,
+          "${period}D",
           style: TextStyle(
               fontWeight: FontWeight.w900,
-              color: ref.watch(selected) == index
+              color: ref.watch(selected) == period
                   ? colorBlackText
                   : colorGraySubtitle),
         ),
         onPressed: () async {
-          ref.read(coinPricesNotifierProvider);
-          ref.watch(selected.state).state = index;
+          int now = DateTime.now().millisecondsSinceEpoch;
+          //print(now);
+          int to = now - period * (432000000 / 5).floor();
+          //print(DateTime.fromMillisecondsSinceEpoch(now, isUtc: true));
+          // print(DateTime.fromMillisecondsSinceEpoch(to, isUtc: true));
+          ref
+              .read(coinPricesNotifierProvider.notifier)
+              .getCoinPrices(coin.id, "brl", now, to);
+          ref.watch(selected.state).state = period;
         },
       );
     }
@@ -126,11 +135,11 @@ class LineChartCoin extends HookConsumerWidget {
             )),
             Row(
               children: [
-                custom("5D", 1, "hour"),
-                custom("15D", 2, "day"),
-                custom("30D", 3, "week"),
-                custom("45D", 4, "month"),
-                custom("90D", 5, "year"),
+                custom(5),
+                custom(15),
+                custom(30),
+                custom(45),
+                custom(90),
               ],
             )
           ],

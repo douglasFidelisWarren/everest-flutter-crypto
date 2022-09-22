@@ -1,8 +1,10 @@
 import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/entities/coin_entity.dart';
+import '../../../controllers/providers/get_chart_config_provider.dart';
 import '../../../controllers/providers/get_coin_prices_provider.dart';
 import '../../details/view/details_page.dart';
 import '../../shared/formater.dart';
@@ -15,19 +17,28 @@ class CoinDetails extends HookConsumerWidget {
     required this.visible,
   }) : super(key: key);
 
-  final CoinEntity coin;
+  final CoinViewData coin;
   final bool visible;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Decimal amount = Decimal.parse(coin.amount);
-    Decimal latest = Decimal.parse(coin.latest);
+    Decimal amount = Decimal.parse("1");
+    Decimal latest = coin.currentPrice;
     double value = (amount * latest).toDouble();
     double amountCoin = amount.toDouble();
+    int toTime = DateTime.now().microsecondsSinceEpoch;
+
+    int fronTime = toTime - 5 * (432000000 / 5).floor();
+    List<Decimal> prices = ref.watch(coinPricesNotifierProvider).value!;
 
     return MaterialButton(
       onPressed: () {
-        ref.read(coinPricesNotifierProvider);
+        ref
+            .read(coinPricesNotifierProvider.notifier)
+            .getCoinPrices(coin.id, 'brl', 1663815813, 1663816813);
+
+        ref.read(chartConfigProvider.notifier).getChartConfig(prices);
+
         Navigator.of(context).pushNamed(DetailsPage.route, arguments: coin);
       },
       child: Column(
