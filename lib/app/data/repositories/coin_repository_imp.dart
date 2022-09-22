@@ -11,8 +11,8 @@ class CoinRepositoryImp implements ICoinRepository {
   CoinRepositoryImp({required this.getCoinsEndpoint});
 
   @override
-  Future<GetAllCoinsResponse> getAllCoins() async {
-    final result = await getCoinsEndpoint.getAllCoins();
+  Future<GetAllCoinsResponse> getAllCoins(String vScurrency) async {
+    final result = await getCoinsEndpoint.getAllCoins(vScurrency);
     return GetAllCoinsResponse(
         List.from(result.data.map((coin) => CoinResponse.fromJson(coin))));
   }

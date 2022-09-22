@@ -5,9 +5,9 @@ class GetCoinsEndpoint {
 
   GetCoinsEndpoint(this._dio);
 
-  Future<Response> getAllCoins() {
-    return _dio.get(
-      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl',
-    );
+  Future<Response> getAllCoins(String vScurrency) {
+    return _dio.get('/coins/markets', queryParameters: {
+      'vs_currency': vScurrency,
+    });
   }
 }

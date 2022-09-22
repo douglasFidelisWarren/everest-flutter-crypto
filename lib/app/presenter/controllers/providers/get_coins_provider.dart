@@ -28,21 +28,23 @@
 //   return GetCoinsNotifier(ref.watch(coinUsecaseProvider));
 
 // });
-import 'package:dio/dio.dart';
 import 'package:everest_crypto/app/data/repositories/coin_repository_imp.dart';
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:everest_crypto/app/domain/usecases/coin_usecase.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../data/datasources/api/get_coins_endpoint.dart';
-import '../notifiers/get_coins_notifier.dart';
+import '../../../data/datasources/api/endpoint_provider.dart';
 
-final getCoinsEndpointProvider = Provider((ref) {
-  final dio = Dio(BaseOptions(
-    baseUrl: 'https://api.coingecko.com/api/v3',
-  ));
-  return GetCoinsEndpoint(dio);
-});
+// final getCoinsEndpointProvider = Provider((ref) {
+//   final dio = Dio(BaseOptions(
+//     baseUrl: 'https://api.coingecko.com/api/v3',
+//   ));
+//   return GetCoinsEndpoint(dio);
+// });
+
+final vsCurrencyProvider = StateProvider<String>(
+  (ref) => "brl",
+);
 
 final coinRepositoryProvider = Provider((ref) {
   return CoinRepositoryImp(
@@ -57,7 +59,9 @@ final coinUsecaseProvider = Provider(
 
 final coinsNotifierProviderTeste = FutureProvider<List<CoinViewData>>(
   (ref) async {
-    return ref.read(coinUsecaseProvider).getAllCoins();
+    return ref
+        .read(coinUsecaseProvider)
+        .getAllCoins(ref.read(vsCurrencyProvider));
   },
 );
 
