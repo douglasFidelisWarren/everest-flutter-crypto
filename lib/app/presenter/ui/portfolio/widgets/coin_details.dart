@@ -24,9 +24,11 @@ class CoinDetails extends HookConsumerWidget {
     Decimal latest = Decimal.parse(coin.latest);
     double value = (amount * latest).toDouble();
     double amountCoin = amount.toDouble();
+    int toTime = (DateTime.now().microsecondsSinceEpoch * .000001).floor();
 
     return MaterialButton(
       onPressed: () {
+        print(toTime);
         ref
             .read(coinPricesNotifierProvider.notifier)
             .getCoinPrices(coin.id, "hour");

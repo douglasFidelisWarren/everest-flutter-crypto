@@ -5,7 +5,7 @@ import '../../domain/entities/chart_config_entity.dart';
 
 class GetChartConfigDatasource {
   ChartConfigEntity getChartConfig(List<Decimal> prices) {
-    double period = double.parse(prices.length.toString());
+    double period = double.parse(prices.length.toString()) - 1;
     double max = 0;
     for (var price in prices) {
       double priceD = double.parse(price.toString());
