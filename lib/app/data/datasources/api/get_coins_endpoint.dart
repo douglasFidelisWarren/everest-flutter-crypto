@@ -7,7 +7,7 @@ class GetCoinsEndpoint {
 
   Future<Response> getAllCoins() {
     return _dio.get(
-      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd',
+      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl',
     );
   }
 }

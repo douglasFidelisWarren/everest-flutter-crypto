@@ -55,8 +55,15 @@ final coinUsecaseProvider = Provider(
   },
 );
 
-final coinsNotifierProviderTeste =
-    StateNotifierProvider<GetCoinsNotifier, AsyncValue<List<CoinViewData>>>(
-        (ref) {
-  return GetCoinsNotifier(ref.watch(coinUsecaseProvider));
-});
+final coinsNotifierProviderTeste = FutureProvider<List<CoinViewData>>(
+  (ref) async {
+    return ref.read(coinUsecaseProvider).getAllCoins();
+  },
+);
+
+
+// final coinsNotifierProviderTeste =
+//     StateNotifierProvider<GetCoinsNotifier, AsyncValue<List<CoinViewData>>>(
+//         (ref) {
+//   return GetCoinsNotifier(ref.watch(coinUsecaseProvider));
+// });
