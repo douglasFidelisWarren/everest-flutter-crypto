@@ -8,7 +8,7 @@ import '../../../controllers/providers/get_coin_prices_provider.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 
-final diaProvider = StateProvider<String>((ref) => 'year');
+final diaProvider = StateProvider<String>((ref) => '5');
 final change = StateProvider<double>((ref) => 0);
 final minProvider = StateProvider<double>((ref) => 102042);
 final selected = StateProvider<int>((ref) => 0);
@@ -19,7 +19,9 @@ class LineChartCoin extends HookConsumerWidget {
   final CoinEntity coin;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Widget custom(String text, int index, String period) {
+    Widget custom(
+      int index,
+    ) {
       return TextButton(
         style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.all(2),
@@ -28,7 +30,7 @@ class LineChartCoin extends HookConsumerWidget {
             backgroundColor:
                 ref.watch(selected) == index ? colorHideOn : colorHideOff),
         child: Text(
-          text,
+          "${index}D",
           style: TextStyle(
               fontWeight: FontWeight.w900,
               color: ref.watch(selected) == index
@@ -38,7 +40,7 @@ class LineChartCoin extends HookConsumerWidget {
         onPressed: () async {
           ref
               .read(coinPricesNotifierProvider.notifier)
-              .getCoinPrices(coin.id, period);
+              .getCoinPrices(coin.id, index.toString());
           ref.watch(selected.state).state = index;
         },
       );
@@ -111,7 +113,7 @@ class LineChartCoin extends HookConsumerWidget {
                           isCurved: false,
                           curveSmoothness: 0,
                           color: colorBrandWarren,
-                          barWidth: 3,
+                          barWidth: 2.5,
                           isStrokeCapRound: true,
                           dotData: FlDotData(show: false),
                           belowBarData: BarAreaData(show: false),
@@ -128,11 +130,11 @@ class LineChartCoin extends HookConsumerWidget {
             )),
             Row(
               children: [
-                custom("5D", 1, "hour"),
-                custom("15D", 2, "day"),
-                custom("30D", 3, "week"),
-                custom("45D", 4, "month"),
-                custom("90D", 5, "year"),
+                custom(5),
+                custom(15),
+                custom(30),
+                custom(45),
+                custom(90),
               ],
             )
           ],

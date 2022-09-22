@@ -7,16 +7,16 @@ class WalletDatasource {
   List<CoinDto> getCoinsWallet() {
     List<CoinDto> coins = [
       CoinDto(
-        id: "5b71fc48-3dd3-540c-809b-f8c94d0e68b5",
+        id: "bitcoin",
         image: "assets/images/btc.png",
-        name: "Biticoin",
+        name: "Bitcoin",
         symbol: "BTC",
         latest: "100870.6923",
         amount: ".65",
         percentChange: 0.19,
       ),
       CoinDto(
-        id: "d85dce9b-5b73-5c3c-8978-522ce1d1c1b4",
+        id: "ethereum",
         image: "assets/images/eth.png",
         name: "Ethereum",
         symbol: "ETH",

@@ -31,7 +31,7 @@ class CoinDetails extends HookConsumerWidget {
         print(toTime);
         ref
             .read(coinPricesNotifierProvider.notifier)
-            .getCoinPrices(coin.id, "hour");
+            .getCoinPrices(coin.id, "5");
         Navigator.of(context).pushNamed(DetailsPage.route, arguments: coin);
       },
       child: Column(

@@ -14,12 +14,12 @@ class GetCoinPricesRemoteDatasourceImp implements GetCoinPricesDatasource {
     List<Decimal> prices = [];
 
     final response = await _dio.get(
-        "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=brl&from=1663813813&to=1663816813");
+        "https://api.coingecko.com/api/v3/coins/$coinId/market_chart?vs_currency=brl&days=$period");
     list = response.data['prices'];
     for (var list in list) {
       prices.add(Decimal.parse(list[1].toString()));
     }
-    prices = prices.reversed.toList();
+    prices = prices.toList();
     return prices;
   }
 }
