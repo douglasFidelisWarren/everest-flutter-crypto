@@ -1,3 +1,4 @@
+import 'package:decimal/decimal.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'coin_response.g.dart';
@@ -8,7 +9,7 @@ class CoinResponse {
   final String name;
   final String symbol;
   final String image;
-  final double currentPrice;
+  final Decimal currentPrice;
   final double percentage24h;
 
   CoinResponse(

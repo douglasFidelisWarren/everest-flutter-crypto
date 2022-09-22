@@ -48,7 +48,7 @@ class AvailableCardCoin extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          number.format((coin.currentPrice)),
+                          number.format((coin.currentPrice).toDouble()),
                           style: valueStyle,
                         ),
                         const SizedBox(height: 5),

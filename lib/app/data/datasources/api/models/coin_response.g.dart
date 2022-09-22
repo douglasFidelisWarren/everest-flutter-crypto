@@ -11,7 +11,7 @@ CoinResponse _$CoinResponseFromJson(Map<String, dynamic> json) => CoinResponse(
       json['name'] as String,
       json['symbol'] as String,
       json['image'] as String,
-      (json['current_price'] as num).toDouble(),
+      Decimal.fromJson("${json['current_price']}"),
       (json['price_change_percentage_24h'] as num).toDouble(),
     );
 
@@ -22,5 +22,5 @@ Map<String, dynamic> _$CoinResponseToJson(CoinResponse instance) =>
       'symbol': instance.symbol,
       'image': instance.image,
       'current_price': instance.currentPrice,
-      'percentage24h': instance.percentage24h,
+      'price_change_percentage_24h': instance.percentage24h,
     };

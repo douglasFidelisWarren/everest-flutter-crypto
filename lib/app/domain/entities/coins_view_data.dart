@@ -1,9 +1,11 @@
+import 'package:decimal/decimal.dart';
+
 class CoinViewData {
   final String id;
   final String name;
   final String symbol;
   final String image;
-  final double currentPrice;
+  final Decimal currentPrice;
   final double percentage24h;
   CoinViewData({
     required this.id,
