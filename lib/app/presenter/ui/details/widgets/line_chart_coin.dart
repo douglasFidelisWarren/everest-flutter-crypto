@@ -36,9 +36,7 @@ class LineChartCoin extends HookConsumerWidget {
                   : colorGraySubtitle),
         ),
         onPressed: () async {
-          ref
-              .read(coinPricesNotifierProvider.notifier)
-              .getCoinPrices(coin.id, period);
+          ref.read(coinPricesNotifierProvider);
           ref.watch(selected.state).state = index;
         },
       );

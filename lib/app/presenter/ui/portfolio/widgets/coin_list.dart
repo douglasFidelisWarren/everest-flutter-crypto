@@ -18,9 +18,9 @@ class CoinList extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref
-        .read(chartConfigProvider.notifier)
-        .getChartConfig(ref.watch(coinPricesNotifierProvider).value!);
+    // ref
+    //     .read(chartConfigProvider.notifier)
+    //     .getChartConfig(ref.watch(coinPricesNotifierProvider).value!);
     return Expanded(
       child: ListView.builder(
         itemCount: coinList.length,

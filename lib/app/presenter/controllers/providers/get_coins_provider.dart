@@ -47,8 +47,7 @@ final vsCurrencyProvider = StateProvider<String>(
 );
 
 final coinRepositoryProvider = Provider((ref) {
-  return CoinRepositoryImp(
-      getCoinsEndpoint: ref.watch(getCoinsEndpointProvider));
+  return CoinRepositoryImp(genkcoEndpoint: ref.watch(getCoinsEndpointProvider));
 });
 
 final coinUsecaseProvider = Provider(
@@ -57,7 +56,8 @@ final coinUsecaseProvider = Provider(
   },
 );
 
-final coinsNotifierProviderTeste = FutureProvider<List<CoinViewData>>(
+//TODO
+final coinsNotifierProviderTesteTTTTTT = FutureProvider<List<CoinViewData>>(
   (ref) async {
     return ref
         .read(coinUsecaseProvider)
