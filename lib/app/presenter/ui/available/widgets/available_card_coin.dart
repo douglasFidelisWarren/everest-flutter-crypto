@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../domain/entities/coin_entity.dart';
+import '../../../../domain/entities/coins_view_data.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 
@@ -11,7 +11,7 @@ class AvailableCardCoin extends StatelessWidget {
     required this.percentChange,
   }) : super(key: key);
 
-  final CoinEntity coin;
+  final CoinViewData coin;
   final double percentChange;
 
   @override
@@ -48,7 +48,7 @@ class AvailableCardCoin extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          number.format(double.parse(coin.latest)),
+                          number.format((coin.currentPrice)),
                           style: valueStyle,
                         ),
                         const SizedBox(height: 5),

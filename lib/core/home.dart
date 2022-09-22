@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../app/presenter/controllers/providers/get_all_coins_provider.dart';
+import '../app/presenter/controllers/providers/get_coins_provider.dart';
 import '../app/presenter/ui/available/view/available_page.dart';
 import '../app/presenter/ui/movements/movements_page.dart';
 import '../app/presenter/ui/portfolio/view/portfolio_page.dart';
@@ -23,7 +23,7 @@ class _HomeState extends ConsumerState<Home> {
   @override
   void initState() {
     super.initState();
-    ref.read(coinsNotifierProvider.notifier).getAllCoins();
+    ref.read(coinsNotifierProviderTeste.notifier).getAllCoins("usd");
     pageController = PageController(initialPage: currentPage);
   }
 

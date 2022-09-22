@@ -1,5 +1,3 @@
-import 'package:decimal/decimal.dart';
-
 class CoinEntity {
   final String id;
   final String name;

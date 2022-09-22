@@ -3,10 +3,10 @@
 
 // import '../datasources/get_all_coins_datasource.dart';
 
-// class GetAllCoinsRepositoryImp implements GetAllCoinsRepository {
+// class CoinRepositoryImp implements GetAllCoinsRepository {
 //   final GetAllCoinsDatasource _datasource;
 
-//   GetAllCoinsRepositoryImp(this._datasource);
+//   CoinRepositoryImp(this._datasource);
 //   @override
 //   Future<List<CoinEntity>> getAllCoins() async {
 //     return await _datasource.getAllCoins();
