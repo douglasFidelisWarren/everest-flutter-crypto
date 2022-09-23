@@ -1,11 +1,11 @@
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
-import 'package:everest_crypto/app/presenter/controllers/providers/get_chart_config_provider.dart';
+import 'package:everest_crypto/app/presenter/controllers/providers/chart_config_provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/entities/chart_config_entity.dart';
-import '../../../controllers/providers/get_coin_prices_provider.dart';
+import '../../../controllers/providers/coin_prices_provider.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 

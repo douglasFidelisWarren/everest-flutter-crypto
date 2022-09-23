@@ -20,10 +20,5 @@ class GenckoEndpoints {
       'vs_currency': vScurrency,
       'days': days,
     });
-    // return _dio.get('/coins/$coinId/market_chart/range', queryParameters: {
-    //   'vs_currency': vScurrency,
-    //   'from': fromTime,
-    //   'to': toTime,
-    // });
   }
 }

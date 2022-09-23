@@ -4,7 +4,7 @@ import '../../domain/entities/chart_config_entity.dart';
 import '../../domain/repositories/get_chart_config_repository.dart';
 import '../datasources/get_chart_config_datasource.dart';
 
-class GetChartConfigRepositoryImp implements GetChartConfigRepository {
+class GetChartConfigRepositoryImp implements IGetChartConfigRepository {
   final GetChartConfigDatasource _datasource;
 
   GetChartConfigRepositoryImp(this._datasource);

@@ -1,7 +1,6 @@
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../domain/entities/coin_entity.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 import 'value_chart_row.dart';

@@ -1,8 +1,6 @@
 import 'package:decimal/decimal.dart';
 
-import '../../domain/entities/coin_entity.dart';
 import '../../domain/entities/coins_view_data.dart';
-import '../dtos/coin_dto.dart';
 
 class WalletDatasource {
   List<CoinViewData> getCoinsWallet() {

@@ -3,8 +3,8 @@ import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../controllers/providers/get_chart_config_provider.dart';
-import '../../../controllers/providers/get_coin_prices_provider.dart';
+import '../../../controllers/providers/chart_config_provider.dart';
+import '../../../controllers/providers/coin_prices_provider.dart';
 import '../../details/view/details_page.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';

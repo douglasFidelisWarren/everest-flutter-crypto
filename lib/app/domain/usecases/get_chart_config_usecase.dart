@@ -8,7 +8,7 @@ abstract class GetChartConfigUsecase {
 }
 
 class GetChartConfigUsecaseImp implements GetChartConfigUsecase {
-  final GetChartConfigRepository _repository;
+  final IGetChartConfigRepository _repository;
 
   GetChartConfigUsecaseImp(this._repository);
   @override

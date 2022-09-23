@@ -1,11 +1,8 @@
-import 'package:decimal/decimal.dart';
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../domain/entities/chart_config_entity.dart';
-import '../../../controllers/providers/get_chart_config_provider.dart';
-import '../../../controllers/providers/get_coin_prices_provider.dart';
+import '../../../controllers/providers/chart_config_provider.dart';
 import '../../shared/custom_app_bar.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
@@ -19,8 +16,6 @@ class DetailsPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final chartConfig = ref.watch(chartConfigProvider);
-
-    //ChartConfigEntity max = ref.watch(chartConfigProvider.notifier);
 
     final coin = ModalRoute.of(context)!.settings.arguments as CoinViewData;
     double latest = double.parse(coin.currentPrice.toString());

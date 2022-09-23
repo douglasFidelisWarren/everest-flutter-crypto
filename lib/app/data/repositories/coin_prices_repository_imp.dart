@@ -1,7 +1,7 @@
 import 'package:decimal/decimal.dart';
 
 import '../../domain/repositories/coin_prices_repository.dart';
-import '../datasources/api/genckoEndpoints.dart';
+import '../datasources/api/gencko_endpoints.dart';
 
 class CoinPricesRepositoryImp implements ICoinPricesRepository {
   final GenckoEndpoints genkcoEndpoint;
@@ -20,8 +20,6 @@ class CoinPricesRepositoryImp implements ICoinPricesRepository {
       prices.add(Decimal.fromJson("${list[i][1]}"));
       i += 3;
     }
-    print("PREÇOS => $coinId - $days");
-    print(prices);
     return prices;
   }
 }

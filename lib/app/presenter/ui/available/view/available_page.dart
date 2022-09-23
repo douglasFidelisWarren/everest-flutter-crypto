@@ -13,7 +13,7 @@ class AvailablePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final coins = ref.watch(coinsNotifierProviderTesteTTTTTT);
+    final coins = ref.watch(coinsNotifierProvider);
 
     return Scaffold(
       appBar: const CustomAppBar('Criptos Disponíveis'),
