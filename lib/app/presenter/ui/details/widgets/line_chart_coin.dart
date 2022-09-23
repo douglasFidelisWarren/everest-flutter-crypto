@@ -1,4 +1,5 @@
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
+import 'package:everest_crypto/app/presenter/controllers/providers/get_chart_config_provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -38,21 +39,19 @@ class LineChartCoin extends HookConsumerWidget {
                   : colorGraySubtitle),
         ),
         onPressed: () async {
-          int now = DateTime.now().millisecondsSinceEpoch;
-          //print(now);
-          int to = now - period * (432000000 / 5).floor();
-          //print(DateTime.fromMillisecondsSinceEpoch(now, isUtc: true));
-          // print(DateTime.fromMillisecondsSinceEpoch(to, isUtc: true));
+          await ref
+              .read(coinsNotifierProvider.notifier)
+              .getCoinPrices(coin.id, "brl", period);
           ref
-              .read(coinPricesNotifierProvider.notifier)
-              .getCoinPrices(coin.id, "brl", now, to);
+              .read(chartConfigProvider.notifier)
+              .getChartConfig(ref.watch(coinsNotifierProvider).value!);
           ref.watch(selected.state).state = period;
         },
       );
     }
 
     return AspectRatio(
-      aspectRatio: 2.5,
+      aspectRatio: 1.5,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -114,11 +113,11 @@ class LineChartCoin extends HookConsumerWidget {
                     ),
                     lineBarsData: [
                       LineChartBarData(
-                          isStrokeJoinRound: true,
+                          isStrokeJoinRound: false,
                           isCurved: false,
                           curveSmoothness: 0,
                           color: colorBrandWarren,
-                          barWidth: 3,
+                          barWidth: 2,
                           isStrokeCapRound: true,
                           dotData: FlDotData(show: false),
                           belowBarData: BarAreaData(show: false),

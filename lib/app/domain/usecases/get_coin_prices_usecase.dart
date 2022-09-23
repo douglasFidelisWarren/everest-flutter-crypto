@@ -4,7 +4,7 @@ import '../repositories/coin_prices_repository.dart';
 
 abstract class IGetCoinPricesUsecase {
   Future<List<Decimal>> getCoinPrices(
-      String coinId, String vScurrency, int fromTime, int toTime);
+      String coinId, String vScurrency, int days);
 }
 
 class GetCoinPricesUsecaseImp implements IGetCoinPricesUsecase {
@@ -13,8 +13,7 @@ class GetCoinPricesUsecaseImp implements IGetCoinPricesUsecase {
   GetCoinPricesUsecaseImp(this._repository);
   @override
   Future<List<Decimal>> getCoinPrices(
-      String coinId, String vScurrency, int fromTime, int toTime) async {
-    return await _repository.getCoinPrices(
-        coinId, vScurrency, fromTime, toTime);
+      String coinId, String vScurrency, int days) async {
+    return await _repository.getCoinPrices(coinId, vScurrency, days);
   }
 }

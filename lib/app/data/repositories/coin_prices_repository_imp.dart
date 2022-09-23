@@ -10,15 +10,18 @@ class CoinPricesRepositoryImp implements ICoinPricesRepository {
 
   @override
   Future<List<Decimal>> getCoinPrices(
-      String coinId, String vScurrency, int fromTime, int toTime) async {
+      String coinId, String vScurrency, int days) async {
     List<Decimal> prices = [];
-    final response =
-        await genkcoEndpoint.getprices(coinId, vScurrency, fromTime, toTime);
-    List<dynamic> list = response.data['prices'];
-    for (var p in list) {
-      prices.add(Decimal.fromJson("${p[1]}"));
-    }
 
+    final response = await genkcoEndpoint.getprices(coinId, vScurrency, days);
+    List<dynamic> list = response.data['prices'];
+
+    for (var i = 0; i < list.length; i++) {
+      prices.add(Decimal.fromJson("${list[i][1]}"));
+      i += 3;
+    }
+    print("PREÇOS => $coinId - $days");
+    print(prices);
     return prices;
   }
 }
