@@ -9,13 +9,13 @@ part of 'prices_response.dart';
 PricesResponse _$PricesResponseFromJson(Map<String, dynamic> json) =>
     PricesResponse(
       prices: Decimal.fromJson(json['prices'] as String),
-      marketcaps: Decimal.fromJson(json['marketcaps'] as String),
-      totalvolumes: Decimal.fromJson(json['totalvolumes'] as String),
+      marketcaps: Decimal.fromJson(json['market_caps'] as String),
+      totalvolumes: Decimal.fromJson(json['total_volumes'] as String),
     );
 
 Map<String, dynamic> _$PricesResponseToJson(PricesResponse instance) =>
     <String, dynamic>{
       'prices': instance.prices,
-      'marketcaps': instance.marketcaps,
-      'totalvolumes': instance.totalvolumes,
+      'market_caps': instance.marketcaps,
+      'total_volumes': instance.totalvolumes,
     };

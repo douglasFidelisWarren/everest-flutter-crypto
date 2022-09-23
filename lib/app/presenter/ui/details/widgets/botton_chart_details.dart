@@ -1,3 +1,4 @@
+import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../domain/entities/coin_entity.dart';
@@ -11,7 +12,7 @@ class BottonChartDetails extends StatelessWidget {
     required this.coin,
   }) : super(key: key);
 
-  final CoinEntity coin;
+  final CoinViewData coin;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class BottonChartDetails extends StatelessWidget {
           ),
           ValueRowChart(
               text: "Preço atual",
-              value: number.format(double.parse(coin.latest))),
+              value: number.format(coin.currentPrice.toDouble())),
           const Divider(
             color: colorGrayDivider,
             height: 22,
