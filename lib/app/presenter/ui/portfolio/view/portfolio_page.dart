@@ -1,3 +1,4 @@
+import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -25,7 +26,7 @@ class PortfolioPage extends HookConsumerWidget {
             const SizedBox(height: 8),
             coins.when(
               data: (data) => WalletDetails(
-                  coin: coins,
+                  coins: coins,
                   visible: visible,
                   changeVisibility: () {
                     ref.watch(visibleProvider.state).state = !visible;
