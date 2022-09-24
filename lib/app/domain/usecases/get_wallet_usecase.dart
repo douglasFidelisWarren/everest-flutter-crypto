@@ -21,8 +21,10 @@ class GetWalletUsecaseImp implements IGetWalletUsecase {
     List<CoinViewData> coins = response.toViewData();
     List<CoinViewData> coinsWithAmount = [];
     for (var coin in coins) {
+      final amountVsCurrency =
+          Decimal.parse(userCoin[coin.id].toString()) * coin.currentPrice;
       coinsWithAmount.add(CoinViewData(
-          Decimal.parse(userCoin[coin.id].toString()),
+          Decimal.parse(userCoin[coin.id].toString()), amountVsCurrency,
           id: coin.id,
           name: coin.name,
           symbol: coin.symbol,

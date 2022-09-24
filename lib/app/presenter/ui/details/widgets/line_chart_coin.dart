@@ -60,7 +60,10 @@ class LineChartCoin extends HookConsumerWidget {
             Expanded(
                 child: Visibility(
               visible: config.spots.isNotEmpty,
-              replacement: const Center(child: CircularProgressIndicator()),
+              replacement: const Center(
+                  child: CircularProgressIndicator(
+                color: Colors.amber,
+              )),
               child: Padding(
                 padding: const EdgeInsets.only(left: 12, right: 12),
                 child: LineChart(

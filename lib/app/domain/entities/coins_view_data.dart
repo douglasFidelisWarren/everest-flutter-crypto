@@ -7,9 +7,11 @@ class CoinViewData {
   final String image;
   final Decimal currentPrice;
   final Decimal amount;
+  final Decimal amountVsCurrency;
   final double percentage24h;
   CoinViewData(
-    this.amount, {
+    this.amount,
+    this.amountVsCurrency, {
     required this.id,
     required this.name,
     required this.symbol,

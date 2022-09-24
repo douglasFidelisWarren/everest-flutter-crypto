@@ -6,7 +6,7 @@ import '../datasources/api/models/get_all_coins_response.dart';
 extension CoinMapper on GetAllCoinsResponse {
   List<CoinViewData> toViewData() {
     return results
-        .map((result) => CoinViewData(Decimal.parse("0"),
+        .map((result) => CoinViewData(Decimal.parse("0"), Decimal.parse("0"),
             id: result.id,
             name: result.name,
             symbol: result.symbol,

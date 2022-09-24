@@ -1,11 +1,8 @@
-import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/entities/coins_view_data.dart';
-import '../../../controllers/providers/chart_config_provider.dart';
 import '../../../controllers/providers/coin_prices_provider.dart';
-import '../../../controllers/providers/get_wallet_provider.dart';
 import '../../details/view/details_page.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
@@ -22,17 +19,11 @@ class CoinDetails extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Map<String, dynamic> values = ref.watch(userCoinsProvider);
-    Decimal amount = Decimal.parse(values[coin.id].toString());
-    Decimal latest = coin.currentPrice;
-    double value = (amount * latest).toDouble();
-    double amountCoin = amount.toDouble();
     AsyncValue prices = ref.watch(coinsNotifierProvider);
-    // ref.read(coinsNotifierProvider.notifier).getCoinPrices(coin.id, 'brl', 5);
 
     return prices.when(
       error: (error, stackTrace) => Text("ERRO: $error"),
-      loading: () => Center(
+      loading: () => const Center(
         child: CircularProgressIndicator(),
       ),
       data: (data) => MaterialButton(
@@ -78,7 +69,7 @@ class CoinDetails extends HookConsumerWidget {
                           alignment: Alignment.centerRight,
                           width: MediaQuery.of(context).size.width * .35,
                           child: Text(
-                            number.format(value),
+                            number.format(coin.amountVsCurrency.toDouble()),
                             overflow: TextOverflow.clip,
                             style: visible ? valueStyle : valueStyleHide,
                           ),
