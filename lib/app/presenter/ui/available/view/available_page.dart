@@ -4,7 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/get_coins_provider.dart';
 import '../../shared/custom_app_bar.dart';
-import '../widgets/available_card_coin.dart';
+import '../../shared/formater.dart';
+import '../../shared/styles.dart';
 
 class AvailablePage extends ConsumerWidget {
   const AvailablePage({Key? key}) : super(key: key);
@@ -30,8 +31,75 @@ class AvailablePage extends ConsumerWidget {
                     double percentChange = double.parse(
                       (coin.percentage24h).toStringAsFixed(4),
                     );
-                    return AvailableCardCoin(
-                        coin: coin, percentChange: percentChange);
+                    return MaterialButton(
+                      onPressed: () {},
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(6),
+                            child: Card(
+                              elevation: 10,
+                              child: Row(
+                                children: [
+                                  Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 12,
+                                          right: 12,
+                                          top: 22,
+                                          bottom: 22),
+                                      child: Image.network(
+                                        coin.image,
+                                        height: 50,
+                                      )),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(coin.symbol, style: valueStyle),
+                                      const SizedBox(height: 4),
+                                      Text(coin.name, style: subTitleStyleCoin),
+                                    ],
+                                  ),
+                                  const Expanded(child: SizedBox()),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 12),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          number.format(
+                                              (coin.currentPrice).toDouble()),
+                                          style: valueStyle,
+                                        ),
+                                        const SizedBox(height: 5),
+                                        Container(
+                                          alignment: Alignment.center,
+                                          width: 80,
+                                          height: 20,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color: percentChange < 0
+                                                  ? Colors.red.shade200
+                                                  : Colors.green.shade200),
+                                          child: Text(
+                                            "${double.parse((percentChange).toStringAsFixed(4))}%",
+                                            style: const TextStyle(
+                                              color: colorBlackText,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
                   },
                 ),
                 error: (error, stackTrace) => Text("Erro: ${error.toString()}"),

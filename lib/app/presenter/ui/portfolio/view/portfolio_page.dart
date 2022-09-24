@@ -1,9 +1,17 @@
+import 'package:decimal/decimal.dart';
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../data/datasources/api/endpoint_provider.dart';
+import '../../../../data/datasources/api/endpoints/gencko_endpoints.dart';
 import '../../../../data/datasources/wallet_datasource.dart';
+import '../../../controllers/providers/get_coins_provider.dart';
+import '../../../controllers/providers/get_wallet_provider.dart';
 import '../../../controllers/providers/visible_provider.dart';
+import '../../shared/formater.dart';
+import '../../shared/styles.dart';
+import '../widgets/coin_details.dart';
 import '../widgets/coin_list.dart';
 import '../widgets/wallet_details.dart';
 
@@ -15,20 +23,47 @@ class PortfolioPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final visible = ref.watch(visibleProvider);
-    WalletDatasource walletDatasource = WalletDatasource();
-    List<CoinViewData> coinList = walletDatasource.getCoinsWallet();
+    final coins = ref.watch(walletNotifierProvider);
+
+    // Future<List<CoinViewData>> coinList =
+    //     ref.read(walletNotifierProvider.future);
 
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
             const SizedBox(height: 8),
-            WalletDetails(
-                visible: visible,
-                changeVisibility: () {
-                  ref.watch(visibleProvider.state).state = !visible;
-                }),
-            CoinList(coinList: coinList, visible: visible),
+            coins.when(
+              data: (data) => WalletDetails(
+                  coin: coins,
+                  visible: visible,
+                  changeVisibility: () {
+                    ref.watch(visibleProvider.state).state = !visible;
+                  }),
+              error: (error, stackTrace) => Text("erro"),
+              loading: () => Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
+            Expanded(
+              child: coins.when(
+                data: (data) => ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: coins.value!.length,
+                  itemBuilder: (context, index) {
+                    CoinViewData coin = coins.value![index];
+                    return CoinDetails(
+                      coin: coin,
+                      visible: visible,
+                    );
+                  },
+                ),
+                error: (error, stackTrace) => Text("Erro: ${error.toString()}"),
+                loading: () => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            )
           ],
         ),
       ),

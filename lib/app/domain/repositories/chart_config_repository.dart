@@ -2,6 +2,6 @@ import 'package:decimal/decimal.dart';
 
 import '../entities/chart_config_entity.dart';
 
-abstract class IGetChartConfigRepository {
+abstract class IChartConfigRepository {
   ChartConfigEntity getChartConfig(List<Decimal> prices);
 }

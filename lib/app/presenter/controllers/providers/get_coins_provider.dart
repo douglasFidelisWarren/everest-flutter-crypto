@@ -1,21 +1,21 @@
-import 'package:everest_crypto/app/data/repositories/coin_repository_imp.dart';
-import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
-import 'package:everest_crypto/app/domain/usecases/coin_usecase.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../data/datasources/api/endpoint_provider.dart';
+import '../../../data/repositories/coin_repository_imp.dart';
+import '../../../domain/entities/coins_view_data.dart';
+import '../../../domain/usecases/get_all_coins_usecase.dart';
 
 final vsCurrencyProvider = StateProvider<String>(
   (ref) => "brl",
 );
 
 final coinRepositoryProvider = Provider((ref) {
-  return CoinRepositoryImp(genkcoEndpoint: ref.watch(getCoinsEndpointProvider));
+  return CoinRepositoryImp(genckoEndpoint: ref.watch(genckoEndpointProvider));
 });
 
 final coinUsecaseProvider = Provider(
   (ref) {
-    return GetCoinsUsecaseImp(ref.read(coinRepositoryProvider));
+    return GetAllCoinsUsecaseImp(ref.read(coinRepositoryProvider));
   },
 );
 

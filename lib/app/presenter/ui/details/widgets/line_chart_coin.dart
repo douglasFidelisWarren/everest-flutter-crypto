@@ -9,9 +9,9 @@ import '../../../controllers/providers/coin_prices_provider.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 
-final diaProvider = StateProvider<String>((ref) => '5');
-final change = StateProvider<double>((ref) => 0);
-final minProvider = StateProvider<double>((ref) => 102042);
+// final diaProvider = StateProvider<String>((ref) => '5');
+// final change = StateProvider<double>((ref) => 0);
+// final minProvider = StateProvider<double>((ref) => 102042);
 final selected = StateProvider<int>((ref) => 0);
 
 class LineChartCoin extends HookConsumerWidget {

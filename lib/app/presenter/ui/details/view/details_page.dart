@@ -28,8 +28,12 @@ class DetailsPage extends HookConsumerWidget {
             padding: const EdgeInsets.only(top: 25),
             child: ListTile(
                 title: Text(coin.name, style: totalStyle),
-                subtitle: Text(coin.symbol, style: subTitleStyleTotal),
-                trailing: Image.asset(coin.image),
+                subtitle:
+                    Text(coin.symbol.toUpperCase(), style: subTitleStyleTotal),
+                trailing: Image.network(
+                  coin.image,
+                  height: 50,
+                ),
                 isThreeLine: true),
           ),
           Container(

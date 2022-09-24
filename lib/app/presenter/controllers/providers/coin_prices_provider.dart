@@ -7,7 +7,7 @@ import '../../../domain/usecases/get_coin_prices_usecase.dart';
 import '../notifiers/coin_prices_notifier.dart';
 
 final coinPricesRepositoryProvider = Provider((ref) {
-  return CoinPricesRepositoryImp(ref.watch(getCoinsEndpointProvider));
+  return CoinPricesRepositoryImp(ref.watch(genckoEndpointProvider));
 });
 
 final coinPricesUsecaseProvider = Provider((ref) {
