@@ -1,18 +1,11 @@
-import 'package:decimal/decimal.dart';
-import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../data/datasources/api/endpoint_provider.dart';
-import '../../../../data/datasources/api/endpoints/gencko_endpoints.dart';
-import '../../../../data/datasources/wallet_datasource.dart';
-import '../../../controllers/providers/get_coins_provider.dart';
+import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/get_wallet_provider.dart';
 import '../../../controllers/providers/visible_provider.dart';
-import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 import '../widgets/coin_details.dart';
-import '../widgets/coin_list.dart';
 import '../widgets/wallet_details.dart';
 
 class PortfolioPage extends HookConsumerWidget {
@@ -23,10 +16,7 @@ class PortfolioPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final visible = ref.watch(visibleProvider);
-    final coins = ref.watch(walletNotifierProvider);
-
-    // Future<List<CoinViewData>> coinList =
-    //     ref.read(walletNotifierProvider.future);
+    final coins = ref.watch(coinsWalletProvider);
 
     return Scaffold(
       body: SafeArea(
@@ -40,10 +30,8 @@ class PortfolioPage extends HookConsumerWidget {
                   changeVisibility: () {
                     ref.watch(visibleProvider.state).state = !visible;
                   }),
-              error: (error, stackTrace) => Text("erro"),
-              loading: () => Center(
-                child: CircularProgressIndicator(),
-              ),
+              error: (error, stackTrace) => Text("ERRO: ${error.toString()}"),
+              loading: () => const Center(),
             ),
             Expanded(
               child: coins.when(
@@ -58,9 +46,11 @@ class PortfolioPage extends HookConsumerWidget {
                     );
                   },
                 ),
-                error: (error, stackTrace) => Text("Erro: ${error.toString()}"),
+                error: (error, stackTrace) => Text("ERRO: ${error.toString()}"),
                 loading: () => const Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: colorBrandWarren,
+                  ),
                 ),
               ),
             )

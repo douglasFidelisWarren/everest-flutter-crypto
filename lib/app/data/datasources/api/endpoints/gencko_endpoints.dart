@@ -29,7 +29,7 @@ class GenckoEndpoints {
   ) {
     return _dio.get('/coins/markets', queryParameters: {
       'vs_currency': 'brl',
-      'ids': 'bitcoin, ethereum, litecoin, usd-coin, avalanche-2, atom, cosmos',
+      'ids': 'bitcoin, ethereum, litecoin, usd-coin, avalanche-2, atom, chiliz',
       'order': 'market_cap_desc',
       'per_page': 100,
       'sparkline': false,

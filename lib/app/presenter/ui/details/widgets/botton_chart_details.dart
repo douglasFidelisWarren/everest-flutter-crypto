@@ -34,13 +34,16 @@ class BottonChartDetails extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
+            children: [
+              const Text(
                 "Variação 24H",
                 style: subTitleStyleTotal,
               ),
-              Text("-0.50%",
-                  style: TextStyle(
+              Text(
+                  coin.percentage24h > 0
+                      ? "+${coin.percentage24h.toStringAsFixed(2)}"
+                      : coin.percentage24h.toStringAsFixed(2),
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 19,
                       color: colorBrandWarren))

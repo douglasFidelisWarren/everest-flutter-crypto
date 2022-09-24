@@ -5,28 +5,23 @@ import '../../domain/entities/chart_config_entity.dart';
 
 class GetChartConfigDatasource {
   ChartConfigEntity getChartConfig(List<Decimal> prices) {
-    double period = double.parse(prices.length.toString()) - 1;
+    double period = prices.length.toDouble();
     double max = 0;
-    for (var price in prices) {
-      double priceD = double.parse(price.toString());
-      if (priceD > max) {
-        max = priceD;
-      }
-    }
-    double min = max;
-    for (var price in prices) {
-      if (double.parse(price.toString()) < min) {
-        min = double.parse(price.toString());
-      }
-    }
-
+    double min = 0;
     List<FlSpot> spots = [];
 
     for (var i = 0; i < prices.length; i++) {
-      String valor = double.parse(prices[i].toString()).toStringAsFixed(2);
-      spots.add(
-        FlSpot(i.toDouble(), (double.parse(valor))),
-      );
+      double priceD = prices[i].toDouble();
+      spots.add(FlSpot(i.toDouble(), priceD));
+
+      if (priceD > max) {
+        max = priceD;
+        min = max;
+      } else {
+        if (priceD < max) {
+          if (priceD < min) min = priceD;
+        }
+      }
     }
 
     ChartConfigEntity chartConfigEntity = ChartConfigEntity(
@@ -35,7 +30,6 @@ class GetChartConfigDatasource {
       period: period,
       spots: spots,
     );
-
     return chartConfigEntity;
   }
 }

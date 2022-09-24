@@ -17,7 +17,7 @@ final userCoinsProvider = StateProvider<Map<String, Decimal>>(
     'atom': Decimal.parse("198.69"),
     "bitcoin": Decimal.parse("2.65"),
     "ethereum": Decimal.parse("35"),
-    "cosmos": Decimal.parse("121.5"),
+    "chiliz": Decimal.parse("121.5"),
   },
 );
 
@@ -31,10 +31,9 @@ final walletUsecaseProvider = Provider(
   },
 );
 
-final walletNotifierProvider = FutureProvider<List<CoinViewData>>(
+final coinsWalletProvider = FutureProvider<List<CoinViewData>>(
   (ref) async {
-    return ref
-        .read(walletUsecaseProvider)
-        .getWallet(ref.read(userCoinsProvider), ref.read(vsCurrencyProvider));
+    return ref.read(walletUsecaseProvider).getCoinsWallet(
+        ref.read(userCoinsProvider), ref.read(vsCurrencyProvider));
   },
 );

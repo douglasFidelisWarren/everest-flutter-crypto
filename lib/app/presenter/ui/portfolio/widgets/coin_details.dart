@@ -90,7 +90,7 @@ class CoinDetails extends HookConsumerWidget {
                           Container(
                             decoration: visibleDecoration(visible),
                             child: Text(
-                              "$amountCoin",
+                              coin.amount.toStringAsFixed(2),
                               style: visible
                                   ? subTitleStyleCoin
                                   : subTitleStyleCoinHide,
