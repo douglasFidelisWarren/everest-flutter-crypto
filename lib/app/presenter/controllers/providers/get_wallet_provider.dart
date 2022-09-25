@@ -11,13 +11,13 @@ final vsCurrencyProvider = StateProvider<String>(
 );
 final userCoinsProvider = StateProvider<Map<String, Decimal>>(
   (ref) => {
-    'litecoin': Decimal.parse("253.58"),
-    'usd-coin': Decimal.parse("103.04"),
-    'avalanche-2': Decimal.parse("201.18"),
-    'atom': Decimal.parse("198.69"),
-    "bitcoin": Decimal.parse("2.65"),
-    "ethereum": Decimal.parse("35"),
-    "chiliz": Decimal.parse("121.5"),
+    'litecoin': Decimal.parse("253.58654245"),
+    'usd-coin': Decimal.parse("103.04453215"),
+    'avalanche-2': Decimal.parse("201.87444828"),
+    'atom': Decimal.parse("198.69564269"),
+    "bitcoin": Decimal.parse("2.65456841"),
+    "ethereum": Decimal.parse("35.12598354"),
+    "chiliz": Decimal.parse("121.95456874"),
   },
 );
 

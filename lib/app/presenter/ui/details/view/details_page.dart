@@ -15,7 +15,9 @@ class DetailsPage extends HookConsumerWidget {
   static const route = '/details';
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final chartConfig = ref.watch(chartConfigProvider);
+    // final chartConfig = ref.watch(chartConfigProvider);
+    final config = ref.watch(chartConfigProvider.notifier).state;
+    double percent = config.percent;
 
     final coin = ModalRoute.of(context)!.settings.arguments as CoinViewData;
     double latest = double.parse(coin.currentPrice.toString());
@@ -42,8 +44,8 @@ class DetailsPage extends HookConsumerWidget {
             child: Text(number.format(latest), style: totalStyle),
           ),
           const SizedBox(height: 35),
-          LineChartCoin(coin),
-          BottonChartDetails(coin: coin),
+          LineChartCoin(coin, config),
+          BottonChartDetails(coin, percent),
         ]),
       ),
     );

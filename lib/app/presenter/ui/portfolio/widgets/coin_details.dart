@@ -1,3 +1,4 @@
+import 'package:everest_crypto/app/presenter/ui/details/widgets/line_chart_coin.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -29,10 +30,11 @@ class CoinDetails extends HookConsumerWidget {
       ),
       data: (data) => MaterialButton(
         onPressed: () {
+          ref.read(selectedProvider.state).state = 5;
           ref
               .read(coinsNotifierProvider.notifier)
               .getCoinPrices(coin.id, "brl", 5);
-          ref.watch(chartConfigProvider.notifier).getChartConfig([]);
+          // ref.watch(chartConfigProvider.notifier).getChartConfig([]);
           ref.watch(chartConfigProvider.notifier).getChartConfig(prices.value);
           Navigator.of(context).pushNamed(DetailsPage.route, arguments: coin);
         },
@@ -58,11 +60,11 @@ class CoinDetails extends HookConsumerWidget {
                     children: [
                       SizedBox(
                         width: MediaQuery.of(context).size.width * .25,
-                        child: Text(coin.name,
+                        child: Text(coin.symbol.toUpperCase(),
                             style: valueStyle, overflow: TextOverflow.clip),
                       ),
                       const SizedBox(height: 4),
-                      Text(coin.symbol.toUpperCase(), style: subTitleStyleCoin),
+                      Text(coin.name, style: subTitleStyleCoin),
                     ],
                   ),
                   const Expanded(child: SizedBox()),

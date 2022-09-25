@@ -1,20 +1,24 @@
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
+import 'package:everest_crypto/app/presenter/ui/details/widgets/line_chart_coin.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 import 'value_chart_row.dart';
 
-class BottonChartDetails extends StatelessWidget {
-  const BottonChartDetails({
+class BottonChartDetails extends HookConsumerWidget {
+  const BottonChartDetails(
+    this.coin,
+    this.percent, {
     Key? key,
-    required this.coin,
   }) : super(key: key);
 
   final CoinViewData coin;
+  final double percent;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(left: 18, right: 18),
       child: Column(
@@ -35,14 +39,14 @@ class BottonChartDetails extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                "Variação 24H",
+              Text(
+                "Variação em ${ref.watch(selectedProvider)} dias",
                 style: subTitleStyleTotal,
               ),
               Text(
-                  coin.percentage24h > 0
-                      ? "+${coin.percentage24h.toStringAsFixed(2)}"
-                      : coin.percentage24h.toStringAsFixed(2),
+                  percent > 0
+                      ? "+${percent.toStringAsFixed(2)}%"
+                      : "${percent.toStringAsFixed(2)}%",
                   style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 19,
@@ -56,12 +60,14 @@ class BottonChartDetails extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
+            children: [
+              const Text(
                 "Quantidade",
                 style: subTitleStyleTotal,
               ),
-              Text("0,6555314 BTC", style: valueStyle)
+              Text(
+                  "${coin.amount.toStringAsFixed(8).replaceAll(".", ",")} ${coin.symbol.toUpperCase()}",
+                  style: valueStyle)
             ],
           ),
           const Divider(
@@ -69,7 +75,9 @@ class BottonChartDetails extends StatelessWidget {
             height: 22,
             thickness: 1.5,
           ),
-          const ValueRowChart(text: "Valor", value: "R\$ 6.557,00"),
+          ValueRowChart(
+              text: "Valor",
+              value: number.format(coin.amountVsCurrency.toDouble())),
           const Divider(
             color: colorGrayDivider,
             height: 30,

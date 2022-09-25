@@ -6,6 +6,9 @@ import '../../domain/entities/chart_config_entity.dart';
 class GetChartConfigDatasource {
   ChartConfigEntity getChartConfig(List<Decimal> prices) {
     double period = prices.length.toDouble();
+    double first = prices.first.toDouble();
+    double last = prices.last.toDouble();
+    double percent = ((last - first) / first) * 100;
     double max = 0;
     double min = 9999999;
     List<FlSpot> spots = [];
@@ -25,6 +28,7 @@ class GetChartConfigDatasource {
       max: max,
       min: min,
       period: period,
+      percent: percent,
       spots: spots,
     );
     return chartConfigEntity;

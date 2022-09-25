@@ -12,15 +12,14 @@ import '../../shared/styles.dart';
 // final diaProvider = StateProvider<String>((ref) => '5');
 // final change = StateProvider<double>((ref) => 0);
 // final minProvider = StateProvider<double>((ref) => 102042);
-final selected = StateProvider<int>((ref) => 5);
+final selectedProvider = StateProvider<int>((ref) => 5);
 
 class LineChartCoin extends HookConsumerWidget {
-  const LineChartCoin(this.coin, {Key? key}) : super(key: key);
+  const LineChartCoin(this.coin, this.config, {Key? key}) : super(key: key);
   final CoinViewData coin;
+  final ChartConfigEntity config;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final config = ref.watch(chartConfigProvider.notifier);
-
     Widget custom(int period) {
       // int period = ref.watch(selected);
       return TextButton(
@@ -28,13 +27,14 @@ class LineChartCoin extends HookConsumerWidget {
             padding: const EdgeInsets.all(2),
             alignment: Alignment.center,
             minimumSize: const Size(30, 25),
-            backgroundColor:
-                ref.watch(selected) == period ? colorHideOn : colorHideOff),
+            backgroundColor: ref.watch(selectedProvider) == period
+                ? colorHideOn
+                : colorHideOff),
         child: Text(
           "${period}D",
           style: TextStyle(
               fontWeight: FontWeight.w900,
-              color: ref.watch(selected) == period
+              color: ref.watch(selectedProvider) == period
                   ? colorBlackText
                   : colorGraySubtitle),
         ),
@@ -45,13 +45,13 @@ class LineChartCoin extends HookConsumerWidget {
           ref
               .read(chartConfigProvider.notifier)
               .getChartConfig(ref.watch(coinsNotifierProvider).value!);
-          ref.watch(selected.state).state = period;
+          ref.watch(selectedProvider.state).state = period;
         },
       );
     }
 
     return AspectRatio(
-      aspectRatio: 1.5,
+      aspectRatio: 2,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -59,10 +59,10 @@ class LineChartCoin extends HookConsumerWidget {
           children: <Widget>[
             Expanded(
                 child: Visibility(
-              visible: config.state.spots.isNotEmpty,
+              visible: config.spots.isNotEmpty,
               replacement: const Center(
                   child: CircularProgressIndicator(
-                color: Colors.amber,
+                color: colorBrandWarren,
               )),
               child: Padding(
                 padding: const EdgeInsets.only(left: 12, right: 12),
@@ -120,16 +120,16 @@ class LineChartCoin extends HookConsumerWidget {
                           isCurved: false,
                           curveSmoothness: 0,
                           color: colorBrandWarren,
-                          barWidth: 2,
+                          barWidth: 2.7,
                           isStrokeCapRound: true,
                           dotData: FlDotData(show: false),
                           belowBarData: BarAreaData(show: false),
-                          spots: config.state.spots)
+                          spots: config.spots)
                     ],
                     minX: 0,
-                    maxX: config.state.period,
-                    maxY: config.state.max,
-                    minY: config.state.min,
+                    maxX: config.period,
+                    maxY: config.max,
+                    minY: config.min,
                   ),
                   swapAnimationDuration: const Duration(milliseconds: 250),
                 ),
