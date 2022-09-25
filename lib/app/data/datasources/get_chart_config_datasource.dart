@@ -7,7 +7,7 @@ class GetChartConfigDatasource {
   ChartConfigEntity getChartConfig(List<Decimal> prices) {
     double period = prices.length.toDouble();
     double max = 0;
-    double min = 0;
+    double min = 9999999;
     List<FlSpot> spots = [];
 
     for (var i = 0; i < prices.length; i++) {
@@ -16,12 +16,9 @@ class GetChartConfigDatasource {
 
       if (priceD > max) {
         max = priceD;
-        min = max;
-      } else {
-        if (priceD < max) {
-          if (priceD < min) min = priceD;
-        }
       }
+
+      if (priceD < min) min = priceD;
     }
 
     ChartConfigEntity chartConfigEntity = ChartConfigEntity(
