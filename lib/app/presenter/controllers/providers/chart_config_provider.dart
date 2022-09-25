@@ -1,3 +1,4 @@
+import 'package:everest_crypto/app/presenter/controllers/providers/coin_prices_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../data/datasources/get_chart_config_datasource.dart';
@@ -19,5 +20,8 @@ final chartConfigUsecase = Provider(
 
 final chartConfigProvider =
     StateNotifierProvider<GetChartConfigNotifier, ChartConfigEntity>(
-  (ref) => GetChartConfigNotifier(ref.watch(chartConfigUsecase)),
+  (ref) {
+    return GetChartConfigNotifier(
+        ref.watch(chartConfigUsecase), ref.watch(coinsNotifierProvider).value!);
+  },
 );

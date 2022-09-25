@@ -12,17 +12,17 @@ import '../../shared/styles.dart';
 // final diaProvider = StateProvider<String>((ref) => '5');
 // final change = StateProvider<double>((ref) => 0);
 // final minProvider = StateProvider<double>((ref) => 102042);
-final selected = StateProvider<int>((ref) => 0);
+final selected = StateProvider<int>((ref) => 5);
 
 class LineChartCoin extends HookConsumerWidget {
-  const LineChartCoin(this.config, this.coin, {Key? key}) : super(key: key);
-  final ChartConfigEntity config;
+  const LineChartCoin(this.coin, {Key? key}) : super(key: key);
   final CoinViewData coin;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Widget custom(
-      int period,
-    ) {
+    final config = ref.watch(chartConfigProvider.notifier);
+
+    Widget custom(int period) {
+      // int period = ref.watch(selected);
       return TextButton(
         style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.all(2),
@@ -59,7 +59,7 @@ class LineChartCoin extends HookConsumerWidget {
           children: <Widget>[
             Expanded(
                 child: Visibility(
-              visible: config.spots.isNotEmpty,
+              visible: config.state.spots.isNotEmpty,
               replacement: const Center(
                   child: CircularProgressIndicator(
                 color: Colors.amber,
@@ -124,12 +124,12 @@ class LineChartCoin extends HookConsumerWidget {
                           isStrokeCapRound: true,
                           dotData: FlDotData(show: false),
                           belowBarData: BarAreaData(show: false),
-                          spots: config.spots)
+                          spots: config.state.spots)
                     ],
                     minX: 0,
-                    maxX: config.period,
-                    maxY: config.max,
-                    minY: config.min,
+                    maxX: config.state.period,
+                    maxY: config.state.max,
+                    minY: config.state.min,
                   ),
                   swapAnimationDuration: const Duration(milliseconds: 250),
                 ),

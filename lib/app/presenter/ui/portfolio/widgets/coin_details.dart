@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/entities/coins_view_data.dart';
+import '../../../controllers/providers/chart_config_provider.dart';
 import '../../../controllers/providers/coin_prices_provider.dart';
 import '../../details/view/details_page.dart';
 import '../../shared/formater.dart';
@@ -28,6 +29,11 @@ class CoinDetails extends HookConsumerWidget {
       ),
       data: (data) => MaterialButton(
         onPressed: () {
+          ref
+              .read(coinsNotifierProvider.notifier)
+              .getCoinPrices(coin.id, "brl", 5);
+          ref.watch(chartConfigProvider.notifier).getChartConfig([]);
+          ref.watch(chartConfigProvider.notifier).getChartConfig(prices.value);
           Navigator.of(context).pushNamed(DetailsPage.route, arguments: coin);
         },
         child: Column(

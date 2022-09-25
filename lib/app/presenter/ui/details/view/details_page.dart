@@ -42,7 +42,7 @@ class DetailsPage extends HookConsumerWidget {
             child: Text(number.format(latest), style: totalStyle),
           ),
           const SizedBox(height: 35),
-          LineChartCoin(chartConfig, coin),
+          LineChartCoin(coin),
           BottonChartDetails(coin: coin),
         ]),
       ),
