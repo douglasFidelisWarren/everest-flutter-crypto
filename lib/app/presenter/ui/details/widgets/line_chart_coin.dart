@@ -1,27 +1,23 @@
-import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
-import 'package:everest_crypto/app/presenter/controllers/providers/chart_config_provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/entities/chart_config_entity.dart';
+import '../../../../domain/entities/coins_view_data.dart';
+import '../../../controllers/providers/chart_config_provider.dart';
 import '../../../controllers/providers/coin_prices_provider.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 
-// final diaProvider = StateProvider<String>((ref) => '5');
-// final change = StateProvider<double>((ref) => 0);
-// final minProvider = StateProvider<double>((ref) => 102042);
 final selectedProvider = StateProvider<int>((ref) => 5);
 
 class LineChartCoin extends HookConsumerWidget {
   const LineChartCoin(this.coin, this.config, {Key? key}) : super(key: key);
   final CoinViewData coin;
-  final ChartConfigEntity config;
+  final ChartConfigViewData config;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Widget custom(int period) {
-      // int period = ref.watch(selected);
       return TextButton(
         style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.all(2),

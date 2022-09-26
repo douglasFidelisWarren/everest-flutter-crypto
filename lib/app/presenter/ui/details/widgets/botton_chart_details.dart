@@ -1,10 +1,10 @@
-import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
-import 'package:everest_crypto/app/presenter/ui/details/widgets/line_chart_coin.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../domain/entities/coins_view_data.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
+import 'line_chart_coin.dart';
 import 'value_chart_row.dart';
 
 class BottonChartDetails extends HookConsumerWidget {
@@ -40,7 +40,7 @@ class BottonChartDetails extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Variação em ${ref.watch(selectedProvider)} dias",
+                "Variação ${ref.watch(selectedProvider)} dias",
                 style: subTitleStyleTotal,
               ),
               Text(

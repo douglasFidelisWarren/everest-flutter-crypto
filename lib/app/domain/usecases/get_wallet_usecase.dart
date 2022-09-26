@@ -1,8 +1,8 @@
 import 'package:decimal/decimal.dart';
-import 'package:everest_crypto/app/data/dtos/coin_mapper.dart';
-import 'package:everest_crypto/app/domain/repositories/wallet_repository.dart';
 
+import '../../data/models/coin_mapper.dart';
 import '../entities/coins_view_data.dart';
+import '../repositories/iwallet_repository.dart';
 
 abstract class IGetWalletUsecase {
   Future<List<CoinViewData>> getCoinsWallet(

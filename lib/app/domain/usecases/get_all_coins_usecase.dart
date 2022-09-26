@@ -1,6 +1,6 @@
-import '../../data/dtos/coin_mapper.dart';
+import '../../data/models/coin_mapper.dart';
 import '../entities/coins_view_data.dart';
-import '../repositories/coin_repository.dart';
+import '../repositories/icoin_repository.dart';
 
 abstract class IGetAllCoinsUsecase {
   Future<List<CoinViewData>> getAllCoins(String vScurrency);
