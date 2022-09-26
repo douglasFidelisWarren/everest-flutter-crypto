@@ -7,6 +7,7 @@ BoxDecoration visibleDecoration(bool visible) {
 }
 
 const Color colorBlackText = Color.fromRGBO(47, 47, 51, 1);
+const Color colorGrayBackgrond = Color.fromRGBO(245, 246, 250, 1);
 const Color colorGrayDivider = Color.fromRGBO(227, 228, 235, 1);
 const Color colorGraySubtitle = Color.fromRGBO(117, 118, 128, 1);
 const Color colorBrandWarren = Color.fromARGB(255, 218, 68, 86);
@@ -55,7 +56,7 @@ const TextStyle subTitleStyleCoinHide = TextStyle(
   color: colorHideOn,
   fontSize: 18,
 );
-const TextStyle subTitleStyleTotal = TextStyle(
+const TextStyle subTitleStyleMediun = TextStyle(
   fontFamily: "Source_Sans_Pro",
   color: colorGraySubtitle,
   fontSize: 20,
@@ -64,13 +65,13 @@ const TextStyle subTitleStyleTotal = TextStyle(
   height: 1.2,
 );
 
-const TextStyle valueStyle = TextStyle(
+const TextStyle mediumBlackTitle = TextStyle(
   fontFamily: "Source_Sans_Pro",
   fontSize: 22,
   color: colorBlackText,
 );
 
-const TextStyle valueStyleHide = TextStyle(
+const TextStyle subTitleSmallHide = TextStyle(
   fontFamily: "Source_Sans_Pro",
   fontSize: 22,
   color: colorHideOn,

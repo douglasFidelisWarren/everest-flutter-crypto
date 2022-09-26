@@ -31,7 +31,7 @@ class DetailsPage extends HookConsumerWidget {
             child: ListTile(
                 title: Text(coin.name, style: totalStyle),
                 subtitle:
-                    Text(coin.symbol.toUpperCase(), style: subTitleStyleTotal),
+                    Text(coin.symbol.toUpperCase(), style: subTitleStyleMediun),
                 trailing: Image.network(
                   coin.image,
                   height: 50,

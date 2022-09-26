@@ -1,4 +1,5 @@
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
+import 'package:everest_crypto/app/presenter/ui/conversion/conversion_page.dart';
 import 'package:everest_crypto/app/presenter/ui/details/widgets/line_chart_coin.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -41,7 +42,7 @@ class BottonChartDetails extends HookConsumerWidget {
             children: [
               Text(
                 "Variação em ${ref.watch(selectedProvider)} dias",
-                style: subTitleStyleTotal,
+                style: subTitleStyleMediun,
               ),
               Text(
                   percent > 0
@@ -63,11 +64,11 @@ class BottonChartDetails extends HookConsumerWidget {
             children: [
               const Text(
                 "Quantidade",
-                style: subTitleStyleTotal,
+                style: subTitleStyleMediun,
               ),
               Text(
                   "${coin.amount.toStringAsFixed(8).replaceAll(".", ",")} ${coin.symbol.toUpperCase()}",
-                  style: valueStyle)
+                  style: mediumBlackTitle)
             ],
           ),
           const Divider(
@@ -89,7 +90,10 @@ class BottonChartDetails extends HookConsumerWidget {
             height: 45,
             color: colorBrandWarren,
             minWidth: 600,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context)
+                  .pushNamed(ConversionPage.route, arguments: coin);
+            },
             child: const Text(
               "Converter moeda",
               style: TextStyle(

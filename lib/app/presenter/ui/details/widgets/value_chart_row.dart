@@ -19,9 +19,9 @@ class ValueRowChart extends StatelessWidget {
       children: [
         Text(
           text,
-          style: subTitleStyleTotal,
+          style: subTitleStyleMediun,
         ),
-        Text(value, style: valueStyle)
+        Text(value, style: mediumBlackTitle)
       ],
     );
   }

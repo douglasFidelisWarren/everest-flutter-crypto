@@ -61,7 +61,8 @@ class CoinDetails extends HookConsumerWidget {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * .25,
                         child: Text(coin.symbol.toUpperCase(),
-                            style: valueStyle, overflow: TextOverflow.clip),
+                            style: mediumBlackTitle,
+                            overflow: TextOverflow.clip),
                       ),
                       const SizedBox(height: 4),
                       Text(coin.name, style: subTitleStyleCoin),
@@ -79,7 +80,8 @@ class CoinDetails extends HookConsumerWidget {
                           child: Text(
                             number.format(coin.amountVsCurrency.toDouble()),
                             overflow: TextOverflow.clip,
-                            style: visible ? valueStyle : valueStyleHide,
+                            style:
+                                visible ? mediumBlackTitle : subTitleSmallHide,
                           ),
                         ),
                       ),

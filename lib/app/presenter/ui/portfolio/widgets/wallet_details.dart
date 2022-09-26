@@ -43,16 +43,20 @@ class WalletDetails extends ConsumerWidget {
             scrollDirection: Axis.horizontal,
             child: Container(
               decoration: visibleDecoration(visible),
-              child: Text(
-                number.format(valueTotal.toDouble()),
-                style: visible ? totalStyle : totalStyleHide,
-                overflow: TextOverflow.ellipsis,
+              child: AnimatedOpacity(
+                duration: Duration(milliseconds: 200),
+                opacity: visible ? 1 : 0,
+                child: Text(
+                  number.format(valueTotal.toDouble()),
+                  style: totalStyle,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
           ),
           const Text(
             "Valor total de moedas",
-            style: subTitleStyleTotal,
+            style: subTitleStyleMediun,
           ),
         ],
       ),
