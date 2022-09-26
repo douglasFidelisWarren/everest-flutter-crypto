@@ -47,10 +47,12 @@ class BottonChartDetails extends HookConsumerWidget {
                   percent > 0
                       ? "+${percent.toStringAsFixed(2)}%"
                       : "${percent.toStringAsFixed(2)}%",
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 19,
-                      color: colorBrandWarren))
+                      color: percent > 0
+                          ? const Color.fromARGB(255, 61, 161, 65)
+                          : colorBrandWarren))
             ],
           ),
           const Divider(
