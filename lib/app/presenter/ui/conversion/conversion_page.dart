@@ -1,16 +1,38 @@
+import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/app/presenter/controllers/providers/get_all_coins_provider.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/custom_app_bar.dart';
+import 'package:everest_crypto/app/presenter/ui/shared/formater.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../domain/entities/coins_view_data.dart';
 
-class ConversionPage extends StatelessWidget {
+final convertVsCurrencyProvider =
+    StateProvider<Decimal>((ref) => Decimal.parse('0.0'));
+
+class ConversionPage extends StatefulHookConsumerWidget {
   const ConversionPage({Key? key}) : super(key: key);
 
   static const route = '/conversion';
+
   @override
-  Widget build(BuildContext context) {
+  ConsumerState<ConversionPage> createState() => _ConversionPageState();
+}
+
+class _ConversionPageState extends ConsumerState<ConversionPage> {
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
     final coin = ModalRoute.of(context)!.settings.arguments as CoinViewData;
+    String? coinName;
+
+    final formKey = GlobalKey<FormState>();
+    final valor = TextEditingController();
+    double qtd = 0;
+    final coins = ref.watch(getAllcoinsNotifierProvider);
+
     return Scaffold(
       appBar: CustomAppBar('Converter'),
       body: Column(
@@ -18,13 +40,152 @@ class ConversionPage extends StatelessWidget {
         children: [
           Container(
             color: colorGrayBackgrond,
-            child: Row(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Saldo disponível',
+                    style: smallGraySubTitle,
+                  ),
+                  Text(
+                    '${coin.amount.toString().replaceAll('.', ',')} ${coin.symbol.toUpperCase()}',
+                    style: mediunConvertBlack,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(26),
+            child: Column(
               children: [
-                Text(
-                  'Saldo disponível',
-                  style: mediumBlackTitle,
+                const Text(
+                  'Quanto você gostaria de converter?',
+                  style: mediumBlackTitle1,
                 ),
-                Text(coin.amount.toString()),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(
+                          left: 5, right: 10, top: 5, bottom: 5),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            width: 1.5,
+                            color: colorGrayDivider,
+                          )),
+                      child: Row(
+                        children: [
+                          Image.network(
+                            coin.image,
+                            height: 25,
+                          ),
+                          Text(' ${coin.symbol.toUpperCase()}'),
+                        ],
+                      ),
+                    ),
+                    const Image(
+                      height: 25,
+                      image: AssetImage("assets/images/transactions.png"),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.only(
+                          left: 5, right: 10, top: 5, bottom: 5),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            width: 1.5,
+                            color: colorGrayDivider,
+                          )),
+                      width: 100,
+                      child: ButtonTheme(
+                        alignedDropdown: false,
+                        minWidth: 20,
+                        child: DropdownButtonFormField(
+                          decoration: InputDecoration.collapsed(
+                            hintText: coinName,
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                          isExpanded: true,
+                          items: coins.value!
+                              .map(
+                                (coin) => DropdownMenuItem<String>(
+                                  alignment: AlignmentDirectional.centerStart,
+                                  value: coin.name,
+                                  child: SizedBox(
+                                    width: 80,
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Row(
+                                        children: [
+                                          Image.network(
+                                            coin.image,
+                                            height: 25,
+                                          ),
+                                          Text(
+                                            ' ${coin.symbol.toUpperCase()}',
+                                            overflow: TextOverflow.clip,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                          value: coinName,
+                          hint: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                Image.network(
+                                  coin.image,
+                                  height: 25,
+                                ),
+                                Text(' ${coin.symbol.toUpperCase()}'),
+                              ],
+                            ),
+                          ),
+                          onChanged: (value) {
+                            coinName = value.toString();
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                TextFormField(
+                  // key: formKey,
+                  // controller: valor,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'vazio';
+                    }
+                    return null;
+                  },
+                  onChanged: (value) {
+                    setState(() {
+                      ref.read(convertVsCurrencyProvider.state).state =
+                          Decimal.parse(value);
+                    });
+                  },
+                ),
+                Text(
+                  number.format(ref
+                      .watch(convertVsCurrencyProvider.state)
+                      .state
+                      .toDouble()),
+                )
               ],
             ),
           ),

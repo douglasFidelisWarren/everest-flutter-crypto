@@ -1,3 +1,4 @@
+import 'package:everest_crypto/app/presenter/ui/shared/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -8,6 +9,9 @@ void main() {
   runApp(
     ProviderScope(
       child: MaterialApp(
+        theme: ThemeData(
+          primarySwatch: primaryWarren,
+        ),
         debugShowCheckedModeBanner: false,
         initialRoute: Home.route,
         routes: appRoutes,

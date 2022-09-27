@@ -21,7 +21,7 @@ class CoinDetails extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue prices = ref.watch(coinsNotifierProvider);
+    AsyncValue prices = ref.watch(coinPricesNotifierProvider);
 
     return prices.when(
       error: (error, stackTrace) => Text("ERRO: $error"),
@@ -32,7 +32,7 @@ class CoinDetails extends HookConsumerWidget {
         onPressed: () {
           ref.read(selectedProvider.state).state = 5;
           ref
-              .read(coinsNotifierProvider.notifier)
+              .read(coinPricesNotifierProvider.notifier)
               .getCoinPrices(coin.id, "brl", 5);
           // ref.watch(chartConfigProvider.notifier).getChartConfig([]);
           ref.watch(chartConfigProvider.notifier).getChartConfig(prices.value);
@@ -65,7 +65,7 @@ class CoinDetails extends HookConsumerWidget {
                             overflow: TextOverflow.clip),
                       ),
                       const SizedBox(height: 4),
-                      Text(coin.name, style: subTitleStyleCoin),
+                      Text(coin.name, style: smallGraySubTitle),
                     ],
                   ),
                   const Expanded(child: SizedBox()),
@@ -93,13 +93,13 @@ class CoinDetails extends HookConsumerWidget {
                             child: Text(
                               coin.amount.toStringAsFixed(2),
                               style: visible
-                                  ? subTitleStyleCoin
+                                  ? smallGraySubTitle
                                   : subTitleStyleCoinHide,
                             ),
                           ),
                           const SizedBox(width: 4),
                           Text(coin.symbol.toUpperCase(),
-                              style: subTitleStyleCoin),
+                              style: smallGraySubTitle),
                         ],
                       ),
                     ],

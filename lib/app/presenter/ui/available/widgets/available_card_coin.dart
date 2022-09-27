@@ -38,7 +38,7 @@ class AvailableCardCoin extends StatelessWidget {
                     children: [
                       Text(coin.symbol, style: mediumBlackTitle),
                       const SizedBox(height: 4),
-                      Text(coin.name, style: subTitleStyleCoin),
+                      Text(coin.name, style: smallGraySubTitle),
                     ],
                   ),
                   const Expanded(child: SizedBox()),

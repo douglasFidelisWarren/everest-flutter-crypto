@@ -23,3 +23,7 @@ const Image movementsIcon = Image(
 const Image movementsActiveIcon = Image(
   image: AssetImage("assets/images/crypto.png"),
 );
+
+const Image transactionsIcon = Image(
+  image: AssetImage("assets/images/transactions.png"),
+);

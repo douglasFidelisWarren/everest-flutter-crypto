@@ -14,7 +14,7 @@ class AvailablePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final coins = ref.watch(coinsNotifierProvider);
+    final coins = ref.watch(getAllcoinsNotifierProvider);
 
     return Scaffold(
       appBar: const CustomAppBar('Criptos Disponíveis'),
@@ -58,7 +58,7 @@ class AvailablePage extends ConsumerWidget {
                                       Text(coin.symbol,
                                           style: mediumBlackTitle),
                                       const SizedBox(height: 4),
-                                      Text(coin.name, style: subTitleStyleCoin),
+                                      Text(coin.name, style: smallGraySubTitle),
                                     ],
                                   ),
                                   const Expanded(child: SizedBox()),
