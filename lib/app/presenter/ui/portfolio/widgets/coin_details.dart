@@ -1,4 +1,3 @@
-import 'package:everest_crypto/app/presenter/ui/details/widgets/line_chart_coin.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -6,6 +5,7 @@ import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/chart_config_provider.dart';
 import '../../../controllers/providers/coin_prices_provider.dart';
 import '../../details/view/details_page.dart';
+import '../../details/widgets/line_chart_coin.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 

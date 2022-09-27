@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/entities/coins_view_data.dart';
-import '../../../controllers/providers/get_coins_provider.dart';
+import '../../../controllers/providers/get_all_coins_provider.dart';
 import '../../shared/custom_app_bar.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';

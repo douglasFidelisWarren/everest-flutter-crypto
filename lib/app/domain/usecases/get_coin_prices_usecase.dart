@@ -1,6 +1,6 @@
 import 'package:decimal/decimal.dart';
 
-import '../repositories/coin_prices_repository.dart';
+import '../repositories/icoin_prices_repository.dart';
 
 abstract class IGetCoinPricesUsecase {
   Future<List<Decimal>> getCoinPrices(

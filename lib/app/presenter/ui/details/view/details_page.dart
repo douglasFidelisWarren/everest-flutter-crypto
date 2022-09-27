@@ -1,7 +1,7 @@
-import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/chart_config_provider.dart';
 import '../../shared/custom_app_bar.dart';
 import '../../shared/formater.dart';
@@ -15,7 +15,7 @@ class DetailsPage extends HookConsumerWidget {
   static const route = '/details';
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final chartConfig = ref.watch(chartConfigProvider);
+    // ignore: invalid_use_of_protected_member
     final config = ref.watch(chartConfigProvider.notifier).state;
     double percent = config.percent;
 

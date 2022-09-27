@@ -1,6 +1,6 @@
 import 'package:decimal/decimal.dart';
 
-import '../../domain/repositories/coin_prices_repository.dart';
+import '../../domain/repositories/icoin_prices_repository.dart';
 import '../datasources/api/endpoints/gencko_endpoints.dart';
 
 class CoinPricesRepositoryImp implements ICoinPricesRepository {
@@ -18,7 +18,6 @@ class CoinPricesRepositoryImp implements ICoinPricesRepository {
 
     for (var i = 0; i < list.length; i++) {
       prices.add(Decimal.fromJson("${list[i][1]}"));
-      //TODO pula valores de acordo com o incremento
       i += 3;
     }
     return prices;

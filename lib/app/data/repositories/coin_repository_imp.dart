@@ -1,7 +1,7 @@
-import '../../domain/repositories/coin_repository.dart';
+import '../../domain/repositories/icoin_repository.dart';
 import '../datasources/api/endpoints/gencko_endpoints.dart';
-import '../datasources/api/models/coin_response.dart';
-import '../datasources/api/models/get_all_coins_response.dart';
+import '../models/coin_response.dart';
+import '../models/get_all_coins_response.dart';
 
 class CoinRepositoryImp implements ICoinRepository {
   final GenckoEndpoints genckoEndpoint;

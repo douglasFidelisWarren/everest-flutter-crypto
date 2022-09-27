@@ -4,8 +4,10 @@ import 'package:everest_crypto/app/presenter/ui/details/widgets/line_chart_coin.
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../domain/entities/coins_view_data.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
+import 'line_chart_coin.dart';
 import 'value_chart_row.dart';
 
 class BottonChartDetails extends HookConsumerWidget {
@@ -48,10 +50,12 @@ class BottonChartDetails extends HookConsumerWidget {
                   percent > 0
                       ? "+${percent.toStringAsFixed(2)}%"
                       : "${percent.toStringAsFixed(2)}%",
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 19,
-                      color: colorBrandWarren))
+                      color: percent > 0
+                          ? const Color.fromARGB(255, 61, 161, 65)
+                          : colorBrandWarren))
             ],
           ),
           const Divider(

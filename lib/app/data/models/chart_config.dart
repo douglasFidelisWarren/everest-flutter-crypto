@@ -1,8 +1,9 @@
-import 'package:everest_crypto/app/domain/entities/chart_config_entity.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-class ChartConfigDto extends ChartConfigEntity {
-  ChartConfigDto({
+import '../../domain/entities/chart_config_entity.dart';
+
+class ChartConfig extends ChartConfigViewData {
+  ChartConfig({
     required double period,
     required double percent,
     required double max,

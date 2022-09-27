@@ -4,7 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import '../../domain/entities/chart_config_entity.dart';
 
 class GetChartConfigDatasource {
-  ChartConfigEntity getChartConfig(List<Decimal> prices) {
+  ChartConfigViewData getChartConfig(List<Decimal> prices) {
     double period = prices.length.toDouble();
     double first = prices.first.toDouble();
     double last = prices.last.toDouble();
@@ -24,7 +24,7 @@ class GetChartConfigDatasource {
       if (priceD < min) min = priceD;
     }
 
-    ChartConfigEntity chartConfigEntity = ChartConfigEntity(
+    ChartConfigViewData chartConfigEntity = ChartConfigViewData(
       max: max,
       min: min,
       period: period,
