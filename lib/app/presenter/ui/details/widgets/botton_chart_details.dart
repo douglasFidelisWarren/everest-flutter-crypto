@@ -68,7 +68,7 @@ class BottonChartDetails extends HookConsumerWidget {
                 style: subTitleStyleTotal,
               ),
               Text(
-                  "${coin.amount.toStringAsFixed(8).replaceAll(".", ",")} ${coin.symbol.toUpperCase()}",
+                  "${coin.amount!.toStringAsFixed(8).replaceAll(".", ",")} ${coin.symbol.toUpperCase()}",
                   style: valueStyle)
             ],
           ),
@@ -79,7 +79,7 @@ class BottonChartDetails extends HookConsumerWidget {
           ),
           ValueRowChart(
               text: "Valor",
-              value: number.format(coin.amountVsCurrency.toDouble())),
+              value: number.format(coin.amountVsCurrency!.toDouble())),
           const Divider(
             color: colorGrayDivider,
             height: 30,
