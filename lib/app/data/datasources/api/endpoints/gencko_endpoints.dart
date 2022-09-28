@@ -35,9 +35,9 @@ class GenckoEndpoints {
       //keys de userCoin para trazer alimentar parametro 'ids'.
 
       'ids': 'bitcoin, ethereum, litecoin, usd-coin, avalanche-2, atom, chiliz',
-      'order': 'market_cap_desc',
-      'per_page': 100,
-      'sparkline': false,
+      // 'order': 'market_cap_desc',
+      // 'per_page': 100,
+      // 'sparkline': false,
     });
   }
 }

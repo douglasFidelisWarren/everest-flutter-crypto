@@ -11,7 +11,7 @@ final vsCurrencyProvider = StateProvider<String>(
 );
 final userCoinsProvider = StateProvider<Map<String, Decimal>>(
   (ref) => {
-    'litecoin': Decimal.parse("253.58654245"),
+    'litecoin': Decimal.parse("1"),
     'usd-coin': Decimal.parse("103.04453215"),
     'avalanche-2': Decimal.parse("201.87444828"),
     'atom': Decimal.parse("198.69564269"),

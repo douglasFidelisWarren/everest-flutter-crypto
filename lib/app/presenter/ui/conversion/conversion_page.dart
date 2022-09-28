@@ -7,9 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../domain/entities/coins_view_data.dart';
+import '../../controllers/providers/coin_prices_provider.dart';
+import '../../controllers/providers/get_coins_wallet_provider.dart';
 
-final convertVsCurrencyProvider =
+final quntidadeDigitadaProvider =
     StateProvider<Decimal>((ref) => Decimal.parse('0.0'));
+
+final valorMoeda2Provider = StateProvider<Decimal>(
+  (ref) => Decimal.parse('0.0'),
+);
 
 class ConversionPage extends StatefulHookConsumerWidget {
   const ConversionPage({Key? key}) : super(key: key);
@@ -25,14 +31,27 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
   Widget build(
     BuildContext context,
   ) {
-    final coin = ModalRoute.of(context)!.settings.arguments as CoinViewData;
+    //TODO
+    final coinANT = ModalRoute.of(context)!.settings.arguments as CoinViewData;
     String? coinName;
 
-    final formKey = GlobalKey<FormState>();
-    final valor = TextEditingController();
-    double qtd = 0;
-    final coins = ref.watch(getAllcoinsNotifierProvider);
-
+    // final formKey = GlobalKey<FormState>();
+    // final valor = TextEditingController();
+    // double qtd = 0;
+    AsyncValue<List<CoinViewData>> coins = ref.read(coinsWalletProvider);
+    Decimal moeda1 = ref.watch(quntidadeDigitadaProvider.state).state;
+    Decimal moeda2 = ref.watch(valorMoeda2Provider.state).state;
+    Decimal valor = moeda1 * moeda2;
+    List<CoinViewData> listaDrop = [];
+    coins.whenData(
+      (value) {
+        for (var coin in coins.value!) {
+          if (coin.name != coinANT.name) {
+            listaDrop.add(coin);
+          }
+        }
+      },
+    );
     return Scaffold(
       appBar: CustomAppBar('Converter'),
       body: Column(
@@ -50,7 +69,7 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                     style: smallGraySubTitle,
                   ),
                   Text(
-                    '${coin.amount.toString().replaceAll('.', ',')} ${coin.symbol.toUpperCase()}',
+                    '${coinANT.amount.toString().replaceAll('.', ',')} ${coinANT.symbol.toUpperCase()}',
                     style: mediunConvertBlack,
                   ),
                 ],
@@ -83,10 +102,10 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                       child: Row(
                         children: [
                           Image.network(
-                            coin.image,
+                            coinANT.image,
                             height: 25,
                           ),
-                          Text(' ${coin.symbol.toUpperCase()}'),
+                          Text(' ${coinANT.symbol.toUpperCase()}'),
                         ],
                       ),
                     ),
@@ -117,7 +136,7 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                             ),
                           ),
                           isExpanded: true,
-                          items: coins.value!
+                          items: listaDrop
                               .map(
                                 (coin) => DropdownMenuItem<String>(
                                   alignment: AlignmentDirectional.centerStart,
@@ -149,15 +168,21 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                             child: Row(
                               children: [
                                 Image.network(
-                                  coin.image,
+                                  listaDrop[0].image,
                                   height: 25,
                                 ),
-                                Text(' ${coin.symbol.toUpperCase()}'),
+                                Text(' ${listaDrop[0].symbol.toUpperCase()}'),
                               ],
                             ),
                           ),
                           onChanged: (value) {
                             coinName = value.toString();
+                            for (var coin in listaDrop) {
+                              if (coin.name == value) {
+                                ref.read(valorMoeda2Provider.state).state =
+                                    coin.currentPrice;
+                              }
+                            }
                           },
                         ),
                       ),
@@ -165,6 +190,10 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                   ],
                 ),
                 TextFormField(
+                  decoration: InputDecoration(
+                      isDense: true,
+                      prefixText: '${coinANT.symbol.toUpperCase()} '),
+                  // inputFormatters: [],
                   // key: formKey,
                   // controller: valor,
                   validator: (value) {
@@ -175,17 +204,24 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                   },
                   onChanged: (value) {
                     setState(() {
-                      ref.read(convertVsCurrencyProvider.state).state =
+                      ref.read(quntidadeDigitadaProvider.state).state =
                           Decimal.parse(value);
                     });
                   },
                 ),
                 Text(
                   number.format(ref
-                      .watch(convertVsCurrencyProvider.state)
-                      .state
-                      .toDouble()),
-                )
+                          .watch(quntidadeDigitadaProvider.state)
+                          .state
+                          .toDouble() *
+                      Decimal.parse(coinANT.currentPrice.toString())
+                          .toDouble()),
+                ),
+                Text('Total estimado'),
+                Text((ref.watch(quntidadeDigitadaProvider.state).state *
+                        (coinANT.currentPrice) /
+                        valor)
+                    .toString())
               ],
             ),
           ),
