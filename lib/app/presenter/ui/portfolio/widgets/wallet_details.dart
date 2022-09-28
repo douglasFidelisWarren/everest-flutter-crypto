@@ -1,7 +1,8 @@
+import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../data/datasources/wallet_datasource.dart';
+import '../../../../domain/entities/coins_view_data.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 import 'visibility_button.dart';
@@ -11,14 +12,21 @@ class WalletDetails extends ConsumerWidget {
     Key? key,
     required this.visible,
     required this.changeVisibility,
+    required this.coins,
   }) : super(key: key);
 
   final bool visible;
   final Function changeVisibility;
+  final AsyncValue<List<CoinViewData>> coins;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    WalletDatasource walletDataSource = WalletDatasource();
+    Decimal valueTotal = Decimal.parse('0');
+
+    for (var coin in coins.value!) {
+      valueTotal += coin.amountVsCurrency!;
+    }
+
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: Column(
@@ -36,7 +44,7 @@ class WalletDetails extends ConsumerWidget {
             child: Container(
               decoration: visibleDecoration(visible),
               child: Text(
-                number.format(walletDataSource.getWallet()),
+                number.format(valueTotal.toDouble()),
                 style: visible ? totalStyle : totalStyleHide,
                 overflow: TextOverflow.ellipsis,
               ),

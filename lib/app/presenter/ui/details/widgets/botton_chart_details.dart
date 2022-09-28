@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../domain/entities/coin_entity.dart';
+import '../../../../domain/entities/coins_view_data.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
+import 'line_chart_coin.dart';
 import 'value_chart_row.dart';
 
-class BottonChartDetails extends StatelessWidget {
-  const BottonChartDetails({
+class BottonChartDetails extends HookConsumerWidget {
+  const BottonChartDetails(
+    this.coin,
+    this.percent, {
     Key? key,
-    required this.coin,
   }) : super(key: key);
 
-  final CoinEntity coin;
+  final CoinViewData coin;
+  final double percent;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(left: 18, right: 18),
       child: Column(
@@ -26,7 +30,7 @@ class BottonChartDetails extends StatelessWidget {
           ),
           ValueRowChart(
               text: "Preço atual",
-              value: number.format(double.parse(coin.latest))),
+              value: number.format(coin.currentPrice.toDouble())),
           const Divider(
             color: colorGrayDivider,
             height: 22,
@@ -34,16 +38,21 @@ class BottonChartDetails extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
-                "Variação 24H",
+                "Variação ${ref.watch(selectedProvider)} dias",
                 style: subTitleStyleTotal,
               ),
-              Text("-0.50%",
+              Text(
+                  percent > 0
+                      ? "+${percent.toStringAsFixed(2)}%"
+                      : "${percent.toStringAsFixed(2)}%",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 19,
-                      color: colorBrandWarren))
+                      color: percent > 0
+                          ? const Color.fromARGB(255, 61, 161, 65)
+                          : colorBrandWarren))
             ],
           ),
           const Divider(
@@ -53,12 +62,14 @@ class BottonChartDetails extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
+            children: [
+              const Text(
                 "Quantidade",
                 style: subTitleStyleTotal,
               ),
-              Text("0,6555314 BTC", style: valueStyle)
+              Text(
+                  "${coin.amount!.toStringAsFixed(8).replaceAll(".", ",")} ${coin.symbol.toUpperCase()}",
+                  style: valueStyle)
             ],
           ),
           const Divider(
@@ -66,7 +77,9 @@ class BottonChartDetails extends StatelessWidget {
             height: 22,
             thickness: 1.5,
           ),
-          const ValueRowChart(text: "Valor", value: "R\$ 6.557,00"),
+          ValueRowChart(
+              text: "Valor",
+              value: number.format(coin.amountVsCurrency!.toDouble())),
           const Divider(
             color: colorGrayDivider,
             height: 30,

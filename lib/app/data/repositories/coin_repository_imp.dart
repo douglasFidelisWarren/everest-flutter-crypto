@@ -1,14 +1,17 @@
-import 'package:everest_crypto/app/domain/entities/coin_entity.dart';
-import 'package:everest_crypto/app/domain/repositories/get_all_coins_repository.dart';
+import '../../domain/repositories/icoin_repository.dart';
+import '../datasources/api/endpoints/gencko_endpoints.dart';
+import '../models/coin_response.dart';
+import '../models/get_all_coins_response.dart';
 
-import '../datasources/get_all_coins_datasource.dart';
+class CoinRepositoryImp implements ICoinRepository {
+  final GenckoEndpoints genckoEndpoint;
 
-class CoinRepositoryImp implements GetAllCoinsRepository {
-  final GetAllCoinsDatasource _datasource;
+  CoinRepositoryImp({required this.genckoEndpoint});
 
-  CoinRepositoryImp(this._datasource);
   @override
-  Future<List<CoinEntity>> getAllCoins() async {
-    return await _datasource.getAllCoins();
+  Future<GetAllCoinsResponse> getAllCoins(String vScurrency) async {
+    final result = await genckoEndpoint.getAllCoins(vScurrency);
+    return GetAllCoinsResponse(
+        List.from(result.data.map((coin) => CoinResponse.fromJson(coin))));
   }
 }

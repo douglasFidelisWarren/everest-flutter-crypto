@@ -1,5 +1,6 @@
 import 'package:decimal/decimal.dart';
 
 abstract class GetCoinPricesDatasource {
-  Future<List<Decimal>> getCoinPrices(String coinId, String period);
+  Future<List<Decimal>> getCoinPrices(
+      String coinId, String vScurrency, int fromTime, int toTime);
 }

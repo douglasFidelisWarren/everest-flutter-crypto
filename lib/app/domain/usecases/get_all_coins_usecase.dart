@@ -1,17 +1,20 @@
-import 'package:everest_crypto/app/domain/entities/coin_entity.dart';
+import '../../data/models/coin_mapper.dart';
+import '../entities/coins_view_data.dart';
+import '../repositories/icoin_repository.dart';
 
-import '../repositories/get_all_coins_repository.dart';
-
-abstract class GetAllCoinsUsecase {
-  Future<List<CoinEntity>> getAllCoins();
+abstract class IGetAllCoinsUsecase {
+  Future<List<CoinViewData>> getAllCoins(String vScurrency);
 }
 
-class GetAllCoinsUsecaseImp implements GetAllCoinsUsecase {
-  final GetAllCoinsRepository _repository;
+class GetAllCoinsUsecaseImp implements IGetAllCoinsUsecase {
+  final ICoinRepository _repository;
+
   GetAllCoinsUsecaseImp(this._repository);
 
   @override
-  Future<List<CoinEntity>> getAllCoins() async {
-    return await _repository.getAllCoins();
+  Future<List<CoinViewData>> getAllCoins(String vScurrency) async {
+    final response = await _repository.getAllCoins(vScurrency);
+
+    return response.toViewData();
   }
 }

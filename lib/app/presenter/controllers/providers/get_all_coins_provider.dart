@@ -1,27 +1,28 @@
-import 'package:dio/dio.dart';
-import 'package:everest_crypto/app/data/datasources/remote_datasource/get_all_coins_remote_datasource_imp.dart';
-import 'package:everest_crypto/app/data/repositories/coin_repository_imp.dart';
-import 'package:everest_crypto/app/domain/entities/coin_entity.dart';
-import 'package:everest_crypto/app/domain/usecases/get_all_coins_usecase.dart';
-import 'package:everest_crypto/app/presenter/controllers/notifiers/get_all_coins_notifier.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final dioProvider = Provider((ref) => Dio());
+import '../../../data/datasources/api/endpoint_provider.dart';
+import '../../../data/repositories/coin_repository_imp.dart';
+import '../../../domain/entities/coins_view_data.dart';
+import '../../../domain/usecases/get_all_coins_usecase.dart';
 
-final coinDatasourceProvider = Provider((ref) {
-  return GetAllCoinsRemoteDatasourceImp(ref.watch(dioProvider));
-});
+final vsCurrencyProvider = StateProvider<String>(
+  (ref) => "brl",
+);
 
 final coinRepositoryProvider = Provider((ref) {
-  return CoinRepositoryImp(ref.watch(coinDatasourceProvider));
+  return CoinRepositoryImp(genckoEndpoint: ref.watch(genckoEndpointProvider));
 });
 
-final coinUsecaseProvider = Provider((ref) {
-  return GetAllCoinsUsecaseImp(ref.watch(coinRepositoryProvider));
-});
+final coinUsecaseProvider = Provider(
+  (ref) {
+    return GetAllCoinsUsecaseImp(ref.read(coinRepositoryProvider));
+  },
+);
 
-final coinsNotifierProvider =
-    StateNotifierProvider<GetAllCoinsNotifier, AsyncValue<List<CoinEntity>>>(
-        (ref) {
-  return GetAllCoinsNotifier(ref.watch(coinUsecaseProvider));
-});
+final coinsNotifierProvider = FutureProvider<List<CoinViewData>>(
+  (ref) async {
+    return ref
+        .read(coinUsecaseProvider)
+        .getAllCoins(ref.read(vsCurrencyProvider));
+  },
+);

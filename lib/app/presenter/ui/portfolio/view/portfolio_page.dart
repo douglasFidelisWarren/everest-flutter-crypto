@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../data/datasources/wallet_datasource.dart';
-import '../../../../domain/entities/coin_entity.dart';
+import '../../../../domain/entities/coins_view_data.dart';
+import '../../../controllers/providers/get_coins_wallet_provider.dart';
 import '../../../controllers/providers/visible_provider.dart';
-import '../widgets/coin_list.dart';
+import '../../shared/styles.dart';
+import '../widgets/coin_details.dart';
 import '../widgets/wallet_details.dart';
 
 class PortfolioPage extends HookConsumerWidget {
@@ -15,20 +16,44 @@ class PortfolioPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final visible = ref.watch(visibleProvider);
-    WalletDatasource walletDatasource = WalletDatasource();
-    List<CoinEntity> coinList = walletDatasource.getCoinsWallet();
+    final coins = ref.watch(coinsWalletProvider);
 
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
             const SizedBox(height: 8),
-            WalletDetails(
-                visible: visible,
-                changeVisibility: () {
-                  ref.watch(visibleProvider.state).state = !visible;
-                }),
-            CoinList(coinList: coinList, visible: visible),
+            coins.when(
+              data: (data) => WalletDetails(
+                  coins: coins,
+                  visible: visible,
+                  changeVisibility: () {
+                    ref.watch(visibleProvider.state).state = !visible;
+                  }),
+              error: (error, stackTrace) => Text("ERRO: ${error.toString()}"),
+              loading: () => const Center(),
+            ),
+            Expanded(
+              child: coins.when(
+                data: (data) => ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: coins.value!.length,
+                  itemBuilder: (context, index) {
+                    CoinViewData coin = coins.value![index];
+                    return CoinDetails(
+                      coin: coin,
+                      visible: visible,
+                    );
+                  },
+                ),
+                error: (error, stackTrace) => Text("ERRO: ${error.toString()}"),
+                loading: () => const Center(
+                  child: CircularProgressIndicator(
+                    color: colorBrandWarren,
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),

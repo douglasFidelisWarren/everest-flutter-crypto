@@ -18,7 +18,7 @@ class VisibilityButton extends StatelessWidget {
       icon: Icon(
         visible ? Icons.visibility : Icons.visibility_off,
         color: colorBlackText,
-        size: 30,
+        size: 28,
       ),
     );
   }

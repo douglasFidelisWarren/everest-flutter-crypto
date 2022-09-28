@@ -23,7 +23,7 @@ class _HomeState extends ConsumerState<Home> {
   @override
   void initState() {
     super.initState();
-    ref.read(coinsNotifierProvider.notifier).getAllCoins();
+    ref.read(coinsNotifierProvider);
     pageController = PageController(initialPage: currentPage);
   }
 

@@ -1,17 +1,24 @@
 import 'package:decimal/decimal.dart';
 
-import '../repositories/get_coin_prices_repository.dart';
+import '../repositories/icoin_prices_repository.dart';
 
-abstract class GetCoinPricesUsecase {
-  Future<List<Decimal>> getCoinPrices(String coinId, String period);
+abstract class IGetCoinPricesUsecase {
+  Future<List<Decimal>> getCoinPrices({
+    required String coinId,
+    required String vScurrency,
+    required int days,
+  });
 }
 
-class GetCoinPricesUsecaseImp implements GetCoinPricesUsecase {
-  final GetCoinPricesRepository _repository;
+class GetCoinPricesUsecaseImp implements IGetCoinPricesUsecase {
+  final ICoinPricesRepository _repository;
 
   GetCoinPricesUsecaseImp(this._repository);
   @override
-  Future<List<Decimal>> getCoinPrices(String coinId, String period) async {
-    return await _repository.getCoinPrices(coinId, period);
+  Future<List<Decimal>> getCoinPrices(
+      {required String coinId,
+      required String vScurrency,
+      required int days}) async {
+    return await _repository.getCoinPrices(coinId, vScurrency, days);
   }
 }

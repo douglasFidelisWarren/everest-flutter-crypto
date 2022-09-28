@@ -9,7 +9,7 @@ BoxDecoration visibleDecoration(bool visible) {
 const Color colorBlackText = Color.fromRGBO(47, 47, 51, 1);
 const Color colorGrayDivider = Color.fromRGBO(227, 228, 235, 1);
 const Color colorGraySubtitle = Color.fromRGBO(117, 118, 128, 1);
-const Color colorBrandWarren = Color.fromRGBO(224, 43, 87, 1);
+const Color colorBrandWarren = Color.fromARGB(255, 218, 68, 86);
 const Color colorHideOff = Color.fromARGB(0, 255, 255, 255);
 const Color colorHideOn = colorGrayDivider;
 
@@ -26,15 +26,15 @@ const TextStyle totalStyle = TextStyle(
   fontWeight: FontWeight.w700,
   letterSpacing: -.8,
   color: colorBlackText,
-  fontSize: 34,
+  fontSize: 32,
 );
 
 const TextStyle appBarTextStyle = TextStyle(
   fontFamily: "Montserrat",
   fontWeight: FontWeight.w700,
-  letterSpacing: -.8,
+  letterSpacing: -.4,
   color: colorBlackText,
-  fontSize: 24,
+  fontSize: 20,
 );
 
 const TextStyle totalStyleHide = TextStyle(
@@ -42,13 +42,13 @@ const TextStyle totalStyleHide = TextStyle(
   fontWeight: FontWeight.w700,
   letterSpacing: -.8,
   color: colorHideOn,
-  fontSize: 34,
+  fontSize: 32,
 );
 
 const TextStyle subTitleStyleCoin = TextStyle(
   fontFamily: "Source_Sans_Pro",
   color: colorGraySubtitle,
-  fontSize: 18,
+  fontSize: 19,
 );
 const TextStyle subTitleStyleCoinHide = TextStyle(
   fontFamily: "Source_Sans_Pro",
@@ -59,6 +59,7 @@ const TextStyle subTitleStyleTotal = TextStyle(
   fontFamily: "Source_Sans_Pro",
   color: colorGraySubtitle,
   fontSize: 20,
+  fontWeight: FontWeight.w400,
   letterSpacing: -.2,
   height: 1.2,
 );

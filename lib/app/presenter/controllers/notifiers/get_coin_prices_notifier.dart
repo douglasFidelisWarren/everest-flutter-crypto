@@ -3,11 +3,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../domain/usecases/get_coin_prices_usecase.dart';
 
-class GetCoinPricesNotifier extends StateNotifier<AsyncValue<List<Decimal>>> {
-  final GetCoinPricesUsecase _usecase;
-  GetCoinPricesNotifier(this._usecase) : super(const AsyncData([]));
+class CoinPricesNotifier extends StateNotifier<AsyncValue<List<Decimal>>> {
+  final GetCoinPricesUsecaseImp _usecase;
+  CoinPricesNotifier(this._usecase) : super(const AsyncData([]));
 
-  Future<void> getCoinPrices(String coinId, String period) async {
-    state = AsyncData(await _usecase.getCoinPrices(coinId, period));
+  Future<void> getCoinPrices(
+      {required String coinId,
+      required String vScurrency,
+      required int days}) async {
+    state = AsyncData(await _usecase.getCoinPrices(
+        coinId: coinId, vScurrency: vScurrency, days: days));
   }
 }
