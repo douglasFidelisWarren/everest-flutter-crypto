@@ -10,8 +10,10 @@ void main() {
     ProviderScope(
       child: MaterialApp(
         theme: ThemeData(
-          primarySwatch: primaryWarren,
-        ),
+            colorScheme: const ColorScheme.light(
+          primary: Colors.black,
+          secondary: Colors.black,
+        )),
         debugShowCheckedModeBanner: false,
         initialRoute: Home.route,
         routes: appRoutes,

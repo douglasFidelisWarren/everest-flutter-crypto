@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:decimal/decimal.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/custom_app_bar.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/formater.dart';
@@ -64,188 +66,216 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
       appBar: const CustomAppBar('Converter'),
       body: Column(
         children: [
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Container(
-                color: colorGrayBackgrond,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Saldo disponível',
-                        style: smallGraySubTitle,
-                      ),
-                      Text(
-                        '${coinANT.amount.toString().replaceAll('.', ',')} ${coinANT.symbol.toUpperCase()}',
-                        style: mediunConvertBlack,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(26),
-                child: Column(
-                  children: [
-                    const Text(
-                      'Quanto você gostaria de converter?',
-                      style: mediumBlackTitle1,
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.only(
-                              left: 5, right: 10, top: 5, bottom: 5),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                width: 1.5,
-                                color: colorGrayDivider,
-                              )),
-                          child: Row(
-                            children: [
-                              Image.network(
-                                coinANT.image,
-                                height: 25,
-                              ),
-                              Text(' ${coinANT.symbol.toUpperCase()}'),
-                            ],
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Container(
+                    color: colorGrayBackgrond,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Saldo disponível',
+                            style: smallGraySubTitle,
                           ),
+                          Text(
+                            '${coinANT.amount.toString().replaceAll('.', ',')} ${coinANT.symbol.toUpperCase()}',
+                            style: mediunConvertBlack,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(26),
+                    child: Column(
+                      children: [
+                        const Text(
+                          'Quanto você gostaria de converter?',
+                          style: mediumBlackTitle1,
                         ),
-                        const Image(
-                          height: 25,
-                          image: AssetImage("assets/images/transactions.png"),
+                        const SizedBox(
+                          height: 30,
                         ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: const EdgeInsets.only(
-                              left: 5, right: 10, top: 5, bottom: 5),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                width: 1.5,
-                                color: colorGrayDivider,
-                              )),
-                          width: 100,
-                          child: ButtonTheme(
-                            alignedDropdown: false,
-                            minWidth: 20,
-                            child: DropdownButtonFormField(
-                              decoration: InputDecoration.collapsed(
-                                hintText: coinName,
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 5, right: 10, top: 5, bottom: 5),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    width: 1.5,
+                                    color: colorGrayDivider,
+                                  )),
+                              child: Row(
+                                children: [
+                                  Image.network(
+                                    coinANT.image,
+                                    height: 25,
+                                  ),
+                                  Text(' ${coinANT.symbol.toUpperCase()}'),
+                                ],
                               ),
-                              isExpanded: true,
-                              items: listaDrop
-                                  .map(
-                                    (coin) => DropdownMenuItem<String>(
-                                      alignment:
-                                          AlignmentDirectional.centerStart,
-                                      value: coin.name,
-                                      child: SizedBox(
-                                        width: 80,
-                                        child: SingleChildScrollView(
-                                          scrollDirection: Axis.horizontal,
-                                          child: Row(
-                                            children: [
-                                              Image.network(
-                                                coin.image,
-                                                height: 25,
+                            ),
+                            const Image(
+                              height: 25,
+                              image:
+                                  AssetImage("assets/images/transactions.png"),
+                            ),
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              padding: const EdgeInsets.only(
+                                  left: 5, right: 10, top: 5, bottom: 5),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    width: 1.5,
+                                    color: colorGrayDivider,
+                                  )),
+                              width: 100,
+                              child: ButtonTheme(
+                                alignedDropdown: false,
+                                minWidth: 20,
+                                child: DropdownButtonFormField(
+                                  decoration: InputDecoration.collapsed(
+                                    hintText: coinName,
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                  ),
+                                  isExpanded: true,
+                                  items: listaDrop
+                                      .map(
+                                        (coin) => DropdownMenuItem<String>(
+                                          alignment:
+                                              AlignmentDirectional.centerStart,
+                                          value: coin.name,
+                                          child: SizedBox(
+                                            width: 80,
+                                            child: SingleChildScrollView(
+                                              scrollDirection: Axis.horizontal,
+                                              child: Row(
+                                                children: [
+                                                  Image.network(
+                                                    coin.image,
+                                                    height: 25,
+                                                  ),
+                                                  Text(
+                                                    ' ${coin.symbol.toUpperCase()}',
+                                                    overflow: TextOverflow.clip,
+                                                  ),
+                                                ],
                                               ),
-                                              Text(
-                                                ' ${coin.symbol.toUpperCase()}',
-                                                overflow: TextOverflow.clip,
-                                              ),
-                                            ],
+                                            ),
                                           ),
                                         ),
-                                      ),
+                                      )
+                                      .toList(),
+                                  value: coinName,
+                                  hint: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      children: [
+                                        Image.network(
+                                          listaDrop[0].image,
+                                          height: 25,
+                                        ),
+                                        Text(
+                                            ' ${listaDrop[0].symbol.toUpperCase()}'),
+                                      ],
                                     ),
-                                  )
-                                  .toList(),
-                              value: coinName,
-                              hint: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    Image.network(
-                                      listaDrop[0].image,
-                                      height: 25,
-                                    ),
-                                    Text(
-                                        ' ${listaDrop[0].symbol.toUpperCase()}'),
-                                  ],
+                                  ),
+                                  onChanged: (value) {
+                                    coinName = value.toString();
+
+                                    for (var coin in listaDrop) {
+                                      if (coin.name == value) {
+                                        ref
+                                            .watch(valorMoeda2Provider.state)
+                                            .state = coin.currentPrice;
+                                        ref.read(sinb.state).state =
+                                            coin.symbol.toUpperCase();
+                                        print(coin.currentPrice);
+                                        setState(() {
+                                          coinSyn = coin.symbol.toUpperCase();
+                                        });
+                                      }
+                                    }
+                                  },
                                 ),
                               ),
-                              onChanged: (value) {
-                                coinName = value.toString();
+                            ),
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextFormField(
+                              style: TextStyle(fontSize: 28),
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                alignLabelWithHint: true,
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.never,
+                                prefix: Text(
+                                  "${coinANT.symbol.toUpperCase()} ",
+                                  style: TextStyle(color: colorBlackText),
+                                ),
+                                //icon: Text('${coinANT.symbol.toUpperCase()}'),
+                                // hintText: '${coinANT.symbol.toUpperCase()} $qtd',
 
-                                for (var coin in listaDrop) {
-                                  if (coin.name == value) {
-                                    ref.watch(valorMoeda2Provider.state).state =
-                                        coin.currentPrice;
-                                    ref.read(sinb.state).state =
-                                        coin.symbol.toUpperCase();
-                                    print(coin.currentPrice);
-                                    setState(() {
-                                      coinSyn = coin.symbol.toUpperCase();
-                                    });
-                                  }
+                                //labelText: 'teste',
+                                label: Text(
+                                  "${coinANT.symbol.toUpperCase()} 0,00",
+                                  style: TextStyle(color: colorGraySubtitle),
+                                ),
+                                // isDense: false,
+                              ),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'vazio';
                                 }
+                                return null;
+                              },
+                              onChanged: (value) {
+                                setState(() {
+                                  ref
+                                      .read(quntidadeDigitadaProvider.state)
+                                      .state = Decimal.parse(value);
+                                });
                               },
                             ),
-                          ),
+                            Text(
+                              number.format(ref
+                                      .watch(quntidadeDigitadaProvider.state)
+                                      .state
+                                      .toDouble() *
+                                  Decimal.parse(coinANT.currentPrice.toString())
+                                      .toDouble()),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                    TextFormField(
-                      decoration: InputDecoration(
-                          label: Text("${coinANT.symbol.toUpperCase()} $qtd"),
-                          isDense: true,
-                          prefixText: '${coinANT.symbol.toUpperCase()} '),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'vazio';
-                        }
-                        return null;
-                      },
-                      onChanged: (value) {
-                        setState(() {
-                          ref.read(quntidadeDigitadaProvider.state).state =
-                              Decimal.parse(value);
-                        });
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    number.format(ref
-                            .watch(quntidadeDigitadaProvider.state)
-                            .state
-                            .toDouble() *
-                        Decimal.parse(coinANT.currentPrice.toString())
-                            .toDouble()),
                   ),
-                  Text('Total estimado'),
-                  Text("${texto.toStringAsFixed(6)} $coinSyn"),
                 ],
               ),
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text('Total estimado'),
+              Text("${texto.toStringAsFixed(6)} $coinSyn"),
             ],
           ),
         ],
