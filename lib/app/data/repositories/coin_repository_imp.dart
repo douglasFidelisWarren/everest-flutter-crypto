@@ -1,4 +1,4 @@
-import '../../domain/repositories/icoin_repository.dart';
+import '../../domain/repositories/i_coin_repository.dart';
 import '../datasources/api/endpoints/gencko_endpoints.dart';
 import '../models/coin_response.dart';
 import '../models/get_all_coins_response.dart';

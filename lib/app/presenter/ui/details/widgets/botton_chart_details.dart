@@ -1,3 +1,4 @@
+import 'package:decimal/decimal.dart';
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:everest_crypto/app/presenter/ui/conversion/conversion_page.dart';
 import 'package:everest_crypto/app/presenter/ui/details/widgets/line_chart_coin.dart';
@@ -95,6 +96,9 @@ class BottonChartDetails extends HookConsumerWidget {
             color: colorBrandWarren,
             minWidth: 600,
             onPressed: () {
+              ref.read(quntidadeDigitadaProvider.state).state =
+                  Decimal.parse('0.0');
+              ref.read(valorMoeda2Provider.state).state = Decimal.parse('0');
               Navigator.of(context)
                   .pushNamed(ConversionPage.route, arguments: coin);
             },

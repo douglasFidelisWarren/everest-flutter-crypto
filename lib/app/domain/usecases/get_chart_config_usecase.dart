@@ -1,7 +1,7 @@
 import 'package:decimal/decimal.dart';
 
 import '../entities/chart_config_entity.dart';
-import '../repositories/ichart_config_repository.dart';
+import '../repositories/i_chart_config_repository.dart';
 
 abstract class GetChartConfigUsecase {
   ChartConfigViewData getChartConfig(List<Decimal> prices);

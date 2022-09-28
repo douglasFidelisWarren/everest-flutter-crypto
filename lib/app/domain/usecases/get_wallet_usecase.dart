@@ -2,7 +2,7 @@ import 'package:decimal/decimal.dart';
 
 import '../../data/models/coin_mapper.dart';
 import '../entities/coins_view_data.dart';
-import '../repositories/iwallet_repository.dart';
+import '../repositories/i_wallet_repository.dart';
 
 abstract class IGetWalletUsecase {
   Future<List<CoinViewData>> getCoinsWallet(
