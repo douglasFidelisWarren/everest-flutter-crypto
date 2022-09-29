@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/entities/coins_view_data.dart';
+import '../../../controllers/providers/conversion_provider.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 import 'line_chart_coin.dart';
@@ -96,10 +97,10 @@ class BottonChartDetails extends HookConsumerWidget {
             color: colorBrandWarren,
             minWidth: 600,
             onPressed: () {
-              ref.read(help.state).state = '';
-              ref.read(quntidadeDigitadaProvider.state).state =
+              ref.read(helpTextProvider.state).state = '';
+              ref.read(textFormValueProvider.state).state =
                   Decimal.parse('0.0');
-              ref.read(valorMoeda2Provider.state).state = Decimal.parse('0');
+              ref.read(setedCoinPriceProvider.state).state = Decimal.parse('0');
               Navigator.of(context)
                   .pushNamed(ConversionPage.route, arguments: coin);
             },
