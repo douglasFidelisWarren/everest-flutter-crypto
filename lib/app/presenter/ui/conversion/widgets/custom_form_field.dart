@@ -11,10 +11,10 @@ import '../../shared/styles.dart';
 class CustomFormField extends HookConsumerWidget {
   const CustomFormField({
     Key? key,
-    required this.coinANT,
+    required this.fromCoin,
   }) : super(key: key);
 
-  final CoinViewData coinANT;
+  final CoinViewData fromCoin;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,7 +25,7 @@ class CustomFormField extends HookConsumerWidget {
         TextFormField(
           inputFormatters: [
             FilteringTextInputFormatter.allow(
-              RegExp(r'^(\d+)?\.?\d{0,6}'),
+              RegExp(r'^(\d+)?\,?\d{0,6}'),
             )
           ],
           style: const TextStyle(fontSize: 28),
@@ -34,13 +34,13 @@ class CustomFormField extends HookConsumerWidget {
             alignLabelWithHint: true,
             floatingLabelBehavior: FloatingLabelBehavior.never,
             prefix: Text(
-              "${coinANT.symbol.toUpperCase()} ",
+              "${fromCoin.symbol.toUpperCase()} ",
               style: const TextStyle(color: colorBlackText),
             ),
             helperStyle: const TextStyle(color: colorBrandWarren),
             helperText: valid ? null : ref.watch(helpTextProvider),
             label: Text(
-              "${coinANT.symbol.toUpperCase()} 0,00",
+              "${fromCoin.symbol.toUpperCase()} 0,00",
               style: const TextStyle(color: colorGraySubtitle),
             ),
           ),
@@ -50,10 +50,10 @@ class CustomFormField extends HookConsumerWidget {
             ref.read(textFormValueProvider.state).state = Decimal.parse(value);
             if (double.parse(value) <= 0) {
               ref.read(isValidProvider.state).state = false;
-            } else if (coinANT.amount! < Decimal.parse(value)) {
+            } else if (fromCoin.amount! < Decimal.parse(value)) {
               ref.read(isValidProvider.state).state = false;
               ref.read(helpTextProvider.state).state =
-                  'Saldo em ${coinANT.symbol.toUpperCase()} insuficiente para a conversão';
+                  'Saldo em ${fromCoin.symbol.toUpperCase()} insuficiente para a conversão';
             } else {
               ref.read(helpTextProvider.state).state = '';
               ref.read(isValidProvider.state).state = true;
@@ -63,7 +63,7 @@ class CustomFormField extends HookConsumerWidget {
         Text(
           number.format(
               ref.watch(textFormValueProvider.state).state.toDouble() *
-                  Decimal.parse(coinANT.currentPrice.toString()).toDouble()),
+                  Decimal.parse(fromCoin.currentPrice.toString()).toDouble()),
           style: smallGraySubTitle,
         ),
       ],

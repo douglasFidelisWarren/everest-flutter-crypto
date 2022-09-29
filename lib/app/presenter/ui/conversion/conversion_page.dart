@@ -75,14 +75,14 @@ class ConversionPage extends HookConsumerWidget {
                     style: mediumBlackTitle1,
                   ),
                   const SizedBox(height: 30),
-                  CoinsComparection(coinANT: fromCoin, listaDrop: dropList),
-                  CustomFormField(coinANT: fromCoin)
+                  CoinsComparection(fromCoin: fromCoin, listaDrop: dropList),
+                  CustomFormField(fromCoin: fromCoin)
                 ]),
               )
             ]),
           ),
         ),
-        CustomBottomSheet(texto: formText, coinSyn: coinSyn),
+        CustomBottomSheet(text: formText, coinSyn: coinSyn, fromCoin: fromCoin),
       ]),
     );
   }

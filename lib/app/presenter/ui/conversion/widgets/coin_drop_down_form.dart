@@ -1,8 +1,13 @@
+import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/conversion_provider.dart';
+
+final movement = StateProvider<Map>(
+  (ref) => {},
+);
 
 class CoinDropDownForm extends HookConsumerWidget {
   const CoinDropDownForm({

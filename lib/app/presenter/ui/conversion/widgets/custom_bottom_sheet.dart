@@ -1,3 +1,4 @@
+import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -7,12 +8,14 @@ import '../../shared/styles.dart';
 class CustomBottomSheet extends ConsumerWidget {
   const CustomBottomSheet({
     Key? key,
-    required this.texto,
+    required this.text,
     required this.coinSyn,
+    required this.fromCoin,
   }) : super(key: key);
 
-  final double texto;
+  final double text;
   final String coinSyn;
+  final CoinViewData fromCoin;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -39,7 +42,7 @@ class CustomBottomSheet extends ConsumerWidget {
                     style: smallGraySubTitle,
                   ),
                   Text(
-                    "${texto.toStringAsFixed(6)} $coinSyn",
+                    "${text.toStringAsFixed(6)} $coinSyn",
                     style: appBarTextStyle,
                   ),
                 ],
@@ -48,7 +51,39 @@ class CustomBottomSheet extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: MaterialButton(
-                onPressed: valid ? () {} : null,
+                onPressed: valid
+                    ? () {
+                        print(
+                            '${ref.watch(textFormValueProvider)} ${fromCoin.symbol.toUpperCase()}');
+                        print('receber ${text.toStringAsFixed(6)} $coinSyn');
+
+                        print('${fromCoin.symbol.toUpperCase()}');
+                        // ref.read(movement.state).state = {
+                        //   'converter': Decimal.parse("10"),
+                        //   'receber': Decimal.parse("1"),
+                        //   'cambio': Decimal.parse("1"),
+// final textFormValueProvider =
+//     StateProvider<Decimal>((ref) => Decimal.parse('0.0'));
+
+// final setedCoinPriceProvider = StateProvider<Decimal>(
+//   (ref) => Decimal.parse('0.0'),
+// );
+
+// final setedCoinSynbolPrice = StateProvider<String>(
+//   (ref) => '',
+// );
+// final helpTextProvider = StateProvider<String>(
+//   (ref) => '',
+// );
+
+// final isValidProvider = StateProvider<bool>(
+//   (ref) => false,
+// );
+
+                        // };
+                        //Navigator.of(context).pushNamed(ReviewPage.route);
+                      }
+                    : null,
                 child: CircleAvatar(
                   radius: 30,
                   backgroundColor: valid ? colorBrandWarren : colorGraySubtitle,
