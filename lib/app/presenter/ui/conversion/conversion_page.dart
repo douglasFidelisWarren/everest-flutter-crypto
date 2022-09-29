@@ -20,6 +20,13 @@ final valorMoeda2Provider = StateProvider<Decimal>(
 final sinb = StateProvider<String>(
   (ref) => '',
 );
+final help = StateProvider<String>(
+  (ref) => '',
+);
+
+final isValid = StateProvider<bool>(
+  (ref) => false,
+);
 
 class ConversionPage extends StatefulHookConsumerWidget {
   const ConversionPage({Key? key}) : super(key: key);
@@ -49,7 +56,6 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
         }
       },
     );
-    // ref.watch(valorMoeda2Provider.state).state = listaDrop[0].currentPrice;
 
     Decimal valorMoeda2 =
         ref.read(valorMoeda2Provider.state).state == Decimal.parse('0')
@@ -62,6 +68,7 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
 
     double valor = (qtd * moeda1).toDouble();
     double texto = valor / valorMoeda2.toDouble();
+
     return Scaffold(
       appBar: const CustomAppBar('Converter'),
       body: Column(
@@ -232,6 +239,8 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                                 // hintText: '${coinANT.symbol.toUpperCase()} $qtd',
 
                                 //labelText: 'teste',
+                                helperStyle: TextStyle(color: colorBrandWarren),
+                                helperText: ref.watch(help),
                                 label: Text(
                                   "${coinANT.symbol.toUpperCase()} 0,00",
                                   style: TextStyle(color: colorGraySubtitle),
@@ -245,11 +254,17 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                                 return null;
                               },
                               onChanged: (value) {
-                                setState(() {
-                                  ref
-                                      .read(quntidadeDigitadaProvider.state)
-                                      .state = Decimal.parse(value);
-                                });
+                                ref
+                                    .read(quntidadeDigitadaProvider.state)
+                                    .state = Decimal.parse(value);
+                                if (coinANT.amount < Decimal.parse(value)) {
+                                  ref.read(isValid.state).state = false;
+                                  ref.read(help.state).state =
+                                      'Saldo em ${coinANT.symbol.toUpperCase()} insuficiente';
+                                } else {
+                                  ref.read(help.state).state = '';
+                                  ref.read(isValid.state).state = true;
+                                }
                               },
                             ),
                             Text(
