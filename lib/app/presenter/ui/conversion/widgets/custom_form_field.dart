@@ -51,7 +51,9 @@ class CustomFormField extends HookConsumerWidget {
             }
             return null;
           },
-          onChanged: (value) {
+          onChanged: (text) {
+            String value =
+                text == '' ? '0' : text.replaceAll(RegExp(r'[^0-9]'), '');
             ref.read(textFormValueProvider.state).state = Decimal.parse(value);
             if (coinANT.amount! < Decimal.parse(value)) {
               ref.read(isValidProvider.state).state = false;
