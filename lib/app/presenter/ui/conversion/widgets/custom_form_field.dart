@@ -12,14 +12,13 @@ class CustomFormField extends HookConsumerWidget {
   const CustomFormField({
     Key? key,
     required this.coinANT,
-    required this.valid,
   }) : super(key: key);
 
   final CoinViewData coinANT;
-  final bool valid;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool valid = ref.watch(isValidProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -45,17 +44,13 @@ class CustomFormField extends HookConsumerWidget {
               style: const TextStyle(color: colorGraySubtitle),
             ),
           ),
-          validator: (value) {
-            if (value!.isEmpty) {
-              return 'vazio';
-            }
-            return null;
-          },
           onChanged: (text) {
             String value =
                 text == '' ? '0' : text.replaceAll(RegExp(r'[^0-9]'), '');
             ref.read(textFormValueProvider.state).state = Decimal.parse(value);
-            if (coinANT.amount! < Decimal.parse(value)) {
+            if (double.parse(value) <= 0) {
+              ref.read(isValidProvider.state).state = false;
+            } else if (coinANT.amount! < Decimal.parse(value)) {
               ref.read(isValidProvider.state).state = false;
               ref.read(helpTextProvider.state).state =
                   'Saldo em ${coinANT.symbol.toUpperCase()} insuficiente para a conversão';

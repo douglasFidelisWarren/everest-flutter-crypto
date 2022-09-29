@@ -1,15 +1,12 @@
 import 'package:decimal/decimal.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/custom_app_bar.dart';
-import 'package:everest_crypto/app/presenter/ui/shared/formater.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../domain/entities/coins_view_data.dart';
 import '../../controllers/providers/get_all_coins_provider.dart';
 import '../../controllers/providers/conversion_provider.dart';
-import 'widgets/coin_drop_down_form.dart';
 import 'widgets/coins_comparection.dart';
 import 'widgets/custom_bottom_sheet.dart';
 import 'widgets/custom_form_field.dart';
@@ -36,7 +33,6 @@ class ConversionPage extends HookConsumerWidget {
         }
       },
     );
-    bool valid = ref.watch(isValidProvider);
     Decimal setedCoinPrice =
         ref.read(setedCoinPriceProvider.state).state == Decimal.parse('0')
             ? dropList[0].currentPrice
@@ -80,17 +76,13 @@ class ConversionPage extends HookConsumerWidget {
                   ),
                   const SizedBox(height: 30),
                   CoinsComparection(coinANT: fromCoin, listaDrop: dropList),
-                  CustomFormField(coinANT: fromCoin, valid: valid)
+                  CustomFormField(coinANT: fromCoin)
                 ]),
               )
             ]),
           ),
         ),
-        CustomBottomSheet(
-          texto: formText,
-          coinSyn: coinSyn,
-          valid: valid,
-        ),
+        CustomBottomSheet(texto: formText, coinSyn: coinSyn),
       ]),
     );
   }

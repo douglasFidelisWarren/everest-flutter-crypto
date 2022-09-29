@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../controllers/providers/conversion_provider.dart';
 import '../../shared/styles.dart';
 
-class CustomBottomSheet extends StatelessWidget {
+class CustomBottomSheet extends ConsumerWidget {
   const CustomBottomSheet({
     Key? key,
     required this.texto,
     required this.coinSyn,
-    required this.valid,
   }) : super(key: key);
 
   final double texto;
   final String coinSyn;
-  final bool valid;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    bool valid = ref.watch(isValidProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
