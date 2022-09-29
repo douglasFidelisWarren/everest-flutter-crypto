@@ -58,7 +58,7 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
         }
       },
     );
-    final mask = MaskTextInputFormatter(mask: '##/##/####');
+    bool valid = ref.watch(isValid);
     Decimal valorMoeda2 =
         ref.read(valorMoeda2Provider.state).state == Decimal.parse('0')
             ? listaDrop[0].currentPrice
@@ -211,7 +211,7 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                                             .state = coin.currentPrice;
                                         ref.read(sinb.state).state =
                                             coin.symbol.toUpperCase();
-                                        print(coin.currentPrice);
+
                                         setState(() {
                                           coinSyn = coin.symbol.toUpperCase();
                                         });
@@ -232,7 +232,7 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                                   RegExp(r'^(\d+)?\,?\.?\d{0,6}'),
                                 )
                               ],
-                              style: TextStyle(fontSize: 28),
+                              style: const TextStyle(fontSize: 28),
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 alignLabelWithHint: true,
@@ -240,16 +240,16 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                                     FloatingLabelBehavior.never,
                                 prefix: Text(
                                   "${coinANT.symbol.toUpperCase()} ",
-                                  style: TextStyle(color: colorBlackText),
+                                  style: const TextStyle(color: colorBlackText),
                                 ),
-
-                                helperStyle: TextStyle(color: colorBrandWarren),
-                                helperText: ref.watch(help),
+                                helperStyle:
+                                    const TextStyle(color: colorBrandWarren),
+                                helperText: valid ? null : ref.watch(help),
                                 label: Text(
                                   "${coinANT.symbol.toUpperCase()} 0,00",
-                                  style: TextStyle(color: colorGraySubtitle),
+                                  style:
+                                      const TextStyle(color: colorGraySubtitle),
                                 ),
-                                // isDense: false,
                               ),
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -264,7 +264,7 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                                 if (coinANT.amount < Decimal.parse(value)) {
                                   ref.read(isValid.state).state = false;
                                   ref.read(help.state).state =
-                                      'Saldo em ${coinANT.symbol.toUpperCase()} insuficiente';
+                                      'Saldo em ${coinANT.symbol.toUpperCase()} insuficiente para a conversão';
                                 } else {
                                   ref.read(help.state).state = '';
                                   ref.read(isValid.state).state = true;
@@ -278,6 +278,7 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                                       .toDouble() *
                                   Decimal.parse(coinANT.currentPrice.toString())
                                       .toDouble()),
+                              style: smallGraySubTitle,
                             ),
                           ],
                         ),
@@ -289,12 +290,50 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
             ),
           ),
           Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Total estimado'),
-              Text("${texto.toStringAsFixed(6)} $coinSyn"),
+              const Divider(
+                thickness: 2,
+                color: colorGrayDivider,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Total estimado',
+                          style: smallGraySubTitle,
+                        ),
+                        Text(
+                          "${texto.toStringAsFixed(6)} $coinSyn",
+                          style: appBarTextStyle,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: MaterialButton(
+                      onPressed: valid ? null : () {},
+                      child: CircleAvatar(
+                        radius: 30,
+                        backgroundColor:
+                            valid ? colorBrandWarren : colorGraySubtitle,
+                        child: const Icon(
+                          Icons.arrow_forward_sharp,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ],
           ),
         ],
