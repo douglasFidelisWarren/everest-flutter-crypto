@@ -9,10 +9,13 @@ abstract class GetChartConfigUsecase {
 
 class GetChartConfigUsecaseImp implements GetChartConfigUsecase {
   final IChartConfigRepository _repository;
-
   GetChartConfigUsecaseImp(this._repository);
   @override
   ChartConfigViewData getChartConfig(List<Decimal> prices) {
-    return _repository.getChartConfig(prices);
+    if (prices.isNotEmpty) {
+      return _repository.getChartConfig(prices);
+    }
+    return ChartConfigViewData(
+        period: 1, percent: 1, max: 1, min: 1, spots: []);
   }
 }

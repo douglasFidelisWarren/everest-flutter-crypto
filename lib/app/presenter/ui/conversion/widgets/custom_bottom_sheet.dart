@@ -47,7 +47,7 @@ class CustomBottomSheet extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: MaterialButton(
-                onPressed: valid ? null : () {},
+                onPressed: valid ? () {} : null,
                 child: CircleAvatar(
                   radius: 30,
                   backgroundColor: valid ? colorBrandWarren : colorGraySubtitle,
