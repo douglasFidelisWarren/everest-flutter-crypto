@@ -7,7 +7,6 @@ import 'package:everest_crypto/app/presenter/ui/shared/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../../domain/entities/coins_view_data.dart';
 import '../../controllers/providers/get_all_coins_provider.dart';
@@ -229,7 +228,7 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                             TextFormField(
                               inputFormatters: [
                                 FilteringTextInputFormatter.allow(
-                                  RegExp(r'^(\d+)?\,?\.?\d{0,6}'),
+                                  RegExp(r'^(\d+)?\.?\d{0,6}'),
                                 )
                               ],
                               style: const TextStyle(fontSize: 28),
@@ -261,7 +260,7 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                                 ref
                                     .read(quntidadeDigitadaProvider.state)
                                     .state = Decimal.parse(value);
-                                if (coinANT.amount < Decimal.parse(value)) {
+                                if (coinANT.amount! < Decimal.parse(value)) {
                                   ref.read(isValid.state).state = false;
                                   ref.read(help.state).state =
                                       'Saldo em ${coinANT.symbol.toUpperCase()} insuficiente para a conversão';

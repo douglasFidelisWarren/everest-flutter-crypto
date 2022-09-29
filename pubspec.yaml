@@ -18,14 +18,13 @@ dependencies:
   hooks_riverpod: ^1.0.4
   fl_chart: ^0.55.1
   dio: ^4.0.6
-  json_serializable: ^6.4.0
-  json_annotation: ^4.0.1
-  build_runner: ^2.2.1
-  mask_text_input_formatter: ^2.4.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  json_serializable: ^6.4.0
+  json_annotation: ^4.0.1
+  build_runner: ^2.2.1
 
   flutter_lints: ^2.0.0
 

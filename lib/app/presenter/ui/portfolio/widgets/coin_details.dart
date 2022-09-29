@@ -33,8 +33,7 @@ class CoinDetails extends HookConsumerWidget {
           ref.read(selectedProvider.state).state = 5;
           ref
               .read(coinPricesNotifierProvider.notifier)
-              .getCoinPrices(coin.id, "brl", 5);
-          // ref.watch(chartConfigProvider.notifier).getChartConfig([]);
+              .getCoinPrices(coinId: coin.id, vScurrency: "brl", days: 5);
           ref.watch(chartConfigProvider.notifier).getChartConfig(prices.value);
           Navigator.of(context).pushNamed(DetailsPage.route, arguments: coin);
         },
@@ -78,7 +77,7 @@ class CoinDetails extends HookConsumerWidget {
                           alignment: Alignment.centerRight,
                           width: MediaQuery.of(context).size.width * .35,
                           child: Text(
-                            number.format(coin.amountVsCurrency.toDouble()),
+                            number.format(coin.amountVsCurrency!.toDouble()),
                             overflow: TextOverflow.clip,
                             style:
                                 visible ? mediumBlackTitle : subTitleSmallHide,
@@ -91,7 +90,7 @@ class CoinDetails extends HookConsumerWidget {
                           Container(
                             decoration: visibleDecoration(visible),
                             child: Text(
-                              coin.amount.toStringAsFixed(2),
+                              coin.amount!.toStringAsFixed(2),
                               style: visible
                                   ? smallGraySubTitle
                                   : subTitleStyleCoinHide,
