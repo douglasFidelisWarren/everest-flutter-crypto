@@ -5,7 +5,9 @@ import 'package:everest_crypto/app/presenter/ui/shared/custom_app_bar.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/formater.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../../domain/entities/coins_view_data.dart';
 import '../../controllers/providers/get_all_coins_provider.dart';
@@ -56,7 +58,7 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
         }
       },
     );
-
+    final mask = MaskTextInputFormatter(mask: '##/##/####');
     Decimal valorMoeda2 =
         ref.read(valorMoeda2Provider.state).state == Decimal.parse('0')
             ? listaDrop[0].currentPrice
@@ -225,6 +227,11 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextFormField(
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(
+                                  RegExp(r'^(\d+)?\,?\.?\d{0,6}'),
+                                )
+                              ],
                               style: TextStyle(fontSize: 28),
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
@@ -235,10 +242,7 @@ class _ConversionPageState extends ConsumerState<ConversionPage> {
                                   "${coinANT.symbol.toUpperCase()} ",
                                   style: TextStyle(color: colorBlackText),
                                 ),
-                                //icon: Text('${coinANT.symbol.toUpperCase()}'),
-                                // hintText: '${coinANT.symbol.toUpperCase()} $qtd',
 
-                                //labelText: 'teste',
                                 helperStyle: TextStyle(color: colorBrandWarren),
                                 helperText: ref.watch(help),
                                 label: Text(
