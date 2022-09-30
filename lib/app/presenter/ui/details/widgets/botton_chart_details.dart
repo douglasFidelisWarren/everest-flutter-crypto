@@ -97,6 +97,7 @@ class BottonChartDetails extends HookConsumerWidget {
             color: colorBrandWarren,
             minWidth: 600,
             onPressed: () {
+              ref.watch(setedCoinSynbolPrice.state).state = '';
               ref.read(helpTextProvider.state).state = '';
               ref.read(textFormValueProvider.state).state =
                   Decimal.parse('0.0');

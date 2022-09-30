@@ -14,9 +14,6 @@ class CoinDropDownForm extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    String coinSyn = ref.watch(setedCoinSynbolPrice.state).state == ''
-        ? listaDrop[0].symbol.toUpperCase()
-        : ref.watch(setedCoinSynbolPrice.state).state;
     String? coinName;
     return ButtonTheme(
       alignedDropdown: false,
@@ -71,14 +68,11 @@ class CoinDropDownForm extends HookConsumerWidget {
         ),
         onChanged: (value) {
           coinName = value.toString();
-
           for (var coin in listaDrop) {
             if (coin.name == value) {
               ref.watch(setedCoinPriceProvider.state).state = coin.currentPrice;
               ref.read(setedCoinSynbolPrice.state).state =
                   coin.symbol.toUpperCase();
-
-              coinSyn = coin.symbol.toUpperCase();
             }
           }
         },
