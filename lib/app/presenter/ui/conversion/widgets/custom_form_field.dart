@@ -25,7 +25,7 @@ class CustomFormField extends HookConsumerWidget {
         TextFormField(
           inputFormatters: [
             FilteringTextInputFormatter.allow(
-              RegExp(r'^(\d+)?\,?\d{0,6}'),
+              RegExp(r'^(\d+)?\.?\d{0,6}'),
             )
           ],
           style: const TextStyle(fontSize: 28),
@@ -44,19 +44,27 @@ class CustomFormField extends HookConsumerWidget {
               style: const TextStyle(color: colorGraySubtitle),
             ),
           ),
-          onChanged: (text) {
-            String value =
-                text == '' ? '0' : text.replaceAll(RegExp(r'[^0-9]'), '');
-            ref.read(textFormValueProvider.state).state = Decimal.parse(value);
-            if (double.parse(value) <= 0) {
-              ref.read(isValidProvider.state).state = false;
-            } else if (fromCoin.amount! < Decimal.parse(value)) {
-              ref.read(isValidProvider.state).state = false;
-              ref.read(helpTextProvider.state).state =
-                  'Saldo em ${fromCoin.symbol.toUpperCase()} insuficiente para a conversão';
-            } else {
+          onChanged: (value) {
+            if (value == "") {
               ref.read(helpTextProvider.state).state = '';
-              ref.read(isValidProvider.state).state = true;
+              value = "0";
+              ref.read(textFormValueProvider.state).state = Decimal.parse("0");
+              ref.read(isValidProvider.state).state = false;
+            } else {
+              ref.read(textFormValueProvider.state).state =
+                  Decimal.parse(value.replaceAll(",", "."));
+              ref.read(helpTextProvider.state).state = '';
+              if (double.parse(value) <= 0) {
+                ref.read(isValidProvider.state).state = false;
+              } else if (fromCoin.amount! <
+                  Decimal.parse(value.replaceAll(",", "."))) {
+                ref.read(isValidProvider.state).state = false;
+                ref.read(helpTextProvider.state).state =
+                    'Saldo em ${fromCoin.symbol.toUpperCase()} insuficiente para a conversão';
+              } else {
+                ref.read(helpTextProvider.state).state = '';
+                ref.read(isValidProvider.state).state = true;
+              }
             }
           },
         ),
