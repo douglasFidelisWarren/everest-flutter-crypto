@@ -4,8 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 final textFormValueProvider =
     StateProvider<Decimal>((ref) => Decimal.parse('0.0'));
 
-final teste = StateProvider<Decimal>((ref) => Decimal.parse('0.0'));
-
 final setedCoinPriceProvider = StateProvider<Decimal>(
   (ref) => Decimal.parse('0.0'),
 );

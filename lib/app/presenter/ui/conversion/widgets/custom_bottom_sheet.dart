@@ -23,8 +23,6 @@ class CustomBottomSheet extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     bool valid = ref.watch(isValidProvider);
     // final toCoinPrice =
-    double exchange = fromCoin.currentPrice.toDouble() /
-        ref.watch(teste.state).state.toDouble();
 
     String? amountConvert;
     String? amountReceive;

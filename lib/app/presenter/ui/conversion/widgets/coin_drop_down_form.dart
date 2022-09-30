@@ -76,10 +76,8 @@ class CoinDropDownForm extends HookConsumerWidget {
           coinName = value.toString();
           for (var coin in listaDrop) {
             if (coin.name == value) {
-              print(coin.currentPrice);
               toCoin = coin;
               ref.watch(setedCoinPriceProvider.state).state = coin.currentPrice;
-              ref.watch(teste.state).state = coin.currentPrice;
               ref.read(setedCoinSynbol.state).state = coin.symbol.toUpperCase();
             }
           }

@@ -19,7 +19,7 @@ class ConversionPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final fromCoin = ModalRoute.of(context)!.settings.arguments as CoinViewData;
-    CoinViewData toCoin;
+    // CoinViewData toCoin;
     Decimal textFormValue = ref.watch(textFormValueProvider.state).state;
     Decimal fromCoinPrice = Decimal.parse(fromCoin.currentPrice.toString());
     AsyncValue<List<CoinViewData>> coins =
@@ -32,17 +32,22 @@ class ConversionPage extends HookConsumerWidget {
             dropList.add(coin);
           }
         }
-        ref.watch(teste.state).state = dropList[0].currentPrice;
+
+        ref.watch(setedCoinPriceProvider.state).state =
+            dropList[0].currentPrice;
+        ref.watch(setedCoinSynbol.state).state =
+            dropList[0].symbol.toUpperCase();
       },
     );
     Decimal setedCoinPrice =
-        ref.read(setedCoinPriceProvider.state).state == Decimal.parse('0.0')
+        ref.read(setedCoinPriceProvider.state).state == Decimal.parse('0')
             ? dropList[0].currentPrice
             : ref.read(setedCoinPriceProvider.state).state;
 
-    String coinSyn = ref.watch(setedCoinSynbol.state).state == ''
-        ? dropList[0].symbol.toUpperCase()
-        : ref.watch(setedCoinSynbol.state).state;
+    String coinSyn = ref.watch(setedCoinSynbol.state).state;
+    //  == ''
+    //     ? dropList[0].symbol.toUpperCase()
+    //     : ref.watch(setedCoinSynbol.state).state;
 
     double formValue = (textFormValue * fromCoinPrice).toDouble();
     double formText = formValue / setedCoinPrice.toDouble();

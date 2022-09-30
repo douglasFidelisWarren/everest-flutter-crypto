@@ -25,7 +25,7 @@ class ReviewPage extends ConsumerWidget {
     String fromSymbol = fromCoin.symbol.toUpperCase();
     String toSymbol = ref.watch(setedCoinSynbol.state).state;
     double exchange = fromCoin.currentPrice.toDouble() /
-        ref.watch(teste.state).state.toDouble();
+        ref.watch(setedCoinPriceProvider).toDouble();
 
     return Scaffold(
       appBar: const CustomAppBar('Revisar'),
