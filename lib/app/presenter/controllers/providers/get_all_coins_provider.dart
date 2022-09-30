@@ -19,7 +19,7 @@ final coinUsecaseProvider = Provider(
   },
 );
 
-final coinsNotifierProvider = FutureProvider<List<CoinViewData>>(
+final getAllcoinsNotifierProvider = FutureProvider<List<CoinViewData>>(
   (ref) async {
     return ref
         .read(coinUsecaseProvider)

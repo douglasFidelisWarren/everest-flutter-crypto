@@ -1,4 +1,6 @@
 import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/app/data/repositories/coin_converction_repository_imp.dart';
+import 'package:everest_crypto/app/domain/usecases/get_converction_usecase.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../data/datasources/api/endpoint_provider.dart';
@@ -21,19 +23,21 @@ final userCoinsProvider = StateProvider<Map<String, Decimal>>(
   },
 );
 
-final walletRepositoryProvider = Provider((ref) {
-  return WalletRepositoryImp(ref.watch(genckoEndpointProvider));
+final repositoryProvider = Provider((ref) {
+  return CoinConverctionRepositoryImp(ref.watch(genckoEndpointProvider));
 });
 
-final walletUsecaseProvider = Provider(
+final usecaseProvider = Provider(
   (ref) {
-    return GetWalletUsecaseImp(ref.read(walletRepositoryProvider));
+    return GetConverctionUsecaseImp(ref.watch(repositoryProvider));
   },
 );
 
-final coinsWalletProvider = FutureProvider<List<CoinViewData>>(
+final converctionCoinProvider = FutureProvider<CoinViewData>(
   (ref) async {
-    return ref.read(walletUsecaseProvider).getCoinsWallet(
-        ref.read(userCoinsProvider), ref.read(vsCurrencyProvider));
+    final result = await ref
+        .read(usecaseProvider)
+        .getConverction(coinId: "bitcoin", vsCurrency: "usdc");
+    return result[0];
   },
 );

@@ -1,7 +1,12 @@
+import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
+import 'package:everest_crypto/app/presenter/ui/conversion/conversion_page.dart';
+import 'package:everest_crypto/app/presenter/ui/details/widgets/line_chart_coin.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/entities/coins_view_data.dart';
+import '../../../controllers/providers/conversion_provider.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 import 'line_chart_coin.dart';
@@ -40,8 +45,8 @@ class BottonChartDetails extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Variação ${ref.watch(selectedProvider)} dias",
-                style: subTitleStyleTotal,
+                "Variação em ${ref.watch(selectedProvider)} dias",
+                style: subTitleStyleMediun,
               ),
               Text(
                   percent > 0
@@ -65,11 +70,11 @@ class BottonChartDetails extends HookConsumerWidget {
             children: [
               const Text(
                 "Quantidade",
-                style: subTitleStyleTotal,
+                style: subTitleStyleMediun,
               ),
               Text(
                   "${coin.amount!.toStringAsFixed(8).replaceAll(".", ",")} ${coin.symbol.toUpperCase()}",
-                  style: valueStyle)
+                  style: mediumBlackTitle)
             ],
           ),
           const Divider(
@@ -91,7 +96,15 @@ class BottonChartDetails extends HookConsumerWidget {
             height: 45,
             color: colorBrandWarren,
             minWidth: 600,
-            onPressed: () {},
+            onPressed: () {
+              ref.watch(setedCoinSynbolPrice.state).state = '';
+              ref.read(helpTextProvider.state).state = '';
+              ref.read(textFormValueProvider.state).state =
+                  Decimal.parse('0.0');
+              ref.read(setedCoinPriceProvider.state).state = Decimal.parse('0');
+              Navigator.of(context)
+                  .pushNamed(ConversionPage.route, arguments: coin);
+            },
             child: const Text(
               "Converter moeda",
               style: TextStyle(

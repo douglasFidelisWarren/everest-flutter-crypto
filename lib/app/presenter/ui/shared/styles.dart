@@ -6,7 +6,22 @@ BoxDecoration visibleDecoration(bool visible) {
       borderRadius: BorderRadius.circular(5));
 }
 
+Map<int, Color> color = const {
+  50: Color.fromRGBO(224, 43, 87, .1),
+  100: Color.fromRGBO(224, 43, 87, .2),
+  200: Color.fromRGBO(224, 43, 87, .3),
+  300: Color.fromRGBO(224, 43, 87, .4),
+  400: Color.fromRGBO(224, 43, 87, .5),
+  500: Color.fromRGBO(224, 43, 87, .6),
+  600: Color.fromRGBO(224, 43, 87, .7),
+  700: Color.fromRGBO(224, 43, 87, .8),
+  800: Color.fromRGBO(224, 43, 87, .9),
+  900: Color.fromRGBO(224, 43, 87, 1),
+};
+MaterialColor primaryWarren = MaterialColor(0xFFE02B57, color);
+
 const Color colorBlackText = Color.fromRGBO(47, 47, 51, 1);
+const Color colorGrayBackgrond = Color.fromARGB(255, 242, 242, 246);
 const Color colorGrayDivider = Color.fromRGBO(227, 228, 235, 1);
 const Color colorGraySubtitle = Color.fromRGBO(117, 118, 128, 1);
 const Color colorBrandWarren = Color.fromARGB(255, 218, 68, 86);
@@ -19,6 +34,14 @@ const TextStyle titleStyle = TextStyle(
   letterSpacing: -.8,
   color: colorBrandWarren,
   fontSize: 34,
+  height: 1.3,
+);
+const TextStyle mediumBlackTitle1 = TextStyle(
+  fontFamily: "Montserrat",
+  fontWeight: FontWeight.w700,
+  letterSpacing: -.8,
+  color: colorBlackText,
+  fontSize: 26,
   height: 1.3,
 );
 const TextStyle totalStyle = TextStyle(
@@ -45,9 +68,15 @@ const TextStyle totalStyleHide = TextStyle(
   fontSize: 32,
 );
 
-const TextStyle subTitleStyleCoin = TextStyle(
+const TextStyle smallGraySubTitle = TextStyle(
   fontFamily: "Source_Sans_Pro",
   color: colorGraySubtitle,
+  fontSize: 19,
+);
+
+const TextStyle mediunConvertBlack = TextStyle(
+  fontFamily: "Source_Sans_Pro",
+  color: colorBlackText,
   fontSize: 19,
 );
 const TextStyle subTitleStyleCoinHide = TextStyle(
@@ -55,7 +84,7 @@ const TextStyle subTitleStyleCoinHide = TextStyle(
   color: colorHideOn,
   fontSize: 18,
 );
-const TextStyle subTitleStyleTotal = TextStyle(
+const TextStyle subTitleStyleMediun = TextStyle(
   fontFamily: "Source_Sans_Pro",
   color: colorGraySubtitle,
   fontSize: 20,
@@ -64,13 +93,13 @@ const TextStyle subTitleStyleTotal = TextStyle(
   height: 1.2,
 );
 
-const TextStyle valueStyle = TextStyle(
+const TextStyle mediumBlackTitle = TextStyle(
   fontFamily: "Source_Sans_Pro",
   fontSize: 22,
   color: colorBlackText,
 );
 
-const TextStyle valueStyleHide = TextStyle(
+const TextStyle subTitleSmallHide = TextStyle(
   fontFamily: "Source_Sans_Pro",
   fontSize: 22,
   color: colorHideOn,

@@ -35,9 +35,16 @@ class GenckoEndpoints {
       //keys de userCoin para trazer alimentar parametro 'ids'.
 
       'ids': 'bitcoin, ethereum, litecoin, usd-coin, avalanche-2, atom, chiliz',
-      'order': 'market_cap_desc',
-      'per_page': 100,
-      'sparkline': false,
     });
+  }
+
+  Future<Response> getCoinConverction({
+    required String coinId,
+    required String vScurrency,
+  }) {
+    return _dio.get(
+      '/coins/markets',
+      queryParameters: {'vs_currency': vScurrency, 'ids': coinId},
+    );
   }
 }

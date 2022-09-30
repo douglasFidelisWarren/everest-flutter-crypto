@@ -21,7 +21,7 @@ final chartConfigUsecase = Provider(
 final chartConfigProvider =
     StateNotifierProvider<GetChartConfigNotifier, ChartConfigViewData>(
   (ref) {
-    return GetChartConfigNotifier(
-        ref.watch(chartConfigUsecase), ref.watch(coinsNotifierProvider).value!);
+    return GetChartConfigNotifier(ref.watch(chartConfigUsecase),
+        ref.watch(coinPricesNotifierProvider).value!);
   },
 );

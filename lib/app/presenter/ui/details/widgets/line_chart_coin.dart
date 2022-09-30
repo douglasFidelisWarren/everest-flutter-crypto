@@ -36,11 +36,11 @@ class LineChartCoin extends HookConsumerWidget {
         ),
         onPressed: () async {
           await ref
-              .read(coinsNotifierProvider.notifier)
+              .read(coinPricesNotifierProvider.notifier)
               .getCoinPrices(coinId: coin.id, vScurrency: "brl", days: period);
           ref
               .read(chartConfigProvider.notifier)
-              .getChartConfig(ref.watch(coinsNotifierProvider).value!);
+              .getChartConfig(ref.watch(coinPricesNotifierProvider).value!);
           ref.watch(selectedProvider.state).state = period;
         },
       );
@@ -122,10 +122,10 @@ class LineChartCoin extends HookConsumerWidget {
                           belowBarData: BarAreaData(show: false),
                           spots: config.spots)
                     ],
-                    minX: 0,
-                    maxX: config.period,
-                    maxY: config.max,
-                    minY: config.min,
+                    // minX: 0,
+                    // maxX: config.period,
+                    //maxY: config.max,
+                    // minY: config.min,
                   ),
                   swapAnimationDuration: const Duration(milliseconds: 250),
                 ),

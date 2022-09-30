@@ -36,9 +36,9 @@ class AvailableCardCoin extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(coin.symbol, style: valueStyle),
+                      Text(coin.symbol, style: mediumBlackTitle),
                       const SizedBox(height: 4),
-                      Text(coin.name, style: subTitleStyleCoin),
+                      Text(coin.name, style: smallGraySubTitle),
                     ],
                   ),
                   const Expanded(child: SizedBox()),
@@ -49,7 +49,7 @@ class AvailableCardCoin extends StatelessWidget {
                       children: [
                         Text(
                           number.format((coin.currentPrice).toDouble()),
-                          style: valueStyle,
+                          style: mediumBlackTitle,
                         ),
                         const SizedBox(height: 5),
                         Container(

@@ -1,6 +1,6 @@
 import 'package:decimal/decimal.dart';
 
-import '../../domain/repositories/icoin_prices_repository.dart';
+import '../../domain/repositories/i_coin_prices_repository.dart';
 import '../datasources/api/endpoints/gencko_endpoints.dart';
 
 class CoinPricesRepositoryImp implements ICoinPricesRepository {

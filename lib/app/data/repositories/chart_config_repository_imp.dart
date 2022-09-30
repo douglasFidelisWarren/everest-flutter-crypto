@@ -1,7 +1,7 @@
 import 'package:decimal/decimal.dart';
 
 import '../../domain/entities/chart_config_entity.dart';
-import '../../domain/repositories/ichart_config_repository.dart';
+import '../../domain/repositories/i_chart_config_repository.dart';
 import '../datasources/get_chart_config_datasource.dart';
 
 class ChartConfigRepositoryImp implements IChartConfigRepository {
