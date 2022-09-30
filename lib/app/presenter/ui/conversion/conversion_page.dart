@@ -62,8 +62,7 @@ class ConversionPage extends HookConsumerWidget {
                     children: [
                       const Text('Saldo disponível', style: smallGraySubTitle),
                       Text(
-                        """${fromCoin.amount.toString().replaceAll('.', ',')} 
-                        ${fromCoin.symbol.toUpperCase()}""",
+                        "${fromCoin.amount.toString().replaceAll('.', ',')} ${fromCoin.symbol.toUpperCase()}",
                         style: mediunConvertBlack,
                       ),
                     ],
