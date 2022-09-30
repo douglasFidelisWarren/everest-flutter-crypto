@@ -71,7 +71,7 @@ const TextStyle totalStyleHide = TextStyle(
 const TextStyle smallGraySubTitle = TextStyle(
   fontFamily: "Source_Sans_Pro",
   color: colorGraySubtitle,
-  fontSize: 19,
+  fontSize: 18,
 );
 
 const TextStyle mediunConvertBlack = TextStyle(

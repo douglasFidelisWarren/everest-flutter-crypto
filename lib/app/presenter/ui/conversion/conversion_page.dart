@@ -1,12 +1,12 @@
 import 'package:decimal/decimal.dart';
-import 'package:everest_crypto/app/presenter/ui/shared/custom_app_bar.dart';
-import 'package:everest_crypto/app/presenter/ui/shared/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../domain/entities/coins_view_data.dart';
-import '../../controllers/providers/get_all_coins_provider.dart';
 import '../../controllers/providers/conversion_provider.dart';
+import '../../controllers/providers/get_all_coins_provider.dart';
+import '../shared/custom_app_bar.dart';
+import '../shared/styles.dart';
 import 'widgets/coins_comparection.dart';
 import 'widgets/custom_bottom_sheet.dart';
 import 'widgets/custom_form_field.dart';
@@ -62,7 +62,8 @@ class ConversionPage extends HookConsumerWidget {
                     children: [
                       const Text('Saldo disponível', style: smallGraySubTitle),
                       Text(
-                        '${fromCoin.amount.toString().replaceAll('.', ',')} ${fromCoin.symbol.toUpperCase()}',
+                        """${fromCoin.amount.toString().replaceAll('.', ',')} 
+                        ${fromCoin.symbol.toUpperCase()}""",
                         style: mediunConvertBlack,
                       ),
                     ],
@@ -77,14 +78,21 @@ class ConversionPage extends HookConsumerWidget {
                     style: mediumBlackTitle1,
                   ),
                   const SizedBox(height: 30),
-                  CoinsComparection(fromCoin: fromCoin, listaDrop: dropList),
+                  CoinsComparection(
+                    fromCoin: fromCoin,
+                    listaDrop: dropList,
+                  ),
                   CustomFormField(fromCoin: fromCoin)
                 ]),
               )
             ]),
           ),
         ),
-        CustomBottomSheet(text: formText, coinSyn: coinSyn, fromCoin: fromCoin),
+        CustomBottomSheet(
+          text: formText,
+          coinSyn: coinSyn,
+          fromCoin: fromCoin,
+        ),
       ]),
     );
   }

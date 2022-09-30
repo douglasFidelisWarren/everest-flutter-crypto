@@ -18,3 +18,7 @@ final helpTextProvider = StateProvider<String>(
 final isValidProvider = StateProvider<bool>(
   (ref) => false,
 );
+
+final animateProvider = StateProvider<bool>(
+  (ref) => true,
+);
