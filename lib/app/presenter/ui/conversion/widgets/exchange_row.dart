@@ -16,7 +16,7 @@ class ExchangeRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
         const Divider(
           thickness: 1.5,
