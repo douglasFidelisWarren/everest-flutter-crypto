@@ -1,9 +1,11 @@
+import 'package:decimal/decimal.dart';
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../controllers/providers/conversion_provider.dart';
 import '../../shared/styles.dart';
+import '../review_page.dart';
 
 class CustomBottomSheet extends ConsumerWidget {
   const CustomBottomSheet({
@@ -20,6 +22,14 @@ class CustomBottomSheet extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool valid = ref.watch(isValidProvider);
+    // final toCoinPrice =
+    double exchange = fromCoin.currentPrice.toDouble() /
+        ref.watch(teste.state).state.toDouble();
+
+    String? amountConvert;
+    String? amountReceive;
+    //String exchange;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
@@ -54,10 +64,12 @@ class CustomBottomSheet extends ConsumerWidget {
                 onPressed: valid
                     ? () {
                         print(
-                            '${ref.watch(textFormValueProvider)} ${fromCoin.symbol.toUpperCase()}');
+                            'converter ${ref.watch(textFormValueProvider)} ${fromCoin.symbol.toUpperCase()}');
                         print('receber ${text.toStringAsFixed(6)} $coinSyn');
 
-                        print('${fromCoin.symbol.toUpperCase()}');
+                        // print(
+                        //   'cembio 1 ${fromCoin.symbol.toUpperCase()} = ${d.toStringAsFixed(6)} $coinSyn');
+                        // print('cembio $toCoinPrice');
                         // ref.read(movement.state).state = {
                         //   'converter': Decimal.parse("10"),
                         //   'receber': Decimal.parse("1"),
@@ -81,7 +93,8 @@ class CustomBottomSheet extends ConsumerWidget {
 // );
 
                         // };
-                        //Navigator.of(context).pushNamed(ReviewPage.route);
+                        Navigator.of(context).pushNamed(ReviewPage.route,
+                            arguments: [fromCoin, coinSyn]);
                       }
                     : null,
                 child: CircleAvatar(

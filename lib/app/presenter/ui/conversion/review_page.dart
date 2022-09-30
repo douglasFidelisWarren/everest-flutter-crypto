@@ -4,6 +4,7 @@ import 'package:everest_crypto/app/presenter/ui/shared/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../domain/entities/coins_view_data.dart';
 import '../../controllers/providers/conversion_provider.dart';
 import '../shared/styles.dart';
 import 'conversion_page.dart';
@@ -15,6 +16,17 @@ class ReviewPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final args = ModalRoute.of(context)!.settings.arguments as List;
+    CoinViewData fromCoin = args[0];
+    String toCoinSyn = args[1];
+    Decimal amountConvert = ref.watch(textFormValueProvider);
+    // amountReceive
+
+    String fromSymbol = fromCoin.symbol.toUpperCase();
+    String toSymbol = ref.watch(setedCoinSynbol.state).state;
+    double exchange = fromCoin.currentPrice.toDouble() /
+        ref.watch(teste.state).state.toDouble();
+
     return Scaffold(
       appBar: const CustomAppBar('Revisar'),
       body: Column(children: [
@@ -32,12 +44,11 @@ class ReviewPage extends ConsumerWidget {
         const Divider(thickness: 2, color: colorGrayDivider),
         Padding(
           padding: const EdgeInsets.only(left: 12, right: 12),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text('text', style: subTitleStyleMediun),
-                Text('value', style: mediumBlackTitle)
-              ]),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            const Text('Converter', style: subTitleStyleMediun),
+            Text('${exchange}', style: mediumBlackTitle)
+          ]),
         ),
         const Divider(thickness: 2, color: colorGrayDivider),
         Padding(
@@ -45,19 +56,19 @@ class ReviewPage extends ConsumerWidget {
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
-                Text('text', style: subTitleStyleMediun),
+                Text('Receber', style: subTitleStyleMediun),
                 Text('value', style: mediumBlackTitle)
               ]),
         ),
         const Divider(thickness: 2, color: colorGrayDivider),
         Padding(
           padding: const EdgeInsets.only(left: 12, right: 12),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text('text', style: subTitleStyleMediun),
-                Text('value', style: mediumBlackTitle)
-              ]),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            const Text('Câmbio', style: subTitleStyleMediun),
+            Text('1 $fromSymbol = ${exchange.toStringAsFixed(6)} $toSymbol',
+                style: mediumBlackTitle)
+          ]),
         ),
         Padding(
           padding: const EdgeInsets.all(12.0),

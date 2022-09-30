@@ -1,4 +1,3 @@
-import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -19,6 +18,8 @@ class CoinDropDownForm extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    CoinViewData toCoin;
+
     String? coinName;
     return ButtonTheme(
       alignedDropdown: false,
@@ -75,9 +76,11 @@ class CoinDropDownForm extends HookConsumerWidget {
           coinName = value.toString();
           for (var coin in listaDrop) {
             if (coin.name == value) {
+              print(coin.currentPrice);
+              toCoin = coin;
               ref.watch(setedCoinPriceProvider.state).state = coin.currentPrice;
-              ref.read(setedCoinSynbolPrice.state).state =
-                  coin.symbol.toUpperCase();
+              ref.watch(teste.state).state = coin.currentPrice;
+              ref.read(setedCoinSynbol.state).state = coin.symbol.toUpperCase();
             }
           }
         },
