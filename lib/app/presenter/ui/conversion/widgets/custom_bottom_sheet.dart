@@ -92,7 +92,7 @@ class CustomBottomSheet extends ConsumerWidget {
 
                         // };
                         Navigator.of(context).pushNamed(ReviewPage.route,
-                            arguments: [fromCoin, coinSyn]);
+                            arguments: [fromCoin, coinSyn, text]);
                       }
                     : null,
                 child: CircleAvatar(

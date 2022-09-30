@@ -18,9 +18,9 @@ class ReviewPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final args = ModalRoute.of(context)!.settings.arguments as List;
     CoinViewData fromCoin = args[0];
-    String toCoinSyn = args[1];
+    // String toCoinSyn = args[1];
     Decimal amountConvert = ref.watch(textFormValueProvider);
-    // amountReceive
+    double amountReceive = args[2];
 
     String fromSymbol = fromCoin.symbol.toUpperCase();
     String toSymbol = ref.watch(setedCoinSynbol.state).state;
@@ -41,34 +41,50 @@ class ReviewPage extends ConsumerWidget {
           ),
         ),
         const Expanded(child: SizedBox()),
-        const Divider(thickness: 2, color: colorGrayDivider),
+        const Divider(
+          thickness: 1.5,
+          color: colorGrayDivider,
+          height: 25,
+        ),
         Padding(
           padding: const EdgeInsets.only(left: 12, right: 12),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             const Text('Converter', style: subTitleStyleMediun),
-            Text('${exchange}', style: mediumBlackTitle)
+            Text('${amountConvert.toStringAsFixed(8)} $fromSymbol',
+                style: mediumBlackTitle)
           ]),
         ),
-        const Divider(thickness: 2, color: colorGrayDivider),
+        const Divider(
+          thickness: 1.5,
+          color: colorGrayDivider,
+          height: 25,
+        ),
         Padding(
           padding: const EdgeInsets.only(left: 12, right: 12),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text('Receber', style: subTitleStyleMediun),
-                Text('value', style: mediumBlackTitle)
-              ]),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            const Text('Receber', style: subTitleStyleMediun),
+            Text('${amountReceive.toStringAsFixed(4)} $toSymbol',
+                style: mediumBlackTitle)
+          ]),
         ),
-        const Divider(thickness: 2, color: colorGrayDivider),
+        const Divider(
+          thickness: 1.5,
+          color: colorGrayDivider,
+          height: 25,
+        ),
         Padding(
           padding: const EdgeInsets.only(left: 12, right: 12),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             const Text('Câmbio', style: subTitleStyleMediun),
-            Text('1 $fromSymbol = ${exchange.toStringAsFixed(6)} $toSymbol',
+            Text('1 $fromSymbol = ${exchange.toStringAsFixed(2)} $toSymbol',
                 style: mediumBlackTitle)
           ]),
+        ),
+        SizedBox(
+          height: 25,
         ),
         Padding(
           padding: const EdgeInsets.all(12.0),
@@ -79,14 +95,7 @@ class ReviewPage extends ConsumerWidget {
             height: 45,
             color: colorBrandWarren,
             minWidth: 600,
-            onPressed: () {
-              // ref.read(helpTextProvider.state).state = '';
-              // ref.read(textFormValueProvider.state).state =
-              //     Decimal.parse('0.0');
-              // ref.read(setedCoinPriceProvider.state).state = Decimal.parse('0');
-              // Navigator.of(context)
-              //     .pushNamed(ConversionPage.route, arguments: coin);
-            },
+            onPressed: () {},
             child: const Text(
               "Converter moeda",
               style: TextStyle(
