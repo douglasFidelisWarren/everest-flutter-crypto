@@ -4,6 +4,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/conversion_provider.dart';
 
+final movement = StateProvider<Map>(
+  (ref) => {},
+);
+
 class CoinDropDownForm extends HookConsumerWidget {
   const CoinDropDownForm({
     Key? key,
@@ -14,6 +18,8 @@ class CoinDropDownForm extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    CoinViewData toCoin;
+
     String? coinName;
     return ButtonTheme(
       alignedDropdown: false,
@@ -70,9 +76,9 @@ class CoinDropDownForm extends HookConsumerWidget {
           coinName = value.toString();
           for (var coin in listaDrop) {
             if (coin.name == value) {
+              toCoin = coin;
               ref.watch(setedCoinPriceProvider.state).state = coin.currentPrice;
-              ref.read(setedCoinSynbolPrice.state).state =
-                  coin.symbol.toUpperCase();
+              ref.read(setedCoinSynbol.state).state = coin.symbol.toUpperCase();
             }
           }
         },

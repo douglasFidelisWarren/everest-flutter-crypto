@@ -8,7 +8,7 @@ final setedCoinPriceProvider = StateProvider<Decimal>(
   (ref) => Decimal.parse('0.0'),
 );
 
-final setedCoinSynbolPrice = StateProvider<String>(
+final setedCoinSynbol = StateProvider<String>(
   (ref) => '',
 );
 final helpTextProvider = StateProvider<String>(
@@ -17,4 +17,8 @@ final helpTextProvider = StateProvider<String>(
 
 final isValidProvider = StateProvider<bool>(
   (ref) => false,
+);
+
+final animateProvider = StateProvider<bool>(
+  (ref) => true,
 );

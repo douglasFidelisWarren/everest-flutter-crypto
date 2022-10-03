@@ -7,11 +7,11 @@ import 'coin_drop_down_form.dart';
 class CoinsComparection extends StatelessWidget {
   const CoinsComparection({
     Key? key,
-    required this.coinANT,
+    required this.fromCoin,
     required this.listaDrop,
   }) : super(key: key);
 
-  final CoinViewData coinANT;
+  final CoinViewData fromCoin;
   final List<CoinViewData> listaDrop;
 
   @override
@@ -27,11 +27,11 @@ class CoinsComparection extends StatelessWidget {
             )),
         child: Row(children: [
           Image.network(
-            coinANT.image,
+            fromCoin.image,
             height: 25,
           ),
           Text(
-            ' ${coinANT.symbol.toUpperCase()}',
+            ' ${fromCoin.symbol.toUpperCase()}',
           ),
         ]),
       ),

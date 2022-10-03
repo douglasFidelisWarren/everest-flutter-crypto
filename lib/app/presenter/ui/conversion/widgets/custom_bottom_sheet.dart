@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/conversion_provider.dart';
 import '../../shared/styles.dart';
+import '../review_page.dart';
 
 class CustomBottomSheet extends ConsumerWidget {
   const CustomBottomSheet({
     Key? key,
-    required this.texto,
+    required this.text,
     required this.coinSyn,
+    required this.fromCoin,
   }) : super(key: key);
 
-  final double texto;
+  final double text;
   final String coinSyn;
+  final CoinViewData fromCoin;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -39,7 +43,7 @@ class CustomBottomSheet extends ConsumerWidget {
                     style: smallGraySubTitle,
                   ),
                   Text(
-                    "${texto.toStringAsFixed(6)} $coinSyn",
+                    "${text.toStringAsFixed(6)} $coinSyn",
                     style: appBarTextStyle,
                   ),
                 ],
@@ -48,7 +52,13 @@ class CustomBottomSheet extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: MaterialButton(
-                onPressed: valid ? () {} : null,
+                onPressed: valid
+                    ? () {
+                        ref.read(animateProvider.state).state = true;
+                        Navigator.of(context).pushNamed(ReviewPage.route,
+                            arguments: [fromCoin, coinSyn, text]);
+                      }
+                    : null,
                 child: CircleAvatar(
                   radius: 30,
                   backgroundColor: valid ? colorBrandWarren : colorGraySubtitle,
