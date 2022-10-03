@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../../../../domain/entities/exchange_entity.dart';
 import '../../shared/styles.dart';
 
 class ReceiveRow extends StatelessWidget {
   const ReceiveRow({
     Key? key,
-    required this.amountReceive,
-    required this.toSymbol,
+    required this.currentExchange,
   }) : super(key: key);
 
-  final double amountReceive;
-  final String toSymbol;
+  final ExchangeEntity currentExchange;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class ReceiveRow extends StatelessWidget {
                 style: subTitleStyleMediun,
               ),
               Text(
-                '${amountReceive.toStringAsFixed(4)} $toSymbol',
+                '${currentExchange.amtReceive.toStringAsFixed(4)} ${currentExchange.toCoinSymbol}',
                 style: mediumBlackTitle,
               )
             ],

@@ -2,7 +2,7 @@ import 'package:decimal/decimal.dart';
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:everest_crypto/app/domain/entities/exchange_entity.dart';
 
-abstract class IConvertCoin {
+abstract class IConvertCoinUsecase {
   ExchangeEntity convertCoin({
     required CoinViewData fromCoin,
     required CoinViewData toCoin,
@@ -10,21 +10,28 @@ abstract class IConvertCoin {
   });
 }
 
-class ConvertCoinImp implements IConvertCoin {
+class ConvertCoinUsecaseImp implements IConvertCoinUsecase {
   @override
-  ExchangeEntity convertCoin(
-      {required CoinViewData fromCoin,
-      required CoinViewData toCoin,
-      required Decimal amtConvert}) {
+  ExchangeEntity convertCoin({
+    required CoinViewData fromCoin,
+    required CoinViewData toCoin,
+    required Decimal amtConvert,
+  }) {
+    double valor =
+        fromCoin.currentPrice.toDouble() / toCoin.currentPrice.toDouble();
+    double amtReceive =
+        (amtConvert.toDouble() * fromCoin.currentPrice.toDouble()) /
+            toCoin.currentPrice.toDouble();
+
     ExchangeEntity entity = ExchangeEntity(
       fromCoinPrice: fromCoin.currentPrice,
       fromCoinSymbol: fromCoin.symbol.toUpperCase(),
       toCoinPrice: toCoin.currentPrice,
       toCoinSymbol: toCoin.symbol.toUpperCase(),
       amtConvert: amtConvert,
-      amtReceive: amtReceive,
+      amtReceive: Decimal.parse(amtReceive.toString()),
       date: DateTime.now(),
-      value: value,
+      valueExchange: Decimal.parse(valor.toString()),
     );
 
     return entity;

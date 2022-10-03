@@ -1,5 +1,5 @@
 import 'package:everest_crypto/app/presenter/ui/conversion/conversion_page.dart';
-import 'package:everest_crypto/app/presenter/ui/conversion/review_page.dart';
+import 'package:everest_crypto/app/presenter/ui/review/view/review_page.dart';
 
 import '../app/presenter/ui/conversion/success_page.dart';
 import 'home.dart';

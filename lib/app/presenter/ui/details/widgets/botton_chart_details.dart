@@ -1,12 +1,10 @@
 import 'package:decimal/decimal.dart';
-import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
-import 'package:everest_crypto/app/presenter/ui/conversion/conversion_page.dart';
-import 'package:everest_crypto/app/presenter/ui/details/widgets/line_chart_coin.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/conversion_provider.dart';
+import '../../conversion/conversion_page.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 import 'line_chart_coin.dart';
@@ -97,11 +95,16 @@ class BottonChartDetails extends HookConsumerWidget {
             color: colorBrandWarren,
             minWidth: 600,
             onPressed: () {
-              ref.watch(setedCoinSynbol.state).state = '';
+              ref.read(toCoinProvider.state).state = CoinViewData(
+                id: '',
+                name: '',
+                symbol: '',
+                image: '',
+                currentPrice: Decimal.parse('0'),
+                percentage24h: 0,
+              );
+              ref.read(textFormValueProvider.state).state = 0;
               ref.read(helpTextProvider.state).state = '';
-              ref.read(textFormValueProvider.state).state =
-                  Decimal.parse('0.0');
-              ref.read(setedCoinPriceProvider.state).state = Decimal.parse('0');
               Navigator.of(context)
                   .pushNamed(ConversionPage.route, arguments: coin);
             },

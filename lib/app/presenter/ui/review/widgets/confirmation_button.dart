@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../controllers/providers/conversion_provider.dart';
+import '../../conversion/success_page.dart';
 import '../../shared/styles.dart';
-import '../success_page.dart';
 
 class ConfirmationButton extends ConsumerWidget {
   const ConfirmationButton({

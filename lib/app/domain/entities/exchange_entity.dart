@@ -8,7 +8,7 @@ class ExchangeEntity {
   Decimal amtConvert;
   Decimal amtReceive;
   DateTime date;
-  Decimal value;
+  Decimal valueExchange;
   ExchangeEntity({
     required this.fromCoinPrice,
     required this.fromCoinSymbol,
@@ -17,6 +17,6 @@ class ExchangeEntity {
     required this.amtConvert,
     required this.amtReceive,
     required this.date,
-    required this.value,
+    required this.valueExchange,
   });
 }
