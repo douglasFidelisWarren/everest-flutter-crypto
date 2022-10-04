@@ -5,14 +5,14 @@ import '../../shared/styles.dart';
 class ExchangeRow extends StatelessWidget {
   const ExchangeRow({
     Key? key,
-    required this.fromSymbol,
-    required this.exchange,
-    required this.toSymbol,
+    required this.toCoinSymbol,
+    required this.valueExchange,
+    required this.fromCoinSymbol,
   }) : super(key: key);
 
-  final String fromSymbol;
-  final double exchange;
-  final String toSymbol;
+  final String toCoinSymbol;
+  final double valueExchange;
+  final String fromCoinSymbol;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,8 @@ class ExchangeRow extends StatelessWidget {
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             const Text('Câmbio', style: subTitleStyleMediun),
-            Text('1 $fromSymbol = ${exchange.toStringAsFixed(2)} $toSymbol',
+            Text(
+                '1 $toCoinSymbol = ${valueExchange.toStringAsFixed(4)} $fromCoinSymbol',
                 style: mediumBlackTitle)
           ]),
         ),

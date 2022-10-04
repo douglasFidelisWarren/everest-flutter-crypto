@@ -8,8 +8,8 @@ import '../../../controllers/providers/conversion_provider.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 
-class CustomFormField extends HookConsumerWidget {
-  const CustomFormField({
+class AmoutFormField extends ConsumerWidget {
+  const AmoutFormField({
     Key? key,
     required this.fromCoin,
   }) : super(key: key);
@@ -18,7 +18,7 @@ class CustomFormField extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool valid = ref.watch(isValidProvider);
+    String initialValue = '';
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -30,6 +30,7 @@ class CustomFormField extends HookConsumerWidget {
           ],
           style: const TextStyle(fontSize: 28),
           keyboardType: TextInputType.number,
+          initialValue: initialValue,
           decoration: InputDecoration(
             alignLabelWithHint: true,
             floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -37,41 +38,42 @@ class CustomFormField extends HookConsumerWidget {
               "${fromCoin.symbol.toUpperCase()} ",
               style: const TextStyle(color: colorBlackText),
             ),
-            helperStyle: const TextStyle(color: colorBrandWarren),
-            helperText: valid ? null : ref.watch(helpTextProvider),
             label: Text(
               "${fromCoin.symbol.toUpperCase()} 0,00",
               style: const TextStyle(color: colorGraySubtitle),
             ),
           ),
           onChanged: (value) {
-            if (value == "") {
-              ref.read(helpTextProvider.state).state = '';
-              value = "0";
-              ref.read(textFormValueProvider.state).state = Decimal.parse("0");
+            ref.read(textFormValueProvider.state).state =
+                value.isEmpty || value == '.' ? 0 : double.parse(value);
+            if (value.isEmpty) {
               ref.read(isValidProvider.state).state = false;
             } else {
-              ref.read(textFormValueProvider.state).state =
-                  Decimal.parse(value.replaceAll(",", "."));
-              ref.read(helpTextProvider.state).state = '';
-              if (double.parse(value) <= 0) {
+              if (Decimal.parse(value) > fromCoin.amount!) {
                 ref.read(isValidProvider.state).state = false;
-              } else if (fromCoin.amount! <
-                  Decimal.parse(value.replaceAll(",", "."))) {
-                ref.read(isValidProvider.state).state = false;
-                ref.read(helpTextProvider.state).state =
-                    'Saldo em ${fromCoin.symbol.toUpperCase()} insuficiente para a conversão';
               } else {
-                ref.read(helpTextProvider.state).state = '';
                 ref.read(isValidProvider.state).state = true;
+              }
+              if (double.parse(value.toString()) == 0) {
+                ref.read(isValidProvider.state).state = false;
+              }
+            }
+          },
+          autovalidateMode: AutovalidateMode.always,
+          validator: (value) {
+            if (value != '.') {
+              if (value!.isNotEmpty &&
+                  Decimal.parse(value) > fromCoin.amount!) {
+                return 'Saldo em ${fromCoin.symbol.toUpperCase()} insuficiente';
+              } else {
+                return null;
               }
             }
           },
         ),
         Text(
-          number.format(
-              ref.watch(textFormValueProvider.state).state.toDouble() *
-                  Decimal.parse(fromCoin.currentPrice.toString()).toDouble()),
+          number.format(ref.watch(textFormValueProvider) *
+              Decimal.parse(fromCoin.currentPrice.toString()).toDouble()),
           style: smallGraySubTitle,
         ),
       ],

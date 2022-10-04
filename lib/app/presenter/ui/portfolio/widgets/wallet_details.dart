@@ -44,7 +44,7 @@ class WalletDetails extends ConsumerWidget {
             child: Container(
               decoration: visibleDecoration(visible),
               child: AnimatedOpacity(
-                duration: Duration(milliseconds: 200),
+                duration: const Duration(milliseconds: 200),
                 opacity: visible ? 1 : 0,
                 child: Text(
                   number.format(valueTotal.toDouble()),

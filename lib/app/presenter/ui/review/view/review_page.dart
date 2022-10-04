@@ -1,15 +1,13 @@
-import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../domain/entities/coins_view_data.dart';
-import '../../controllers/providers/conversion_provider.dart';
-import '../shared/custom_app_bar.dart';
-import '../shared/styles.dart';
-import 'widgets/confirmation_button.dart';
-import 'widgets/convert_row.dart';
-import 'widgets/exchange_row.dart';
-import 'widgets/receive_row.dart';
+import '../../../../domain/entities/exchange_entity.dart';
+import '../../shared/custom_app_bar.dart';
+import '../../shared/styles.dart';
+import '../widgets/confirmation_button.dart';
+import '../widgets/convert_row.dart';
+import '../widgets/exchange_row.dart';
+import '../widgets/receive_row.dart';
 
 class ReviewPage extends ConsumerWidget {
   const ReviewPage({Key? key}) : super(key: key);
@@ -18,18 +16,14 @@ class ReviewPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final args = ModalRoute.of(context)!.settings.arguments as List;
-    CoinViewData fromCoin = args[0];
-    Decimal amountConvert = ref.watch(textFormValueProvider);
-    double amountReceive = args[2];
-
-    String fromSymbol = fromCoin.symbol.toUpperCase();
-    String toSymbol = ref.watch(setedCoinSynbol.state).state;
-    double exchange = fromCoin.currentPrice.toDouble() /
-        ref.watch(setedCoinPriceProvider).toDouble();
+    final currentExchange =
+        ModalRoute.of(context)!.settings.arguments as ExchangeEntity;
 
     double sizeH = MediaQuery.of(context).size.height;
     double sizeW = MediaQuery.of(context).size.width;
+    String toCoinSymbol = currentExchange.toCoin.symbol.toUpperCase();
+    String fromCoinSymbol = currentExchange.fromCoin.symbol.toUpperCase();
+    double valueExchange = currentExchange.valueExchange.toDouble();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -48,22 +42,22 @@ class ReviewPage extends ConsumerWidget {
           ),
           const Expanded(child: SizedBox()),
           ConvertRow(
-            amountConvert: amountConvert,
-            fromSymbol: fromSymbol,
+            amountConvert: currentExchange.amtConvert,
+            fromSymbol: currentExchange.fromCoin.symbol.toUpperCase(),
           ),
           ReceiveRow(
-            amountReceive: amountReceive,
-            toSymbol: toSymbol,
+            currentExchange: currentExchange,
           ),
           ExchangeRow(
-            fromSymbol: fromSymbol,
-            exchange: exchange,
-            toSymbol: toSymbol,
+            toCoinSymbol: toCoinSymbol,
+            valueExchange: valueExchange,
+            fromCoinSymbol: fromCoinSymbol,
           ),
           const SizedBox(
             height: 20,
           ),
           ConfirmationButton(
+            currentExchange: currentExchange,
             sizeW: sizeW,
             sizeH: sizeH,
           ),

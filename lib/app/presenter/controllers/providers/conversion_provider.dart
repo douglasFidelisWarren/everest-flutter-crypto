@@ -1,16 +1,12 @@
 import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/app/domain/entities/exchange_entity.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final textFormValueProvider =
-    StateProvider<Decimal>((ref) => Decimal.parse('0.0'));
+import '../../../domain/entities/coins_view_data.dart';
+import '../../../domain/usecases/convert_coin_usecase.dart';
 
-final setedCoinPriceProvider = StateProvider<Decimal>(
-  (ref) => Decimal.parse('0.0'),
-);
+final textFormValueProvider = StateProvider<double>((ref) => 0);
 
-final setedCoinSynbol = StateProvider<String>(
-  (ref) => '',
-);
 final helpTextProvider = StateProvider<String>(
   (ref) => '',
 );
@@ -21,4 +17,24 @@ final isValidProvider = StateProvider<bool>(
 
 final animateProvider = StateProvider<bool>(
   (ref) => true,
+);
+
+final toCoinProvider = StateProvider<CoinViewData>(
+  (ref) => CoinViewData(
+      id: '',
+      name: '',
+      symbol: '',
+      image: '',
+      currentPrice: Decimal.parse('0'),
+      percentage24h: 0),
+);
+
+final convertCoinProvider = Provider(
+  (ref) {
+    return ConvertCoinUsecaseImp();
+  },
+);
+
+final exchangesListProvider = StateProvider<List<ExchangeEntity>>(
+  (ref) => [],
 );

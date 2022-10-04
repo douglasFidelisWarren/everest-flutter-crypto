@@ -1,26 +1,31 @@
+import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/entities/coins_view_data.dart';
+import '../../../../domain/entities/exchange_entity.dart';
 import '../../../controllers/providers/conversion_provider.dart';
+import '../../review/view/review_page.dart';
 import '../../shared/styles.dart';
-import '../review_page.dart';
 
-class CustomBottomSheet extends ConsumerWidget {
-  const CustomBottomSheet({
+class ExchangeBottonSheet extends ConsumerWidget {
+  const ExchangeBottonSheet({
     Key? key,
-    required this.text,
-    required this.coinSyn,
+    required this.formValue,
+    required this.toCoin,
+    required this.valid,
     required this.fromCoin,
+    required this.textFormValue,
   }) : super(key: key);
 
-  final double text;
-  final String coinSyn;
+  final double formValue;
+  final CoinViewData toCoin;
+  final bool valid;
   final CoinViewData fromCoin;
+  final Decimal textFormValue;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool valid = ref.watch(isValidProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
@@ -43,7 +48,7 @@ class CustomBottomSheet extends ConsumerWidget {
                     style: smallGraySubTitle,
                   ),
                   Text(
-                    "${text.toStringAsFixed(6)} $coinSyn",
+                    "${formValue.toStringAsFixed(6)} ${toCoin.symbol.toUpperCase()}",
                     style: appBarTextStyle,
                   ),
                 ],
@@ -55,8 +60,14 @@ class CustomBottomSheet extends ConsumerWidget {
                 onPressed: valid
                     ? () {
                         ref.read(animateProvider.state).state = true;
+                        ExchangeEntity currentExchange = ref
+                            .watch(convertCoinProvider)
+                            .convertCoin(
+                                fromCoin: fromCoin,
+                                toCoin: toCoin,
+                                amtConvert: textFormValue);
                         Navigator.of(context).pushNamed(ReviewPage.route,
-                            arguments: [fromCoin, coinSyn, text]);
+                            arguments: currentExchange);
                       }
                     : null,
                 child: CircleAvatar(
