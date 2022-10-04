@@ -1,3 +1,4 @@
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../shared/styles.dart';
@@ -27,7 +28,7 @@ class ExchangeRow extends StatelessWidget {
           padding: const EdgeInsets.only(left: 12, right: 12),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            const Text('Câmbio', style: subTitleStyleMediun),
+            Text(CoreStrings.of(context)!.exchange, style: subTitleStyleMediun),
             Text(
                 '1 $toCoinSymbol = ${valueExchange.toStringAsFixed(4)} $fromCoinSymbol',
                 style: mediumBlackTitle)

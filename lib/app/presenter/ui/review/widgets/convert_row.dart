@@ -1,4 +1,5 @@
 import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../shared/styles.dart';
@@ -27,7 +28,8 @@ class ConvertRow extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Converter', style: subTitleStyleMediun),
+              Text(CoreStrings.of(context)!.convert,
+                  style: subTitleStyleMediun),
               Text('${amountConvert.toStringAsFixed(8)} $fromSymbol',
                   style: mediumBlackTitle)
             ],

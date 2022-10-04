@@ -1,3 +1,4 @@
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -25,37 +26,39 @@ class ModalBody extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.only(top: 18.0),
           child: Text(
-            'Comprovante',
+            CoreStrings.of(context)!.movementReceipt,
             style: appBarTextStyle,
           ),
         ),
         InfoRow(
-          description: 'Número do documento',
+          description: CoreStrings.of(context)!.documentNumber,
           value: docNumber.toString(),
         ),
         InfoRow(
-          description: 'Data',
+          description: CoreStrings.of(context)!.date,
           value: date.format(exchange.date),
         ),
         InfoRow(
-          description: 'Débito - ${exchange.fromCoin.name}',
+          description:
+              '${CoreStrings.of(context)!.debtCoin} - ${exchange.fromCoin.name}',
           value: '- ${exchange.amtConvert.toStringAsFixed(4)} $fromCoinSymbol',
         ),
         InfoRow(
-          description: 'Crédito - ${exchange.toCoin.name}',
+          description:
+              '${CoreStrings.of(context)!.creditCoin} - ${exchange.toCoin.name}',
           value: ' ${exchange.amtReceive.toStringAsFixed(6)} $toCoinSymbol',
         ),
         InfoRow(
-          description: 'Valor da movimentação',
+          description: CoreStrings.of(context)!.movementValue,
           value: number.format(
               (exchange.amtConvert * exchange.fromCoin.currentPrice)
                   .toDouble()),
         ),
         InfoRow(
-          description: 'Valor da tarifa',
+          description: CoreStrings.of(context)!.rateValue,
           value: number.format(
               (exchange.amtConvert * exchange.fromCoin.currentPrice)
                       .toDouble() *
@@ -71,9 +74,9 @@ class ModalBody extends StatelessWidget {
             color: colorBrandWarren,
             minWidth: 600,
             onPressed: () {},
-            child: const Text(
-              "Compartilhar comprovante",
-              style: TextStyle(
+            child: Text(
+              CoreStrings.of(context)!.receiptShare,
+              style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: Colors.white),

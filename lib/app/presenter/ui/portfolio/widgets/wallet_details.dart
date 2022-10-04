@@ -1,4 +1,5 @@
 import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -35,7 +36,7 @@ class WalletDetails extends ConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text("Cripto", style: titleStyle),
+              Text(CoreStrings.of(context)!.crypto, style: titleStyle),
               VisibilityButton(changeVisibility, visible),
             ],
           ),
@@ -54,8 +55,8 @@ class WalletDetails extends ConsumerWidget {
               ),
             ),
           ),
-          const Text(
-            "Valor total de moedas",
+          Text(
+            CoreStrings.of(context)!.walletTotalAmount,
             style: subTitleStyleMediun,
           ),
         ],
