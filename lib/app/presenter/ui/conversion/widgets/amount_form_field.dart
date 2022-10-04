@@ -18,6 +18,7 @@ class AmoutFormField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    String initialValue = '';
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -29,10 +30,10 @@ class AmoutFormField extends ConsumerWidget {
           ],
           style: const TextStyle(fontSize: 28),
           keyboardType: TextInputType.number,
+          initialValue: initialValue,
           decoration: InputDecoration(
             alignLabelWithHint: true,
             floatingLabelBehavior: FloatingLabelBehavior.never,
-            //
             prefix: Text(
               "${fromCoin.symbol.toUpperCase()} ",
               style: const TextStyle(color: colorBlackText),
@@ -44,7 +45,7 @@ class AmoutFormField extends ConsumerWidget {
           ),
           onChanged: (value) {
             ref.read(textFormValueProvider.state).state =
-                value.isEmpty ? 0 : double.parse(value);
+                value.isEmpty || value == '.' ? 0 : double.parse(value);
             if (value.isEmpty) {
               ref.read(isValidProvider.state).state = false;
             } else {
@@ -53,14 +54,20 @@ class AmoutFormField extends ConsumerWidget {
               } else {
                 ref.read(isValidProvider.state).state = true;
               }
+              if (double.parse(value.toString()) == 0) {
+                ref.read(isValidProvider.state).state = false;
+              }
             }
           },
           autovalidateMode: AutovalidateMode.always,
           validator: (value) {
-            if (value!.isNotEmpty && Decimal.parse(value) > fromCoin.amount!) {
-              return 'Saldo em ${fromCoin.symbol.toUpperCase()} insuficiente';
-            } else {
-              return null;
+            if (value != '.') {
+              if (value!.isNotEmpty &&
+                  Decimal.parse(value) > fromCoin.amount!) {
+                return 'Saldo em ${fromCoin.symbol.toUpperCase()} insuficiente';
+              } else {
+                return null;
+              }
             }
           },
         ),
