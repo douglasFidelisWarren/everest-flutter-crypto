@@ -24,10 +24,8 @@ class ConvertCoinUsecaseImp implements IConvertCoinUsecase {
             toCoin.currentPrice.toDouble();
 
     ExchangeEntity entity = ExchangeEntity(
-      fromCoinPrice: fromCoin.currentPrice,
-      fromCoinSymbol: fromCoin.symbol.toUpperCase(),
-      toCoinPrice: toCoin.currentPrice,
-      toCoinSymbol: toCoin.symbol.toUpperCase(),
+      fromCoin: fromCoin,
+      toCoin: toCoin,
       amtConvert: amtConvert,
       amtReceive: Decimal.parse(amtReceive.toString()),
       date: DateTime.now(),

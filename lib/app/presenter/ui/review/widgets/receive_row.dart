@@ -30,7 +30,7 @@ class ReceiveRow extends StatelessWidget {
                 style: subTitleStyleMediun,
               ),
               Text(
-                '${currentExchange.amtReceive.toStringAsFixed(4)} ${currentExchange.toCoinSymbol}',
+                '${currentExchange.amtReceive.toStringAsFixed(4)} ${currentExchange.toCoin.symbol.toUpperCase()}',
                 style: mediumBlackTitle,
               )
             ],

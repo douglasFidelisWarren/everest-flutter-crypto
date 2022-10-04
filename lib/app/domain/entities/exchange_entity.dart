@@ -1,19 +1,16 @@
 import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 
 class ExchangeEntity {
-  Decimal fromCoinPrice;
-  String fromCoinSymbol;
-  Decimal toCoinPrice;
-  String toCoinSymbol;
+  CoinViewData fromCoin;
+  CoinViewData toCoin;
   Decimal amtConvert;
   Decimal amtReceive;
   DateTime date;
   Decimal valueExchange;
   ExchangeEntity({
-    required this.fromCoinPrice,
-    required this.fromCoinSymbol,
-    required this.toCoinPrice,
-    required this.toCoinSymbol,
+    required this.fromCoin,
+    required this.toCoin,
     required this.amtConvert,
     required this.amtReceive,
     required this.date,

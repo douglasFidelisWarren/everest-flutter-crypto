@@ -1,4 +1,5 @@
 import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/app/domain/entities/exchange_entity.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../domain/entities/coins_view_data.dart';
@@ -32,4 +33,8 @@ final convertCoinProvider = Provider(
   (ref) {
     return ConvertCoinUsecaseImp();
   },
+);
+
+final exchangesListProvider = StateProvider<List<ExchangeEntity>>(
+  (ref) => [],
 );

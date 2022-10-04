@@ -1,3 +1,4 @@
+import 'package:everest_crypto/app/domain/entities/exchange_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -10,10 +11,12 @@ class ConfirmationButton extends ConsumerWidget {
     Key? key,
     required this.sizeW,
     required this.sizeH,
+    required this.currentExchange,
   }) : super(key: key);
 
   final double sizeW;
   final double sizeH;
+  final ExchangeEntity currentExchange;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,6 +27,7 @@ class ConfirmationButton extends ConsumerWidget {
       ),
       color: ref.watch(animateProvider) ? colorBrandWarren : Colors.white,
       onPressed: () async {
+        ref.read(exchangesListProvider).add(currentExchange);
         ref.read(animateProvider.state).state = false;
         await Future.delayed(const Duration(milliseconds: 2000));
         Navigator.of(context).pushReplacementNamed(SuccessPage.route);

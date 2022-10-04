@@ -21,8 +21,8 @@ class ReviewPage extends ConsumerWidget {
 
     double sizeH = MediaQuery.of(context).size.height;
     double sizeW = MediaQuery.of(context).size.width;
-    String toCoinSymbol = currentExchange.toCoinSymbol;
-    String fromCoinSymbol = currentExchange.fromCoinSymbol;
+    String toCoinSymbol = currentExchange.toCoin.symbol.toUpperCase();
+    String fromCoinSymbol = currentExchange.fromCoin.symbol.toUpperCase();
     double valueExchange = currentExchange.valueExchange.toDouble();
 
     return Scaffold(
@@ -43,7 +43,7 @@ class ReviewPage extends ConsumerWidget {
           const Expanded(child: SizedBox()),
           ConvertRow(
             amountConvert: currentExchange.amtConvert,
-            fromSymbol: currentExchange.fromCoinSymbol,
+            fromSymbol: currentExchange.fromCoin.symbol.toUpperCase(),
           ),
           ReceiveRow(
             currentExchange: currentExchange,
@@ -57,6 +57,7 @@ class ReviewPage extends ConsumerWidget {
             height: 20,
           ),
           ConfirmationButton(
+            currentExchange: currentExchange,
             sizeW: sizeW,
             sizeH: sizeH,
           ),

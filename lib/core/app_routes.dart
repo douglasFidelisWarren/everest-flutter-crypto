@@ -4,7 +4,7 @@ import 'package:everest_crypto/app/presenter/ui/review/view/review_page.dart';
 import '../app/presenter/ui/conversion/success_page.dart';
 import 'home.dart';
 import '../app/presenter/ui/details/view/details_page.dart';
-import '../app/presenter/ui/movements/movements_page.dart';
+import '../app/presenter/ui/movements/view/movements_page.dart';
 import '../app/presenter/ui/portfolio/view/portfolio_page.dart';
 
 var appRoutes = {
