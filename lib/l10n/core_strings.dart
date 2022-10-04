@@ -93,214 +93,214 @@ abstract class CoreStrings {
     Locale('pt')
   ];
 
-  /// No description provided for @crypto.
+  /// Coin wallet title
   ///
-  /// In pt, this message translates to:
-  /// **'Cripto'**
+  /// In en, this message translates to:
+  /// **'Crypto'**
   String get crypto;
 
-  /// No description provided for @walletTotalAmount.
+  /// Total value of cryptos user
   ///
-  /// In pt, this message translates to:
-  /// **'Valor total de moedas'**
+  /// In en, this message translates to:
+  /// **'Total value of cryptos'**
   String get walletTotalAmount;
 
-  /// No description provided for @portfolio.
+  /// Portfolio page title
   ///
-  /// In pt, this message translates to:
-  /// **'Portifólio'**
+  /// In en, this message translates to:
+  /// **'Portfolio'**
   String get portfolio;
 
-  /// No description provided for @purchase.
+  /// Puchase page title
   ///
-  /// In pt, this message translates to:
-  /// **'Comprar'**
+  /// In en, this message translates to:
+  /// **'Purchase'**
   String get purchase;
 
-  /// No description provided for @movements.
+  /// Movements page title
   ///
-  /// In pt, this message translates to:
-  /// **'Movimentações'**
+  /// In en, this message translates to:
+  /// **'Movements'**
   String get movements;
 
-  /// No description provided for @availableCoins.
   ///
-  /// In pt, this message translates to:
-  /// **'Criptos Disponíveis'**
+  ///
+  /// In en, this message translates to:
+  /// **'Available crypto'**
   String get availableCoins;
 
-  /// No description provided for @noMovements.
+  /// Don't have any moves message
   ///
-  /// In pt, this message translates to:
-  /// **'Você ainda não possui nenhuma movimentação...'**
+  /// In en, this message translates to:
+  /// **'You don\'t have any moves yet...'**
   String get noMovements;
 
-  /// No description provided for @details.
+  /// Details page tilte
   ///
-  /// In pt, this message translates to:
-  /// **'Detalhes'**
+  /// In en, this message translates to:
+  /// **'Details'**
   String get details;
 
-  /// No description provided for @currentPrice.
+  /// Details page current price
   ///
-  /// In pt, this message translates to:
-  /// **'Preço atual'**
+  /// In en, this message translates to:
+  /// **'Current Price'**
   String get currentPrice;
 
-  /// No description provided for @percentVariation.
+  /// Details page variation in seted days
   ///
-  /// In pt, this message translates to:
-  /// **'Variação em '**
+  /// In en, this message translates to:
+  /// **'Variation in '**
   String get percentVariation;
 
-  /// No description provided for @days.
+  /// Details page variation in seted days
   ///
-  /// In pt, this message translates to:
-  /// **'dias'**
+  /// In en, this message translates to:
+  /// **'days'**
   String get days;
 
-  /// No description provided for @detailsAmount.
+  /// Details page amount of coin user
   ///
-  /// In pt, this message translates to:
-  /// **'Quantidade'**
+  /// In en, this message translates to:
+  /// **'Amount'**
   String get detailsAmount;
 
-  /// No description provided for @value.
   ///
-  /// In pt, this message translates to:
-  /// **'Valor'**
+  ///
+  /// In en, this message translates to:
+  /// **'Value'**
   String get value;
 
-  /// No description provided for @converCoin.
+  /// Details page total value of coin
   ///
-  /// In pt, this message translates to:
-  /// **'Converter moeda'**
+  /// In en, this message translates to:
+  /// **'Convert crypto'**
   String get converCoin;
 
-  /// No description provided for @convertTitle.
+  /// Convert page title
   ///
-  /// In pt, this message translates to:
-  /// **'Converter'**
+  /// In en, this message translates to:
+  /// **'Convert'**
   String get convertTitle;
 
-  /// No description provided for @balanceAvailable.
+  /// Convert page balance available of seted coin and error message
   ///
-  /// In pt, this message translates to:
-  /// **'Saldo disponível'**
+  /// In en, this message translates to:
+  /// **'Balance available'**
   String get balanceAvailable;
 
-  /// No description provided for @insufficient.
+  /// Convert page error message
   ///
-  /// In pt, this message translates to:
-  /// **'insulficiente'**
+  /// In en, this message translates to:
+  /// **'insufficient'**
   String get insufficient;
 
-  /// No description provided for @convertQuery.
+  /// Convert page query
   ///
-  /// In pt, this message translates to:
-  /// **'Quanto você gostaria de converter?'**
+  /// In en, this message translates to:
+  /// **'How much would you like to convert?'**
   String get convertQuery;
 
-  /// No description provided for @estimatedTotal.
+  /// Convert page botton sheet
   ///
-  /// In pt, this message translates to:
-  /// **'Total estimado'**
+  /// In en, this message translates to:
+  /// **'Estimated total'**
   String get estimatedTotal;
 
-  /// No description provided for @reviewTitle.
+  /// Review page title
   ///
-  /// In pt, this message translates to:
-  /// **'Revisar'**
+  /// In en, this message translates to:
+  /// **'Review'**
   String get reviewTitle;
 
-  /// No description provided for @reviewAlert.
+  /// Review page message
   ///
-  /// In pt, this message translates to:
-  /// **'Revise os dados da sua conversão'**
+  /// In en, this message translates to:
+  /// **'Review your conversion'**
   String get reviewAlert;
 
-  /// No description provided for @convert.
+  /// Review page convert seted amount
   ///
-  /// In pt, this message translates to:
-  /// **'Converter'**
+  /// In en, this message translates to:
+  /// **'Convert'**
   String get convert;
 
-  /// No description provided for @receive.
+  /// Review page convert receive amount
   ///
-  /// In pt, this message translates to:
-  /// **'Receber'**
+  /// In en, this message translates to:
+  /// **'Receive'**
   String get receive;
 
-  /// No description provided for @exchange.
+  /// Review page seted exchange
   ///
-  /// In pt, this message translates to:
-  /// **'Câmbio'**
+  /// In en, this message translates to:
+  /// **'Exchange'**
   String get exchange;
 
-  /// No description provided for @convertConfirmTitle.
+  /// Successful title message from convert
   ///
-  /// In pt, this message translates to:
-  /// **'Conversão efetuada'**
+  /// In en, this message translates to:
+  /// **'Successful'**
   String get convertConfirmTitle;
 
-  /// No description provided for @convertConfirmSubtitle.
+  /// Successful subtitle message from convert
   ///
-  /// In pt, this message translates to:
-  /// **'Conversão de moeda efetuada com sucesso!'**
+  /// In en, this message translates to:
+  /// **'Currency conversion successful!'**
   String get convertConfirmSubtitle;
 
-  /// No description provided for @movementsTitle.
+  /// Movements page tilte
   ///
-  /// In pt, this message translates to:
-  /// **'Movimentações'**
+  /// In en, this message translates to:
+  /// **'Movements'**
   String get movementsTitle;
 
-  /// No description provided for @movementReceipt.
+  /// Bottom modal movement receipt title
   ///
-  /// In pt, this message translates to:
-  /// **'Comprovante'**
+  /// In en, this message translates to:
+  /// **'Movement receipt'**
   String get movementReceipt;
 
-  /// No description provided for @documentNumber.
+  /// Bottom modal movement receipt document number
   ///
-  /// In pt, this message translates to:
-  /// **'Número do documento'**
+  /// In en, this message translates to:
+  /// **'Document number'**
   String get documentNumber;
 
-  /// No description provided for @date.
+  /// Bottom modal movement receipt date
   ///
-  /// In pt, this message translates to:
-  /// **'Data'**
+  /// In en, this message translates to:
+  /// **'Date'**
   String get date;
 
-  /// No description provided for @debtCoin.
+  /// Bottom modal movement receipt debt coin
   ///
-  /// In pt, this message translates to:
-  /// **'Débito'**
+  /// In en, this message translates to:
+  /// **'Debt'**
   String get debtCoin;
 
-  /// No description provided for @creditCoin.
+  /// Bottom modal movement receipt credit coin
   ///
-  /// In pt, this message translates to:
-  /// **'Crédito'**
+  /// In en, this message translates to:
+  /// **'Credit'**
   String get creditCoin;
 
-  /// No description provided for @movementValue.
+  /// Bottom modal movement receipt value of exchange
   ///
-  /// In pt, this message translates to:
-  /// **'Valor da movimentação'**
+  /// In en, this message translates to:
+  /// **'Movement value'**
   String get movementValue;
 
-  /// No description provided for @rateValue.
+  /// Bottom modal movement receipt value of exchange rate
   ///
-  /// In pt, this message translates to:
-  /// **'Valor da tarifa'**
+  /// In en, this message translates to:
+  /// **'Rate value'**
   String get rateValue;
 
-  /// No description provided for @receiptShare.
+  /// Bottom modal movement receipt button
   ///
-  /// In pt, this message translates to:
-  /// **'Compartilhar comprovante'**
+  /// In en, this message translates to:
+  /// **'Receipt share'**
   String get receiptShare;
 }
 
