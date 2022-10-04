@@ -96,7 +96,7 @@ abstract class CoreStrings {
   /// No description provided for @crypto.
   ///
   /// In pt, this message translates to:
-  /// **'teste'**
+  /// **'Cripto'**
   String get crypto;
 
   /// No description provided for @walletTotalAmount.

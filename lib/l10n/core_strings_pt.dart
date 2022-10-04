@@ -5,7 +5,7 @@ class CoreStringsPt extends CoreStrings {
   CoreStringsPt([String locale = 'pt']) : super(locale);
 
   @override
-  String get crypto => 'teste';
+  String get crypto => 'Cripto';
 
   @override
   String get walletTotalAmount => 'Valor total de moedas';
