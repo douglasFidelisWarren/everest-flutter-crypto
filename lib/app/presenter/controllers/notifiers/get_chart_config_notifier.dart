@@ -1,5 +1,5 @@
 import 'package:decimal/decimal.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../domain/entities/chart_config_entity.dart';
 import '../../../domain/usecases/get_chart_config_usecase.dart';

@@ -1,5 +1,5 @@
 import 'package:decimal/decimal.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/datasources/api/endpoint_provider.dart';
 import '../../../data/repositories/wallet_repository_imp.dart';

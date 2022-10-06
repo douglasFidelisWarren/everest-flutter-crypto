@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/chart_config_provider.dart';
 import '../../../controllers/providers/coin_prices_provider.dart';
+import '../../../controllers/providers/visible_provider.dart';
 import '../../details/view/details_page.dart';
 import '../../details/widgets/line_chart_coin.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 
-class CoinDetails extends HookConsumerWidget {
+class CoinDetails extends ConsumerWidget {
   const CoinDetails({
     Key? key,
     required this.coin,
-    required this.visible,
   }) : super(key: key);
 
   final CoinViewData coin;
-  final bool visible;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final visible = ref.watch(visibleProvider);
     AsyncValue prices = ref.watch(coinPricesNotifierProvider);
 
     return prices.when(

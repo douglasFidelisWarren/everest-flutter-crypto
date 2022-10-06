@@ -27,7 +27,7 @@ class ModalBody extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 18.0),
+          padding: const EdgeInsets.only(top: 18.0),
           child: Text(
             CoreStrings.of(context)!.movementReceipt,
             style: appBarTextStyle,

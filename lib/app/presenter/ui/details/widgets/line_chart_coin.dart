@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../domain/entities/chart_config_entity.dart';
 import '../../../../domain/entities/coins_view_data.dart';
@@ -11,7 +11,7 @@ import '../../shared/styles.dart';
 
 final selectedProvider = StateProvider<int>((ref) => 5);
 
-class LineChartCoin extends HookConsumerWidget {
+class LineChartCoin extends ConsumerWidget {
   const LineChartCoin(this.coin, this.config, {Key? key}) : super(key: key);
   final CoinViewData coin;
   final ChartConfigViewData config;

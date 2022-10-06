@@ -1,6 +1,6 @@
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../app/presenter/controllers/providers/get_all_coins_provider.dart';
 import '../app/presenter/ui/available/view/available_page.dart';
@@ -9,7 +9,7 @@ import '../app/presenter/ui/portfolio/view/portfolio_page.dart';
 import '../app/presenter/ui/shared/assets.dart';
 import '../app/presenter/ui/shared/styles.dart';
 
-class Home extends StatefulHookConsumerWidget {
+class Home extends ConsumerStatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   static const route = '/';

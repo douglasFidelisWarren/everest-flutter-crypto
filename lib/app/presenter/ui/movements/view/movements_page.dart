@@ -1,6 +1,6 @@
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../domain/entities/exchange_entity.dart';
@@ -23,7 +23,7 @@ class MovementsPage extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 18.0, left: 10),
+            padding: const EdgeInsets.only(top: 18.0, left: 10),
             child: Text(
               CoreStrings.of(context)!.movements,
               style: mediumBlackTitle1,

@@ -1,7 +1,7 @@
 import 'package:decimal/decimal.dart';
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/conversion_provider.dart';
@@ -11,7 +11,7 @@ import '../../shared/styles.dart';
 import 'line_chart_coin.dart';
 import 'value_chart_row.dart';
 
-class BottonChartDetails extends HookConsumerWidget {
+class BottonChartDetails extends ConsumerWidget {
   const BottonChartDetails(
     this.coin,
     this.percent, {
@@ -111,7 +111,7 @@ class BottonChartDetails extends HookConsumerWidget {
             },
             child: Text(
               CoreStrings.of(context)!.converCoin,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: Colors.white),

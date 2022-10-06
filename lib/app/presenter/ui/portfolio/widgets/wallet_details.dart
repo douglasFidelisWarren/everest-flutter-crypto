@@ -1,31 +1,28 @@
 import 'package:decimal/decimal.dart';
-import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../l10n/core_strings.dart';
 import '../../../../domain/entities/coins_view_data.dart';
+import '../../../controllers/providers/visible_provider.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
-import 'visibility_button.dart';
 
 class WalletDetails extends ConsumerWidget {
   const WalletDetails({
     Key? key,
-    required this.visible,
-    required this.changeVisibility,
     required this.coins,
   }) : super(key: key);
 
-  final bool visible;
-  final Function changeVisibility;
-  final AsyncValue<List<CoinViewData>> coins;
+  final List<CoinViewData> coins;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Decimal valueTotal = Decimal.parse('0');
+    bool visible = ref.watch(visibleProvider);
+    Decimal totalValue = Decimal.parse('0');
 
-    for (var coin in coins.value!) {
-      valueTotal += coin.amountVsCurrency!;
+    for (var coin in coins) {
+      totalValue += coin.amountVsCurrency!;
     }
 
     return Padding(
@@ -37,18 +34,29 @@ class WalletDetails extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(CoreStrings.of(context)!.crypto, style: titleStyle),
-              VisibilityButton(changeVisibility, visible),
+              IconButton(
+                onPressed: () {
+                  ref.read(visibleProvider.state).state = !visible;
+                },
+                icon: Icon(
+                  visible ? Icons.visibility : Icons.visibility_off,
+                  color: colorBlackText,
+                  size: 28,
+                ),
+              ),
             ],
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Container(
+              key: const Key("hideValueContainer"),
               decoration: visibleDecoration(visible),
               child: AnimatedOpacity(
                 duration: const Duration(milliseconds: 200),
                 opacity: visible ? 1 : 0,
                 child: Text(
-                  number.format(valueTotal.toDouble()),
+                  key: const Key("totalValue"),
+                  number.format(totalValue.toDouble()),
                   style: totalStyle,
                   overflow: TextOverflow.ellipsis,
                 ),

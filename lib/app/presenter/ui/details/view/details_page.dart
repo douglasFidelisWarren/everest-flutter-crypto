@@ -1,6 +1,6 @@
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/chart_config_provider.dart';
@@ -10,7 +10,7 @@ import '../../shared/styles.dart';
 import '../widgets/botton_chart_details.dart';
 import '../widgets/line_chart_coin.dart';
 
-class DetailsPage extends HookConsumerWidget {
+class DetailsPage extends ConsumerWidget {
   const DetailsPage({Key? key}) : super(key: key);
 
   static const route = '/details';

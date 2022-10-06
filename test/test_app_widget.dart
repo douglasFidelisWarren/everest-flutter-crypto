@@ -1,15 +1,21 @@
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'core/app_routes.dart';
-import 'core/home.dart';
-import 'l10n/core_strings.dart';
-
-void main() {
-  runApp(
-    ProviderScope(
+class TestAppWidget extends StatelessWidget {
+  final Widget child;
+  const TestAppWidget({Key? key, required this.child}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return ProviderScope(
       child: MaterialApp(
+        home: Material(
+          child: MediaQuery(
+            data: const MediaQueryData(),
+            child: child,
+          ),
+        ),
         supportedLocales: CoreStrings.supportedLocales,
         localizationsDelegates: const [
           CoreStrings.delegate,
@@ -17,15 +23,7 @@ void main() {
           GlobalCupertinoLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
-        theme: ThemeData(
-            colorScheme: const ColorScheme.light(
-          primary: Colors.black,
-          secondary: Colors.black,
-        )),
-        debugShowCheckedModeBanner: false,
-        initialRoute: Home.route,
-        routes: appRoutes,
       ),
-    ),
-  );
+    );
+  }
 }
