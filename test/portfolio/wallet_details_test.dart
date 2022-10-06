@@ -9,16 +9,8 @@ import 'package:flutter_test/flutter_test.dart';
 import '../test_app_widget.dart';
 
 void main() {
-  // Future<void> loadPage(WidgetTester tester, Widget child) async {
-  //   await tester.pumpWidget(MaterialApp(
-  //     home: TestAppWidget(
-  //       child: child,
-  //     ),
-  //   ));
-  // }
-
   group(
-    "Portfolio page test",
+    "WalletDetails test",
     () {
       Future<void> loadPage(WidgetTester tester,
           {required List<CoinViewData> coins}) async {
