@@ -1,4 +1,5 @@
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
+import 'package:everest_crypto/app/presenter/ui/details/view/details_page.dart';
 import 'package:everest_crypto/app/presenter/ui/portfolio/widgets/coin_details.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/formater.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +54,21 @@ void main() {
               final coinSymbol =
                   tester.widget<Text>(find.byKey(const Key("coinSymbol")));
               expect(coinSymbol.data, coin.symbol.toUpperCase());
+            },
+          );
+        },
+      );
+      testWidgets(
+        "description2",
+        (WidgetTester tester) async {
+          mockNetworkImagesFor(
+            () async {
+              FakeRepo repo = FakeRepo();
+              CoinViewData coin = repo.getCoin();
+              await loadPage(tester, coin: coin);
+
+              await tester.tap(find.byKey(const Key("detailsPageAccess")));
+              expect(find.byType(DetailsPage), findsOneWidget);
             },
           );
         },
