@@ -15,6 +15,6 @@ final coinPricesUsecaseProvider = Provider((ref) {
 });
 
 final coinPricesNotifierProvider =
-    StateNotifierProvider<CoinPricesNotifier, AsyncValue<List<Decimal>>>((ref) {
+    StateNotifierProvider<CoinPricesNotifier, List<Decimal>>((ref) {
   return CoinPricesNotifier(ref.watch(coinPricesUsecaseProvider));
 });

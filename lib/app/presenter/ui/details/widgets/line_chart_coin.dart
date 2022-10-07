@@ -40,7 +40,7 @@ class LineChartCoin extends ConsumerWidget {
               .getCoinPrices(coinId: coin.id, vScurrency: "brl", days: period);
           ref
               .read(chartConfigProvider.notifier)
-              .getChartConfig(ref.watch(coinPricesNotifierProvider).value!);
+              .getChartConfig(ref.watch(coinPricesNotifierProvider));
           ref.watch(selectedProvider.state).state = period;
         },
       );

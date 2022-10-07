@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -10,17 +12,17 @@ import 'info_row.dart';
 class ModalBody extends StatelessWidget {
   const ModalBody({
     Key? key,
-    required this.docNumber,
-    required this.date,
     required this.exchange,
   }) : super(key: key);
 
-  final int docNumber;
-  final DateFormat date;
   final ExchangeEntity exchange;
 
   @override
   Widget build(BuildContext context) {
+    final date = DateFormat('dd/MM/yyyy HH:MM:ss');
+    Random rdm = Random();
+    int docNumber = rdm.nextInt(9999999);
+
     String fromCoinSymbol = exchange.fromCoin.symbol.toUpperCase();
     String toCoinSymbol = exchange.fromCoin.symbol.toUpperCase();
     return Column(

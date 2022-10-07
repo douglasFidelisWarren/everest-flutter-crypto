@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:decimal/decimal.dart';
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:everest_crypto/app/presenter/ui/portfolio/widgets/coin_details.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/formater.dart';
@@ -8,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
-import '../shared/fake_repo.dart';
-import '../test_app_widget.dart';
+import '../../shared/fake_repo.dart';
+import '../../test_app_widget.dart';
 
 void main() {
   group(
@@ -39,6 +36,10 @@ void main() {
               final coinName =
                   tester.widget<Text>(find.byKey(const Key("coinName")));
               expect(coinName.data, coin.name);
+
+              final coinSymbolTitle =
+                  tester.widget<Text>(find.byKey(const Key("coinSymbolTitle")));
+              expect(coinSymbolTitle.data, coin.symbol.toUpperCase());
 
               final coinAmountVsCurrency = tester
                   .widget<Text>(find.byKey(const Key("coinAmountVsCurrency")));

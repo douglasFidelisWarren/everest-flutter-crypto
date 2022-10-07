@@ -2,12 +2,14 @@ import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mocktail/mocktail.dart';
 
-class TestAppWidget extends StatelessWidget {
+class TestAppWidget extends ConsumerWidget {
   final Widget child;
+
   const TestAppWidget({Key? key, required this.child}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ProviderScope(
       child: MaterialApp(
         home: Material(

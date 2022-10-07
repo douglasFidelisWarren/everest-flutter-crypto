@@ -1,5 +1,7 @@
 import 'package:decimal/decimal.dart';
+import 'package:decimal/intl.dart';
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
+import 'package:everest_crypto/app/domain/entities/exchange_entity.dart';
 
 class FakeRepo {
   CoinViewData getCoin() {
@@ -14,5 +16,34 @@ class FakeRepo {
         amount: Decimal.parse("2"),
         amountVsCurrency: Decimal.parse("3"));
     return coin;
+  }
+
+  List<CoinViewData> getCoinList() {
+    List<CoinViewData> coinList = [];
+    for (var i = 0; i < 3; i++) {
+      coinList.add(getCoin());
+    }
+    return coinList;
+  }
+
+  ExchangeEntity getExchange() {
+    CoinViewData fromCoin = getCoin();
+    CoinViewData toCoin = getCoin();
+    Decimal amtConvert = Decimal.parse("1");
+    double valor =
+        fromCoin.currentPrice.toDouble() / toCoin.currentPrice.toDouble();
+    double amtReceive =
+        (amtConvert.toDouble() * fromCoin.currentPrice.toDouble()) /
+            toCoin.currentPrice.toDouble();
+
+    ExchangeEntity exchange = ExchangeEntity(
+      fromCoin: fromCoin,
+      toCoin: toCoin,
+      amtConvert: amtConvert,
+      amtReceive: Decimal.parse(amtReceive.toString()),
+      date: DateTime.now(),
+      valueExchange: Decimal.parse(valor.toString()),
+    );
+    return exchange;
   }
 }

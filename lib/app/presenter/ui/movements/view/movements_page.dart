@@ -1,7 +1,6 @@
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../domain/entities/exchange_entity.dart';
 import '../../../controllers/providers/conversion_provider.dart';
@@ -53,15 +52,11 @@ class MovementsPage extends ConsumerWidget {
                 itemCount: exchangeList.reversed.length,
                 itemBuilder: (context, index) {
                   ExchangeEntity exchange = exchangeList[index];
-                  final date = DateFormat('dd/MM/yyyy');
-                  final value =
-                      exchange.amtReceive * exchange.toCoin.currentPrice;
+
                   return Padding(
                     padding: const EdgeInsets.all(0),
                     child: MovementDetailsRow(
                       exchange: exchange,
-                      date: date,
-                      value: value,
                     ),
                   );
                 },

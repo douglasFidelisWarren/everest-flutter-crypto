@@ -21,14 +21,15 @@ class CoinDetails extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final visible = ref.watch(visibleProvider);
-    AsyncValue prices = ref.watch(coinPricesNotifierProvider);
+    final prices = ref.watch(coinPricesNotifierProvider);
     return MaterialButton(
+      key: const Key("detailsPageAccess"),
       onPressed: () {
         ref.read(selectedProvider.state).state = 5;
         ref
             .read(coinPricesNotifierProvider.notifier)
             .getCoinPrices(coinId: coin.id, vScurrency: "brl", days: 5);
-        ref.watch(chartConfigProvider.notifier).getChartConfig(prices.value);
+        ref.watch(chartConfigProvider.notifier).getChartConfig(prices);
         Navigator.of(context).pushNamed(DetailsPage.route, arguments: coin);
       },
       child: SizedBox(
@@ -48,7 +49,7 @@ class CoinDetails extends ConsumerWidget {
                       padding: const EdgeInsets.all(12.0),
                       child: Image(
                         key: const Key("coinImage"),
-                        image: NetworkImage(coin.image, scale: 4),
+                        image: NetworkImage(coin.image, scale: 5),
                       ),
                     ),
                     Column(
@@ -57,6 +58,7 @@ class CoinDetails extends ConsumerWidget {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * .25,
                           child: Text(coin.symbol.toUpperCase(),
+                              key: const Key("coinSymbolTitle"),
                               style: mediumBlackTitle,
                               overflow: TextOverflow.clip),
                         ),
