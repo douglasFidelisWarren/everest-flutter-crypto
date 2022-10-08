@@ -1,3 +1,4 @@
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../domain/entities/exchange_entity.dart';
@@ -25,8 +26,8 @@ class ReceiveRow extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Receber',
+              Text(
+                CoreStrings.of(context)!.receive,
                 style: subTitleStyleMediun,
               ),
               Text(

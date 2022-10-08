@@ -1,4 +1,5 @@
 import 'package:everest_crypto/app/domain/entities/exchange_entity.dart';
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -40,9 +41,9 @@ class ConfirmationButton extends ConsumerWidget {
         duration: const Duration(milliseconds: 1500),
         curve: Curves.easeOutCirc,
         child: ref.watch(animateProvider)
-            ? const Center(
+            ? Center(
                 child: Text(
-                  "Converter moeda",
+                  CoreStrings.of(context)!.converCoin,
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,

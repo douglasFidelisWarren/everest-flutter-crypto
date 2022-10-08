@@ -1,3 +1,4 @@
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -27,16 +28,17 @@ class ReviewPage extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const CustomAppBar('Revisar'),
+      appBar: CustomAppBar(CoreStrings.of(context)!.reviewTitle),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(
+          Padding(
+            padding: const EdgeInsets.only(
               left: 12,
               top: 30,
             ),
             child: Text(
-              "Revise os dados da sua conversão",
+              CoreStrings.of(context)!.reviewAlert,
               style: mediumBlackTitle1,
             ),
           ),
@@ -56,10 +58,12 @@ class ReviewPage extends ConsumerWidget {
           const SizedBox(
             height: 20,
           ),
-          ConfirmationButton(
-            currentExchange: currentExchange,
-            sizeW: sizeW,
-            sizeH: sizeH,
+          Center(
+            child: ConfirmationButton(
+              currentExchange: currentExchange,
+              sizeW: sizeW,
+              sizeH: sizeH,
+            ),
           ),
           const SizedBox(height: 30)
         ],

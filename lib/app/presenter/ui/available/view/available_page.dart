@@ -1,3 +1,4 @@
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,7 +18,7 @@ class AvailablePage extends ConsumerWidget {
     final coins = ref.watch(getAllcoinsNotifierProvider);
 
     return Scaffold(
-      appBar: const CustomAppBar('Criptos Disponíveis'),
+      appBar: CustomAppBar(CoreStrings.of(context)!.availableCoins),
       body: SafeArea(
         child: Column(
           children: [

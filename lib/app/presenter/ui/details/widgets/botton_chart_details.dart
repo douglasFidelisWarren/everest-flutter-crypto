@@ -1,4 +1,5 @@
 import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -32,7 +33,7 @@ class BottonChartDetails extends HookConsumerWidget {
             thickness: 1.5,
           ),
           ValueRowChart(
-              text: "Preço atual",
+              text: CoreStrings.of(context)!.currentPrice,
               value: number.format(coin.currentPrice.toDouble())),
           const Divider(
             color: colorGrayDivider,
@@ -43,7 +44,7 @@ class BottonChartDetails extends HookConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Variação em ${ref.watch(selectedProvider)} dias",
+                "${CoreStrings.of(context)!.percentVariation} ${ref.watch(selectedProvider)}D",
                 style: subTitleStyleMediun,
               ),
               Text(
@@ -66,8 +67,8 @@ class BottonChartDetails extends HookConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                "Quantidade",
+              Text(
+                CoreStrings.of(context)!.detailsAmount,
                 style: subTitleStyleMediun,
               ),
               Text(
@@ -81,7 +82,7 @@ class BottonChartDetails extends HookConsumerWidget {
             thickness: 1.5,
           ),
           ValueRowChart(
-              text: "Valor",
+              text: CoreStrings.of(context)!.value,
               value: number.format(coin.amountVsCurrency!.toDouble())),
           const Divider(
             color: colorGrayDivider,
@@ -108,8 +109,8 @@ class BottonChartDetails extends HookConsumerWidget {
               Navigator.of(context)
                   .pushNamed(ConversionPage.route, arguments: coin);
             },
-            child: const Text(
-              "Converter moeda",
+            child: Text(
+              CoreStrings.of(context)!.converCoin,
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

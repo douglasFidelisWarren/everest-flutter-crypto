@@ -1,3 +1,4 @@
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/home.dart';
@@ -41,12 +42,12 @@ class SuccessPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 15),
-          const Text(
-            'Conversão efetuada',
+          Text(
+            CoreStrings.of(context)!.convertConfirmTitle,
             style: totalStyle,
           ),
-          const Text(
-            'Conversão de moeda efetuada com sucesso!',
+          Text(
+            CoreStrings.of(context)!.convertConfirmSubtitle,
             style: smallGraySubTitle,
           ),
         ]),

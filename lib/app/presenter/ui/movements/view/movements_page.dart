@@ -1,3 +1,4 @@
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -21,10 +22,10 @@ class MovementsPage extends ConsumerWidget {
           body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 18.0, left: 10),
             child: Text(
-              'Movimentações',
+              CoreStrings.of(context)!.movements,
               style: mediumBlackTitle1,
             ),
           ),
@@ -34,13 +35,13 @@ class MovementsPage extends ConsumerWidget {
               replacement: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Ops...',
                       style: mediumBlackTitle1,
                     ),
                     Text(
-                      'Você ainda não pussui nenhuma movimentação...',
+                      CoreStrings.of(context)!.noMovements,
                       style: smallGraySubTitle,
                     ),
                   ],

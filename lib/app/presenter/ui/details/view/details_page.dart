@@ -1,3 +1,4 @@
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -22,7 +23,7 @@ class DetailsPage extends HookConsumerWidget {
     final coin = ModalRoute.of(context)!.settings.arguments as CoinViewData;
     double latest = double.parse(coin.currentPrice.toString());
     return Scaffold(
-      appBar: const CustomAppBar("Detalhes"),
+      appBar: CustomAppBar(CoreStrings.of(context)!.details),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(children: [

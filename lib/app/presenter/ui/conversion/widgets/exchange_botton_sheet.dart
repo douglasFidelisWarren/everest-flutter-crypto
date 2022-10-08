@@ -1,4 +1,5 @@
 import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -43,8 +44,8 @@ class ExchangeBottonSheet extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Total estimado',
+                  Text(
+                    CoreStrings.of(context)!.estimatedTotal,
                     style: smallGraySubTitle,
                   ),
                   Text(

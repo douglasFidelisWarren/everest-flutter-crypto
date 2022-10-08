@@ -1,4 +1,5 @@
 import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -46,7 +47,7 @@ class ConversionPage extends ConsumerWidget {
         double.parse(toCoin.currentPrice.toString());
 
     return Scaffold(
-      appBar: const CustomAppBar('Converter'),
+      appBar: CustomAppBar(CoreStrings.of(context)!.convertTitle),
       body: Column(children: [
         Expanded(
           child: SingleChildScrollView(
@@ -58,7 +59,8 @@ class ConversionPage extends ConsumerWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Saldo disponível', style: smallGraySubTitle),
+                      Text(CoreStrings.of(context)!.balanceAvailable,
+                          style: smallGraySubTitle),
                       Text(
                         "${fromCoin.amount.toString()} ${fromCoin.symbol.toUpperCase()}",
                         style: mediunConvertBlack,
@@ -70,8 +72,8 @@ class ConversionPage extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.all(26),
                 child: Column(children: [
-                  const Text(
-                    'Quanto você gostaria de converter?',
+                  Text(
+                    CoreStrings.of(context)!.convertQuery,
                     style: mediumBlackTitle1,
                   ),
                   const SizedBox(height: 30),

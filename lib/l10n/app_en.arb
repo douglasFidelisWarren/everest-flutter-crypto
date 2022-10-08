@@ -1,0 +1,176 @@
+{
+"crypto" : "Crypto",
+"@crypto": {
+    "description": "Coin wallet title"
+  },
+
+"walletTotalAmount" : "Total value of cryptos",
+"@walletTotalAmount": {
+    "description": "Total value of cryptos user"
+  },
+
+"portfolio" : "Portfolio",
+"@portfolio": {
+    "description": "Portfolio page title"
+  },
+
+"purchase" : "Purchase",
+"@purchase": {
+    "description": "Puchase page title"
+  },
+
+"movements" : "Movements",
+"@movements": {
+    "description": "Movements page title"
+  },
+
+"availableCoins" : "Available crypto",
+"@availableCoins": {
+    "description": ""
+  },
+
+"noMovements" : "You don't have any moves yet...",
+"@noMovements": {
+    "description": "Don't have any moves message"
+  },
+
+"details" : "Details",
+"@details": {
+    "description": "Details page tilte"
+  },
+  
+"currentPrice" : "Current Price",
+"@currentPrice": {
+    "description": "Details page current price"
+  },
+
+"percentVariation" : "Variation in ",
+"@percentVariation": {
+    "description": "Details page variation in seted days"
+  },
+
+"days" : "days",
+"@days": {
+    "description": "Details page variation in seted days"
+  },
+
+"detailsAmount" : "Amount",
+"@detailsAmount": {
+    "description": "Details page amount of coin user"
+  },
+
+"value" : "Value",
+"@value": {
+    "description": ""
+  },
+
+"converCoin" : "Convert crypto",
+"@converCoin": {
+    "description": "Details page total value of coin"
+  },
+
+"convertTitle" : "Convert",
+"@convertTitle": {
+    "description": "Convert page title"
+  },
+
+"balanceAvailable" : "Balance available",
+"@balanceAvailable": {
+    "description": "Convert page balance available of seted coin and error message"
+  },
+
+"insufficient" : "insufficient",
+"@insufficient": {
+    "description": "Convert page error message"
+  },
+
+"convertQuery" : "How much would you like to convert?",
+"@convertQuery": {
+    "description": "Convert page query"
+  },
+
+"estimatedTotal" : "Estimated total",
+"@estimatedTotal": {
+    "description": "Convert page botton sheet"
+  },
+
+"reviewTitle" : "Review",
+"@reviewTitle": {
+    "description": "Review page title"
+  },
+
+"reviewAlert" : "Review your conversion",
+"@reviewAlert": {
+    "description": "Review page message"
+  },
+
+"convert" : "Convert",
+"@convert": {
+    "description": "Review page convert seted amount"
+  },
+
+"receive" : "Receive",
+"@receive": {
+    "description": "Review page convert receive amount "
+  },
+
+"exchange" : "Exchange",
+"@exchange": {
+    "description": "Review page seted exchange"
+  },
+
+"convertConfirmTitle" : "Successful",
+"@convertConfirmTitle": {
+    "description": "Successful title message from convert"
+  },
+
+"convertConfirmSubtitle" : "Currency conversion successful!",
+"@convertConfirmSubtitle": {
+    "description": "Successful subtitle message from convert"
+  },
+
+"movementsTitle" : "Movements",
+"@movementsTitle": {
+    "description": "Movements page tilte"
+  },
+
+"movementReceipt" : "Movement receipt",
+"@movementReceipt": {
+    "description": "Bottom modal movement receipt title"
+  },
+
+"documentNumber" : "Document number",
+"@documentNumber": {
+    "description": "Bottom modal movement receipt document number"
+  },
+
+"date" : "Date",
+"@date": {
+    "description": "Bottom modal movement receipt date"
+  },
+
+"debtCoin" : "Debt",
+"@debtCoin": {
+    "description": "Bottom modal movement receipt debt coin"
+  },
+
+"creditCoin" : "Credit",
+"@creditCoin": {
+    "description": "Bottom modal movement receipt credit coin"
+  },
+
+"movementValue" : "Movement value",
+"@movementValue": {
+    "description": "Bottom modal movement receipt value of exchange"
+  },
+
+"rateValue" : "Rate value",
+"@rateValue": {
+    "description": "Bottom modal movement receipt value of exchange rate"
+  },
+
+"receiptShare" : "Receipt share",
+"@receiptShare": {
+    "description": "Bottom modal movement receipt button"
+  }
+}
