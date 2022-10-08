@@ -19,6 +19,7 @@ class MovementDetailsRow extends StatelessWidget {
     String fromCoinSymbol = exchange.fromCoin.symbol.toUpperCase();
     String toCoinSymbol = exchange.fromCoin.symbol.toUpperCase();
     return MaterialButton(
+      key: const Key("showModalAccess"),
       onPressed: () => showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(

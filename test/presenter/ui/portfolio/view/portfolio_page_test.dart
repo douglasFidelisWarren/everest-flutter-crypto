@@ -4,8 +4,8 @@ import 'package:everest_crypto/app/presenter/ui/portfolio/widgets/page_body.dart
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
-import '../../shared/fake_repo.dart';
-import '../../test_app_widget.dart';
+import '../../../../helpers/fake_repo.dart';
+import '../../../../helpers/test_app_widget.dart';
 
 void main() {
   Future<void> loadPage(WidgetTester tester,

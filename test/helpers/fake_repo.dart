@@ -46,4 +46,12 @@ class FakeRepo {
     );
     return exchange;
   }
+
+  List<ExchangeEntity> getExchangeList() {
+    List<ExchangeEntity> exchangeList = [];
+    for (var i = 0; i < 3; i++) {
+      exchangeList.add(getExchange());
+    }
+    return exchangeList;
+  }
 }

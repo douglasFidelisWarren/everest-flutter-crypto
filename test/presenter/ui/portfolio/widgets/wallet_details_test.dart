@@ -6,7 +6,7 @@ import 'package:everest_crypto/app/presenter/ui/shared/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../test_app_widget.dart';
+import '../../../../helpers/test_app_widget.dart';
 
 void main() {
   group(

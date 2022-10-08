@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../domain/entities/exchange_entity.dart';
 import '../../../controllers/providers/conversion_provider.dart';
 import '../../shared/styles.dart';
+import '../widgets/exchange_list.dart';
 import '../widgets/movements_details_row.dart';
 
 class MovementsPage extends ConsumerWidget {
@@ -37,30 +38,18 @@ class MovementsPage extends ConsumerWidget {
                   children: [
                     const Text(
                       'Ops...',
+                      key: Key('notExchangesTitle'),
                       style: mediumBlackTitle1,
                     ),
                     Text(
                       CoreStrings.of(context)!.noMovements,
+                      key: const Key('notExchangesSubTitle'),
                       style: smallGraySubTitle,
                     ),
                   ],
                 ),
               ),
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: exchangeList.reversed.length,
-                itemBuilder: (context, index) {
-                  ExchangeEntity exchange = exchangeList[index];
-
-                  return Padding(
-                    padding: const EdgeInsets.all(0),
-                    child: MovementDetailsRow(
-                      exchange: exchange,
-                    ),
-                  );
-                },
-              ),
+              child: ExchangeList(exchangeList: exchangeList),
             ),
           ),
         ],
