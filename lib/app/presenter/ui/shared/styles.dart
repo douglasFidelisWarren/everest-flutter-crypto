@@ -6,20 +6,6 @@ BoxDecoration visibleDecoration(bool visible) {
       borderRadius: BorderRadius.circular(5));
 }
 
-Map<int, Color> color = const {
-  50: Color.fromRGBO(224, 43, 87, .1),
-  100: Color.fromRGBO(224, 43, 87, .2),
-  200: Color.fromRGBO(224, 43, 87, .3),
-  300: Color.fromRGBO(224, 43, 87, .4),
-  400: Color.fromRGBO(224, 43, 87, .5),
-  500: Color.fromRGBO(224, 43, 87, .6),
-  600: Color.fromRGBO(224, 43, 87, .7),
-  700: Color.fromRGBO(224, 43, 87, .8),
-  800: Color.fromRGBO(224, 43, 87, .9),
-  900: Color.fromRGBO(224, 43, 87, 1),
-};
-MaterialColor primaryWarren = MaterialColor(0xFFE02B57, color);
-
 const Color colorBlackText = Color.fromRGBO(47, 47, 51, 1);
 const Color colorGrayBackgrond = Color.fromARGB(255, 242, 242, 246);
 const Color colorGrayDivider = Color.fromRGBO(227, 228, 235, 1);
