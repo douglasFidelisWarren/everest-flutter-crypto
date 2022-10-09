@@ -9,6 +9,28 @@ import '../../../controllers/providers/conversion_provider.dart';
 import '../../review/view/review_page.dart';
 import '../../shared/styles.dart';
 
+final exchangeProvider = StateProvider<ExchangeEntity>(
+  (ref) => ExchangeEntity(
+      fromCoin: CoinViewData(
+          id: "id",
+          name: "name",
+          symbol: "symbol",
+          image: "image",
+          currentPrice: Decimal.parse("0"),
+          percentage24h: 0),
+      toCoin: CoinViewData(
+          id: "id",
+          name: "name",
+          symbol: "symbol",
+          image: "image",
+          currentPrice: Decimal.parse("0"),
+          percentage24h: 0),
+      amtConvert: Decimal.parse("0"),
+      amtReceive: Decimal.parse("0"),
+      date: DateTime.now(),
+      valueExchange: Decimal.parse("0")),
+);
+
 class ExchangeBottonSheet extends ConsumerWidget {
   const ExchangeBottonSheet({
     Key? key,
@@ -61,14 +83,15 @@ class ExchangeBottonSheet extends ConsumerWidget {
                 onPressed: valid
                     ? () {
                         ref.read(animateProvider.state).state = true;
-                        ExchangeEntity currentExchange = ref
+                        ref.read(exchangeProvider.state).state = ref
                             .watch(convertCoinProvider)
                             .convertCoin(
                                 fromCoin: fromCoin,
                                 toCoin: toCoin,
                                 amtConvert: textFormValue);
-                        Navigator.of(context).pushNamed(ReviewPage.route,
-                            arguments: currentExchange);
+                        Navigator.of(context).pushNamed(
+                          ReviewPage.route,
+                        );
                       }
                     : null,
                 child: CircleAvatar(
