@@ -40,7 +40,7 @@ class _HomeState extends ConsumerState<Home> {
 
   @override
   Widget build(BuildContext context) {
-    List<CoinViewData> getCoins() {
+    List<CoinViewData> getWalletCoins() {
       List<CoinViewData> coins = [];
       List<CoinViewData> coinsProvider =
           ref.watch(coinsWalletProvider).value ?? [];
@@ -50,14 +50,26 @@ class _HomeState extends ConsumerState<Home> {
       return coins;
     }
 
-    final coins = getCoins();
+    List<CoinViewData> getAvailableCoins() {
+      List<CoinViewData> coins = [];
+      List<CoinViewData> coinsProvider =
+          ref.watch(getAllcoinsNotifierProvider).value ?? [];
+      for (var coin in coinsProvider) {
+        coins.add(coin);
+      }
+      return coins;
+    }
+
+    final walletCoins = getWalletCoins();
+    final availableCoins = getAvailableCoins();
+
     return Scaffold(
       body: PageView(
           onPageChanged: setCurrentPage,
           controller: pageController,
           children: [
-            PortfolioPage(coins: coins),
-            const AvailablePage(),
+            PortfolioPage(coins: walletCoins),
+            AvailablePage(coins: availableCoins),
             const MovementsPage(),
           ]),
       bottomNavigationBar: BottomNavigationBar(

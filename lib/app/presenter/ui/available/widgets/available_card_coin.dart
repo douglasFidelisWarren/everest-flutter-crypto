@@ -5,17 +5,15 @@ import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 
 class AvailableCardCoin extends StatelessWidget {
-  const AvailableCardCoin({
-    Key? key,
-    required this.coin,
-    required this.percentChange,
-  }) : super(key: key);
+  const AvailableCardCoin({Key? key, required this.coin}) : super(key: key);
 
   final CoinViewData coin;
-  final double percentChange;
 
   @override
   Widget build(BuildContext context) {
+    double percentChange = double.parse(
+      (coin.percentage24h).toStringAsFixed(4),
+    );
     return MaterialButton(
       onPressed: () {},
       child: Column(

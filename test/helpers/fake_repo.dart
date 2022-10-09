@@ -1,5 +1,4 @@
 import 'package:decimal/decimal.dart';
-import 'package:decimal/intl.dart';
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:everest_crypto/app/domain/entities/exchange_entity.dart';
 
@@ -19,10 +18,29 @@ class FakeRepo {
   }
 
   List<CoinViewData> getCoinList() {
-    List<CoinViewData> coinList = [];
-    for (var i = 0; i < 3; i++) {
-      coinList.add(getCoin());
-    }
+    List<CoinViewData> coinList = [
+      CoinViewData(
+          currentPrice: Decimal.parse("100"),
+          id: "bitcoin",
+          image:
+              "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
+          name: "bitcoin",
+          percentage24h: 1,
+          symbol: "btc",
+          amount: Decimal.parse("2"),
+          amountVsCurrency: Decimal.parse("3")),
+      CoinViewData(
+          currentPrice: Decimal.parse("100"),
+          id: "bitcoin",
+          image:
+              "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
+          name: "bitcoin",
+          percentage24h: -1,
+          symbol: "btc",
+          amount: Decimal.parse("2"),
+          amountVsCurrency: Decimal.parse("3"))
+    ];
+
     return coinList;
   }
 
