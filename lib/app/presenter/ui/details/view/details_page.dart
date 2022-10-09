@@ -1,3 +1,4 @@
+import 'package:everest_crypto/app/presenter/ui/portfolio/widgets/coin_details.dart';
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

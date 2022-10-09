@@ -1,5 +1,4 @@
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
-import 'package:everest_crypto/app/presenter/ui/details/view/details_page.dart';
 import 'package:everest_crypto/app/presenter/ui/portfolio/widgets/coin_details.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/formater.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +12,14 @@ void main() {
   group(
     "CoinDetails test",
     () {
-      Future<void> loadPage(WidgetTester tester,
-          {required CoinViewData coin}) async {
+      Future<void> loadPage(
+        WidgetTester tester, {
+        required CoinViewData coin,
+      }) async {
         var coinDetails = TestAppWidget(
-          child: CoinDetails(coin: coin),
+          child: CoinDetails(
+            coin: coin,
+          ),
         );
         await tester.pumpWidget(coinDetails);
       }
@@ -32,7 +35,7 @@ void main() {
 
               final coinImage =
                   tester.widget<Image>(find.byKey(const Key("coinImage")));
-              expect(coinImage.image, NetworkImage(coin.image, scale: 4.0));
+              expect(coinImage.image, NetworkImage(coin.image, scale: 5.0));
 
               final coinName =
                   tester.widget<Text>(find.byKey(const Key("coinName")));
@@ -66,9 +69,9 @@ void main() {
               FakeRepo repo = FakeRepo();
               CoinViewData coin = repo.getCoin();
               await loadPage(tester, coin: coin);
-
-              await tester.tap(find.byKey(const Key("detailsPageAccess")));
-              expect(find.byType(DetailsPage), findsOneWidget);
+              final teste =
+                  tester.widget<MaterialButton>(find.byType(MaterialButton));
+              expect(find.byWidget(teste), findsOneWidget);
             },
           );
         },

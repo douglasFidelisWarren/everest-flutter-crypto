@@ -7,10 +7,10 @@ class FakeRepo {
   CoinViewData getCoin() {
     CoinViewData coin = CoinViewData(
         currentPrice: Decimal.parse("100"),
-        id: "btc",
+        id: "bitcoin",
         image:
             "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
-        name: "btc",
+        name: "bitcoin",
         percentage24h: 0,
         symbol: "btc",
         amount: Decimal.parse("2"),

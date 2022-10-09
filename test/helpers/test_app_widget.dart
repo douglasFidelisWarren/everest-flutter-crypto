@@ -1,8 +1,9 @@
+import 'package:everest_crypto/core/app_routes.dart';
+import 'package:everest_crypto/core/home.dart';
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mocktail/mocktail.dart';
 
 class TestAppWidget extends ConsumerWidget {
   final Widget child;

@@ -1,3 +1,4 @@
+import 'package:everest_crypto/app/presenter/ui/details/view/details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

@@ -30,7 +30,7 @@ class CoinDetails extends ConsumerWidget {
             .read(coinPricesNotifierProvider.notifier)
             .getCoinPrices(coinId: coin.id, vScurrency: "brl", days: 5);
         ref.watch(chartConfigProvider.notifier).getChartConfig(prices);
-        Navigator.of(context).pushNamed(DetailsPage.route, arguments: coin);
+        Navigator.pushNamed(context, DetailsPage.route, arguments: coin);
       },
       child: SizedBox(
         child: SingleChildScrollView(

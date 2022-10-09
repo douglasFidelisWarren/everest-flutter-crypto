@@ -27,7 +27,7 @@ void main() {
         await loadPage(tester, coinList: coinList);
         await tester.pumpAndSettle();
 
-        expect(find.byType(CoinDetails), findsOneWidget);
+        expect(find.byType(CoinDetails), findsWidgets);
       },
     );
   });
