@@ -24,7 +24,7 @@ class ModalBody extends StatelessWidget {
     int docNumber = rdm.nextInt(9999999);
 
     String fromCoinSymbol = exchange.fromCoin.symbol.toUpperCase();
-    String toCoinSymbol = exchange.fromCoin.symbol.toUpperCase();
+    String toCoinSymbol = exchange.toCoin.symbol.toUpperCase();
     return SingleChildScrollView(
       child: SizedBox(
         child: Column(
