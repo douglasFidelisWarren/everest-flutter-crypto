@@ -33,7 +33,7 @@ void main() {
   test('WHEN getAllTransactions is requested THEN returns 200', (() async {
     mockGetResponse().thenAnswer((_) async => sucess);
     final getCoinsWallet = await genckoEndpoints.getCoinsWallet({}, "");
-    final getPrices = await genckoEndpoints.getPrices("", "", 0);
+    final getPrices = await genckoEndpoints.getCoinPrices("", "", 0);
     final getCoinConverction =
         await genckoEndpoints.getCoinConverction(coinId: "", vScurrency: "");
     expect(getCoinsWallet.statusCode, equals(200));
