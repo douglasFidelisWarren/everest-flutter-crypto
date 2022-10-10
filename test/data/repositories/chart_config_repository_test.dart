@@ -20,8 +20,11 @@ void main() {
     max = chartConfigRepositoryImp.getChartConfig(repo.getPrices()).max;
   });
 
-  test("description", () {
-    final c = chartConfigRepositoryImp.getChartConfig(repo.getPrices());
-    expect(c.max, max);
+  test("""WHEN getChartConfig is requested by ChartConfigRepositoryImp 
+      THEN getChartConfig from GetChartConfigDatasource return ChartConfigViewData """,
+      () {
+    final chartConfig =
+        chartConfigRepositoryImp.getChartConfig(repo.getPrices());
+    expect(chartConfig.max, max);
   });
 }

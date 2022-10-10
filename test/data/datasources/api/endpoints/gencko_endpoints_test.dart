@@ -10,14 +10,14 @@ import '../../../../helpers/api_factory.dart';
 class DioMock extends Mock implements Dio {}
 
 void main() {
-  late Response<Map<String, dynamic>> sucess;
+  late Response<List<Map<String, dynamic>>> sucess;
   late DioMock dioMock;
   late GenckoEndpoints genckoEndpoints;
 
   When mockGetResponse() => when(
       () => dioMock.get(any(), queryParameters: any(named: 'queryParameters')));
 
-  mockResponse(Map<String, dynamic> factory, int statusCode) => Response(
+  mockResponse(List<Map<String, dynamic>> factory, int statusCode) => Response(
       data: factory,
       statusCode: statusCode,
       requestOptions: RequestOptions(path: faker.internet.httpUrl()));

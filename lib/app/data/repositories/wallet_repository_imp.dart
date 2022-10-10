@@ -13,7 +13,7 @@ class WalletRepositoryImp implements IWalletRepository {
   );
 
   @override
-  Future<GetAllCoinsResponse> getWallet(
+  Future<GetAllCoinsResponse> getCoinsWallet(
       Map<String, Decimal> userCoin, String vsCurrency) async {
     final result = await genkcoEndpoint.getCoinsWallet(userCoin, vsCurrency);
 

@@ -17,7 +17,7 @@ class GetWalletUsecaseImp implements IGetWalletUsecase {
   @override
   Future<List<CoinViewData>> getCoinsWallet(
       Map<String, Decimal> userCoin, String vsCurrency) async {
-    final response = await _repository.getWallet(userCoin, vsCurrency);
+    final response = await _repository.getCoinsWallet(userCoin, vsCurrency);
     List<CoinViewData> coins = response.toViewData();
     List<CoinViewData> coinsWithAmount = [];
     for (var coin in coins) {
