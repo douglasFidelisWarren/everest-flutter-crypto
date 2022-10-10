@@ -13,14 +13,6 @@ void main() {
   group(
     "WalletDetails test",
     () {
-      Future<void> loadPage(WidgetTester tester,
-          {required List<CoinViewData> coins}) async {
-        var walletDetails = TestAppWidget(
-          child: WalletDetails(coins: coins),
-        );
-        await tester.pumpWidget(walletDetails);
-      }
-
       testWidgets(
         """WHEN Portfolio page has loaded, 
         THEN Text data with key:"totalValue" is equals the sum of the coins in the wallet """,
@@ -43,7 +35,7 @@ void main() {
           for (var coin in coins) {
             totalValue += coin.amountVsCurrency!;
           }
-          await loadPage(tester, coins: coins);
+          await loadPage(tester, WalletDetails(coins: coins));
           final totalWallet =
               tester.widget<Text>(find.byKey(const Key("totalValue")));
           expect(totalWallet.data, number.format(totalValue.toDouble()));
@@ -53,7 +45,7 @@ void main() {
       testWidgets("""WHEN the visibility icon is pressed, 
           THEN the icon is equal to visibility_off""",
           (WidgetTester tester) async {
-        await loadPage(tester, coins: []);
+        await loadPage(tester, const WalletDetails(coins: []));
         expect(find.byIcon(Icons.visibility), findsOneWidget);
         await tester.tap(find.byIcon(Icons.visibility));
         await tester.pump();
@@ -64,7 +56,7 @@ void main() {
       testWidgets("""WHEN the visibility icon is pressed, 
           THEN the Container with key: "hideValueContainer" color is equal to colorHideOn""",
           (WidgetTester tester) async {
-        await loadPage(tester, coins: []);
+        await loadPage(tester, const WalletDetails(coins: []));
         await tester.tap(find.byIcon(Icons.visibility));
         await tester.pump();
         final hideValue = tester

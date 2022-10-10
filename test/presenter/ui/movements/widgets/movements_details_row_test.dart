@@ -12,20 +12,12 @@ void main() {
   group(
     "Movements details row test",
     () {
-      Future<void> loadPage(WidgetTester tester,
-          {required ExchangeEntity exchange}) async {
-        var movementsDetailsRow = TestAppWidget(
-          child: MovementDetailsRow(exchange: exchange),
-        );
-        await tester.pumpWidget(movementsDetailsRow);
-      }
-
       testWidgets(
         "WHEN crypto datails is loaded, THEN crypto infos is equal the info from api crypto",
         (WidgetTester tester) async {
           FakeRepo repo = FakeRepo();
           ExchangeEntity exchange = repo.getExchange();
-          await loadPage(tester, exchange: exchange);
+          await loadPage(tester, MovementDetailsRow(exchange: exchange));
           final value = exchange.amtReceive * exchange.toCoin.currentPrice;
 
           final exchangeAmount =
@@ -53,7 +45,7 @@ void main() {
         (WidgetTester tester) async {
           FakeRepo repo = FakeRepo();
           ExchangeEntity exchange = repo.getExchange();
-          await loadPage(tester, exchange: exchange);
+          await loadPage(tester, MovementDetailsRow(exchange: exchange));
           await tester.tap(find.byKey(const Key("showModalAccess")));
           await tester.pumpAndSettle();
           expect(find.byType(ModalBody), findsOneWidget);

@@ -7,20 +7,12 @@ import '../../../../helpers/fake_repo.dart';
 import '../../../../helpers/test_app_widget.dart';
 
 void main() {
-  Future<void> loadPage(WidgetTester tester,
-      {required List<ExchangeEntity> exchangeList}) async {
-    var exchangeListWidget = TestAppWidget(
-      child: ExchangeList(exchangeList: exchangeList),
-    );
-    await tester.pumpWidget(exchangeListWidget);
-  }
-
   testWidgets(
     "WHEN the exchange list is called THEN displays the list of exchanges done",
     (WidgetTester tester) async {
       FakeRepo repo = FakeRepo();
       List<ExchangeEntity> exchangeList = repo.getExchangeList();
-      await loadPage(tester, exchangeList: exchangeList);
+      await loadPage(tester, ExchangeList(exchangeList: exchangeList));
       await tester.pumpAndSettle();
       expect(find.byType(MovementDetailsRow), findsWidgets);
     },

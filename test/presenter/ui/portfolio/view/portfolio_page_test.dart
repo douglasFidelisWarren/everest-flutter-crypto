@@ -8,16 +8,6 @@ import '../../../../helpers/fake_repo.dart';
 import '../../../../helpers/test_app_widget.dart';
 
 void main() {
-  Future<void> loadPage(WidgetTester tester,
-      {required List<CoinViewData> coinList}) async {
-    var portfolioPage = TestAppWidget(
-      child: PortfolioPage(
-        coins: coinList,
-      ),
-    );
-    await tester.pumpWidget(portfolioPage);
-  }
-
   testWidgets("""WHEN the portfolio page loads, 
          THEN display the  page body with the  user crypto list """,
       (WidgetTester tester) async {
@@ -25,7 +15,11 @@ void main() {
       () async {
         FakeRepo repo = FakeRepo();
         List<CoinViewData> coinList = [repo.getCoin()];
-        await loadPage(tester, coinList: coinList);
+        await loadPage(
+            tester,
+            PortfolioPage(
+              coins: coinList,
+            ));
         await tester.pumpAndSettle();
         expect(find.byType(PageBody), findsOneWidget);
       },

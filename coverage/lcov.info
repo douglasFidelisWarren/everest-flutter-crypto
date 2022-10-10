@@ -4,12 +4,12 @@ LF:1
 LH:1
 end_of_record
 SF:lib\app\domain\entities\coins_view_data.dart
-DA:12,12
+DA:12,11
 LF:1
 LH:1
 end_of_record
 SF:lib\app\domain\entities\exchange_entity.dart
-DA:11,5
+DA:11,4
 LF:1
 LH:1
 end_of_record
@@ -1060,7 +1060,7 @@ LF:46
 LH:38
 end_of_record
 SF:lib\app\presenter\ui\portfolio\widgets\wallet_details.dart
-DA:12,3
+DA:12,4
 DA:15,3
 DA:19,3
 DA:21,6

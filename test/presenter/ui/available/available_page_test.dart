@@ -8,16 +8,6 @@ import '../../../helpers/fake_repo.dart';
 import '../../../helpers/test_app_widget.dart';
 
 void main() {
-  Future<void> loadPage(WidgetTester tester,
-      {required List<CoinViewData> coinList}) async {
-    var availablePage = TestAppWidget(
-      child: AvailablePage(
-        coins: coinList,
-      ),
-    );
-    await tester.pumpWidget(availablePage);
-  }
-
   testWidgets(
       "WHEN the available page loads, THEN display the available coins ",
       (WidgetTester tester) async {
@@ -25,7 +15,7 @@ void main() {
       () async {
         FakeRepo repo = FakeRepo();
         List<CoinViewData> coinList = repo.getCoinList();
-        await loadPage(tester, coinList: coinList);
+        await loadPage(tester, AvailablePage(coins: coinList));
         await tester.pumpAndSettle();
 
         expect(find.byType(AvailableCardCoin), findsWidgets);
