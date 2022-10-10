@@ -5,12 +5,12 @@ import '../../../domain/entities/coins_view_data.dart';
 
 final detailCoinProvider = StateProvider(
   (ref) => CoinViewData(
-      amount: Decimal.parse("0"),
-      amountVsCurrency: Decimal.parse("0"),
+      amount: 0,
+      amountVsCurrency: 0,
       id: "id",
       name: "name",
       symbol: "symbol",
       image: "image",
-      currentPrice: Decimal.parse("0"),
+      currentPrice: 0,
       percentage24h: 0),
 );

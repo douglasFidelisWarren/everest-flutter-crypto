@@ -47,7 +47,7 @@ class ApiFactory {
       };
   static List<Map<String, dynamic>> getCoinsWallet() => [
         {
-          "id": faker.lorem.word(),
+          "id": faker.guid.guid(),
           "symbol": faker.lorem.word(),
           "name": faker.lorem.word(),
           "image": faker.internet.httpUrl(),
@@ -71,7 +71,7 @@ class ApiFactory {
           "atl": faker.randomGenerator.decimal(),
           "atl_change_percentage": faker.randomGenerator.decimal(),
           "atl_date": faker.date.toString(),
-          "roi": null,
+          "roi": faker.currency.random.decimal(scale: 15, min: 1),
           "last_updated": faker.date.toString(),
         }
       ];

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -57,16 +58,17 @@ class ModalBody extends StatelessWidget {
             ),
             InfoRow(
               description: CoreStrings.of(context)!.movementValue,
-              value: number.format(
-                  (exchange.amtConvert * exchange.fromCoin.currentPrice)
-                      .toDouble()),
+              value: number.format((exchange.amtConvert *
+                      Decimal.parse(exchange.fromCoin.currentPrice.toString()))
+                  .toDouble()),
             ),
             InfoRow(
               description: CoreStrings.of(context)!.rateValue,
-              value: number.format(
-                  (exchange.amtConvert * exchange.fromCoin.currentPrice)
-                          .toDouble() *
-                      0.002),
+              value: number.format((exchange.amtConvert *
+                          Decimal.parse(
+                              exchange.fromCoin.currentPrice.toString()))
+                      .toDouble() *
+                  0.002),
             ),
             Padding(
               padding: const EdgeInsets.all(18.0),

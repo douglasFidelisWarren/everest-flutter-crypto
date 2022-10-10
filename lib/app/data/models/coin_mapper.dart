@@ -9,8 +9,8 @@ extension CoinMapper on GetAllCoinsResponse {
               name: result.name,
               symbol: result.symbol,
               image: result.image,
-              currentPrice: result.currentPrice,
-              percentage24h: result.percentage24h,
+              currentPrice: result.current_price,
+              percentage24h: result.price_change_percentage_24h,
             ))
         .toList();
   }

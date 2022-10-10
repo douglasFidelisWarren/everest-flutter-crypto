@@ -50,7 +50,7 @@ class AmoutFormField extends ConsumerWidget {
             if (value.isEmpty) {
               ref.read(isValidProvider.state).state = false;
             } else {
-              if (Decimal.parse(value) > fromCoin.amount!) {
+              if (double.parse(value) > fromCoin.amount!) {
                 ref.read(isValidProvider.state).state = false;
               } else {
                 ref.read(isValidProvider.state).state = true;
@@ -63,8 +63,7 @@ class AmoutFormField extends ConsumerWidget {
           autovalidateMode: AutovalidateMode.always,
           validator: (value) {
             if (value != '.') {
-              if (value!.isNotEmpty &&
-                  Decimal.parse(value) > fromCoin.amount!) {
+              if (value!.isNotEmpty && double.parse(value) > fromCoin.amount!) {
                 return "${CoreStrings.of(context)!.balanceAvailable} ${fromCoin.symbol.toUpperCase()} ${CoreStrings.of(context)!.insufficient}";
               }
             }

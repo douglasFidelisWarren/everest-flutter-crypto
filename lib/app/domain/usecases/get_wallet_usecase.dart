@@ -6,7 +6,8 @@ import '../repositories/i_wallet_repository.dart';
 
 abstract class IGetWalletUsecase {
   Future<List<CoinViewData>> getCoinsWallet(
-      Map<String, Decimal> userCoin, String vsCurrency);
+      //Map<String, Decimal> userCoin, String vsCurrency
+      );
 }
 
 class GetWalletUsecaseImp implements IGetWalletUsecase {
@@ -16,16 +17,28 @@ class GetWalletUsecaseImp implements IGetWalletUsecase {
 
   @override
   Future<List<CoinViewData>> getCoinsWallet(
-      Map<String, Decimal> userCoin, String vsCurrency) async {
-    final response = await _repository.getCoinsWallet(userCoin, vsCurrency);
+      // Map<String, Decimal> userCoin, String vsCurrency
+      ) async {
+    final response = await _repository.getCoinsWallet(
+        //userCoin, vsCurrency
+        );
+    Map<String, double> userCoin = {
+      'litecoin': 0.1,
+      'usd-coin': 103.04453215,
+      'avalanche-2': 201.87444828,
+      'atom': 198.69564269,
+      "bitcoin": 5.65456841,
+      "ethereum": 35.12598354,
+      "chiliz": 121.95456874,
+    };
     List<CoinViewData> coins = response.toViewData();
     List<CoinViewData> coinsWithAmount = [];
     for (var coin in coins) {
-      Decimal amountVsCurrency =
-          Decimal.parse(userCoin[coin.id].toString()) * coin.currentPrice;
+      Decimal amountVsCurrency = Decimal.parse(userCoin[coin.id].toString()) *
+          Decimal.parse(coin.currentPrice.toString());
       coinsWithAmount.add(CoinViewData(
-          amount: Decimal.parse(userCoin[coin.id].toString()),
-          amountVsCurrency: amountVsCurrency,
+          amount: userCoin[coin.id],
+          amountVsCurrency: double.parse(amountVsCurrency.toString()),
           id: coin.id,
           name: coin.name,
           symbol: coin.symbol,

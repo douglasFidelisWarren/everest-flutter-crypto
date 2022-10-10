@@ -19,11 +19,11 @@ void main() {
 
   test("""WHEN getCoinPrices is requested by CoinPricesRepositoryImp 
       THEN getCoinPrices from GenckoEndpoints is called""", () async {
-    when((() => genckoEndpointsMock.getCoinPrices("", "", 0))).thenAnswer(
+    when(() => genckoEndpointsMock.getCoinPrices("", "", 0)).thenAnswer(
         (_) async => Response(
             data: ApiFactory.getPrices(),
             requestOptions: RequestOptions(path: faker.internet.httpUrl())));
     await coinPricesRepositoryImp.getCoinPrices("", "", 0);
-    verify(() => genckoEndpointsMock.getCoinPrices("", "", 0)).called(1);
+    verify(() => genckoEndpointsMock.getCoinPrices("", "", 0));
   });
 }

@@ -16,14 +16,14 @@ final exchangeProvider = StateProvider<ExchangeEntity>(
           name: "name",
           symbol: "symbol",
           image: "image",
-          currentPrice: Decimal.parse("0"),
+          currentPrice: 0,
           percentage24h: 0),
       toCoin: CoinViewData(
           id: "id",
           name: "name",
           symbol: "symbol",
           image: "image",
-          currentPrice: Decimal.parse("0"),
+          currentPrice: 0,
           percentage24h: 0),
       amtConvert: Decimal.parse("0"),
       amtReceive: Decimal.parse("0"),
@@ -46,7 +46,8 @@ class ExchangeBottonSheet extends ConsumerWidget {
     bool valid = ref.watch(isValidProvider);
     Decimal textFormValue =
         Decimal.parse(ref.watch(textFormValueProvider.state).state.toString());
-    Decimal teste = textFormValue * fromCoin.currentPrice;
+    Decimal teste =
+        textFormValue * Decimal.parse(fromCoin.currentPrice.toString());
     double formValue = double.parse(teste.toString()) /
         double.parse(toCoin.currentPrice.toString());
 

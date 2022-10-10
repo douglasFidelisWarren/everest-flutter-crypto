@@ -5,9 +5,9 @@ class CoinViewData {
   final String name;
   final String symbol;
   final String image;
-  final Decimal currentPrice;
-  final Decimal? amount;
-  final Decimal? amountVsCurrency;
+  final double currentPrice;
+  final double? amount;
+  final double? amountVsCurrency;
   final double percentage24h;
   CoinViewData({
     this.amount,

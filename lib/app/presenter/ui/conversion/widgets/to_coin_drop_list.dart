@@ -18,14 +18,14 @@ class ToCoinDropList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     CoinViewData currentCoin = dropList.isEmpty
         ? CoinViewData(
-            currentPrice: Decimal.parse("0"),
+            currentPrice: 0,
             id: "",
             image: "",
             name: "",
             percentage24h: 0,
             symbol: "",
-            amount: Decimal.parse("0"),
-            amountVsCurrency: Decimal.parse("0"))
+            amount: 0,
+            amountVsCurrency: 0)
         : dropList[0];
     String? coinName;
     return Container(

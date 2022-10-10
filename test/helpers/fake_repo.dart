@@ -8,15 +8,14 @@ import 'package:fl_chart/fl_chart.dart';
 class FakeRepo {
   CoinViewData getCoin() {
     CoinViewData coin = CoinViewData(
-      currentPrice: Decimal.parse(faker.randomGenerator.decimal().toString()),
+      currentPrice: faker.randomGenerator.decimal(),
       id: faker.guid.toString(),
       image: faker.internet.httpUrl(),
       name: faker.lorem.word(),
       percentage24h: faker.randomGenerator.decimal(),
       symbol: faker.lorem.word(),
-      amount: Decimal.parse(faker.randomGenerator.decimal().toString()),
-      amountVsCurrency:
-          Decimal.parse(faker.randomGenerator.decimal().toString()),
+      amount: faker.randomGenerator.decimal(),
+      amountVsCurrency: faker.randomGenerator.decimal(),
     );
     return coin;
   }
@@ -24,26 +23,24 @@ class FakeRepo {
   List<CoinViewData> getCoinList() {
     List<CoinViewData> coinList = [
       CoinViewData(
-        currentPrice: Decimal.parse(faker.randomGenerator.decimal().toString()),
+        currentPrice: faker.randomGenerator.decimal(),
         id: faker.guid.toString(),
         image: faker.internet.httpUrl(),
         name: faker.lorem.word(),
         percentage24h: faker.randomGenerator.decimal(),
         symbol: faker.lorem.word(),
-        amount: Decimal.parse(faker.randomGenerator.decimal().toString()),
-        amountVsCurrency:
-            Decimal.parse(faker.randomGenerator.decimal().toString()),
+        amount: faker.randomGenerator.decimal(),
+        amountVsCurrency: faker.randomGenerator.decimal(),
       ),
       CoinViewData(
-        currentPrice: Decimal.parse(faker.randomGenerator.decimal().toString()),
+        currentPrice: faker.randomGenerator.decimal(),
         id: faker.guid.toString(),
         image: faker.internet.httpUrl(),
         name: faker.lorem.word(),
         percentage24h: faker.randomGenerator.decimal(min: -10),
         symbol: faker.lorem.word(),
-        amount: Decimal.parse(faker.randomGenerator.decimal().toString()),
-        amountVsCurrency:
-            Decimal.parse(faker.randomGenerator.decimal().toString()),
+        amount: faker.randomGenerator.decimal(),
+        amountVsCurrency: faker.randomGenerator.decimal(),
       )
     ];
 

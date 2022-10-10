@@ -1,3 +1,4 @@
+import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../domain/entities/exchange_entity.dart';
@@ -15,7 +16,8 @@ class MovementDetailsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final value = exchange.amtReceive * exchange.toCoin.currentPrice;
+    final value = exchange.amtReceive *
+        Decimal.parse(exchange.toCoin.currentPrice.toString());
     String fromCoinSymbol = exchange.fromCoin.symbol.toUpperCase();
     String toCoinSymbol = exchange.fromCoin.symbol.toUpperCase();
     return MaterialButton(

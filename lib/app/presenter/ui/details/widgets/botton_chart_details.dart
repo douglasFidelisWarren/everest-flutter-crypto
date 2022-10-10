@@ -108,7 +108,7 @@ class BottonChartDetails extends ConsumerWidget {
                 name: '',
                 symbol: '',
                 image: '',
-                currentPrice: Decimal.parse('0'),
+                currentPrice: 0,
                 percentage24h: 0,
               );
               ref.read(textFormValueProvider.state).state = 0;

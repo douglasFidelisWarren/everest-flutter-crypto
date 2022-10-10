@@ -1,4 +1,5 @@
-import 'package:decimal/decimal.dart';
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'coin_response.g.dart';
@@ -9,16 +10,16 @@ class CoinResponse {
   final String name;
   final String symbol;
   final String image;
-  final Decimal currentPrice;
-  final double percentage24h;
+  final double current_price;
+  final double price_change_percentage_24h;
 
   CoinResponse(
     this.id,
     this.name,
     this.symbol,
     this.image,
-    this.currentPrice,
-    this.percentage24h,
+    this.current_price,
+    this.price_change_percentage_24h,
   );
 
   factory CoinResponse.fromJson(Map<String, dynamic> json) =>

@@ -19,21 +19,19 @@ void main() {
         (WidgetTester tester) async {
           List<CoinViewData> coins = [
             CoinViewData(
-              currentPrice:
-                  Decimal.parse(faker.randomGenerator.decimal().toString()),
+              currentPrice: faker.randomGenerator.decimal(),
               id: faker.guid.toString(),
               image: faker.internet.httpUrl(),
               name: faker.lorem.word(),
               percentage24h: faker.randomGenerator.decimal(),
               symbol: faker.lorem.word(),
-              amount: Decimal.parse(faker.randomGenerator.decimal().toString()),
-              amountVsCurrency:
-                  Decimal.parse(faker.randomGenerator.decimal().toString()),
+              amount: faker.randomGenerator.decimal(),
+              amountVsCurrency: faker.randomGenerator.decimal(),
             ),
           ];
           Decimal totalValue = Decimal.parse('0');
           for (var coin in coins) {
-            totalValue += coin.amountVsCurrency!;
+            totalValue += Decimal.parse(coin.amountVsCurrency!.toString());
           }
           await loadPage(tester, WalletDetails(coins: coins));
           final totalWallet =

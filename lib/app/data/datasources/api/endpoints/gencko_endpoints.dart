@@ -24,18 +24,22 @@ class GenckoEndpoints {
   }
 
   Future<Response> getCoinsWallet(
-    Map<String, Decimal>
-        userCoins, //Esse map carrega os ids e quantidade de cada moeda do usuario.
-    String vScurrency,
-  ) {
-    return _dio.get('/coins/markets', queryParameters: {
-      'vs_currency': vScurrency,
+      // Map<String, Decimal>
+      //     userCoins, //Esse map carrega os ids e quantidade de cada moeda do usuario.
+      // String vScurrency,
+      ) {
+    return _dio.get(
+        "/coins/markets?vs_currency=brl&ids=bitcoin,%20ethereum,%20litecoin,%20usd-coin,%20avalanche-2,%20atom,%20chiliz");
 
-      //Lista com cryptos do usuario está mockada na query, porteriomente serão usadas as
-      //keys de userCoin para trazer alimentar parametro 'ids'.
+    //'/coins/markets', queryParameters: {
+    //'vs_currency': "brl",
 
-      'ids': 'bitcoin, ethereum, litecoin, usd-coin, avalanche-2, atom, chiliz',
-    });
+    //Lista com cryptos do usuario está mockada na query, porteriomente serão usadas as
+    //keys de userCoin para trazer alimentar parametro 'ids'.
+
+    //'ids': 'bitcoin, ethereum, litecoin, usd-coin, avalanche-2, atom, chiliz',
+    //}
+    // );
   }
 
   Future<Response> getCoinConverction({

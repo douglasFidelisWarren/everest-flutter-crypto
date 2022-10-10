@@ -34,6 +34,7 @@ final walletUsecaseProvider = Provider(
 final coinsWalletProvider = FutureProvider<List<CoinViewData>>(
   (ref) async {
     return ref.read(walletUsecaseProvider).getCoinsWallet(
-        ref.read(userCoinsProvider), ref.read(vsCurrencyProvider));
+        //ref.read(userCoinsProvider), ref.read(vsCurrencyProvider)
+        );
   },
 );

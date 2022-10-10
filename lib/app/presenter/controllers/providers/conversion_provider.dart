@@ -25,7 +25,7 @@ final toCoinProvider = StateProvider<CoinViewData>(
       name: '',
       symbol: '',
       image: '',
-      currentPrice: Decimal.parse('0'),
+      currentPrice: 0,
       percentage24h: 0),
 );
 

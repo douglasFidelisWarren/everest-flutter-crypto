@@ -22,7 +22,7 @@ class WalletDetails extends ConsumerWidget {
     Decimal totalValue = Decimal.parse('0');
 
     for (var coin in coins) {
-      totalValue += coin.amountVsCurrency!;
+      totalValue += Decimal.parse(coin.amountVsCurrency!.toString());
     }
 
     return Padding(

@@ -1,3 +1,4 @@
+import 'package:decimal/decimal.dart';
 import 'package:everest_crypto/app/domain/entities/exchange_entity.dart';
 import 'package:everest_crypto/app/presenter/ui/movements/widgets/modal_body.dart';
 import 'package:everest_crypto/app/presenter/ui/movements/widgets/movements_details_row.dart';
@@ -18,7 +19,8 @@ void main() {
           FakeRepo repo = FakeRepo();
           ExchangeEntity exchange = repo.getExchange();
           await loadPage(tester, MovementDetailsRow(exchange: exchange));
-          final value = exchange.amtReceive * exchange.toCoin.currentPrice;
+          final value = exchange.amtReceive *
+              Decimal.parse(exchange.toCoin.currentPrice.toString());
 
           final exchangeAmount =
               tester.widget<Text>(find.byKey(const Key("exchangeAmount")));
