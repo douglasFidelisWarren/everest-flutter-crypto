@@ -85,4 +85,8 @@ class FakeRepo {
       const FlSpot(2, 3),
     ]);
   }
+
+  List<Decimal> getPrices() {
+    return [Decimal.parse("3"), Decimal.parse("1")];
+  }
 }
