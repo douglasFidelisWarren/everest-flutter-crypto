@@ -106,8 +106,9 @@ class BottonChartDetails extends ConsumerWidget {
               );
               ref.read(textFormValueProvider.state).state = 0;
               ref.read(helpTextProvider.state).state = '';
-              Navigator.of(context)
-                  .pushNamed(ConversionPage.route, arguments: coin);
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ConversionPage(fromCoin: coin),
+              ));
             },
             child: Text(
               CoreStrings.of(context)!.converCoin,

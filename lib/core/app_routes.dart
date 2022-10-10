@@ -24,7 +24,7 @@ var appRoutes = {
   PortfolioPage.route: (context) => const PortfolioPage(coins: []),
   MovementsPage.route: (context) => const MovementsPage(),
   //DetailsPage.route: (context) => DetailsPage(coin: coin),
-  ConversionPage.route: (context) => const ConversionPage(),
+  //ConversionPage.route: (context) => const ConversionPage(),
   ReviewPage.route: (context) => const ReviewPage(),
   SuccessPage.route: (context) => const SuccessPage(),
 };

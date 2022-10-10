@@ -1,3 +1,4 @@
+import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,6 +16,17 @@ class ToCoinDropList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    CoinViewData currentCoin = dropList.isEmpty
+        ? CoinViewData(
+            currentPrice: Decimal.parse("0"),
+            id: "",
+            image: "",
+            name: "",
+            percentage24h: 0,
+            symbol: "",
+            amount: Decimal.parse("0"),
+            amountVsCurrency: Decimal.parse("0"))
+        : dropList[0];
     String? coinName;
     return Container(
       alignment: Alignment.centerLeft,
@@ -76,10 +88,10 @@ class ToCoinDropList extends ConsumerWidget {
             child: Row(
               children: [
                 Image.network(
-                  dropList[0].image,
+                  currentCoin.image,
                   height: 25,
                 ),
-                Text(' ${dropList[0].symbol.toUpperCase()}'),
+                Text(' ${currentCoin.symbol.toUpperCase()}'),
               ],
             ),
           ),

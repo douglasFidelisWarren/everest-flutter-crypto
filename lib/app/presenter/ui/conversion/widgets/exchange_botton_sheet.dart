@@ -34,21 +34,28 @@ final exchangeProvider = StateProvider<ExchangeEntity>(
 class ExchangeBottonSheet extends ConsumerWidget {
   const ExchangeBottonSheet({
     Key? key,
-    required this.formValue,
+    //required this.formValue,
     required this.toCoin,
-    required this.valid,
+    //required this.valid,
     required this.fromCoin,
-    required this.textFormValue,
+    //required this.textFormValue,
   }) : super(key: key);
 
-  final double formValue;
+  //final double formValue;
   final CoinViewData toCoin;
-  final bool valid;
+  // final bool valid;
   final CoinViewData fromCoin;
-  final Decimal textFormValue;
+  //final Decimal textFormValue;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool valid = ref.watch(isValidProvider);
+    Decimal textFormValue =
+        Decimal.parse(ref.watch(textFormValueProvider.state).state.toString());
+    Decimal teste = textFormValue * fromCoin.currentPrice;
+    double formValue = double.parse(teste.toString()) /
+        double.parse(toCoin.currentPrice.toString());
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,

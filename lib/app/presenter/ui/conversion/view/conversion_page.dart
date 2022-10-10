@@ -1,4 +1,3 @@
-import 'package:decimal/decimal.dart';
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,18 +12,15 @@ import '../widgets/exchange_botton_sheet.dart';
 import '../widgets/to_coin_drop_list.dart';
 
 class ConversionPage extends ConsumerWidget {
-  const ConversionPage({Key? key}) : super(key: key);
+  const ConversionPage({Key? key, required this.fromCoin}) : super(key: key);
 
   static const route = '/conversion';
+  final CoinViewData fromCoin;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final fromCoin = ModalRoute.of(context)!.settings.arguments as CoinViewData;
+    // final fromCoin = ModalRoute.of(context)!.settings.arguments as CoinViewData;
     CoinViewData toCoin = ref.watch(toCoinProvider);
-
-    bool valid = ref.watch(isValidProvider);
-    Decimal textFormValue =
-        Decimal.parse(ref.watch(textFormValueProvider.state).state.toString());
 
     AsyncValue<List<CoinViewData>> coins =
         ref.read(getAllcoinsNotifierProvider);
@@ -41,10 +37,6 @@ class ConversionPage extends ConsumerWidget {
         }
       },
     );
-
-    Decimal teste = textFormValue * fromCoin.currentPrice;
-    double formValue = double.parse(teste.toString()) /
-        double.parse(toCoin.currentPrice.toString());
 
     return Scaffold(
       appBar: CustomAppBar(CoreStrings.of(context)!.convertTitle),
@@ -114,11 +106,11 @@ class ConversionPage extends ConsumerWidget {
           ),
         ),
         ExchangeBottonSheet(
-          formValue: formValue,
+          //formValue: formValue,
           toCoin: toCoin,
-          valid: valid,
+          //valid: valid,
           fromCoin: fromCoin,
-          textFormValue: textFormValue,
+          //textFormValue: textFormValue,
         ),
       ]),
     );
