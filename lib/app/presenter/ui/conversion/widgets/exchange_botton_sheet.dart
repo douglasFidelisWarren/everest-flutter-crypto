@@ -1,8 +1,8 @@
 import 'package:decimal/decimal.dart';
-import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../l10n/core_strings.dart';
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../../domain/entities/exchange_entity.dart';
 import '../../../controllers/providers/conversion_provider.dart';
@@ -34,18 +34,12 @@ final exchangeProvider = StateProvider<ExchangeEntity>(
 class ExchangeBottonSheet extends ConsumerWidget {
   const ExchangeBottonSheet({
     Key? key,
-    //required this.formValue,
     required this.toCoin,
-    //required this.valid,
     required this.fromCoin,
-    //required this.textFormValue,
   }) : super(key: key);
 
-  //final double formValue;
   final CoinViewData toCoin;
-  // final bool valid;
   final CoinViewData fromCoin;
-  //final Decimal textFormValue;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

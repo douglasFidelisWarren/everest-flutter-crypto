@@ -1,8 +1,8 @@
-import 'package:everest_crypto/app/domain/entities/exchange_entity.dart';
-import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../l10n/core_strings.dart';
+import '../../../../domain/entities/exchange_entity.dart';
 import '../../../controllers/providers/conversion_provider.dart';
 import '../../conversion/view/success_page.dart';
 import '../../shared/styles.dart';

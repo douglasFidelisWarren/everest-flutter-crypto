@@ -1,6 +1,6 @@
-import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../l10n/core_strings.dart';
 import '../../../../domain/entities/exchange_entity.dart';
 import '../../shared/styles.dart';
 

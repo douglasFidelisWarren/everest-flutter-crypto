@@ -15,7 +15,7 @@ void main() {
   }
 
   testWidgets(
-    "WHEN crypto datails is loaded, THEN crypto infos is equal the info from api crypto",
+    "WHEN the share button is clicked THEN close the modal",
     (WidgetTester tester) async {
       FakeRepo repo = FakeRepo();
       ExchangeEntity exchange = repo.getExchange();

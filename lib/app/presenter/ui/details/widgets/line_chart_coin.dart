@@ -123,10 +123,6 @@ class LineChartCoin extends ConsumerWidget {
                           belowBarData: BarAreaData(show: false),
                           spots: config.spots)
                     ],
-                    // minX: 0,
-                    // maxX: config.period,
-                    //maxY: config.max,
-                    // minY: config.min,
                   ),
                   swapAnimationDuration: const Duration(milliseconds: 250),
                 ),

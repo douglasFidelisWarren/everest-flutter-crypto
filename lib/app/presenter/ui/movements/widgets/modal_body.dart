@@ -1,9 +1,9 @@
 import 'dart:math';
 
-import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../l10n/core_strings.dart';
 import '../../../../domain/entities/exchange_entity.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';

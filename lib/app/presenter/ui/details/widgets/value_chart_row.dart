@@ -18,15 +18,18 @@ class ValueRowChart extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                text,
-                style: subTitleStyleMediun,
-              ),
-              Text(value, style: mediumBlackTitle)
-            ],
+          SizedBox(
+            width: MediaQuery.of(context).size.width * .9,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  text,
+                  style: subTitleStyleMediun,
+                ),
+                Text(value, style: mediumBlackTitle)
+              ],
+            ),
           ),
         ],
       ),

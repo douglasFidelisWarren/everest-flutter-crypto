@@ -1,9 +1,9 @@
-import 'package:everest_crypto/app/presenter/ui/conversion/widgets/exchange_botton_sheet.dart';
-import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../l10n/core_strings.dart';
 import '../../../../domain/entities/exchange_entity.dart';
+import '../../conversion/widgets/exchange_botton_sheet.dart';
 import '../../shared/custom_app_bar.dart';
 import '../../shared/styles.dart';
 import '../widgets/confirmation_button.dart';

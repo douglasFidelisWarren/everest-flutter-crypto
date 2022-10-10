@@ -1,7 +1,7 @@
 import 'package:decimal/decimal.dart';
-import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../l10n/core_strings.dart';
 import '../../shared/styles.dart';
 
 class ConvertRow extends StatelessWidget {

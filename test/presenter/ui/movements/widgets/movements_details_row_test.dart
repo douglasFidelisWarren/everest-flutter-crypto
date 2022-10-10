@@ -49,7 +49,7 @@ void main() {
         },
       );
       testWidgets(
-        "WHEN crypto datails is loaded, THEN crypto infos is equal the info from api crypto",
+        "WHEN the exchange row is clicked THEN display the modal",
         (WidgetTester tester) async {
           FakeRepo repo = FakeRepo();
           ExchangeEntity exchange = repo.getExchange();
@@ -57,9 +57,6 @@ void main() {
           await tester.tap(find.byKey(const Key("showModalAccess")));
           await tester.pumpAndSettle();
           expect(find.byType(ModalBody), findsOneWidget);
-          // await tester.tap(find.byKey(const Key("closeModal")));
-          // await tester.pumpAndSettle();
-          // expect(find.byType(ModalBody), findsNothing);
         },
       );
     },

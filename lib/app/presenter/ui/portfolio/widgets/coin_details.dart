@@ -1,7 +1,7 @@
-import 'package:everest_crypto/app/domain/entities/chart_config_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../domain/entities/chart_config_entity.dart';
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/chart_config_provider.dart';
 import '../../../controllers/providers/coin_prices_provider.dart';

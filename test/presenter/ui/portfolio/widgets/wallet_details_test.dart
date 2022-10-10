@@ -3,6 +3,7 @@ import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:everest_crypto/app/presenter/ui/portfolio/widgets/wallet_details.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/formater.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/styles.dart';
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -26,14 +27,17 @@ void main() {
         (WidgetTester tester) async {
           List<CoinViewData> coins = [
             CoinViewData(
-                currentPrice: Decimal.parse("100"),
-                id: "btc",
-                image: "url",
-                name: "btc",
-                percentage24h: 0,
-                symbol: "btc",
-                amount: Decimal.parse("2"),
-                amountVsCurrency: Decimal.parse("3"))
+              currentPrice:
+                  Decimal.parse(faker.randomGenerator.decimal().toString()),
+              id: faker.guid.toString(),
+              image: faker.internet.httpUrl(),
+              name: faker.lorem.word(),
+              percentage24h: faker.randomGenerator.decimal(),
+              symbol: faker.lorem.word(),
+              amount: Decimal.parse(faker.randomGenerator.decimal().toString()),
+              amountVsCurrency:
+                  Decimal.parse(faker.randomGenerator.decimal().toString()),
+            ),
           ];
           Decimal totalValue = Decimal.parse('0');
           for (var coin in coins) {

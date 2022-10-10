@@ -18,14 +18,15 @@ void main() {
     await tester.pumpWidget(portfolioPage);
   }
 
-  testWidgets("description", (WidgetTester tester) async {
+  testWidgets("""WHEN the portfolio page loads, 
+         THEN display the  page body with the  user crypto list """,
+      (WidgetTester tester) async {
     mockNetworkImagesFor(
       () async {
         FakeRepo repo = FakeRepo();
         List<CoinViewData> coinList = [repo.getCoin()];
         await loadPage(tester, coinList: coinList);
         await tester.pumpAndSettle();
-
         expect(find.byType(PageBody), findsOneWidget);
       },
     );

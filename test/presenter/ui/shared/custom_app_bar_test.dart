@@ -12,7 +12,7 @@ void main() {
   }
 
   testWidgets(
-    "description",
+    "WHEN CustomAppBar is called THEN app bar title equals page title",
     (WidgetTester tester) async {
       String pageTitle = "Title";
       await loadPage(tester, pageTitle: pageTitle);

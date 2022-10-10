@@ -23,7 +23,6 @@ class PageBody extends ConsumerWidget {
             itemCount: coins.length,
             itemBuilder: (context, index) {
               CoinViewData coin = coins[index];
-              // ref.read(detailCoinProvider.state).state = coins[index];
               return CoinDetails(
                 coin: coin,
               );

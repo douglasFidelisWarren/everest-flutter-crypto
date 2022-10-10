@@ -10,7 +10,7 @@ import '../../../../helpers/test_app_widget.dart';
 
 void main() {
   group(
-    "CoinDetails test",
+    "CoinDetails tests",
     () {
       Future<void> loadPage(
         WidgetTester tester, {
@@ -25,7 +25,7 @@ void main() {
       }
 
       testWidgets(
-        "description",
+        "WHEN CoinDetails called, THEN crypto infos is equal the info from api crypto",
         (WidgetTester tester) async {
           mockNetworkImagesFor(
             () async {
@@ -57,21 +57,6 @@ void main() {
               final coinSymbol =
                   tester.widget<Text>(find.byKey(const Key("coinSymbol")));
               expect(coinSymbol.data, coin.symbol.toUpperCase());
-            },
-          );
-        },
-      );
-      testWidgets(
-        "description2",
-        (WidgetTester tester) async {
-          mockNetworkImagesFor(
-            () async {
-              FakeRepo repo = FakeRepo();
-              CoinViewData coin = repo.getCoin();
-              await loadPage(tester, coin: coin);
-              final teste =
-                  tester.widget<MaterialButton>(find.byType(MaterialButton));
-              expect(find.byWidget(teste), findsOneWidget);
             },
           );
         },

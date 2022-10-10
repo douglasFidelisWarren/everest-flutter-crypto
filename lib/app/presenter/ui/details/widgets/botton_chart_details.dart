@@ -1,8 +1,8 @@
 import 'package:decimal/decimal.dart';
-import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../l10n/core_strings.dart';
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/conversion_provider.dart';
 import '../../conversion/view/conversion_page.dart';
@@ -67,7 +67,9 @@ class BottonChartDetails extends ConsumerWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: SizedBox(
+              width: MediaQuery.of(context).size.width * .9,
               child: Row(
+                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(

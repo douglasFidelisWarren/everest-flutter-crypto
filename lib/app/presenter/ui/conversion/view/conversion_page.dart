@@ -1,7 +1,7 @@
-import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../l10n/core_strings.dart';
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/conversion_provider.dart';
 import '../../../controllers/providers/get_all_coins_provider.dart';
@@ -19,7 +19,6 @@ class ConversionPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final fromCoin = ModalRoute.of(context)!.settings.arguments as CoinViewData;
     CoinViewData toCoin = ref.watch(toCoinProvider);
 
     AsyncValue<List<CoinViewData>> coins =
@@ -51,6 +50,7 @@ class ConversionPage extends ConsumerWidget {
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: SizedBox(
+                      width: MediaQuery.of(context).size.width * .9,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -113,11 +113,8 @@ class ConversionPage extends ConsumerWidget {
           ),
         ),
         ExchangeBottonSheet(
-          //formValue: formValue,
           toCoin: toCoin,
-          //valid: valid,
           fromCoin: fromCoin,
-          //textFormValue: textFormValue,
         ),
       ]),
     );

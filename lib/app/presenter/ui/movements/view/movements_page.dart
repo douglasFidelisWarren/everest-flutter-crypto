@@ -1,12 +1,11 @@
-import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../l10n/core_strings.dart';
 import '../../../../domain/entities/exchange_entity.dart';
 import '../../../controllers/providers/conversion_provider.dart';
 import '../../shared/styles.dart';
 import '../widgets/exchange_list.dart';
-import '../widgets/movements_details_row.dart';
 
 class MovementsPage extends ConsumerWidget {
   const MovementsPage({Key? key}) : super(key: key);
