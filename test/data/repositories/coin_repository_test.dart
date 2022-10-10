@@ -18,8 +18,8 @@ void main() {
     coinRepositoryImp = CoinRepositoryImp(genckoEndpoint: genckoEndpointsMock);
   });
 
-  test("""WHEN getCoinPrices is requested by CoinPricesRepositoryImp 
-      THEN getCoinPrices from GenckoEndpoints is called""", () async {
+  test("""WHEN getAllCoins is requested by CoinRepositoryImp 
+      THEN getAllCoins from GenckoEndpoints is called""", () async {
     when((() => genckoEndpointsMock.getAllCoins(""))).thenAnswer((_) async =>
         Response(
             data: ApiFactory.getAllCoins(),
