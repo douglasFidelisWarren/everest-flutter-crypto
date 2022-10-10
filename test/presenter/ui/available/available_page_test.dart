@@ -18,7 +18,9 @@ void main() {
     await tester.pumpWidget(availablePage);
   }
 
-  testWidgets("description", (WidgetTester tester) async {
+  testWidgets(
+      "WHEN the available page loads, THEN display the available coins ",
+      (WidgetTester tester) async {
     mockNetworkImagesFor(
       () async {
         FakeRepo repo = FakeRepo();

@@ -14,15 +14,22 @@ class ValueRowChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          text,
-          style: subTitleStyleMediun,
-        ),
-        Text(value, style: mediumBlackTitle)
-      ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                text,
+                style: subTitleStyleMediun,
+              ),
+              Text(value, style: mediumBlackTitle)
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

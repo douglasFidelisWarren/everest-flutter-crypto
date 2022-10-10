@@ -2,45 +2,49 @@ import 'package:decimal/decimal.dart';
 import 'package:everest_crypto/app/domain/entities/chart_config_entity.dart';
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:everest_crypto/app/domain/entities/exchange_entity.dart';
+import 'package:faker/faker.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class FakeRepo {
   CoinViewData getCoin() {
     CoinViewData coin = CoinViewData(
-        currentPrice: Decimal.parse("100"),
-        id: "bitcoin",
-        image:
-            "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
-        name: "bitcoin",
-        percentage24h: 0,
-        symbol: "btc",
-        amount: Decimal.parse("2"),
-        amountVsCurrency: Decimal.parse("3"));
+      currentPrice: Decimal.parse(faker.randomGenerator.decimal().toString()),
+      id: faker.guid.toString(),
+      image: faker.internet.httpUrl(),
+      name: faker.lorem.word(),
+      percentage24h: faker.randomGenerator.decimal(),
+      symbol: faker.lorem.word(),
+      amount: Decimal.parse(faker.randomGenerator.decimal().toString()),
+      amountVsCurrency:
+          Decimal.parse(faker.randomGenerator.decimal().toString()),
+    );
     return coin;
   }
 
   List<CoinViewData> getCoinList() {
     List<CoinViewData> coinList = [
       CoinViewData(
-          currentPrice: Decimal.parse("100"),
-          id: "bitcoin",
-          image:
-              "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
-          name: "bitcoin",
-          percentage24h: 1,
-          symbol: "btc",
-          amount: Decimal.parse("2"),
-          amountVsCurrency: Decimal.parse("3")),
+        currentPrice: Decimal.parse(faker.randomGenerator.decimal().toString()),
+        id: faker.guid.toString(),
+        image: faker.internet.httpUrl(),
+        name: faker.lorem.word(),
+        percentage24h: faker.randomGenerator.decimal(),
+        symbol: faker.lorem.word(),
+        amount: Decimal.parse(faker.randomGenerator.decimal().toString()),
+        amountVsCurrency:
+            Decimal.parse(faker.randomGenerator.decimal().toString()),
+      ),
       CoinViewData(
-          currentPrice: Decimal.parse("100"),
-          id: "bitcoin",
-          image:
-              "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
-          name: "bitcoin",
-          percentage24h: -1,
-          symbol: "btc",
-          amount: Decimal.parse("2"),
-          amountVsCurrency: Decimal.parse("3"))
+        currentPrice: Decimal.parse(faker.randomGenerator.decimal().toString()),
+        id: faker.guid.toString(),
+        image: faker.internet.httpUrl(),
+        name: faker.lorem.word(),
+        percentage24h: faker.randomGenerator.decimal(min: -10),
+        symbol: faker.lorem.word(),
+        amount: Decimal.parse(faker.randomGenerator.decimal().toString()),
+        amountVsCurrency:
+            Decimal.parse(faker.randomGenerator.decimal().toString()),
+      )
     ];
 
     return coinList;

@@ -16,16 +16,12 @@ void main() {
   }
 
   testWidgets(
-    "WHEN crypto datails is loaded, THEN crypto infos is equal the info from api crypto",
+    """WHEN the movements page loads and there are no movements 
+       THEN displays the message of no movements""",
     (WidgetTester tester) async {
       FakeRepo repo = FakeRepo();
       ExchangeEntity exchange = repo.getExchange();
       await loadPage(tester, exchange: exchange);
-
-      final notExchangesTitle =
-          tester.widget<Text>(find.byKey(const Key('notExchangesTitle')));
-      expect(notExchangesTitle.data, "Ops...");
-
       final exchangeDate =
           tester.widget<Text>(find.byKey(const Key("notExchangesSubTitle")));
       expect(exchangeDate.data, "You don't have any moves yet...");

@@ -34,6 +34,7 @@ class DetailsPage extends ConsumerWidget {
     return Scaffold(
       appBar: CustomAppBar(CoreStrings.of(context)!.details),
       body: SingleChildScrollView(
+        key: const Key("bodyScroll"),
         scrollDirection: Axis.vertical,
         child: Column(children: [
           Padding(

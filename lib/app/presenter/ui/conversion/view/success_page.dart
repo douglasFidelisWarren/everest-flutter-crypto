@@ -47,6 +47,7 @@ class SuccessPage extends StatelessWidget {
             style: totalStyle,
           ),
           Text(
+            key: const Key("subtitleSuccess"),
             CoreStrings.of(context)!.convertConfirmSubtitle,
             style: smallGraySubTitle,
           ),

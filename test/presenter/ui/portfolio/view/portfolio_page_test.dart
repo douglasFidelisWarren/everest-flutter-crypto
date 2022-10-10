@@ -22,7 +22,7 @@ void main() {
     mockNetworkImagesFor(
       () async {
         FakeRepo repo = FakeRepo();
-        List<CoinViewData> coinList = repo.getCoinList();
+        List<CoinViewData> coinList = [repo.getCoin()];
         await loadPage(tester, coinList: coinList);
         await tester.pumpAndSettle();
 

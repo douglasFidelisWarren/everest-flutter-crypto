@@ -40,7 +40,7 @@ void main() {
           final exchangeAmountReceive = tester
               .widget<Text>(find.byKey(const Key("exchangeAmountReceive")));
           expect(exchangeAmountReceive.data,
-              "${exchange.amtReceive.toStringAsFixed(6)} ${exchange.toCoin.symbol.toUpperCase()}");
+              "${exchange.amtReceive.toStringAsFixed(6)} ${exchange.fromCoin.symbol.toUpperCase()}");
 
           final exchangeAmountVScurrencyReceive = tester.widget<Text>(
               find.byKey(const Key("exchangeAmountVScurrencyReceive")));

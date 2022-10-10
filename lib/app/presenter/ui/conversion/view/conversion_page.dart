@@ -48,16 +48,23 @@ class ConversionPage extends ConsumerWidget {
                 color: colorGrayBackgrond,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(CoreStrings.of(context)!.balanceAvailable,
-                          style: smallGraySubTitle),
-                      Text(
-                        "${fromCoin.amount.toString()} ${fromCoin.symbol.toUpperCase()}",
-                        style: mediunConvertBlack,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: SizedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            CoreStrings.of(context)!.balanceAvailable,
+                            style: smallGraySubTitle,
+                          ),
+                          Text(
+                            "${fromCoin.amount.toString()} ${fromCoin.symbol.toUpperCase()}",
+                            style: mediunConvertBlack,
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),

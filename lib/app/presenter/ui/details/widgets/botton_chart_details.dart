@@ -64,17 +64,22 @@ class BottonChartDetails extends ConsumerWidget {
             height: 22,
             thickness: 1.5,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                CoreStrings.of(context)!.detailsAmount,
-                style: subTitleStyleMediun,
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: SizedBox(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    CoreStrings.of(context)!.detailsAmount,
+                    style: subTitleStyleMediun,
+                  ),
+                  Text(
+                      "${coin.amount!.toStringAsFixed(8).replaceAll(".", ",")} ${coin.symbol.toUpperCase()}",
+                      style: mediumBlackTitle)
+                ],
               ),
-              Text(
-                  "${coin.amount!.toStringAsFixed(8).replaceAll(".", ",")} ${coin.symbol.toUpperCase()}",
-                  style: mediumBlackTitle)
-            ],
+            ),
           ),
           const Divider(
             color: colorGrayDivider,

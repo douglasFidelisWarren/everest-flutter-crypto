@@ -15,7 +15,7 @@ final userCoinsProvider = StateProvider<Map<String, Decimal>>(
     'usd-coin': Decimal.parse("103.04453215"),
     'avalanche-2': Decimal.parse("201.87444828"),
     'atom': Decimal.parse("198.69564269"),
-    "bitcoin": Decimal.parse("2.65456841"),
+    "bitcoin": Decimal.parse("2454441575476445.65456841"),
     "ethereum": Decimal.parse("35.12598354"),
     "chiliz": Decimal.parse("121.95456874"),
   },
