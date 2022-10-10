@@ -12,11 +12,12 @@ import '../../shared/styles.dart';
 final selectedProvider = StateProvider<int>((ref) => 5);
 
 class LineChartCoin extends ConsumerWidget {
-  const LineChartCoin(this.coin, this.config, {Key? key}) : super(key: key);
+  const LineChartCoin(this.coin, {Key? key}) : super(key: key);
   final CoinViewData coin;
-  final ChartConfigViewData config;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ChartConfigViewData config = ref.watch(chartConfigProvider);
     Widget custom(int period) {
       return TextButton(
         style: ElevatedButton.styleFrom(

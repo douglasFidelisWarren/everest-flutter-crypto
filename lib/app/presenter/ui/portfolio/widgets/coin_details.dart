@@ -1,9 +1,11 @@
+import 'package:everest_crypto/app/domain/entities/chart_config_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/chart_config_provider.dart';
 import '../../../controllers/providers/coin_prices_provider.dart';
+import '../../../controllers/providers/providers.dart';
 import '../../../controllers/providers/visible_provider.dart';
 import '../../details/view/details_page.dart';
 import '../../details/widgets/line_chart_coin.dart';
@@ -20,17 +22,21 @@ class CoinDetails extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ChartConfigViewData config = ref.watch(chartConfigProvider);
     final visible = ref.watch(visibleProvider);
     final prices = ref.watch(coinPricesNotifierProvider);
     return MaterialButton(
       key: const Key("detailsPageAccess"),
       onPressed: () {
+        ref.read(detailCoinProvider.state).state = coin;
         ref.read(selectedProvider.state).state = 5;
         ref
             .read(coinPricesNotifierProvider.notifier)
             .getCoinPrices(coinId: coin.id, vScurrency: "brl", days: 5);
         ref.watch(chartConfigProvider.notifier).getChartConfig(prices);
-        Navigator.pushNamed(context, DetailsPage.route, arguments: coin);
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => DetailsPage(coin: coin, config: config),
+        ));
       },
       child: SizedBox(
         child: SingleChildScrollView(

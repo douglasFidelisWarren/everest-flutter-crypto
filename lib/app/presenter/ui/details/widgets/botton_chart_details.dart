@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/conversion_provider.dart';
-import '../../conversion/conversion_page.dart';
+import '../../conversion/view/conversion_page.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 import 'line_chart_coin.dart';

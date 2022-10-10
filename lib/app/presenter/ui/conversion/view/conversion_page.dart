@@ -3,14 +3,14 @@ import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../domain/entities/coins_view_data.dart';
-import '../../controllers/providers/conversion_provider.dart';
-import '../../controllers/providers/get_all_coins_provider.dart';
-import '../shared/custom_app_bar.dart';
-import '../shared/styles.dart';
-import 'widgets/amount_form_field.dart';
-import 'widgets/exchange_botton_sheet.dart';
-import 'widgets/to_coin_drop_list.dart';
+import '../../../../domain/entities/coins_view_data.dart';
+import '../../../controllers/providers/conversion_provider.dart';
+import '../../../controllers/providers/get_all_coins_provider.dart';
+import '../../shared/custom_app_bar.dart';
+import '../../shared/styles.dart';
+import '../widgets/amount_form_field.dart';
+import '../widgets/exchange_botton_sheet.dart';
+import '../widgets/to_coin_drop_list.dart';
 
 class ConversionPage extends ConsumerWidget {
   const ConversionPage({Key? key}) : super(key: key);
