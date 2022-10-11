@@ -16,7 +16,7 @@ void main() {
         CoinViewData coin = repo.getCoin();
         await loadPage(tester, ConversionPage(fromCoin: coin));
         await tester.pumpAndSettle();
-        expect(find.byType(AmoutFormField), findsOneWidget);
+        expect(find.byType(AmountFormField), findsOneWidget);
       });
     },
   );

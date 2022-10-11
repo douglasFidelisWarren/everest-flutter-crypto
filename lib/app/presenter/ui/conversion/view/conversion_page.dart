@@ -106,7 +106,7 @@ class ConversionPage extends ConsumerWidget {
                         ),
                         ToCoinDropList(dropList: dropList),
                       ]),
-                  AmoutFormField(fromCoin: fromCoin)
+                  AmountFormField(fromCoin: fromCoin)
                 ]),
               )
             ]),
