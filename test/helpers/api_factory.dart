@@ -47,7 +47,7 @@ class ApiFactory {
       };
   static List<Map<String, dynamic>> getCoinsWallet() => [
         {
-          "id": faker.lorem.word(),
+          "id": "bitcoin",
           "symbol": faker.lorem.word(),
           "name": faker.lorem.word(),
           "image": faker.internet.httpUrl(),
@@ -77,7 +77,7 @@ class ApiFactory {
       ];
   static List<Map<String, dynamic>> getAllCoins() => [
         {
-          "id": faker.lorem.word(),
+          "id": "bitcoin",
           "symbol": faker.lorem.word(),
           "name": faker.lorem.word(),
           "image": faker.internet.httpUrl(),
