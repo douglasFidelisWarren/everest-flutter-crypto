@@ -34,48 +34,4 @@ void main() {
       expect(text, isNotEmpty);
     },
   );
-
-  testWidgets(
-    "description",
-    (WidgetTester tester) async {
-      await tester.pumpWidget(ProviderScope(
-        overrides: [
-          walletRepositoryProvider
-              .overrideWithValue(WalletRepositoryImp(GenckoEndpointsMock()))
-        ],
-        child: MaterialApp(
-          home: Scaffold(
-            body: Consumer(
-              builder: (context, ref, child) {
-                String helper = ref.watch(helpTextProvider);
-                FakeRepo repo = FakeRepo();
-                final coins = ref.watch(coinsWalletProvider);
-                final convertCoin = ref.watch(convertCoinProvider);
-                ExchangeEntity exchange = convertCoin.convertCoin(
-                  fromCoin: repo.getCoin(),
-                  toCoin: repo.getCoin(),
-                  amtConvert: Decimal.parse("1"),
-                );
-                if (coins.asData == null) {
-                  return const CircularProgressIndicator();
-                }
-                if (exchange.amtConvert.toDouble() < 0) {
-                  helper = CoreStrings.of(context)!.insufficient;
-                }
-                return Text(helper);
-              },
-            ),
-          ),
-        ),
-      ));
-
-      await tester.pump();
-
-      expect(find.byType(CircularProgressIndicator), findsOneWidget);
-
-      // Re-render. TodoListProvider should have finished fetching the todos by now
-
-      // No longer loading
-    },
-  );
 }

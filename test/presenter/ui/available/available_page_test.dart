@@ -9,8 +9,9 @@ import '../../../helpers/test_app_widget.dart';
 
 void main() {
   testWidgets(
-      "WHEN the available page loads, THEN display the available coins ",
-      (WidgetTester tester) async {
+      "WHEN the available page loads, THEN display the available coins ", (
+    WidgetTester tester,
+  ) async {
     mockNetworkImagesFor(
       () async {
         FakeRepo repo = FakeRepo();
