@@ -28,7 +28,7 @@ class ConvertRow extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(CoreStrings.of(context)!.convert,
+              Text(CoreStrings.of(context)!.convertTitle,
                   style: subTitleStyleMediun),
               Text('${amountConvert.toStringAsFixed(8)} $fromSymbol',
                   style: mediumBlackTitle)

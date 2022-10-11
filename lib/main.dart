@@ -4,8 +4,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app/presenter/controllers/providers/get_coins_wallet_provider.dart';
-import 'core/app_routes.dart';
-import 'core/home.dart';
+import 'app/presenter/ui/shared/app_routes.dart';
+import 'app/presenter/ui/shared/home.dart';
 import 'l10n/core_strings.dart';
 
 void main() {

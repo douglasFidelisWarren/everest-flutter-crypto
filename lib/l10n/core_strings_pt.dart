@@ -17,9 +17,6 @@ class CoreStringsPt extends CoreStrings {
   String get purchase => 'Comprar';
 
   @override
-  String get movements => 'Movimentações';
-
-  @override
   String get availableCoins => 'Criptos Disponíveis';
 
   @override
@@ -68,9 +65,6 @@ class CoreStringsPt extends CoreStrings {
   String get reviewAlert => 'Revise os dados da sua conversão';
 
   @override
-  String get convert => 'Converter';
-
-  @override
   String get receive => 'Receber';
 
   @override
@@ -80,7 +74,8 @@ class CoreStringsPt extends CoreStrings {
   String get convertConfirmTitle => 'Conversão efetuada';
 
   @override
-  String get convertConfirmSubtitle => 'Conversão de moeda efetuada com sucesso!';
+  String get convertConfirmSubtitle =>
+      'Conversão de moeda efetuada com sucesso!';
 
   @override
   String get movementsTitle => 'Movimentações';

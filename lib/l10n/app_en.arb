@@ -19,10 +19,7 @@
     "description": "Puchase page title"
   },
 
-"movements" : "Movements",
-"@movements": {
-    "description": "Movements page title"
-  },
+
 
 "availableCoins" : "Available crypto",
 "@availableCoins": {

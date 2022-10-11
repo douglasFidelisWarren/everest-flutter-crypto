@@ -1,7 +1,7 @@
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/home.dart';
+import '../../shared/home.dart';
 import '../../shared/styles.dart';
 
 class SuccessPage extends StatelessWidget {

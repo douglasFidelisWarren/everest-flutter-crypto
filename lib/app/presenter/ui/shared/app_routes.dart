@@ -3,12 +3,12 @@ import 'package:everest_crypto/app/presenter/ui/portfolio/widgets/page_body.dart
 import 'package:everest_crypto/app/presenter/ui/review/view/review_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../app/presenter/controllers/providers/providers.dart';
-import '../app/presenter/ui/conversion/view/conversion_page.dart';
-import '../app/presenter/ui/conversion/view/success_page.dart';
+import '../../controllers/providers/providers.dart';
+import '../conversion/view/conversion_page.dart';
+import '../conversion/view/success_page.dart';
 import 'home.dart';
-import '../app/presenter/ui/movements/view/movements_page.dart';
-import '../app/presenter/ui/portfolio/view/portfolio_page.dart';
+import '../movements/view/movements_page.dart';
+import '../portfolio/view/portfolio_page.dart';
 
 // final coinlistProvider = Provider<List<CoinViewData>>(
 //     (ref) => ref.watch(coinsWalletProvider).value!);

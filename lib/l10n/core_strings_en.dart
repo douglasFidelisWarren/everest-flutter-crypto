@@ -17,9 +17,6 @@ class CoreStringsEn extends CoreStrings {
   String get purchase => 'Purchase';
 
   @override
-  String get movements => 'Movements';
-
-  @override
   String get availableCoins => 'Available crypto';
 
   @override
@@ -66,9 +63,6 @@ class CoreStringsEn extends CoreStrings {
 
   @override
   String get reviewAlert => 'Review your conversion';
-
-  @override
-  String get convert => 'Convert';
 
   @override
   String get receive => 'Receive';
