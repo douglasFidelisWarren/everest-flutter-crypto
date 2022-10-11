@@ -65,6 +65,9 @@ class CoreStringsEn extends CoreStrings {
   String get reviewAlert => 'Review your conversion';
 
   @override
+  String get convert => 'Convert';
+
+  @override
   String get receive => 'Receive';
 
   @override

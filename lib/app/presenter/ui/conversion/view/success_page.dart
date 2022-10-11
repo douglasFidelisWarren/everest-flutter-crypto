@@ -1,3 +1,4 @@
+import 'package:everest_crypto/app/presenter/ui/movements/view/movements_page.dart';
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,8 @@ class SuccessPage extends StatelessWidget {
             children: [
               IconButton(
                   onPressed: () => Navigator.of(context)
-                      .pushNamedAndRemoveUntil(Home.route, (route) => false),
+                      .pushNamedAndRemoveUntil(
+                          MovementsPage.route, (route) => false),
                   icon: const Icon(Icons.close))
             ],
           ),

@@ -20,8 +20,8 @@ final coinProvider = Provider<CoinViewData>(
 final coin = coinProvider as CoinViewData;
 
 var appRoutes = {
-  Home.route: (context) => const Home(),
-  PortfolioPage.route: (context) => const PortfolioPage(coins: []),
+  // Home.route: (context) => const Home(),
+  PortfolioPage.route: (context) => const PortfolioPage(),
   MovementsPage.route: (context) => const MovementsPage(),
   //DetailsPage.route: (context) => DetailsPage(coin: coin),
   //ConversionPage.route: (context) => const ConversionPage(),

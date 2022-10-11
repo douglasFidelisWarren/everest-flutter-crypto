@@ -1,3 +1,4 @@
+import 'package:everest_crypto/app/presenter/ui/shared/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -18,41 +19,42 @@ class MovementsPage extends ConsumerWidget {
 
     return SafeArea(
       child: Scaffold(
+          bottomNavigationBar: const CustomBottomNavBar(index: 2),
           body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 18.0, left: 10),
-            child: Text(
-              CoreStrings.of(context)!.movementsTitle,
-              style: mediumBlackTitle1,
-            ),
-          ),
-          Expanded(
-            child: Visibility(
-              visible: exchangeList.isNotEmpty,
-              replacement: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Ops...',
-                      key: Key('notExchangesTitle'),
-                      style: mediumBlackTitle1,
-                    ),
-                    Text(
-                      CoreStrings.of(context)!.noMovements,
-                      key: const Key('notExchangesSubTitle'),
-                      style: smallGraySubTitle,
-                    ),
-                  ],
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 18.0, left: 10),
+                child: Text(
+                  CoreStrings.of(context)!.movementsTitle,
+                  style: mediumBlackTitle1,
                 ),
               ),
-              child: ExchangeList(exchangeList: exchangeList),
-            ),
-          ),
-        ],
-      )),
+              Expanded(
+                child: Visibility(
+                  visible: exchangeList.isNotEmpty,
+                  replacement: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Ops...',
+                          key: Key('notExchangesTitle'),
+                          style: mediumBlackTitle1,
+                        ),
+                        Text(
+                          CoreStrings.of(context)!.noMovements,
+                          key: const Key('notExchangesSubTitle'),
+                          style: smallGraySubTitle,
+                        ),
+                      ],
+                    ),
+                  ),
+                  child: ExchangeList(exchangeList: exchangeList),
+                ),
+              ),
+            ],
+          )),
     );
   }
 }

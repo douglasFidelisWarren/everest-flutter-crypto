@@ -1,3 +1,5 @@
+import 'package:everest_crypto/app/presenter/ui/portfolio/view/portfolio_page.dart';
+import 'package:everest_crypto/app/presenter/ui/shared/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,6 +17,7 @@ class AvailablePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      bottomNavigationBar: const CustomBottomNavBar(index: 1),
       appBar: CustomAppBar(CoreStrings.of(context)!.availableCoins),
       body: SafeArea(
         child: Column(

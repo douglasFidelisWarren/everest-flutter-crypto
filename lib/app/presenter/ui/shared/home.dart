@@ -1,3 +1,4 @@
+import 'package:everest_crypto/app/presenter/ui/conversion/view/conversion_page.dart';
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,6 +51,8 @@ class _HomeState extends ConsumerState<Home> {
       return coins;
     }
 
+    final walletCoins = getWalletCoins();
+
     List<CoinViewData> getAvailableCoins() {
       List<CoinViewData> coins = [];
       List<CoinViewData> coinsProvider =
@@ -60,45 +63,74 @@ class _HomeState extends ConsumerState<Home> {
       return coins;
     }
 
-    final walletCoins = getWalletCoins();
     final availableCoins = getAvailableCoins();
 
     return Scaffold(
       body: PageView(
           onPageChanged: setCurrentPage,
-          controller: pageController,
+          controller: ref.watch(pageControllerProvider),
           children: [
-            PortfolioPage(coins: walletCoins),
+            PortfolioPage(),
             AvailablePage(coins: availableCoins),
             const MovementsPage(),
           ]),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: colorBlackText,
-        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w400),
-        backgroundColor: Colors.white,
-        onTap: (page) {
-          pageController.animateToPage(page,
-              duration: const Duration(milliseconds: 400), curve: Curves.ease);
-        },
-        currentIndex: currentPage,
-        items: [
-          BottomNavigationBarItem(
-            label: CoreStrings.of(context)!.portfolio,
-            icon: portfolioIcon,
-            activeIcon: portfolioActiveIcon,
-          ),
-          BottomNavigationBarItem(
-            label: CoreStrings.of(context)!.purchase,
-            icon: accountIcon,
-            activeIcon: accountActiveIcon,
-          ),
-          BottomNavigationBarItem(
-            label: CoreStrings.of(context)!.movementsTitle,
-            icon: movementsIcon,
-            activeIcon: movementsActiveIcon,
-          ),
-        ],
-      ),
+      // bottomNavigationBar: CustomBottomNavBar(index: ref.watch(currentPage.),),
+    );
+  }
+}
+
+class CustomBottomNavBar extends ConsumerWidget {
+  const CustomBottomNavBar({Key? key, required this.index}) : super(key: key);
+  final int index;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    PageController pageController = ref.watch(pageControllerProvider);
+    return BottomNavigationBar(
+      selectedItemColor: colorBlackText,
+      selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w400),
+      backgroundColor: Colors.white,
+      onTap: (index) {
+        ref.read(currentPageProvider.state).state = index;
+        switch (index) {
+          case 0:
+            Navigator.popAndPushNamed(
+              context,
+              PortfolioPage.route,
+            );
+            break;
+          case 1:
+            Navigator.popAndPushNamed(
+              context,
+              AvailablePage.route,
+            );
+            break;
+          case 2:
+            Navigator.popAndPushNamed(
+              context,
+              MovementsPage.route,
+            );
+            break;
+        }
+      },
+      currentIndex: index,
+      items: [
+        BottomNavigationBarItem(
+          label: CoreStrings.of(context)!.portfolio,
+          icon: portfolioIcon,
+          activeIcon: portfolioActiveIcon,
+        ),
+        BottomNavigationBarItem(
+          label: CoreStrings.of(context)!.purchase,
+          icon: accountIcon,
+          activeIcon: accountActiveIcon,
+        ),
+        BottomNavigationBarItem(
+          label: CoreStrings.of(context)!.movementsTitle,
+          icon: movementsIcon,
+          activeIcon: movementsActiveIcon,
+        ),
+      ],
     );
   }
 }
