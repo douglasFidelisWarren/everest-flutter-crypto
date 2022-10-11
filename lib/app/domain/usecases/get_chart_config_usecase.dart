@@ -4,11 +4,11 @@ import 'package:fl_chart/fl_chart.dart';
 import '../entities/chart_config_entity.dart';
 import '../repositories/i_chart_config_repository.dart';
 
-abstract class GetChartConfigUsecase {
+abstract class IGetChartConfigUsecase {
   ChartConfigViewData getChartConfig(List<Decimal> prices);
 }
 
-class GetChartConfigUsecaseImp implements GetChartConfigUsecase {
+class GetChartConfigUsecaseImp implements IGetChartConfigUsecase {
   final IChartConfigRepository _repository;
   GetChartConfigUsecaseImp(this._repository);
   @override

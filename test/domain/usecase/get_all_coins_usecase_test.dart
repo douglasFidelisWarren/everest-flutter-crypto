@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:everest_crypto/app/data/datasources/api/endpoints/gencko_endpoints.dart';
-import 'package:everest_crypto/app/data/repositories/coin_prices_repository_imp.dart';
 import 'package:everest_crypto/app/data/repositories/coin_repository_imp.dart';
+import 'package:everest_crypto/app/domain/repositories/i_coin_repository.dart';
+import 'package:everest_crypto/app/domain/usecases/get_all_coins_usecase.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -12,19 +13,22 @@ class GenckoEndpointsMock extends Mock implements GenckoEndpoints {}
 
 void main() {
   late GenckoEndpointsMock genckoEndpointsMock;
-  late CoinRepositoryImp coinRepositoryImp;
+  late ICoinRepository iCoinRepository;
+  late IGetAllCoinsUsecase sut;
+
   setUp(() {
     genckoEndpointsMock = GenckoEndpointsMock();
-    coinRepositoryImp = CoinRepositoryImp(genckoEndpoint: genckoEndpointsMock);
+    iCoinRepository = CoinRepositoryImp(genckoEndpoint: genckoEndpointsMock);
+    sut = GetAllCoinsUsecaseImp(iCoinRepository);
   });
 
-  test("""WHEN getAllCoins is requested by CoinRepositoryImp 
-      THEN getAllCoins from GenckoEndpoints is called""", () async {
+  test("""WHEN getAllCoins is requested by GetAllCoinsUsecaseImp 
+      THEN return List<CoinViewData>""", (() async {
     when((() => genckoEndpointsMock.getAllCoins("brl"))).thenAnswer((_) async =>
         Response(
             data: ApiFactory.getAllCoins("brl"),
             requestOptions: RequestOptions(path: faker.internet.httpUrl())));
-    await coinRepositoryImp.getAllCoins("brl");
-    verify(() => genckoEndpointsMock.getAllCoins("brl")).called(1);
-  });
+    final wallet = await sut.getAllCoins("brl");
+    expect(wallet.isNotEmpty, true);
+  }));
 }

@@ -75,7 +75,7 @@ class ApiFactory {
           "last_updated": faker.date.toString(),
         }
       ];
-  static List<Map<String, dynamic>> getAllCoins() => [
+  static List<Map<String, dynamic>> getAllCoins(String vsCurrency) => [
         {
           "id": "bitcoin",
           "symbol": faker.lorem.word(),
