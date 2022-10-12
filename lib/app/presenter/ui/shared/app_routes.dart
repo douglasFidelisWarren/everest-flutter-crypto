@@ -14,10 +14,10 @@ import '../portfolio/view/portfolio_page.dart';
 //     (ref) => ref.watch(coinsWalletProvider).value!);
 // final coinlist = coinlistProvider as List<CoinViewData>;
 
-final coinProvider = Provider<CoinViewData>(
-  (ref) => ref.watch(detailCoinProvider.state).state,
-);
-final coin = coinProvider as CoinViewData;
+// final coinProvider = Provider<CoinViewData>(
+//   (ref) => ref.watch(detailCoinProvider.state).state,
+// );
+// final coin = coinProvider as CoinViewData;
 
 var appRoutes = {
   Home.route: (context) => const Home(),

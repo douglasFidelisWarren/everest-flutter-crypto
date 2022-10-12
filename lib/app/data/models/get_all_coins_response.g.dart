@@ -6,12 +6,12 @@ part of 'get_all_coins_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetAllCoinsResponse _$GetAllCoinsResponseFromJson(Map<String, dynamic> json) =>
-    GetAllCoinsResponse(
-      (json['results'] as List<dynamic>)
-          .map((e) => CoinResponse.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+// GetAllCoinsResponse _$GetAllCoinsResponseFromJson(Map<String, dynamic> json) =>
+//     GetAllCoinsResponse(
+//       (json['results'] as List<dynamic>)
+//           .map((e) => CoinResponse.fromJson(e as Map<String, dynamic>))
+//           .toList(),
+//     );
 
 Map<String, dynamic> _$GetAllCoinsResponseToJson(
         GetAllCoinsResponse instance) =>

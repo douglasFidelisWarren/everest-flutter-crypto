@@ -2,10 +2,11 @@ import 'package:decimal/decimal.dart';
 import 'package:everest_crypto/app/domain/entities/chart_config_entity.dart';
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:everest_crypto/app/domain/entities/exchange_entity.dart';
+import 'package:everest_crypto/app/domain/repositories/i_coin_prices_repository.dart';
 import 'package:faker/faker.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-class FakeRepo {
+class FakeRepo implements ICoinPricesRepository {
   CoinViewData getCoin() {
     CoinViewData coin = CoinViewData(
       currentPrice: Decimal.parse(faker.randomGenerator.decimal().toString()),
@@ -88,5 +89,11 @@ class FakeRepo {
 
   List<Decimal> getPrices() {
     return [Decimal.parse("3"), Decimal.parse("1")];
+  }
+
+  @override
+  Future<List<Decimal>> getCoinPrices(
+      String coinId, String vScurrency, int days) async {
+    return getPrices();
   }
 }
