@@ -213,12 +213,6 @@ abstract class CoreStrings {
   /// **'Review your conversion'**
   String get reviewAlert;
 
-  /// Review page convert seted amount
-  ///
-  /// In en, this message translates to:
-  /// **'Convert'**
-  String get convert;
-
   /// Review page convert receive amount
   ///
   /// In en, this message translates to:

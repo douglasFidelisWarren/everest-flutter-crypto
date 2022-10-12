@@ -65,9 +65,6 @@ class CoreStringsPt extends CoreStrings {
   String get reviewAlert => 'Revise os dados da sua conversão';
 
   @override
-  String get convert => 'Converter';
-
-  @override
   String get receive => 'Receber';
 
   @override

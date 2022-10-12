@@ -1,9 +1,14 @@
+import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helpers/l10n_test_widget.dart';
 
 void main() {
+  test('WHEN appLocalizations call shouldReload, THEN expect a false value',
+      () {
+    expect(CoreStrings.delegate.shouldReload.call(CoreStrings.delegate), false);
+  });
   testWidgets(
     "WHEN the locale is 'en', THEN all strings are in english",
     (WidgetTester tester) async {
