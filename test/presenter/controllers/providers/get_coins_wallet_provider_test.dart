@@ -1,5 +1,6 @@
 import 'package:decimal/decimal.dart';
 import 'package:dio/dio.dart';
+import 'package:everest_crypto/app/data/datasources/api/endpoint_provider.dart';
 import 'package:everest_crypto/app/data/models/get_all_coins_response.dart';
 import 'package:everest_crypto/app/data/repositories/wallet_repository_imp.dart';
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
@@ -17,8 +18,7 @@ void main() {
     (WidgetTester tester) async {
       await tester.pumpWidget(ProviderScope(
         overrides: [
-          walletRepositoryProvider
-              .overrideWithValue(WalletRepositoryImp(GenckoEndpointsMock()))
+          genckoEndpointProvider.overrideWithValue(GenckoEndpointsMock()),
         ],
         child: MaterialApp(
           home: Scaffold(

@@ -7,9 +7,36 @@ import 'package:faker/faker.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class FakeRepo implements ICoinPricesRepository {
+  List<CoinViewData> dropList() {
+    return [
+      CoinViewData(
+        currentPrice: Decimal.parse("1"),
+        id: "1",
+        image: faker.internet.httpUrl(),
+        name: "bitcoin",
+        percentage24h: faker.randomGenerator.decimal(),
+        symbol: "btc",
+        amount: Decimal.parse(faker.randomGenerator.decimal().toString()),
+        amountVsCurrency:
+            Decimal.parse(faker.randomGenerator.decimal().toString()),
+      ),
+      CoinViewData(
+        currentPrice: Decimal.parse("1"),
+        id: "2",
+        image: faker.internet.httpUrl(),
+        name: "ethereum",
+        percentage24h: faker.randomGenerator.decimal(),
+        symbol: "eth",
+        amount: Decimal.parse(faker.randomGenerator.decimal().toString()),
+        amountVsCurrency:
+            Decimal.parse(faker.randomGenerator.decimal().toString()),
+      ),
+    ];
+  }
+
   CoinViewData getCoin() {
     CoinViewData coin = CoinViewData(
-      currentPrice: Decimal.parse(faker.randomGenerator.decimal().toString()),
+      currentPrice: Decimal.parse("1"),
       id: faker.guid.toString(),
       image: faker.internet.httpUrl(),
       name: faker.lorem.word(),
