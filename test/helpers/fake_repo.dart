@@ -1,10 +1,13 @@
 import 'package:decimal/decimal.dart';
+import 'package:everest_crypto/app/data/datasources/api/endpoints/gencko_endpoints.dart';
+import 'package:everest_crypto/app/data/repositories/coin_prices_repository_imp.dart';
 import 'package:everest_crypto/app/domain/entities/chart_config_entity.dart';
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:everest_crypto/app/domain/entities/exchange_entity.dart';
 import 'package:everest_crypto/app/domain/repositories/i_coin_prices_repository.dart';
 import 'package:faker/faker.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FakeRepo implements ICoinPricesRepository {
   List<CoinViewData> dropList() {
@@ -53,7 +56,7 @@ class FakeRepo implements ICoinPricesRepository {
     List<CoinViewData> coinList = [
       CoinViewData(
         currentPrice: Decimal.parse(faker.randomGenerator.decimal().toString()),
-        id: faker.guid.toString(),
+        id: "bitcoin",
         image: faker.internet.httpUrl(),
         name: faker.lorem.word(),
         percentage24h: faker.randomGenerator.decimal(),
@@ -64,7 +67,7 @@ class FakeRepo implements ICoinPricesRepository {
       ),
       CoinViewData(
         currentPrice: Decimal.parse(faker.randomGenerator.decimal().toString()),
-        id: faker.guid.toString(),
+        id: "ethereum",
         image: faker.internet.httpUrl(),
         name: faker.lorem.word(),
         percentage24h: faker.randomGenerator.decimal(min: -10),
@@ -124,3 +127,28 @@ class FakeRepo implements ICoinPricesRepository {
     return getPrices();
   }
 }
+
+class CoinPricesRepositoryFake implements CoinPricesRepositoryImp {
+  @override
+  GenckoEndpoints get genkcoEndpoint => throw UnimplementedError();
+
+  @override
+  Future<List<Decimal>> getCoinPrices(
+      String coinId, String vScurrency, int days) async {
+    return [Decimal.parse("1")];
+  }
+}
+
+FakeRepo repo = FakeRepo();
+
+final getAllcoinsNotifierProviderFake = FutureProvider<List<CoinViewData>>(
+  (ref) async {
+    return repo.getCoinList();
+  },
+);
+
+final coinsWalletProviderFake = FutureProvider<List<CoinViewData>>(
+  (ref) async {
+    return repo.getCoinList();
+  },
+);

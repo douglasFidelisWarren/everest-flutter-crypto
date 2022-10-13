@@ -39,45 +39,24 @@ class L10nTestWidget extends ConsumerWidget {
                   Text(CoreStrings.of(context)!.converCoin),
                   Text(CoreStrings.of(context)!.convertTitle),
                   Text(CoreStrings.of(context)!.balanceAvailable),
-                  //=> '';
                   Text(CoreStrings.of(context)!.insufficient),
-                  // => '';
                   Text(CoreStrings.of(context)!.convertQuery),
-                  // => '';
                   Text(CoreStrings.of(context)!.estimatedTotal),
-                  //=> '';
                   Text(CoreStrings.of(context)!.reviewTitle),
-                  //=> '';
                   Text(CoreStrings.of(context)!.reviewAlert),
-                  // => '';
-
-                  // => '';
                   Text(CoreStrings.of(context)!.receive),
-                  // => '';
                   Text(CoreStrings.of(context)!.exchange),
-                  // => '';
                   Text(CoreStrings.of(context)!.convertConfirmTitle),
-                  // => '';
                   Text(CoreStrings.of(context)!.convertConfirmSubtitle),
-                  // => '';
                   Text(CoreStrings.of(context)!.movementsTitle),
-                  // => '';
                   Text(CoreStrings.of(context)!.movementReceipt),
-                  // => '';
                   Text(CoreStrings.of(context)!.documentNumber),
-                  //=> '';
                   Text(CoreStrings.of(context)!.date),
-                  // => '';
                   Text(CoreStrings.of(context)!.debtCoin),
-                  //=> '';
                   Text(CoreStrings.of(context)!.creditCoin),
-                  // => '';
                   Text(CoreStrings.of(context)!.movementValue),
-                  //=> '';
                   Text(CoreStrings.of(context)!.rateValue),
-                  // => '';
                   Text(CoreStrings.of(context)!.receiptShare),
-                  //=> '';
                 ],
               );
             },
