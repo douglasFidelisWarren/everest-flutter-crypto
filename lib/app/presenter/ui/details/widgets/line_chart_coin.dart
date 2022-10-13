@@ -6,7 +6,6 @@ import '../../../../domain/entities/chart_config_entity.dart';
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/chart_config_provider.dart';
 import '../../../controllers/providers/coin_prices_provider.dart';
-import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 
 final selectedProvider = StateProvider<int>((ref) => 5);

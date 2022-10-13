@@ -25,35 +25,19 @@ class L10nTestWidget extends ConsumerWidget {
               return Column(
                 children: [
                   Text(CoreStrings.of(context)!.crypto),
-                  // => 'Crypto';
                   Text(CoreStrings.of(context)!.walletTotalAmount),
-                  // => '';
                   Text(CoreStrings.of(context)!.portfolio),
-                  //=> '';
                   Text(CoreStrings.of(context)!.purchase),
-                  //=> '';
-
-                  // => '';
                   Text(CoreStrings.of(context)!.availableCoins),
-                  //=> '';
                   Text(CoreStrings.of(context)!.noMovements),
-                  // => '';
                   Text(CoreStrings.of(context)!.details),
-                  //=> '';
                   Text(CoreStrings.of(context)!.currentPrice),
-                  // => '';
                   Text(CoreStrings.of(context)!.percentVariation),
-                  // => '';
                   Text(CoreStrings.of(context)!.days),
-                  // => '';
                   Text(CoreStrings.of(context)!.detailsAmount),
-                  //=> '';
                   Text(CoreStrings.of(context)!.value),
-                  // => '';
                   Text(CoreStrings.of(context)!.converCoin),
-                  // => '';
                   Text(CoreStrings.of(context)!.convertTitle),
-                  //=> '';
                   Text(CoreStrings.of(context)!.balanceAvailable),
                   //=> '';
                   Text(CoreStrings.of(context)!.insufficient),

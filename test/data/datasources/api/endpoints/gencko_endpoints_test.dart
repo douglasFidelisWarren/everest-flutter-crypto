@@ -38,7 +38,7 @@ void main() {
         await genckoEndpoints.getCoinConverction(coinId: "", vScurrency: "");
     expect(getCoinsWallet.statusCode, equals(200));
     expect(getAllcoins.statusCode, equals(200));
-    expect(getPrices, sucess);
-    expect(getCoinConverction, sucess);
+    expect(getPrices.statusCode, equals(200));
+    expect(getCoinConverction.statusCode, equals(200));
   }));
 }
