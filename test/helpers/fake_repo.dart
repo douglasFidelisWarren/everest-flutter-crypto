@@ -37,7 +37,7 @@ class FakeRepo implements ICoinPricesRepository {
   CoinViewData getCoin() {
     CoinViewData coin = CoinViewData(
       currentPrice: Decimal.parse("1"),
-      id: faker.guid.toString(),
+      id: "bitcoin",
       image: faker.internet.httpUrl(),
       name: faker.lorem.word(),
       percentage24h: faker.randomGenerator.decimal(),
