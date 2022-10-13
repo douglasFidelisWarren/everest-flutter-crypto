@@ -22,8 +22,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../data/datasources/api/endpoints/gencko_endpoints_test.dart';
+import '../presenter/ui/review/widgets/confirmation_button_test.dart';
 import 'api_factory.dart';
 import 'fake_repo.dart';
+
+class MockNavigatorObserver extends Mock implements NavigatorObserver {}
+
+class FakeRoute extends Fake implements Route {}
 
 class TestAppWidget extends ConsumerWidget {
   final Widget child;

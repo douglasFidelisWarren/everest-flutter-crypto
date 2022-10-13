@@ -40,8 +40,6 @@ class ReviewPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double sizeH = MediaQuery.of(context).size.height;
-    double sizeW = MediaQuery.of(context).size.width;
     String toCoinSymbol = currentExchange.toCoin.symbol.toUpperCase();
     String fromCoinSymbol = currentExchange.fromCoin.symbol.toUpperCase();
     double valueExchange = currentExchange.valueExchange.toDouble();
@@ -77,8 +75,6 @@ class ReviewPageBody extends StatelessWidget {
         Center(
           child: ConfirmationButton(
             currentExchange: currentExchange,
-            sizeW: sizeW,
-            sizeH: sizeH,
           ),
         ),
         const SizedBox(height: 30)
