@@ -1,8 +1,5 @@
-import 'package:decimal/decimal.dart';
 import 'package:dio/dio.dart';
 import 'package:everest_crypto/app/data/datasources/api/endpoints/gencko_endpoints.dart';
-import 'package:everest_crypto/app/data/repositories/coin_prices_repository_imp.dart';
-import 'package:everest_crypto/app/data/repositories/coin_repository_imp.dart';
 import 'package:everest_crypto/app/data/repositories/wallet_repository_imp.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';

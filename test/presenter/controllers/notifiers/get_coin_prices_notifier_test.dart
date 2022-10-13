@@ -12,10 +12,10 @@ void main() {
     () async {
       FakeRepo repo;
       repo = FakeRepo();
-      GetCoinPricesUsecaseImp _usecase;
-      _usecase = GetCoinPricesUsecaseImp(repo);
+      GetCoinPricesUsecaseImp usecase;
+      usecase = GetCoinPricesUsecaseImp(repo);
       CoinPricesNotifier coinPricesNotifier;
-      coinPricesNotifier = CoinPricesNotifier(_usecase);
+      coinPricesNotifier = CoinPricesNotifier(usecase);
       coinPricesNotifier.getCoinPrices(
           coinId: "coinId", vScurrency: "vScurrency", days: 0);
       final prices = coinPricesNotifier.state;

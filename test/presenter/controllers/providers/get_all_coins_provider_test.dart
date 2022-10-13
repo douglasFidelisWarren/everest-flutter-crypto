@@ -1,12 +1,7 @@
-import 'package:decimal/decimal.dart';
-import 'package:dio/dio.dart';
 import 'package:everest_crypto/app/data/datasources/api/endpoint_provider.dart';
-import 'package:everest_crypto/app/data/models/get_all_coins_response.dart';
-import 'package:everest_crypto/app/data/repositories/wallet_repository_imp.dart';
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:everest_crypto/app/presenter/controllers/providers/conversion_provider.dart';
 import 'package:everest_crypto/app/presenter/controllers/providers/get_all_coins_provider.dart';
-import 'package:everest_crypto/app/presenter/controllers/providers/get_coins_wallet_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';

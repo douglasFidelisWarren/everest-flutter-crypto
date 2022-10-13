@@ -1,10 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:everest_crypto/app/data/datasources/api/endpoints/gencko_endpoints.dart';
 import 'package:everest_crypto/app/data/repositories/coin_prices_repository_imp.dart';
-import 'package:everest_crypto/app/data/repositories/coin_repository_imp.dart';
 import 'package:everest_crypto/app/domain/repositories/i_coin_prices_repository.dart';
-import 'package:everest_crypto/app/domain/repositories/i_coin_repository.dart';
-import 'package:everest_crypto/app/domain/usecases/get_all_coins_usecase.dart';
 import 'package:everest_crypto/app/domain/usecases/get_coin_prices_usecase.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';

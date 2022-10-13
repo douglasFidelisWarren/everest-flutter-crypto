@@ -1,10 +1,7 @@
-import 'package:everest_crypto/app/presenter/ui/shared/app_routes.dart';
-import 'package:everest_crypto/app/presenter/ui/shared/home.dart';
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 class L10nTestWidget extends ConsumerWidget {
   const L10nTestWidget({Key? key, required this.locale}) : super(key: key);

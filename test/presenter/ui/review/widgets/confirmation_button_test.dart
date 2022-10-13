@@ -1,12 +1,9 @@
 import 'package:everest_crypto/app/domain/entities/exchange_entity.dart';
-import 'package:everest_crypto/app/presenter/ui/conversion/view/success_page.dart';
 import 'package:everest_crypto/app/presenter/ui/review/widgets/confirmation_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import '../../../../helpers/fake_repo.dart';
 import '../../../../helpers/test_app_widget.dart';
-
-import 'package:mocktail/mocktail.dart';
 
 void main() {
   testWidgets(

@@ -21,10 +21,10 @@ void main() {
     () async {
       ChartConfigRepositoryFake repo;
       repo = ChartConfigRepositoryFake();
-      GetChartConfigUsecaseImp _usecase;
-      _usecase = GetChartConfigUsecaseImp(repo);
+      GetChartConfigUsecaseImp usecase;
+      usecase = GetChartConfigUsecaseImp(repo);
       GetChartConfigNotifier notifier;
-      notifier = GetChartConfigNotifier(_usecase, [Decimal.parse("1")]);
+      notifier = GetChartConfigNotifier(usecase, [Decimal.parse("1")]);
       notifier.getChartConfig([Decimal.parse("1")]);
       notifier.state =
           ChartConfigViewData(period: 1, percent: 1, max: 1, min: 1, spots: []);

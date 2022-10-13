@@ -1,10 +1,8 @@
 import 'package:everest_crypto/app/presenter/ui/shared/app_routes.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/custom_app_bar.dart';
-import 'package:everest_crypto/app/presenter/ui/shared/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:network_image_mock/network_image_mock.dart';
 
 import '../../../helpers/test_app_widget.dart';
 

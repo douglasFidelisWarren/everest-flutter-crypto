@@ -1,9 +1,7 @@
-import 'package:everest_crypto/app/presenter/ui/details/view/details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'app/presenter/controllers/providers/get_coins_wallet_provider.dart';
 import 'app/presenter/ui/shared/app_routes.dart';
 import 'app/presenter/ui/shared/home.dart';
 import 'l10n/core_strings.dart';

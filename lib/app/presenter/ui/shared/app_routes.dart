@@ -1,10 +1,5 @@
-import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
-import 'package:everest_crypto/app/presenter/ui/portfolio/widgets/page_body.dart';
 import 'package:everest_crypto/app/presenter/ui/review/view/review_page.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../controllers/providers/providers.dart';
-import '../conversion/view/conversion_page.dart';
 import '../conversion/view/success_page.dart';
 import 'home.dart';
 import '../movements/view/movements_page.dart';
