@@ -81,7 +81,7 @@ class FakeRepo implements ICoinPricesRepository {
     return coinList;
   }
 
-  ExchangeEntity getExchange() {
+  ExchangeViewData getExchange() {
     CoinViewData fromCoin = getCoin();
     CoinViewData toCoin = getCoin();
     Decimal amtConvert = Decimal.parse("1");
@@ -91,7 +91,7 @@ class FakeRepo implements ICoinPricesRepository {
         (amtConvert.toDouble() * fromCoin.currentPrice.toDouble()) /
             toCoin.currentPrice.toDouble();
 
-    ExchangeEntity exchange = ExchangeEntity(
+    ExchangeViewData exchange = ExchangeViewData(
       fromCoin: fromCoin,
       toCoin: toCoin,
       amtConvert: amtConvert,
@@ -102,8 +102,8 @@ class FakeRepo implements ICoinPricesRepository {
     return exchange;
   }
 
-  List<ExchangeEntity> getExchangeList() {
-    List<ExchangeEntity> exchangeList = [];
+  List<ExchangeViewData> getExchangeList() {
+    List<ExchangeViewData> exchangeList = [];
     for (var i = 0; i < 3; i++) {
       exchangeList.add(getExchange());
     }

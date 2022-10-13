@@ -30,6 +30,8 @@ class TestAppWidget extends ConsumerWidget {
         supportedLocales: CoreStrings.supportedLocales,
         localizationsDelegates: const [
           CoreStrings.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
       ),

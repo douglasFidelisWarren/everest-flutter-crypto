@@ -7,16 +7,12 @@ import '../../../../helpers/test_app_widget.dart';
 
 void main() {
   testWidgets(
-    "WHEN the share button is clicked THEN close the modal",
+    "WHEN load ConfirmationButton THEN find MaterialButton with Key(confirmButton)",
     (WidgetTester tester) async {
       FakeRepo repo = FakeRepo();
-      ExchangeEntity exchange = repo.getExchange();
+      ExchangeViewData exchange = repo.getExchange();
       await loadPage(tester, ConfirmationButton(currentExchange: exchange));
       expect(find.byKey(const Key("confirmButton")), findsOneWidget);
-      //await tester.tap(find.byKey(const Key("confirmButton")));
-      //await tester.pumpAndSettle();
-      //verify(mockObserver.didPush(any(), any()));
-      // expect(find.byType(SuccessPage), findsOneWidget);
     },
   );
 }

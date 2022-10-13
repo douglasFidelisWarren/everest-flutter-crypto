@@ -9,7 +9,7 @@ import '../../../../helpers/test_app_widget.dart';
 
 void main() {
   testWidgets(
-    "desc",
+    "WHEN the LineChartCoin loads, THEN display the LineChart",
     (WidgetTester tester) async {
       await tester.pumpWidget(ProviderScope(
         overrides: [

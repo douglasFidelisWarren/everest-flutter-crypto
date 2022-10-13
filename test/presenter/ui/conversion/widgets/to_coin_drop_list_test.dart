@@ -9,7 +9,7 @@ import '../../../../helpers/test_app_widget.dart';
 
 void main() {
   testWidgets(
-    "drop",
+    "WHEN the success page loads, THEN find ToCoinDropList ",
     (WidgetTester tester) async {
       mockNetworkImagesFor(
         () async {

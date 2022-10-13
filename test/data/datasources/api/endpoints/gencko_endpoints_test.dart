@@ -29,7 +29,8 @@ void main() {
   setUp(() {
     sucess = mockResponse(ApiFactory.getCoinsWallet(), 200);
   });
-  test('WHEN getAllTransactions is requested THEN returns 200', (() async {
+  test('WHEN genckoEndpoints is requested THEN returns status code 200',
+      (() async {
     mockGetResponse().thenAnswer((_) async => sucess);
     final getCoinsWallet = await genckoEndpoints.getCoinsWallet({}, "");
     final getAllcoins = await genckoEndpoints.getAllCoins("brl");

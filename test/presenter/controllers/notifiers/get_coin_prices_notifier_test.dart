@@ -8,7 +8,7 @@ import '../../../helpers/fake_repo.dart';
 
 void main() {
   test(
-    "description",
+    "WHEN CoinPricesNotifier called THEN returns List<Decimal>",
     () async {
       FakeRepo repo;
       repo = FakeRepo();

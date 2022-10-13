@@ -19,7 +19,7 @@ void main() {
               builder: (context, ref, child) {
                 FakeRepo repo = FakeRepo();
                 final convertCoin = ref.watch(convertCoinProvider);
-                ExchangeEntity exchange = convertCoin.convertCoin(
+                ExchangeViewData exchange = convertCoin.convertCoin(
                   fromCoin: repo.getCoin(),
                   toCoin: repo.getCoin(),
                   amtConvert: Decimal.parse("1"),

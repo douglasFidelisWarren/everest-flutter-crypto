@@ -8,7 +8,7 @@ import '../../helpers/fake_repo.dart';
 void main() {
   late ConvertCoinUsecaseImp convertCoinUsecase;
   late FakeRepo repo;
-  late ExchangeEntity exchangeEntity;
+  late ExchangeViewData exchangeEntity;
 
   setUp(() {
     convertCoinUsecase = ConvertCoinUsecaseImp();

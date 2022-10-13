@@ -10,7 +10,7 @@ import '../../../data/repositories/coin_prices_repository_test.dart';
 
 void main() {
   testWidgets(
-    "test",
+    "WHEN the getAllcoinsNotifierProvider is called THEN returns AsyncData<List<CoinViewData>>",
     (WidgetTester tester) async {
       await tester.pumpWidget(ProviderScope(
         overrides: [

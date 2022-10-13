@@ -35,6 +35,6 @@ final convertCoinProvider = Provider(
   },
 );
 
-final exchangesListProvider = StateProvider<List<ExchangeEntity>>(
+final exchangesListProvider = StateProvider<List<ExchangeViewData>>(
   (ref) => [],
 );

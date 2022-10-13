@@ -22,8 +22,8 @@ void main() {
     sut = GetCoinPricesUsecaseImp(repository);
   });
 
-  test("""WHEN getAllCoins is requested by GetAllCoinsUsecaseImp 
-      THEN return List<CoinViewData>""", (() async {
+  test("""WHEN getCoinPrices is called by GetCoinPricesUsecaseImp 
+      THEN return Future<List<Decimal>>""", (() async {
     when((() => genckoEndpointsMock.getCoinPrices("", "", 0))).thenAnswer(
         (_) async => Response(
             data: ApiFactory.getPrices(),

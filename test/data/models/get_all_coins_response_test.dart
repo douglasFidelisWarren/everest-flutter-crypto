@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test(
-    "description",
+    "WHEN CoinResponse is generated THEN all attributes are required",
     () {
       CoinResponse coinResponse = CoinResponse(
         "id",

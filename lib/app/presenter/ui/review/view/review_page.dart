@@ -18,7 +18,7 @@ class ReviewPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ExchangeEntity currentExchange = ref.watch(exchangeProvider);
+    ExchangeViewData currentExchange = ref.watch(exchangeProvider);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -36,7 +36,7 @@ class ReviewPageBody extends StatelessWidget {
     required this.currentExchange,
   }) : super(key: key);
 
-  final ExchangeEntity currentExchange;
+  final ExchangeViewData currentExchange;
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test(
-    "WHEN entity is generated THEN all attributes are required",
+    "WHEN ChartConfig is generated THEN all attributes are required",
     () {
       ChartConfig config =
           ChartConfig(period: 1, percent: 1, max: 1, min: 1, spots: []);

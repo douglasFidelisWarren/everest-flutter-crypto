@@ -10,7 +10,7 @@ void main() {
     "WHEN the share button is clicked THEN close the modal",
     (WidgetTester tester) async {
       FakeRepo repo = FakeRepo();
-      ExchangeEntity exchange = repo.getExchange();
+      ExchangeViewData exchange = repo.getExchange();
       await loadPage(tester, ModalBody(exchange: exchange));
       await tester.tap(find.byKey(const Key("closeModal")));
       await tester.pumpAndSettle();

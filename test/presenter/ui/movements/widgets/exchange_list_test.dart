@@ -11,7 +11,7 @@ void main() {
     "WHEN the exchange list is called THEN displays the list of exchanges done",
     (WidgetTester tester) async {
       FakeRepo repo = FakeRepo();
-      List<ExchangeEntity> exchangeList = repo.getExchangeList();
+      List<ExchangeViewData> exchangeList = repo.getExchangeList();
       await loadPage(tester, ExchangeList(exchangeList: exchangeList));
       await tester.pumpAndSettle();
       expect(find.byType(MovementDetailsRow), findsWidgets);

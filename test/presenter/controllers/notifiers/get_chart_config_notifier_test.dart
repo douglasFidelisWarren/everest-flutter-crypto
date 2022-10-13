@@ -17,7 +17,7 @@ class ChartConfigRepositoryFake implements IChartConfigRepository {
 
 void main() {
   test(
-    "description",
+    "WHEN GetChartConfigNotifier called THEN returns ChartConfigViewData",
     () async {
       ChartConfigRepositoryFake repo;
       repo = ChartConfigRepositoryFake();
