@@ -1,17 +1,17 @@
 import 'package:decimal/decimal.dart';
-import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../l10n/core_strings.dart';
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/conversion_provider.dart';
-import '../../conversion/conversion_page.dart';
+import '../../conversion/view/conversion_page.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 import 'line_chart_coin.dart';
 import 'value_chart_row.dart';
 
-class BottonChartDetails extends HookConsumerWidget {
+class BottonChartDetails extends ConsumerWidget {
   const BottonChartDetails(
     this.coin,
     this.percent, {
@@ -64,17 +64,24 @@ class BottonChartDetails extends HookConsumerWidget {
             height: 22,
             thickness: 1.5,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                CoreStrings.of(context)!.detailsAmount,
-                style: subTitleStyleMediun,
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * .9,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    CoreStrings.of(context)!.detailsAmount,
+                    style: subTitleStyleMediun,
+                  ),
+                  Text(
+                      "${coin.amount!.toStringAsFixed(8).replaceAll(".", ",")} ${coin.symbol.toUpperCase()}",
+                      style: mediumBlackTitle)
+                ],
               ),
-              Text(
-                  "${coin.amount!.toStringAsFixed(8).replaceAll(".", ",")} ${coin.symbol.toUpperCase()}",
-                  style: mediumBlackTitle)
-            ],
+            ),
           ),
           const Divider(
             color: colorGrayDivider,
@@ -106,12 +113,13 @@ class BottonChartDetails extends HookConsumerWidget {
               );
               ref.read(textFormValueProvider.state).state = 0;
               ref.read(helpTextProvider.state).state = '';
-              Navigator.of(context)
-                  .pushNamed(ConversionPage.route, arguments: coin);
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ConversionPage(fromCoin: coin),
+              ));
             },
             child: Text(
               CoreStrings.of(context)!.converCoin,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: Colors.white),

@@ -2,7 +2,7 @@ import 'package:decimal/decimal.dart';
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/conversion_provider.dart';
@@ -66,10 +66,9 @@ class AmoutFormField extends ConsumerWidget {
               if (value!.isNotEmpty &&
                   Decimal.parse(value) > fromCoin.amount!) {
                 return "${CoreStrings.of(context)!.balanceAvailable} ${fromCoin.symbol.toUpperCase()} ${CoreStrings.of(context)!.insufficient}";
-              } else {
-                return null;
               }
             }
+            return null;
           },
         ),
         Text(

@@ -1,12 +1,11 @@
-import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../l10n/core_strings.dart';
 import '../../../../domain/entities/exchange_entity.dart';
 import '../../../controllers/providers/conversion_provider.dart';
 import '../../shared/styles.dart';
-import '../widgets/movements_details_row.dart';
+import '../widgets/exchange_list.dart';
 
 class MovementsPage extends ConsumerWidget {
   const MovementsPage({Key? key}) : super(key: key);
@@ -23,7 +22,7 @@ class MovementsPage extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 18.0, left: 10),
+            padding: const EdgeInsets.only(top: 18.0, left: 10),
             child: Text(
               CoreStrings.of(context)!.movements,
               style: mediumBlackTitle1,
@@ -38,34 +37,18 @@ class MovementsPage extends ConsumerWidget {
                   children: [
                     const Text(
                       'Ops...',
+                      key: Key('notExchangesTitle'),
                       style: mediumBlackTitle1,
                     ),
                     Text(
                       CoreStrings.of(context)!.noMovements,
+                      key: const Key('notExchangesSubTitle'),
                       style: smallGraySubTitle,
                     ),
                   ],
                 ),
               ),
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: exchangeList.reversed.length,
-                itemBuilder: (context, index) {
-                  ExchangeEntity exchange = exchangeList[index];
-                  final date = DateFormat('dd/MM/yyyy');
-                  final value =
-                      exchange.amtReceive * exchange.toCoin.currentPrice;
-                  return Padding(
-                    padding: const EdgeInsets.all(0),
-                    child: MovementDetailsRow(
-                      exchange: exchange,
-                      date: date,
-                      value: value,
-                    ),
-                  );
-                },
-              ),
+              child: ExchangeList(exchangeList: exchangeList),
             ),
           ),
         ],

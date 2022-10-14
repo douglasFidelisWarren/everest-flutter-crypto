@@ -1,32 +1,55 @@
 import 'package:decimal/decimal.dart';
-import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../l10n/core_strings.dart';
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../../domain/entities/exchange_entity.dart';
 import '../../../controllers/providers/conversion_provider.dart';
 import '../../review/view/review_page.dart';
 import '../../shared/styles.dart';
 
+final exchangeProvider = StateProvider<ExchangeEntity>(
+  (ref) => ExchangeEntity(
+      fromCoin: CoinViewData(
+          id: "id",
+          name: "name",
+          symbol: "symbol",
+          image: "image",
+          currentPrice: Decimal.parse("0"),
+          percentage24h: 0),
+      toCoin: CoinViewData(
+          id: "id",
+          name: "name",
+          symbol: "symbol",
+          image: "image",
+          currentPrice: Decimal.parse("0"),
+          percentage24h: 0),
+      amtConvert: Decimal.parse("0"),
+      amtReceive: Decimal.parse("0"),
+      date: DateTime.now(),
+      valueExchange: Decimal.parse("0")),
+);
+
 class ExchangeBottonSheet extends ConsumerWidget {
   const ExchangeBottonSheet({
     Key? key,
-    required this.formValue,
     required this.toCoin,
-    required this.valid,
     required this.fromCoin,
-    required this.textFormValue,
   }) : super(key: key);
 
-  final double formValue;
   final CoinViewData toCoin;
-  final bool valid;
   final CoinViewData fromCoin;
-  final Decimal textFormValue;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool valid = ref.watch(isValidProvider);
+    Decimal textFormValue =
+        Decimal.parse(ref.watch(textFormValueProvider.state).state.toString());
+    Decimal teste = textFormValue * fromCoin.currentPrice;
+    double formValue = double.parse(teste.toString()) /
+        double.parse(toCoin.currentPrice.toString());
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
@@ -61,14 +84,15 @@ class ExchangeBottonSheet extends ConsumerWidget {
                 onPressed: valid
                     ? () {
                         ref.read(animateProvider.state).state = true;
-                        ExchangeEntity currentExchange = ref
+                        ref.read(exchangeProvider.state).state = ref
                             .watch(convertCoinProvider)
                             .convertCoin(
                                 fromCoin: fromCoin,
                                 toCoin: toCoin,
                                 amtConvert: textFormValue);
-                        Navigator.of(context).pushNamed(ReviewPage.route,
-                            arguments: currentExchange);
+                        Navigator.of(context).pushNamed(
+                          ReviewPage.route,
+                        );
                       }
                     : null,
                 child: CircleAvatar(

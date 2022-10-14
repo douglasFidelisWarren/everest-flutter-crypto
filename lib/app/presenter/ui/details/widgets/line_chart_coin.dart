@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../domain/entities/chart_config_entity.dart';
 import '../../../../domain/entities/coins_view_data.dart';
@@ -11,12 +11,13 @@ import '../../shared/styles.dart';
 
 final selectedProvider = StateProvider<int>((ref) => 5);
 
-class LineChartCoin extends HookConsumerWidget {
-  const LineChartCoin(this.coin, this.config, {Key? key}) : super(key: key);
+class LineChartCoin extends ConsumerWidget {
+  const LineChartCoin(this.coin, {Key? key}) : super(key: key);
   final CoinViewData coin;
-  final ChartConfigViewData config;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ChartConfigViewData config = ref.watch(chartConfigProvider);
     Widget custom(int period) {
       return TextButton(
         style: ElevatedButton.styleFrom(
@@ -40,7 +41,7 @@ class LineChartCoin extends HookConsumerWidget {
               .getCoinPrices(coinId: coin.id, vScurrency: "brl", days: period);
           ref
               .read(chartConfigProvider.notifier)
-              .getChartConfig(ref.watch(coinPricesNotifierProvider).value!);
+              .getChartConfig(ref.watch(coinPricesNotifierProvider));
           ref.watch(selectedProvider.state).state = period;
         },
       );
@@ -122,10 +123,6 @@ class LineChartCoin extends HookConsumerWidget {
                           belowBarData: BarAreaData(show: false),
                           spots: config.spots)
                     ],
-                    // minX: 0,
-                    // maxX: config.period,
-                    //maxY: config.max,
-                    // minY: config.min,
                   ),
                   swapAnimationDuration: const Duration(milliseconds: 250),
                 ),

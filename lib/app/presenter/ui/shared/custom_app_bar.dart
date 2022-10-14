@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       iconTheme: const IconThemeData(color: colorBlackText),
       elevation: .7,
       backgroundColor: Colors.white,
-      title: Text(page, style: appBarTextStyle),
+      title: Text(key: const Key("pageTitle"), page, style: appBarTextStyle),
     );
   }
 }

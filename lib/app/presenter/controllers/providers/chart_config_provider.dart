@@ -1,4 +1,4 @@
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/datasources/get_chart_config_datasource.dart';
 import '../../../data/repositories/chart_config_repository_imp.dart';
@@ -21,7 +21,7 @@ final chartConfigUsecase = Provider(
 final chartConfigProvider =
     StateNotifierProvider<GetChartConfigNotifier, ChartConfigViewData>(
   (ref) {
-    return GetChartConfigNotifier(ref.watch(chartConfigUsecase),
-        ref.watch(coinPricesNotifierProvider).value!);
+    return GetChartConfigNotifier(
+        ref.watch(chartConfigUsecase), ref.watch(coinPricesNotifierProvider));
   },
 );

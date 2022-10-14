@@ -1,8 +1,8 @@
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/home.dart';
-import '../shared/styles.dart';
+import '../../../../../../core/home.dart';
+import '../../shared/styles.dart';
 
 class SuccessPage extends StatelessWidget {
   const SuccessPage({Key? key}) : super(key: key);
@@ -47,6 +47,7 @@ class SuccessPage extends StatelessWidget {
             style: totalStyle,
           ),
           Text(
+            key: const Key("subtitleSuccess"),
             CoreStrings.of(context)!.convertConfirmSubtitle,
             style: smallGraySubTitle,
           ),

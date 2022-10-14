@@ -1,10 +1,10 @@
-import 'package:everest_crypto/app/domain/entities/exchange_entity.dart';
-import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../l10n/core_strings.dart';
+import '../../../../domain/entities/exchange_entity.dart';
 import '../../../controllers/providers/conversion_provider.dart';
-import '../../conversion/success_page.dart';
+import '../../conversion/view/success_page.dart';
 import '../../shared/styles.dart';
 
 class ConfirmationButton extends ConsumerWidget {
@@ -44,7 +44,7 @@ class ConfirmationButton extends ConsumerWidget {
             ? Center(
                 child: Text(
                   CoreStrings.of(context)!.converCoin,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.white),

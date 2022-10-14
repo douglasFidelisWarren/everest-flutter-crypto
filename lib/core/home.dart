@@ -1,15 +1,17 @@
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../app/domain/entities/coins_view_data.dart';
 import '../app/presenter/controllers/providers/get_all_coins_provider.dart';
+import '../app/presenter/controllers/providers/get_coins_wallet_provider.dart';
 import '../app/presenter/ui/available/view/available_page.dart';
 import '../app/presenter/ui/movements/view/movements_page.dart';
 import '../app/presenter/ui/portfolio/view/portfolio_page.dart';
 import '../app/presenter/ui/shared/assets.dart';
 import '../app/presenter/ui/shared/styles.dart';
 
-class Home extends StatefulHookConsumerWidget {
+class Home extends ConsumerStatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   static const route = '/';
@@ -38,14 +40,37 @@ class _HomeState extends ConsumerState<Home> {
 
   @override
   Widget build(BuildContext context) {
+    List<CoinViewData> getWalletCoins() {
+      List<CoinViewData> coins = [];
+      List<CoinViewData> coinsProvider =
+          ref.watch(coinsWalletProvider).value ?? [];
+      for (var coin in coinsProvider) {
+        coins.add(coin);
+      }
+      return coins;
+    }
+
+    List<CoinViewData> getAvailableCoins() {
+      List<CoinViewData> coins = [];
+      List<CoinViewData> coinsProvider =
+          ref.watch(getAllcoinsNotifierProvider).value ?? [];
+      for (var coin in coinsProvider) {
+        coins.add(coin);
+      }
+      return coins;
+    }
+
+    final walletCoins = getWalletCoins();
+    final availableCoins = getAvailableCoins();
+
     return Scaffold(
       body: PageView(
           onPageChanged: setCurrentPage,
           controller: pageController,
-          children: const [
-            PortfolioPage(),
-            AvailablePage(),
-            MovementsPage(),
+          children: [
+            PortfolioPage(coins: walletCoins),
+            AvailablePage(coins: availableCoins),
+            const MovementsPage(),
           ]),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: colorBlackText,

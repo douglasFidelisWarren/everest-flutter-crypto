@@ -1,5 +1,5 @@
 import 'package:decimal/decimal.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/datasources/api/endpoint_provider.dart';
 import '../../../data/repositories/coin_prices_repository_imp.dart';
@@ -15,6 +15,6 @@ final coinPricesUsecaseProvider = Provider((ref) {
 });
 
 final coinPricesNotifierProvider =
-    StateNotifierProvider<CoinPricesNotifier, AsyncValue<List<Decimal>>>((ref) {
+    StateNotifierProvider<CoinPricesNotifier, List<Decimal>>((ref) {
   return CoinPricesNotifier(ref.watch(coinPricesUsecaseProvider));
 });

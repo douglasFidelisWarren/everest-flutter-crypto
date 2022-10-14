@@ -1,5 +1,5 @@
 import 'package:decimal/decimal.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/datasources/api/endpoint_provider.dart';
 import '../../../data/repositories/wallet_repository_imp.dart';
@@ -15,7 +15,7 @@ final userCoinsProvider = StateProvider<Map<String, Decimal>>(
     'usd-coin': Decimal.parse("103.04453215"),
     'avalanche-2': Decimal.parse("201.87444828"),
     'atom': Decimal.parse("198.69564269"),
-    "bitcoin": Decimal.parse("2.65456841"),
+    "bitcoin": Decimal.parse("5.65456841"),
     "ethereum": Decimal.parse("35.12598354"),
     "chiliz": Decimal.parse("121.95456874"),
   },

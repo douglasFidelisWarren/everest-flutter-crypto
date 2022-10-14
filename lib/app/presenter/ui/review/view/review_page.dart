@@ -1,8 +1,9 @@
-import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../l10n/core_strings.dart';
 import '../../../../domain/entities/exchange_entity.dart';
+import '../../conversion/widgets/exchange_botton_sheet.dart';
 import '../../shared/custom_app_bar.dart';
 import '../../shared/styles.dart';
 import '../widgets/confirmation_button.dart';
@@ -17,57 +18,71 @@ class ReviewPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentExchange =
-        ModalRoute.of(context)!.settings.arguments as ExchangeEntity;
+    ExchangeEntity currentExchange = ref.watch(exchangeProvider);
 
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: CustomAppBar(CoreStrings.of(context)!.reviewTitle),
+      body: ReviewPageBody(
+        currentExchange: currentExchange,
+      ),
+    );
+  }
+}
+
+class ReviewPageBody extends StatelessWidget {
+  const ReviewPageBody({
+    Key? key,
+    required this.currentExchange,
+  }) : super(key: key);
+
+  final ExchangeEntity currentExchange;
+
+  @override
+  Widget build(BuildContext context) {
     double sizeH = MediaQuery.of(context).size.height;
     double sizeW = MediaQuery.of(context).size.width;
     String toCoinSymbol = currentExchange.toCoin.symbol.toUpperCase();
     String fromCoinSymbol = currentExchange.fromCoin.symbol.toUpperCase();
     double valueExchange = currentExchange.valueExchange.toDouble();
-
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: CustomAppBar(CoreStrings.of(context)!.reviewTitle),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 12,
-              top: 30,
-            ),
-            child: Text(
-              CoreStrings.of(context)!.reviewAlert,
-              style: mediumBlackTitle1,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(
+            left: 12,
+            top: 30,
           ),
-          const Expanded(child: SizedBox()),
-          ConvertRow(
-            amountConvert: currentExchange.amtConvert,
-            fromSymbol: currentExchange.fromCoin.symbol.toUpperCase(),
+          child: Text(
+            CoreStrings.of(context)!.reviewAlert,
+            style: mediumBlackTitle1,
           ),
-          ReceiveRow(
+        ),
+        const Expanded(child: SizedBox()),
+        ConvertRow(
+          amountConvert: currentExchange.amtConvert,
+          fromSymbol: currentExchange.fromCoin.symbol.toUpperCase(),
+        ),
+        ReceiveRow(
+          currentExchange: currentExchange,
+        ),
+        ExchangeRow(
+          toCoinSymbol: toCoinSymbol,
+          valueExchange: valueExchange,
+          fromCoinSymbol: fromCoinSymbol,
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Center(
+          child: ConfirmationButton(
             currentExchange: currentExchange,
+            sizeW: sizeW,
+            sizeH: sizeH,
           ),
-          ExchangeRow(
-            toCoinSymbol: toCoinSymbol,
-            valueExchange: valueExchange,
-            fromCoinSymbol: fromCoinSymbol,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Center(
-            child: ConfirmationButton(
-              currentExchange: currentExchange,
-              sizeW: sizeW,
-              sizeH: sizeH,
-            ),
-          ),
-          const SizedBox(height: 30)
-        ],
-      ),
+        ),
+        const SizedBox(height: 30)
+      ],
     );
   }
 }

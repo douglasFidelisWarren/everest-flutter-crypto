@@ -1,8 +1,4 @@
-import 'dart:math';
-
-import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../domain/entities/exchange_entity.dart';
 import '../../shared/formater.dart';
@@ -13,19 +9,17 @@ class MovementDetailsRow extends StatelessWidget {
   const MovementDetailsRow({
     Key? key,
     required this.exchange,
-    required this.date,
-    required this.value,
   }) : super(key: key);
 
   final ExchangeEntity exchange;
-  final DateFormat date;
-  final Decimal value;
 
   @override
   Widget build(BuildContext context) {
+    final value = exchange.amtReceive * exchange.toCoin.currentPrice;
     String fromCoinSymbol = exchange.fromCoin.symbol.toUpperCase();
     String toCoinSymbol = exchange.fromCoin.symbol.toUpperCase();
     return MaterialButton(
+      key: const Key("showModalAccess"),
       onPressed: () => showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -35,13 +29,7 @@ class MovementDetailsRow extends StatelessWidget {
         ),
         context: context,
         builder: (context) {
-          final date = DateFormat('dd/MM/yyyy HH:MM:ss');
-          Random rdm = Random();
-          int docNumber = rdm.nextInt(9999999);
-
           return ModalBody(
-            docNumber: docNumber,
-            date: date,
             exchange: exchange,
           );
         },
@@ -56,10 +44,12 @@ class MovementDetailsRow extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    key: const Key("exchangeAmount"),
                     "${exchange.amtConvert} $fromCoinSymbol",
                     style: subTitleStyleMediun,
                   ),
                   Text(
+                    key: const Key("exchangeDate"),
                     date.format(exchange.date),
                     style: smallGraySubTitle,
                   ),
@@ -69,10 +59,13 @@ class MovementDetailsRow extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
+                    key: const Key("exchangeAmountReceive"),
                     "${exchange.amtReceive.toStringAsFixed(6)} $toCoinSymbol",
                     style: mediumBlackTitle,
                   ),
-                  Text(number.format(value.toDouble()),
+                  Text(
+                      key: const Key("exchangeAmountVScurrencyReceive"),
+                      number.format(value.toDouble()),
                       style: smallGraySubTitle),
                 ],
               ),
