@@ -26,7 +26,7 @@ class ToCoinDropList extends ConsumerWidget {
             symbol: "",
             amount: Decimal.parse("0"),
             amountVsCurrency: Decimal.parse("0"))
-        : dropList[0];
+        : dropList.first;
     String? coinName;
     return Container(
       alignment: Alignment.centerLeft,
