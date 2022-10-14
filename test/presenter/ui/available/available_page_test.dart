@@ -1,6 +1,7 @@
 import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
 import 'package:everest_crypto/app/presenter/ui/available/view/available_page.dart';
 import 'package:everest_crypto/app/presenter/ui/available/widgets/available_card_coin.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
@@ -9,8 +10,9 @@ import '../../../helpers/test_app_widget.dart';
 
 void main() {
   testWidgets(
-      "WHEN the available page loads, THEN display the available coins ",
-      (WidgetTester tester) async {
+      "WHEN the available page loads, THEN display the available coins ", (
+    WidgetTester tester,
+  ) async {
     mockNetworkImagesFor(
       () async {
         FakeRepo repo = FakeRepo();
@@ -19,6 +21,9 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.byType(AvailableCardCoin), findsWidgets);
+        expect(find.byKey(Key(coinList[0].id)), findsOneWidget);
+        await tester.tap(find.byKey(Key(coinList[0].id)));
+        await tester.pumpAndSettle();
       },
     );
   });

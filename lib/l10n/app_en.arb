@@ -19,11 +19,6 @@
     "description": "Puchase page title"
   },
 
-"movements" : "Movements",
-"@movements": {
-    "description": "Movements page title"
-  },
-
 "availableCoins" : "Available crypto",
 "@availableCoins": {
     "description": ""
@@ -102,11 +97,6 @@
 "reviewAlert" : "Review your conversion",
 "@reviewAlert": {
     "description": "Review page message"
-  },
-
-"convert" : "Convert",
-"@convert": {
-    "description": "Review page convert seted amount"
   },
 
 "receive" : "Receive",

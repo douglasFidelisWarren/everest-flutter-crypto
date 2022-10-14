@@ -17,9 +17,6 @@ class CoreStringsPt extends CoreStrings {
   String get purchase => 'Comprar';
 
   @override
-  String get movements => 'Movimentações';
-
-  @override
   String get availableCoins => 'Criptos Disponíveis';
 
   @override
@@ -66,9 +63,6 @@ class CoreStringsPt extends CoreStrings {
 
   @override
   String get reviewAlert => 'Revise os dados da sua conversão';
-
-  @override
-  String get convert => 'Converter';
 
   @override
   String get receive => 'Receber';

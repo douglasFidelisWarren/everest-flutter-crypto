@@ -18,7 +18,7 @@ class ReviewPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ExchangeEntity currentExchange = ref.watch(exchangeProvider);
+    ExchangeViewData currentExchange = ref.watch(exchangeProvider);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -36,12 +36,10 @@ class ReviewPageBody extends StatelessWidget {
     required this.currentExchange,
   }) : super(key: key);
 
-  final ExchangeEntity currentExchange;
+  final ExchangeViewData currentExchange;
 
   @override
   Widget build(BuildContext context) {
-    double sizeH = MediaQuery.of(context).size.height;
-    double sizeW = MediaQuery.of(context).size.width;
     String toCoinSymbol = currentExchange.toCoin.symbol.toUpperCase();
     String fromCoinSymbol = currentExchange.fromCoin.symbol.toUpperCase();
     double valueExchange = currentExchange.valueExchange.toDouble();
@@ -77,8 +75,6 @@ class ReviewPageBody extends StatelessWidget {
         Center(
           child: ConfirmationButton(
             currentExchange: currentExchange,
-            sizeW: sizeW,
-            sizeH: sizeH,
           ),
         ),
         const SizedBox(height: 30)

@@ -15,7 +15,7 @@ class ModalBody extends StatelessWidget {
     required this.exchange,
   }) : super(key: key);
 
-  final ExchangeEntity exchange;
+  final ExchangeViewData exchange;
 
   @override
   Widget build(BuildContext context) {

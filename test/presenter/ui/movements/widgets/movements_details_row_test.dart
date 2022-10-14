@@ -16,7 +16,7 @@ void main() {
         "WHEN crypto datails is loaded, THEN crypto infos is equal the info from api crypto",
         (WidgetTester tester) async {
           FakeRepo repo = FakeRepo();
-          ExchangeEntity exchange = repo.getExchange();
+          ExchangeViewData exchange = repo.getExchange();
           await loadPage(tester, MovementDetailsRow(exchange: exchange));
           final value = exchange.amtReceive * exchange.toCoin.currentPrice;
 
@@ -44,7 +44,7 @@ void main() {
         "WHEN the exchange row is clicked THEN display the modal",
         (WidgetTester tester) async {
           FakeRepo repo = FakeRepo();
-          ExchangeEntity exchange = repo.getExchange();
+          ExchangeViewData exchange = repo.getExchange();
           await loadPage(tester, MovementDetailsRow(exchange: exchange));
           await tester.tap(find.byKey(const Key("showModalAccess")));
           await tester.pumpAndSettle();

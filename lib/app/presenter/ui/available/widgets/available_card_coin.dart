@@ -15,6 +15,7 @@ class AvailableCardCoin extends StatelessWidget {
       (coin.percentage24h).toStringAsFixed(4),
     );
     return MaterialButton(
+      key: Key(coin.id),
       onPressed: () {},
       child: Column(
         children: [

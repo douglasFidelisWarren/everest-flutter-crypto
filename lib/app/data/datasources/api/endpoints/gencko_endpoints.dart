@@ -12,7 +12,7 @@ class GenckoEndpoints {
     });
   }
 
-  Future<Response> getPrices(
+  Future<Response> getCoinPrices(
     String coinId,
     String vScurrency,
     int days,

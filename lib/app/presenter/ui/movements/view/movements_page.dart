@@ -14,7 +14,7 @@ class MovementsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<ExchangeEntity> exchangeList = ref.watch(exchangesListProvider);
+    List<ExchangeViewData> exchangeList = ref.watch(exchangesListProvider);
 
     return SafeArea(
       child: Scaffold(
@@ -24,7 +24,7 @@ class MovementsPage extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(top: 18.0, left: 10),
             child: Text(
-              CoreStrings.of(context)!.movements,
+              CoreStrings.of(context)!.movementsTitle,
               style: mediumBlackTitle1,
             ),
           ),

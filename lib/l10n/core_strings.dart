@@ -117,12 +117,6 @@ abstract class CoreStrings {
   /// **'Purchase'**
   String get purchase;
 
-  /// Movements page title
-  ///
-  /// In en, this message translates to:
-  /// **'Movements'**
-  String get movements;
-
   ///
   ///
   /// In en, this message translates to:
@@ -218,12 +212,6 @@ abstract class CoreStrings {
   /// In en, this message translates to:
   /// **'Review your conversion'**
   String get reviewAlert;
-
-  /// Review page convert seted amount
-  ///
-  /// In en, this message translates to:
-  /// **'Convert'**
-  String get convert;
 
   /// Review page convert receive amount
   ///

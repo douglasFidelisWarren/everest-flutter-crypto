@@ -9,8 +9,8 @@ import '../../../controllers/providers/conversion_provider.dart';
 import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 
-class AmoutFormField extends ConsumerWidget {
-  const AmoutFormField({
+class AmountFormField extends ConsumerWidget {
+  const AmountFormField({
     Key? key,
     required this.fromCoin,
   }) : super(key: key);
@@ -24,6 +24,7 @@ class AmoutFormField extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextFormField(
+          key: const Key("amountForm"),
           inputFormatters: [
             FilteringTextInputFormatter.allow(
               RegExp(r'^(\d+)?\.?\d{0,6}'),
@@ -72,6 +73,7 @@ class AmoutFormField extends ConsumerWidget {
           },
         ),
         Text(
+          key: const Key("amountText"),
           number.format(ref.watch(textFormValueProvider) *
               Decimal.parse(fromCoin.currentPrice.toString()).toDouble()),
           style: smallGraySubTitle,

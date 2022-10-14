@@ -3,7 +3,7 @@
 "walletTotalAmount" : "Valor total de moedas",
 "portfolio" : "Portifólio",
 "purchase" : "Comprar",
-"movements" : "Movimentações",
+
 "availableCoins" : "Criptos Disponíveis",
 "noMovements" : "Você ainda não possui nenhuma movimentação...",
 "details" : "Detalhes",
@@ -20,7 +20,6 @@
 "estimatedTotal" : "Total estimado",
 "reviewTitle" : "Revisar",
 "reviewAlert" : "Revise os dados da sua conversão",
-"convert" : "Converter",
 "receive" : "Receber",
 "exchange" : "Câmbio",
 "convertConfirmTitle" : "Conversão efetuada",

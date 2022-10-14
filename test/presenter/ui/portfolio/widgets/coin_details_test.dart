@@ -46,4 +46,24 @@ void main() {
       );
     },
   );
+
+  testWidgets(
+    "WHEN home is built THEN page view is launched from app",
+    (WidgetTester tester) async {
+      mockNetworkImagesFor(
+        () async {
+          FakeRepo repo = FakeRepo();
+          CoinViewData coin = repo.getCoin();
+          await loadPage(
+              tester,
+              CoinDetails(
+                coin: coin,
+              ));
+
+          expect(find.byKey(const Key("detailsPageAccess")), findsOneWidget);
+          await tester.pumpAndSettle();
+        },
+      );
+    },
+  );
 }

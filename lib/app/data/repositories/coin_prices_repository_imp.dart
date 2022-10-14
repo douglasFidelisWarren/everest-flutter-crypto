@@ -13,7 +13,8 @@ class CoinPricesRepositoryImp implements ICoinPricesRepository {
       String coinId, String vScurrency, int days) async {
     List<Decimal> prices = [];
 
-    final response = await genkcoEndpoint.getPrices(coinId, vScurrency, days);
+    final response =
+        await genkcoEndpoint.getCoinPrices(coinId, vScurrency, days);
     List<dynamic> list = response.data['prices'];
 
     for (var i = 0; i < list.length; i++) {
