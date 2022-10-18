@@ -15,11 +15,7 @@ void main() {
       () async {
         FakeRepo repo = FakeRepo();
         List<CoinViewData> coinList = [repo.getCoin()];
-        await loadPage(
-            tester,
-            PortfolioPage(
-              coins: coinList,
-            ));
+        await loadPage(tester, PortfolioPage());
         await tester.pumpAndSettle();
         expect(find.byType(PageBody), findsOneWidget);
       },

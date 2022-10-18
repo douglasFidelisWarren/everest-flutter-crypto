@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../l10n/core_strings.dart';
 import '../../../../domain/entities/coins_view_data.dart';
+import '../../../controllers/providers/get_all_coins_provider.dart';
 import '../../shared/custom_app_bar.dart';
 import '../widgets/available_card_coin.dart';
 
@@ -12,10 +13,13 @@ class AvailablePage extends ConsumerWidget {
   const AvailablePage({Key? key, required this.coins}) : super(key: key);
 
   static const route = '/available';
+
   final List<CoinViewData> coins;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    List<CoinViewData>? coinsList =
+        ref.watch(getAllcoinsNotifierProvider).value ?? coins;
     return Scaffold(
       bottomNavigationBar: const CustomBottomNavBar(index: 1),
       appBar: CustomAppBar(CoreStrings.of(context)!.availableCoins),
@@ -25,9 +29,9 @@ class AvailablePage extends ConsumerWidget {
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: coins.length,
+                itemCount: coinsList.length,
                 itemBuilder: (context, index) {
-                  CoinViewData coin = coins[index];
+                  CoinViewData coin = coinsList[index];
                   return AvailableCardCoin(coin: coin);
                 },
               ),

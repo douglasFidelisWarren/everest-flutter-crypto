@@ -9,7 +9,7 @@ class FakeRepo {
   CoinViewData getCoin() {
     CoinViewData coin = CoinViewData(
       currentPrice: Decimal.parse(faker.randomGenerator.decimal().toString()),
-      id: faker.guid.toString(),
+      id: 'bitcoin',
       image: faker.internet.httpUrl(),
       name: faker.lorem.word(),
       percentage24h: faker.randomGenerator.decimal(),

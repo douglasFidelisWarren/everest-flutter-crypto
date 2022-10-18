@@ -1,30 +1,33 @@
-import 'package:everest_crypto/app/domain/entities/coins_view_data.dart';
-import 'package:everest_crypto/app/presenter/ui/portfolio/widgets/page_body.dart';
-import 'package:everest_crypto/app/presenter/ui/review/view/review_page.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../controllers/providers/providers.dart';
-import '../conversion/view/conversion_page.dart';
-import '../conversion/view/success_page.dart';
-import 'home.dart';
+import '../../../domain/entities/coins_view_data.dart';
+import '../../controllers/providers/get_all_coins_provider.dart';
+import '../available/view/available_page.dart';
 import '../movements/view/movements_page.dart';
 import '../portfolio/view/portfolio_page.dart';
 
-// final coinlistProvider = Provider<List<CoinViewData>>(
-//     (ref) => ref.watch(coinsWalletProvider).value!);
-// final coinlist = coinlistProvider as List<CoinViewData>;
-
-final coinProvider = Provider<CoinViewData>(
-  (ref) => ref.watch(detailCoinProvider.state).state,
-);
-final coin = coinProvider as CoinViewData;
-
-var appRoutes = {
-  // Home.route: (context) => const Home(),
-  PortfolioPage.route: (context) => const PortfolioPage(),
-  MovementsPage.route: (context) => const MovementsPage(),
-  //DetailsPage.route: (context) => DetailsPage(coin: coin),
-  //ConversionPage.route: (context) => const ConversionPage(),
-  ReviewPage.route: (context) => const ReviewPage(),
-  SuccessPage.route: (context) => const SuccessPage(),
-};
+class AppRoutes {
+  static Route<dynamic>? generateRoute(settings) {
+    if (settings.name == PortfolioPage.route) {
+      return PageRouteBuilder(
+        pageBuilder: (BuildContext context, Animation<double> animation,
+                Animation<double> secondaryAnimation) =>
+            const PortfolioPage(),
+      );
+    } else if (settings.name == AvailablePage.route) {
+      return PageRouteBuilder(
+          pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secondaryAnimation) =>
+              const AvailablePage(
+                coins: [],
+              ));
+    } else if (settings.name == MovementsPage.route) {
+      return PageRouteBuilder(
+          pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secondaryAnimation) =>
+              const MovementsPage());
+    }
+    return null;
+  }
+}

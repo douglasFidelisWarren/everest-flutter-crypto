@@ -1,3 +1,5 @@
+import 'package:everest_crypto/app/data/datasources/api/endpoint_provider.dart';
+import 'package:everest_crypto/app/data/datasources/api/endpoints/gencko_endpoints.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/app_routes.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/home.dart';
 import 'package:everest_crypto/l10n/core_strings.dart';
@@ -6,6 +8,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../data/datasources/api/endpoints/gencko_endpoints_test.dart';
+
 class TestAppWidget extends ConsumerWidget {
   final Widget child;
 
@@ -13,6 +17,9 @@ class TestAppWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ProviderScope(
+      overrides: [
+        genckoEndpointProvider.overrideWithValue(GenckoEndpoints(DioMock()))
+      ],
       child: MaterialApp(
         home: Material(
           child: MediaQuery(

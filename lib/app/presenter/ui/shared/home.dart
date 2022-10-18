@@ -12,72 +12,47 @@ import '../portfolio/view/portfolio_page.dart';
 import 'assets.dart';
 import 'styles.dart';
 
-class Home extends ConsumerStatefulWidget {
-  const Home({Key? key}) : super(key: key);
+// class Home extends ConsumerStatefulWidget {
+//   const Home({Key? key}) : super(key: key);
 
-  static const route = '/';
+//   static const route = '/';
 
-  @override
-  ConsumerState<Home> createState() => _HomeState();
-}
+//   @override
+//   ConsumerState<Home> createState() => _HomeState();
+// }
 
-class _HomeState extends ConsumerState<Home> {
-  int currentPage = 0;
-  late PageController pageController;
-  @override
-  void initState() {
-    super.initState();
-    ref.read(getAllcoinsNotifierProvider);
-    pageController = PageController(initialPage: currentPage);
-  }
+// class _HomeState extends ConsumerState<Home> {
+//   int currentPage = 0;
+//   late PageController pageController;
+//   @override
+//   void initState() {
+//     super.initState();
+//     ref.read(getAllcoinsNotifierProvider);
+//     pageController = PageController(initialPage: currentPage);
+//   }
 
-  setCurrentPage(page) {
-    setState(
-      () {
-        currentPage = page;
-      },
-    );
-  }
+//   setCurrentPage(page) {
+//     setState(
+//       () {
+//         currentPage = page;
+//       },
+//     );
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    List<CoinViewData> getWalletCoins() {
-      List<CoinViewData> coins = [];
-      List<CoinViewData> coinsProvider =
-          ref.watch(coinsWalletProvider).value ?? [];
-      for (var coin in coinsProvider) {
-        coins.add(coin);
-      }
-      return coins;
-    }
-
-    final walletCoins = getWalletCoins();
-
-    List<CoinViewData> getAvailableCoins() {
-      List<CoinViewData> coins = [];
-      List<CoinViewData> coinsProvider =
-          ref.watch(getAllcoinsNotifierProvider).value ?? [];
-      for (var coin in coinsProvider) {
-        coins.add(coin);
-      }
-      return coins;
-    }
-
-    final availableCoins = getAvailableCoins();
-
-    return Scaffold(
-      body: PageView(
-          onPageChanged: setCurrentPage,
-          controller: ref.watch(pageControllerProvider),
-          children: [
-            PortfolioPage(),
-            AvailablePage(coins: availableCoins),
-            const MovementsPage(),
-          ]),
-      // bottomNavigationBar: CustomBottomNavBar(index: ref.watch(currentPage.),),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: PageView(
+//           onPageChanged: setCurrentPage,
+//           controller: ref.watch(pageControllerProvider),
+//           children: const [
+//             PortfolioPage(),
+//             AvailablePage(),
+//             MovementsPage(),
+//           ]),
+//     );
+//   }
+// }
 
 class CustomBottomNavBar extends ConsumerWidget {
   const CustomBottomNavBar({Key? key, required this.index}) : super(key: key);
@@ -85,7 +60,7 @@ class CustomBottomNavBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    PageController pageController = ref.watch(pageControllerProvider);
+    // PageController pageController = ref.watch(pageControllerProvider);
     return BottomNavigationBar(
       selectedItemColor: colorBlackText,
       selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w400),

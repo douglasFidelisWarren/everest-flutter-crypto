@@ -15,7 +15,7 @@ final currentPageProvider = StateProvider<int>(
   (ref) => 0,
 );
 
-class PortfolioPage extends ConsumerStatefulWidget {
+class PortfolioPage extends ConsumerWidget {
   const PortfolioPage({
     Key? key,
   }) : super(key: key);
@@ -23,32 +23,7 @@ class PortfolioPage extends ConsumerStatefulWidget {
   static const route = '/portfolio';
 
   @override
-  ConsumerState<PortfolioPage> createState() => _PortfolioPageState();
-}
-
-class _PortfolioPageState extends ConsumerState<PortfolioPage> {
-  late List<CoinViewData> coins;
-  @override
-  void initState() {
-    coins = ref.watch(coinsWalletProvider).value ?? [];
-    // void getWalletCoins() {
-    //   List<CoinViewData> coinsl = [];
-
-    //   List<CoinViewData> coinsProvider =
-    //       ref.watch(coinsWalletProvider).value ?? [];
-    //   for (var coin in coinsProvider) {
-    //     coinsl.add(coin);
-    //   }
-    // }
-    //   coins = coinsl;
-
-    super.initState();
-  }
-
-  @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       bottomNavigationBar: const CustomBottomNavBar(index: 0),
       appBar: CustomAppBar(CoreStrings.of(context)!.portfolio),
