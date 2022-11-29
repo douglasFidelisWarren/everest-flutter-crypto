@@ -10,7 +10,7 @@ class ReceiveRow extends StatelessWidget {
     required this.currentExchange,
   }) : super(key: key);
 
-  final ExchangeEntity currentExchange;
+  final ExchangeViewData currentExchange;
 
   @override
   Widget build(BuildContext context) {

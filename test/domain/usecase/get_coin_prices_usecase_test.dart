@@ -1,10 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:everest_crypto/app/data/datasources/api/endpoints/gencko_endpoints.dart';
 import 'package:everest_crypto/app/data/repositories/coin_prices_repository_imp.dart';
-import 'package:everest_crypto/app/data/repositories/coin_repository_imp.dart';
 import 'package:everest_crypto/app/domain/repositories/i_coin_prices_repository.dart';
-import 'package:everest_crypto/app/domain/repositories/i_coin_repository.dart';
-import 'package:everest_crypto/app/domain/usecases/get_all_coins_usecase.dart';
 import 'package:everest_crypto/app/domain/usecases/get_coin_prices_usecase.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -25,8 +22,8 @@ void main() {
     sut = GetCoinPricesUsecaseImp(repository);
   });
 
-  test("""WHEN getAllCoins is requested by GetAllCoinsUsecaseImp 
-      THEN return List<CoinViewData>""", (() async {
+  test("""WHEN getCoinPrices is called by GetCoinPricesUsecaseImp 
+      THEN return Future<List<Decimal>>""", (() async {
     when((() => genckoEndpointsMock.getCoinPrices("", "", 0))).thenAnswer(
         (_) async => Response(
             data: ApiFactory.getPrices(),

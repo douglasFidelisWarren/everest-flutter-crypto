@@ -10,8 +10,5 @@ class GetAllCoinsResponse {
 
   GetAllCoinsResponse(this.results);
 
-  factory GetAllCoinsResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetAllCoinsResponseFromJson(json);
-
   Map<String, dynamic> toJson() => _$GetAllCoinsResponseToJson(this);
 }

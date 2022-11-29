@@ -1,14 +1,15 @@
-import 'package:everest_crypto/app/data/datasources/api/endpoint_provider.dart';
-import 'package:everest_crypto/app/data/datasources/api/endpoints/gencko_endpoints.dart';
+import 'package:everest_crypto/app/presenter/controllers/providers/get_all_coins_provider.dart';
+import 'package:everest_crypto/app/presenter/controllers/providers/get_coins_wallet_provider.dart';
+import 'package:everest_crypto/app/presenter/controllers/providers/providers.dart';
 import 'package:everest_crypto/app/presenter/ui/shared/app_routes.dart';
-import 'package:everest_crypto/app/presenter/ui/shared/home.dart';
+import 'package:everest_crypto/app/presenter/ui/shared/custom_bottom_nav_bar.dart';
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../data/datasources/api/endpoints/gencko_endpoints_test.dart';
+import 'fake_repo.dart';
 
 class TestAppWidget extends ConsumerWidget {
   final Widget child;
@@ -18,9 +19,12 @@ class TestAppWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ProviderScope(
       overrides: [
-        genckoEndpointProvider.overrideWithValue(GenckoEndpoints(DioMock()))
+        coinsWalletProvider.overrideWithProvider(coinsWalletProviderFake),
+        getAllcoinsNotifierProvider
+            .overrideWithProvider(getAllcoinsNotifierProviderFake)
       ],
       child: MaterialApp(
+        onGenerateRoute: AppRoutes.generateRoute,
         home: Material(
           child: MediaQuery(
             data: const MediaQueryData(),

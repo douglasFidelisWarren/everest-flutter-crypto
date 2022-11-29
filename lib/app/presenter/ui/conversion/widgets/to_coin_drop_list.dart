@@ -26,7 +26,7 @@ class ToCoinDropList extends ConsumerWidget {
             symbol: "",
             amount: Decimal.parse("0"),
             amountVsCurrency: Decimal.parse("0"))
-        : dropList[0];
+        : dropList.first;
     String? coinName;
     return Container(
       alignment: Alignment.centerLeft,
@@ -48,6 +48,7 @@ class ToCoinDropList extends ConsumerWidget {
         alignedDropdown: false,
         minWidth: 20,
         child: DropdownButtonFormField(
+          key: const Key("dropDownButton"),
           decoration: InputDecoration.collapsed(
             hintText: coinName,
             border: OutlineInputBorder(
@@ -66,12 +67,11 @@ class ToCoinDropList extends ConsumerWidget {
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
+                        key: const Key("dropDownItem"),
                         children: [
-                          Image.network(
-                            coin.image,
-                            height: 25,
-                          ),
+                          Image(image: NetworkImage(coin.image, scale: 10)),
                           Text(
+                            key: Key(coin.id),
                             ' ${coin.symbol.toUpperCase()}',
                             overflow: TextOverflow.clip,
                           ),

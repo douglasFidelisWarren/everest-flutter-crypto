@@ -6,7 +6,6 @@ import '../../../../domain/entities/chart_config_entity.dart';
 import '../../../../domain/entities/coins_view_data.dart';
 import '../../../controllers/providers/chart_config_provider.dart';
 import '../../../controllers/providers/coin_prices_provider.dart';
-import '../../shared/formater.dart';
 import '../../shared/styles.dart';
 
 final selectedProvider = StateProvider<int>((ref) => 5);
@@ -20,6 +19,7 @@ class LineChartCoin extends ConsumerWidget {
     ChartConfigViewData config = ref.watch(chartConfigProvider);
     Widget custom(int period) {
       return TextButton(
+        key: Key("$period"),
         style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.all(2),
             alignment: Alignment.center,
@@ -66,36 +66,8 @@ class LineChartCoin extends ConsumerWidget {
                 child: LineChart(
                   LineChartData(
                     lineTouchData: LineTouchData(
-                        getTouchedSpotIndicator: (barData, spotIndexes) {
-                          return spotIndexes.map((index) {
-                            return TouchedSpotIndicatorData(
-                              FlLine(
-                                color: colorBrandWarren,
-                                strokeWidth: 2,
-                              ),
-                              FlDotData(
-                                show: true,
-                              ),
-                            );
-                          }).toList();
-                        },
-                        handleBuiltInTouches: true,
-                        touchTooltipData: LineTouchTooltipData(
-                          getTooltipItems: (touchedSpots) {
-                            return touchedSpots.map((touchedSpot) {
-                              return LineTooltipItem(
-                                number.format(touchedSpot.y),
-                                const TextStyle(
-                                  color: colorBlackText,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              );
-                            }).toList();
-                          },
-                          tooltipRoundedRadius: 5,
-                          tooltipBgColor: colorGrayDivider.withOpacity(.8),
-                        )),
+                      handleBuiltInTouches: false,
+                    ),
                     gridData: FlGridData(show: false),
                     titlesData: FlTitlesData(
                         bottomTitles: AxisTitles(

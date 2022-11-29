@@ -1,4 +1,3 @@
-import 'package:decimal/decimal.dart';
 import 'package:dio/dio.dart';
 import 'package:everest_crypto/app/data/datasources/api/endpoints/gencko_endpoints.dart';
 import 'package:faker/faker.dart';
@@ -30,14 +29,17 @@ void main() {
   setUp(() {
     sucess = mockResponse(ApiFactory.getCoinsWallet(), 200);
   });
-  test('WHEN getAllTransactions is requested THEN returns 200', (() async {
+  test('WHEN genckoEndpoints is requested THEN returns status code 200',
+      (() async {
     mockGetResponse().thenAnswer((_) async => sucess);
     final getCoinsWallet = await genckoEndpoints.getCoinsWallet({}, "");
+    final getAllcoins = await genckoEndpoints.getAllCoins("brl");
     final getPrices = await genckoEndpoints.getCoinPrices("", "", 0);
     final getCoinConverction =
         await genckoEndpoints.getCoinConverction(coinId: "", vScurrency: "");
     expect(getCoinsWallet.statusCode, equals(200));
-    expect(getPrices, sucess);
-    expect(getCoinConverction, sucess);
+    expect(getAllcoins.statusCode, equals(200));
+    expect(getPrices.statusCode, equals(200));
+    expect(getCoinConverction.statusCode, equals(200));
   }));
 }

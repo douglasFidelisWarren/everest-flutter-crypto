@@ -9,8 +9,8 @@ import '../../../controllers/providers/conversion_provider.dart';
 import '../../review/view/review_page.dart';
 import '../../shared/styles.dart';
 
-final exchangeProvider = StateProvider<ExchangeEntity>(
-  (ref) => ExchangeEntity(
+final exchangeProvider = StateProvider<ExchangeViewData>(
+  (ref) => ExchangeViewData(
       fromCoin: CoinViewData(
           id: "id",
           name: "name",

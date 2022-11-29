@@ -9,7 +9,7 @@ class ExchangeList extends StatelessWidget {
     required this.exchangeList,
   }) : super(key: key);
 
-  final List<ExchangeEntity> exchangeList;
+  final List<ExchangeViewData> exchangeList;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ExchangeList extends StatelessWidget {
       shrinkWrap: true,
       itemCount: exchangeList.reversed.length,
       itemBuilder: (context, index) {
-        ExchangeEntity exchange = exchangeList[index];
+        ExchangeViewData exchange = exchangeList[index];
 
         return MovementDetailsRow(
           exchange: exchange,

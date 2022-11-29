@@ -1,4 +1,4 @@
-import 'package:everest_crypto/app/presenter/ui/shared/home.dart';
+import 'package:everest_crypto/app/presenter/ui/shared/custom_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,7 +15,7 @@ class MovementsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<ExchangeEntity> exchangeList = ref.watch(exchangesListProvider);
+    List<ExchangeViewData> exchangeList = ref.watch(exchangesListProvider);
 
     return SafeArea(
       child: Scaffold(

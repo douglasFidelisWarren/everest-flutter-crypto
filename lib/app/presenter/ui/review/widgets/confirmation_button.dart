@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,18 +12,17 @@ import '../../shared/styles.dart';
 class ConfirmationButton extends ConsumerWidget {
   const ConfirmationButton({
     Key? key,
-    required this.sizeW,
-    required this.sizeH,
     required this.currentExchange,
   }) : super(key: key);
 
-  final double sizeW;
-  final double sizeH;
-  final ExchangeEntity currentExchange;
+  final ExchangeViewData currentExchange;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    double sizeH = MediaQuery.of(context).size.height;
+    double sizeW = MediaQuery.of(context).size.width;
     return MaterialButton(
+      key: const Key("confirmButton"),
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(6),

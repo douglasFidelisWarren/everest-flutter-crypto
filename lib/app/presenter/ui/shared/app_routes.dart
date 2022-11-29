@@ -1,8 +1,7 @@
+import 'package:everest_crypto/app/presenter/ui/conversion/view/success_page.dart';
+import 'package:everest_crypto/app/presenter/ui/review/view/review_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../domain/entities/coins_view_data.dart';
-import '../../controllers/providers/get_all_coins_provider.dart';
 import '../available/view/available_page.dart';
 import '../movements/view/movements_page.dart';
 import '../portfolio/view/portfolio_page.dart';
@@ -27,6 +26,16 @@ class AppRoutes {
           pageBuilder: (BuildContext context, Animation<double> animation,
                   Animation<double> secondaryAnimation) =>
               const MovementsPage());
+    } else if (settings.name == ReviewPage.route) {
+      return PageRouteBuilder(
+          pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secondaryAnimation) =>
+              const ReviewPage());
+    } else if (settings.name == SuccessPage.route) {
+      return PageRouteBuilder(
+          pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secondaryAnimation) =>
+              const SuccessPage());
     }
     return null;
   }

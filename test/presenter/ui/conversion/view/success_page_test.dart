@@ -16,6 +16,10 @@ void main() {
         final subtitleSuccess =
             tester.widget<Text>(find.byKey(const Key("subtitleSuccess")));
         expect(subtitleSuccess.style, smallGraySubTitle);
+        expect(find.byType(SuccessPage), findsOneWidget);
+        await tester.tap(find.byKey(const Key("closeButton")));
+        await tester.pumpAndSettle();
+        expect(find.byType(SuccessPage), findsNothing);
       });
     },
   );

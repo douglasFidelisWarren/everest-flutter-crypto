@@ -2,7 +2,7 @@ import 'package:everest_crypto/app/presenter/ui/movements/view/movements_page.da
 import 'package:everest_crypto/l10n/core_strings.dart';
 import 'package:flutter/material.dart';
 
-import '../../shared/home.dart';
+import '../../shared/custom_bottom_nav_bar.dart';
 import '../../shared/styles.dart';
 
 class SuccessPage extends StatelessWidget {
@@ -19,6 +19,7 @@ class SuccessPage extends StatelessWidget {
           Row(
             children: [
               IconButton(
+                  key: const Key("closeButton"),
                   onPressed: () => Navigator.of(context)
                       .pushNamedAndRemoveUntil(
                           MovementsPage.route, (route) => false),
